@@ -1,16 +1,26 @@
 # mentora_frontend
 
-A new Flutter project.
+##  <a>Project Overview : [Mentora] </a>
+    An AI Powered innovative mental wellness application designed to provide personalized support and resources for individuals seeking to improve their mental health.
 
-## Getting Started
+## <a>Tech Stack</a>
 
-This project is a starting point for a Flutter application.
+- Flutter : Cross-platform framework for building natively compiled applications.
 
-A few resources to get you started if this is your first Flutter project:
+## <a>Features </a>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    Personalised Activities Generation : Utilizes modern AI-powered technology to generate tailored activities for users.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    Therapist ChatBot : Offers a conversational interface for users to interact with a virtual therapist.
+
+    Daily Journaling : Provides a secure and private space for users to record their thoughts and reflections.
+
+    Stats : Displays insightful statistics to track user progress and mental wellness.
+
+
+## <a>LICENSE</a>
+  This Project is Lincensed under MIT <a>License</a>
+
+
+
+
