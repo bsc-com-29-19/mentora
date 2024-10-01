@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ChatbotScreen extends StatelessWidget {
-  const ChatbotScreen({super.key});
+class JournalScreen extends StatelessWidget {
+  const JournalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Therapist  Chatbot"),
+        title: const Text("Journal"),
       ),
     );
   }
