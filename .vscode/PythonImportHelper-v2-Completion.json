@@ -252,6 +252,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "uvicorn",
         "kind": 6,
         "isExtraImport": true,
@@ -380,6 +388,15 @@
         "description": "app.auth.utils",
         "peekOfCode": "settings = get_settings()\ndef decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid",
         "detail": "app.auth.utils",
+        "documentation": {}
+    },
+    {
+        "label": "test_create_user",
+        "kind": 2,
+        "importPath": "tests.auth.test_auth",
+        "description": "tests.auth.test_auth",
+        "peekOfCode": "def test_create_user():\n    user = User(username= \"user\",email=\"user@email.com\",hashed_password=\"password\")\n    assert user.username == \"user\"\n    assert user.email == \"user@email.com\"\n    assert user.hash_password == \"password\"",
+        "detail": "tests.auth.test_auth",
         "documentation": {}
     },
     {
