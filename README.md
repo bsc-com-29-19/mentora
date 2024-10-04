@@ -2,7 +2,7 @@
 
 An AI-driven Backend application using FastAPI, Postgres, Redis, and Docker, featuring:
 Mental health journaling,
-Personalized recommendations,
+Therapist chatbot,
 Resource library,
 Activity generation,
 Ensuring secure and scalable mental wellness management.
