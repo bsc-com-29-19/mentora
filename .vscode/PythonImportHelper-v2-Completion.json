@@ -248,6 +248,14 @@
         "documentation": {}
     },
     {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "get_settings",
         "importPath": "config",
         "description": "config",
@@ -385,6 +393,22 @@
         "description": "app.auth.models",
         "isExtraImport": true,
         "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "JournalEntry",
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "isExtraImport": true,
+        "detail": "app.journal.models",
         "documentation": {}
     },
     {
@@ -553,6 +577,42 @@
         "description": "tests.auth.test_auth",
         "peekOfCode": "def test_create_user():\n    user = User(username= \"user\",email=\"user@email.com\",hashed_password=\"password\")\n    assert user.username == \"user\"\n    assert user.email == \"user@email.com\"\n    assert user.hash_password == \"password\"",
         "detail": "tests.auth.test_auth",
+        "documentation": {}
+    },
+    {
+        "label": "test_create_journal_entry",
+        "kind": 2,
+        "importPath": "tests.journal.test_journal",
+        "description": "tests.journal.test_journal",
+        "peekOfCode": "def test_create_journal_entry():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\",\"Thing 3\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "detail": "tests.journal.test_journal",
+        "documentation": {}
+    },
+    {
+        "label": "test_user_journal_entries_relationship",
+        "kind": 2,
+        "importPath": "tests.journal.test_journal",
+        "description": "tests.journal.test_journal",
+        "peekOfCode": "def test_user_journal_entries_relationship():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "detail": "tests.journal.test_journal",
+        "documentation": {}
+    },
+    {
+        "label": "test_journal_entry_default_values",
+        "kind": 2,
+        "importPath": "tests.journal.test_journal",
+        "description": "tests.journal.test_journal",
+        "peekOfCode": "def test_journal_entry_default_values():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "detail": "tests.journal.test_journal",
+        "documentation": {}
+    },
+    {
+        "label": "test_journal_entry_attributes",
+        "kind": 2,
+        "importPath": "tests.journal.test_journal",
+        "description": "tests.journal.test_journal",
+        "peekOfCode": "def test_journal_entry_attributes():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "detail": "tests.journal.test_journal",
         "documentation": {}
     },
     {
