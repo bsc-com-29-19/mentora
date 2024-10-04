@@ -1,11 +1,42 @@
 [
     {
-        "label": "uvicorn",
-        "kind": 6,
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
         "isExtraImport": true,
-        "importPath": "uvicorn",
-        "description": "uvicorn",
-        "detail": "uvicorn",
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
         "documentation": {}
     },
     {
@@ -22,6 +53,211 @@
         "description": "fastapi",
         "isExtraImport": true,
         "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPBearer",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPAuthorizationCredentials",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "UUID",
+        "importPath": "sqlalchemy.dialects.postgresql",
+        "description": "sqlalchemy.dialects.postgresql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects.postgresql",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "bcrypt",
+        "description": "bcrypt",
+        "detail": "bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jwt",
+        "description": "jwt",
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "EmailStr",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "uvicorn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uvicorn",
+        "description": "uvicorn",
+        "detail": "uvicorn",
         "documentation": {}
     },
     {
@@ -49,14 +285,6 @@
         "documentation": {}
     },
     {
-        "label": "create_engine",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
         "label": "declarative_base",
         "importPath": "sqlalchemy.ext.declarative",
         "description": "sqlalchemy.ext.declarative",
@@ -65,19 +293,93 @@
         "documentation": {}
     },
     {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "label": "JWTBearer",
+        "kind": 6,
+        "importPath": "app.auth.bearer",
+        "description": "app.auth.bearer",
+        "peekOfCode": "class JWTBearer(HTTPBearer):\n    def __init__(self, auto_error: bool = True):\n        super(JWTBearer, self).__init__(auto_error=auto_error)\n    async def __call__(self, request: Request):\n        credentials: HTTPAuthorizationCredentials = await super(JWTBearer, self).__call__(request)\n        if credentials:\n            if not credentials.scheme == \"Bearer\":\n                raise HTTPException(status_code=403, detail=\"Invalid authentication scheme.\")\n            if not self.verify_jwt(credentials.credentials):\n                raise HTTPException(status_code=403, detail=\"Invalid token or expired token.\")",
+        "detail": "app.auth.bearer",
         "documentation": {}
     },
     {
-        "label": "get_settings",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
+        "label": "User",
+        "kind": 6,
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    username = Column(String, unique=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    # journals = relationship(\"Journal\", back_populates=\"author\")\n    def hash_password(self, password: str):\n        self.hashed_password = bcrypt.hashpw(\n            password.encode(\"utf-8\"), bcrypt.gensalt()",
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "signup",
+        "kind": 2,
+        "importPath": "app.auth.routers",
+        "description": "app.auth.routers",
+        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n@user_router.post(\"/login\")\ndef login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):",
+        "detail": "app.auth.routers",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app.auth.routers",
+        "description": "app.auth.routers",
+        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")",
+        "detail": "app.auth.routers",
+        "documentation": {}
+    },
+    {
+        "label": "user_router",
+        "kind": 5,
+        "importPath": "app.auth.routers",
+        "description": "app.auth.routers",
+        "peekOfCode": "user_router = APIRouter()\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n@user_router.post(\"/login\")\ndef login(user_data: UserLogin, db: Session = Depends(get_db)):",
+        "detail": "app.auth.routers",
+        "documentation": {}
+    },
+    {
+        "label": "UserCreate",
+        "kind": 6,
+        "importPath": "app.auth.schema",
+        "description": "app.auth.schema",
+        "peekOfCode": "class UserCreate(BaseModel):\n    username: str\n    email: EmailStr\n    password: str\nclass UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str",
+        "detail": "app.auth.schema",
+        "documentation": {}
+    },
+    {
+        "label": "UserLogin",
+        "kind": 6,
+        "importPath": "app.auth.schema",
+        "description": "app.auth.schema",
+        "peekOfCode": "class UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str",
+        "detail": "app.auth.schema",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "kind": 6,
+        "importPath": "app.auth.schema",
+        "description": "app.auth.schema",
+        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str",
+        "detail": "app.auth.schema",
+        "documentation": {}
+    },
+    {
+        "label": "decodeJWT",
+        "kind": 2,
+        "importPath": "app.auth.utils",
+        "description": "app.auth.utils",
+        "peekOfCode": "def decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid",
+        "detail": "app.auth.utils",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "app.auth.utils",
+        "description": "app.auth.utils",
+        "peekOfCode": "settings = get_settings()\ndef decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid",
+        "detail": "app.auth.utils",
         "documentation": {}
     },
     {
