@@ -1,0 +1,191 @@
+[
+    {
+        "label": "uvicorn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uvicorn",
+        "description": "uvicorn",
+        "detail": "uvicorn",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "lru_cache",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.ext.declarative",
+        "description": "sqlalchemy.ext.declarative",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "mentora_root",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def mentora_root():\n    return {\n        \"message\": \"Welcome to Mentora Backend App\",\n        \"documentation\": \"add '/docs' to the url\"\n    }\n# endpoint to check mentora health \n@app.get(\"/health/check\")\ndef mentora_detailed_health_check():\n    health_status = {\n        \"app\": True,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "mentora_detailed_health_check",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def mentora_detailed_health_check():\n    health_status = {\n        \"app\": True,\n        \"database\": check_database_connection(),\n        \"dependencies\": check_dependencies()\n    }\n    if all(health_status.values()):\n        return {\"status\": \"healthy\"}\n    else:\n        return Response(content={\"status\": \"unhealthy\"}, media_type=\"application/json\", status_code=503)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "check_database_connection",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def check_database_connection():\n    # database connection check\n    #\n    return True\ndef check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"app:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "check_dependencies",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"app:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app =  FastAPI(\n    title=\"Mentora Backend App\",\n    description=\"Backend of Mentora : An AI powered mental health companion app\",\n    summary=\"API endpoints for mental health journaling,therapist chatbot,activity generation,Statistics, and user management\",\n    contact={\n        \"name\": \"Tony Kanyamuka\",\n        \"url\": \"https://www.Mentora.com\",\n        \"email\": \"tonykanyamuka@icloud.com\",\n        \"phone\": \"+265996008328\"\n    },",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "class Settings(BaseSettings):\n    DB_NAME: str\n    DB_USERNAME: str\n    DB_PASSWORD: str\n    PGADMIN_EMAIL: str\n    PGADMIN_PASSWORD: str\n    SECRET_KEY: str\n    TOKEN_EXPIRATION_HOURS: int\n    class Config:\n        env_file: str = \".env\"",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "kind": 2,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "def get_settings() -> Settings:\n    return Settings()",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "settings = get_settings()\nDB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@localhost:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "DB_URL",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "DB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@localhost:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "engine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "SessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "Base = declarative_base()",
+        "detail": "database",
+        "documentation": {}
+    }
+]
