@@ -104,6 +104,62 @@
         "documentation": {}
     },
     {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Date",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "create_engine",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -128,11 +184,27 @@
         "documentation": {}
     },
     {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "sessionmaker",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
         "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "UUID",
+        "importPath": "sqlalchemy.dialects.postgresql",
+        "description": "sqlalchemy.dialects.postgresql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects.postgresql",
         "documentation": {}
     },
     {
@@ -161,6 +233,14 @@
     },
     {
         "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -243,12 +323,60 @@
         "documentation": {}
     },
     {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database ",
+        "description": "database ",
+        "isExtraImport": true,
+        "detail": "database ",
         "documentation": {}
     },
     {
@@ -266,14 +394,6 @@
         "importPath": "uvicorn",
         "description": "uvicorn",
         "detail": "uvicorn",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
         "documentation": {}
     },
     {
@@ -388,6 +508,42 @@
         "description": "app.auth.utils",
         "peekOfCode": "settings = get_settings()\ndef decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid",
         "detail": "app.auth.utils",
+        "documentation": {}
+    },
+    {
+        "label": "MoodRating",
+        "kind": 6,
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "peekOfCode": "class MoodRating(str, Enum):\n    awful = 1\n    bad = 2\n    ok = 3\n    good = 4\n    great = 5\nclass JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating",
+        "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
+        "label": "JournalEntryBase",
+        "kind": 6,
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "peekOfCode": "class JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]]\nclass JournalEntry(JournalEntryBase):\n    id: int\n    user_id: int",
+        "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
+        "label": "JournalEntry",
+        "kind": 6,
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "peekOfCode": "class JournalEntry(JournalEntryBase):\n    id: int\n    user_id: int\n    entry_date: str\n    class Config:\n        orm_mode = True\nclass JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))",
+        "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
+        "label": "JournalEntryDB",
+        "kind": 6,
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    grateful_things = Column(String, nullable=False)\n    overall_day_rating = Column(SqlEnum(MoodRating), nullable=False)\n    completed_most_important_task = Column(Boolean, nullable=False)\n    day_summary = Column(String, nullable=False)",
+        "detail": "app.journal.models",
         "documentation": {}
     },
     {
