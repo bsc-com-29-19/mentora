@@ -57,3 +57,7 @@ Ensuring secure and scalable mental wellness management.
 - GET /profile - Retrieve user profile
 - PATCH /profile - Update user profile
 - POST /password/reset - Reset password
+
+## License
+
+- This Project is Lincensed under MIT <a href="https://opensource.org/licenses/MIT">License</a>
