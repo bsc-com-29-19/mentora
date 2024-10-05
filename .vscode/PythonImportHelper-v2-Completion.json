@@ -548,7 +548,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]]\nclass JournalEntry(JournalEntryBase):\n    id: int\n    user_id: int",
+        "peekOfCode": "class JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating\n    overall_mood_rating: MoodRating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]]\nclass JournalEntry(JournalEntryBase):\n    id: UUID",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -557,7 +557,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntry(JournalEntryBase):\n    id: int\n    user_id: int\n    entry_date: str\n    class Config:\n        orm_mode = True\nclass JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))",
+        "peekOfCode": "class JournalEntry(JournalEntryBase):\n    id: UUID\n    user_id: UUID\n    entry_date: str\n    class Config:\n        orm_mode = True\nclass JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -566,7 +566,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    grateful_things = Column(String, nullable=False)\n    overall_day_rating = Column(SqlEnum(MoodRating), nullable=False)\n    completed_most_important_task = Column(Boolean, nullable=False)\n    day_summary = Column(String, nullable=False)",
+        "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    grateful_things = Column(String, nullable=False)\n    overall_day_rating = Column(SqlEnum(MoodRating), nullable=False)\n    overall_mood_rating = Column(SqlEnum(MoodRating), nullable=False)\n    completed_most_important_task = Column(Boolean, nullable=False)",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -584,7 +584,7 @@
         "kind": 2,
         "importPath": "tests.journal.test_journal",
         "description": "tests.journal.test_journal",
-        "peekOfCode": "def test_create_journal_entry():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\",\"Thing 3\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "peekOfCode": "def test_create_journal_entry():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\",\"Thing 3\"],\n        overall_day_rating=\"good\",\n        overall_mood_rating=\"bad\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",",
         "detail": "tests.journal.test_journal",
         "documentation": {}
     },
@@ -593,7 +593,7 @@
         "kind": 2,
         "importPath": "tests.journal.test_journal",
         "description": "tests.journal.test_journal",
-        "peekOfCode": "def test_user_journal_entries_relationship():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "peekOfCode": "def test_user_journal_entries_relationship():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        overall_mood_rating=\"bad\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",",
         "detail": "tests.journal.test_journal",
         "documentation": {}
     },
@@ -602,7 +602,7 @@
         "kind": 2,
         "importPath": "tests.journal.test_journal",
         "description": "tests.journal.test_journal",
-        "peekOfCode": "def test_journal_entry_default_values():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "peekOfCode": "def test_journal_entry_default_values():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        overall_mood_rating=\"bad\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",",
         "detail": "tests.journal.test_journal",
         "documentation": {}
     },
@@ -611,7 +611,7 @@
         "kind": 2,
         "importPath": "tests.journal.test_journal",
         "description": "tests.journal.test_journal",
-        "peekOfCode": "def test_journal_entry_attributes():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",\n        mood_tags=[\"Tag 1\", \"Tag 2\"]",
+        "peekOfCode": "def test_journal_entry_attributes():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n         overall_mood_rating=\"bad\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",",
         "detail": "tests.journal.test_journal",
         "documentation": {}
     },

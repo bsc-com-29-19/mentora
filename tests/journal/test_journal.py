@@ -10,15 +10,17 @@ def test_create_journal_entry():
         most_important_task="Task 1",
         grateful_things=["Thing 1", "Thing 2","Thing 3"],
         overall_day_rating="good",
+        overall_mood_rating="bad",
         completed_most_important_task=True,
         day_summary="Summary",
         mood_tags=["Tag 1", "Tag 2"]
     )
-    
+
     assert journal_entry.user == user
     assert journal_entry.most_important_task == "Task 1"
     assert journal_entry.grateful_things == ["Thing 1", "Thing 2"]
     assert journal_entry.overall_day_rating == "good"
+    assert journal_entry.overall_mood_rating == "bad"
     assert journal_entry.completed_most_important_task == True
     assert journal_entry.day_summary == "Summary"
     assert journal_entry.mood_tags == ["Tag 1", "Tag 2"]
@@ -31,6 +33,7 @@ def test_user_journal_entries_relationship():
         most_important_task="Task 1",
         grateful_things=["Thing 1", "Thing 2"],
         overall_day_rating="good",
+        overall_mood_rating="bad",
         completed_most_important_task=True,
         day_summary="Summary",
         mood_tags=["Tag 1", "Tag 2"]
@@ -46,6 +49,7 @@ def test_journal_entry_default_values():
         most_important_task="Task 1",
         grateful_things=["Thing 1", "Thing 2"],
         overall_day_rating="good",
+        overall_mood_rating="bad",
         completed_most_important_task=True,
         day_summary="Summary",
         mood_tags=["Tag 1", "Tag 2"]
@@ -60,6 +64,7 @@ def test_journal_entry_attributes():
         most_important_task="Task 1",
         grateful_things=["Thing 1", "Thing 2"],
         overall_day_rating="good",
+         overall_mood_rating="bad",
         completed_most_important_task=True,
         day_summary="Summary",
         mood_tags=["Tag 1", "Tag 2"]
@@ -67,6 +72,7 @@ def test_journal_entry_attributes():
     assert journal_entry.most_important_task == "Task 1"
     assert journal_entry.grateful_things == ["Thing 1", "Thing 2"]
     assert journal_entry.overall_day_rating == "good"
+    assert journal_entry.overall_mood_rating == "bad"
     assert journal_entry.completed_most_important_task == True
     assert journal_entry.day_summary == "Summary"
     assert journal_entry.mood_tags == ["Tag 1", "Tag 2"]
