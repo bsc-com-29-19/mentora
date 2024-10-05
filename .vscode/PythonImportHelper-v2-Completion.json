@@ -56,6 +56,22 @@
         "documentation": {}
     },
     {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "HTTPBearer",
         "importPath": "fastapi.security",
         "description": "fastapi.security",
@@ -224,6 +240,14 @@
         "documentation": {}
     },
     {
+        "label": "SessionLocal",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -253,6 +277,14 @@
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
         "documentation": {}
     },
     {
@@ -404,6 +436,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "JournalEntry",
         "importPath": "app.journal.models",
         "description": "app.journal.models",
@@ -442,6 +482,14 @@
         "description": "sqlalchemy.ext.declarative",
         "isExtraImport": true,
         "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "JWTBearer",
+        "importPath": "app.auth.bearer",
+        "description": "app.auth.bearer",
+        "isExtraImport": true,
+        "detail": "app.auth.bearer",
         "documentation": {}
     },
     {
@@ -721,6 +769,33 @@
         "description": "database",
         "peekOfCode": "Base = declarative_base()",
         "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "peekOfCode": "def get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\ndef get_current_user(token:str = Depends(JWTBearer())) -> User:\n    try:\n        payload = jwt.decode(token, f'{settings.SECRET_KEY}', algorithms=['HS256'])\n        user_id = payload.get('sub')",
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "kind": 2,
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "peekOfCode": "def get_current_user(token:str = Depends(JWTBearer())) -> User:\n    try:\n        payload = jwt.decode(token, f'{settings.SECRET_KEY}', algorithms=['HS256'])\n        user_id = payload.get('sub')\n        db = SessionLocal()\n        return db.query(User).filter(User.id == user_id).first()\n    except(jwt.PyJWTError, AttributeError):\n        return  HTTPException(status_code=\"Invalid token\")",
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "peekOfCode": "settings = get_settings()\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\ndef get_current_user(token:str = Depends(JWTBearer())) -> User:\n    try:\n        payload = jwt.decode(token, f'{settings.SECRET_KEY}', algorithms=['HS256'])",
+        "detail": "dependencies",
         "documentation": {}
     }
 ]
