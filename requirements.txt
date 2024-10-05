@@ -10,3 +10,4 @@ pyjwt
 python-decouple
 httpx
 faker
+alembic

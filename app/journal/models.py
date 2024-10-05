@@ -31,7 +31,8 @@ class JournalEntry(JournalEntryBase):
     entry_date: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+        arbitrary_types_allowed = True
 
 class JournalEntryDB(Base):
     __tablename__ = "journal_entries"

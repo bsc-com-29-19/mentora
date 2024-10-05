@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 from database import Base
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from config import get_settings
 import uuid
 import bcrypt
@@ -30,6 +30,7 @@ class User(Base):
 
     def generate_token(self):
         # expiration = datetime.utcnow() + timedelta(hours=24)
-        expiration = datetime.utcnow() + timedelta(hours=get_settings().TOKEN_EXPIRATION_HOURS)
+        # expiration = datetime.utcnow() + timedelta(hours=get_settings().TOKEN_EXPIRATION_HOURS)
+        expiration = datetime.now(timezone.utc) + timedelta(hours=get_settings().TOKEN_EXPIRATION_HOURS)
         payload = {"sub": str(self.id), "exp": expiration}
         return jwt.encode(payload, f"{get_settings().SECRET_KEY}", algorithm="HS256")

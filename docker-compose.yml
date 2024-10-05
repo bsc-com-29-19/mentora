@@ -5,6 +5,8 @@ networks:
     driver: bridge
 
 services:
+
+#service for postgres db
   postgres:
     image: postgres
     container_name: mentora_postgres
@@ -15,11 +17,12 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
     ports:
-      - "8000:5432"
+      - "5432:5432"
 
     networks:
       - mentoranetwork
 
+ # service for pgadmin to interact with posthres  using GUI
   pgadmin:
     image: dpage/pgadmin4
     container_name: mentora_pgadmin
@@ -34,4 +37,16 @@ services:
       - mentoranetwork
     depends_on:
       - postgres
+
+#  service for api testing
+  # mentora_api:
+  #   build: .
+  #   container_name: mentora_api
+  #   command: uvicorn main:app --host 0.0.0.0 --port 8400 --reload
+  #   ports:
+  #     - "8400:8400"
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - mentoranetwork
 

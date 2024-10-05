@@ -1,90 +1,83 @@
 [
     {
-        "label": "Request",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "APIRouter",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "FastAPI",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "alembic",
         "documentation": {}
     },
     {
-        "label": "Response",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "context",
+        "importPath": "alembic",
+        "description": "alembic",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "alembic",
         "documentation": {}
     },
     {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "sqlalchemy",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "fastapi",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
+        "label": "engine_from_config",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
         "isExtraImport": true,
-        "detail": "fastapi",
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
-        "label": "HTTPBearer",
-        "importPath": "fastapi.security",
-        "description": "fastapi.security",
+        "label": "pool",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
         "isExtraImport": true,
-        "detail": "fastapi.security",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPAuthorizationCredentials",
-        "importPath": "fastapi.security",
-        "description": "fastapi.security",
-        "isExtraImport": true,
-        "detail": "fastapi.security",
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
@@ -184,6 +177,198 @@
         "documentation": {}
     },
     {
+        "label": "fileConfig",
+        "importPath": "logging.config",
+        "description": "logging.config",
+        "isExtraImport": true,
+        "detail": "logging.config",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "JournalEntryDB",
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "isExtraImport": true,
+        "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
+        "label": "JournalEntry",
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "isExtraImport": true,
+        "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPBearer",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPAuthorizationCredentials",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
         "label": "relationship",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -232,22 +417,6 @@
         "documentation": {}
     },
     {
-        "label": "Base",
-        "importPath": "database",
-        "description": "database",
-        "isExtraImport": true,
-        "detail": "database",
-        "documentation": {}
-    },
-    {
-        "label": "SessionLocal",
-        "importPath": "database",
-        "description": "database",
-        "isExtraImport": true,
-        "detail": "database",
-        "documentation": {}
-    },
-    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -257,6 +426,14 @@
     },
     {
         "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -380,30 +557,6 @@
         "documentation": {}
     },
     {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "Enum",
         "importPath": "enum",
         "description": "enum",
@@ -417,47 +570,6 @@
         "description": "database ",
         "isExtraImport": true,
         "detail": "database ",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "app.auth.models",
-        "description": "app.auth.models",
-        "isExtraImport": true,
-        "detail": "app.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "app.auth.models",
-        "description": "app.auth.models",
-        "isExtraImport": true,
-        "detail": "app.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "app.auth.models",
-        "description": "app.auth.models",
-        "isExtraImport": true,
-        "detail": "app.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "JournalEntry",
-        "importPath": "app.journal.models",
-        "description": "app.journal.models",
-        "isExtraImport": true,
-        "detail": "app.journal.models",
-        "documentation": {}
-    },
-    {
-        "label": "uvicorn",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uvicorn",
-        "description": "uvicorn",
-        "detail": "uvicorn",
         "documentation": {}
     },
     {
@@ -490,6 +602,86 @@
         "description": "app.auth.bearer",
         "isExtraImport": true,
         "detail": "app.auth.bearer",
+        "documentation": {}
+    },
+    {
+        "label": "uvicorn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uvicorn",
+        "description": "uvicorn",
+        "detail": "uvicorn",
+        "documentation": {}
+    },
+    {
+        "label": "user_router",
+        "importPath": "app.auth.routers",
+        "description": "app.auth.routers",
+        "isExtraImport": true,
+        "detail": "app.auth.routers",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "alembic.versions.faa54a879958_created_db_models",
+        "description": "alembic.versions.faa54a879958_created_db_models",
+        "peekOfCode": "def upgrade() -> None:\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('users',\n    sa.Column('id', sa.UUID(), nullable=False),\n    sa.Column('username', sa.String(), nullable=True),\n    sa.Column('email', sa.String(), nullable=True),\n    sa.Column('hashed_password', sa.String(), nullable=True),\n    sa.PrimaryKeyConstraint('id')\n    )\n    op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)",
+        "detail": "alembic.versions.faa54a879958_created_db_models",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "alembic.versions.faa54a879958_created_db_models",
+        "description": "alembic.versions.faa54a879958_created_db_models",
+        "peekOfCode": "def downgrade() -> None:\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_table('journal_entries')\n    op.drop_index(op.f('ix_users_username'), table_name='users')\n    op.drop_index(op.f('ix_users_email'), table_name='users')\n    op.drop_table('users')\n    # ### end Alembic commands ###",
+        "detail": "alembic.versions.faa54a879958_created_db_models",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_offline",
+        "kind": 2,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "def run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation\n    we don't even need a DBAPI to be available.\n    Calls to context.execute() here emit the given string to the\n    script output.\n    \"\"\"\n    url = config.get_main_option(\"sqlalchemy.url\")",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_online",
+        "kind": 2,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    connectable = engine_from_config(\n        config.get_section(config.config_ini_section, {}),\n        prefix=\"sqlalchemy.\",\n        poolclass=pool.NullPool,\n    )",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "config = context.config\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\nsection = config.config_ini_section\nconfig.set_section_option(section,\"DB_NAME\",envConfig(\"DB_NAME\"))\nconfig.set_section_option(section,\"DB_USERNAME\",envConfig(\"DB_USERNAME\"))\nconfig.set_section_option(section,\"DB_PASSWORD\",envConfig(\"DB_PASSWORD\"))\n# add your model's MetaData object here",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "section",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "section = config.config_ini_section\nconfig.set_section_option(section,\"DB_NAME\",envConfig(\"DB_NAME\"))\nconfig.set_section_option(section,\"DB_USERNAME\",envConfig(\"DB_USERNAME\"))\nconfig.set_section_option(section,\"DB_PASSWORD\",envConfig(\"DB_PASSWORD\"))\n# add your model's MetaData object here\n# for 'autogenerate' support\n# from myapp import mymodel\n# target_metadata = mymodel.Base.metadata\ntarget_metadata = Base.metadata\n# other values from the config, defined by the needs of env.py,",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "target_metadata",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "target_metadata = Base.metadata\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
+        "detail": "alembic.env",
         "documentation": {}
     },
     {
@@ -605,7 +797,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntry(JournalEntryBase):\n    id: UUID\n    user_id: UUID\n    entry_date: str\n    class Config:\n        orm_mode = True\nclass JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))",
+        "peekOfCode": "class JournalEntry(JournalEntryBase):\n    id: UUID\n    user_id: UUID\n    entry_date: str\n    class Config:\n        from_attributes = True\n        arbitrary_types_allowed = True\nclass JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -661,51 +853,6 @@
         "description": "tests.journal.test_journal",
         "peekOfCode": "def test_journal_entry_attributes():\n    user = User(username=\"user\", email=\"user@gmail.com\", hashed_password=\"password\")\n    journal_entry = JournalEntry(\n        user=user,\n        most_important_task=\"Task 1\",\n        grateful_things=[\"Thing 1\", \"Thing 2\"],\n        overall_day_rating=\"good\",\n         overall_mood_rating=\"bad\",\n        completed_most_important_task=True,\n        day_summary=\"Summary\",",
         "detail": "tests.journal.test_journal",
-        "documentation": {}
-    },
-    {
-        "label": "mentora_root",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def mentora_root():\n    return {\n        \"message\": \"Welcome to Mentora Backend App\",\n        \"documentation\": \"add '/docs' to the url\"\n    }\n# endpoint to check mentora health \n@app.get(\"/health/check\")\ndef mentora_detailed_health_check():\n    health_status = {\n        \"app\": True,",
-        "detail": "app",
-        "documentation": {}
-    },
-    {
-        "label": "mentora_detailed_health_check",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def mentora_detailed_health_check():\n    health_status = {\n        \"app\": True,\n        \"database\": check_database_connection(),\n        \"dependencies\": check_dependencies()\n    }\n    if all(health_status.values()):\n        return {\"status\": \"healthy\"}\n    else:\n        return Response(content={\"status\": \"unhealthy\"}, media_type=\"application/json\", status_code=503)",
-        "detail": "app",
-        "documentation": {}
-    },
-    {
-        "label": "check_database_connection",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def check_database_connection():\n    # database connection check\n    #\n    return True\ndef check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"app:app\", host=\"0.0.0.0\", port=8400,reload=True)",
-        "detail": "app",
-        "documentation": {}
-    },
-    {
-        "label": "check_dependencies",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"app:app\", host=\"0.0.0.0\", port=8400,reload=True)",
-        "detail": "app",
-        "documentation": {}
-    },
-    {
-        "label": "app",
-        "kind": 5,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "app =  FastAPI(\n    title=\"Mentora Backend App\",\n    description=\"Backend of Mentora : An AI powered mental health companion app\",\n    summary=\"API endpoints for mental health journaling,therapist chatbot,activity generation,Statistics, and user management\",\n    contact={\n        \"name\": \"Tony Kanyamuka\",\n        \"url\": \"https://www.Mentora.com\",\n        \"email\": \"tonykanyamuka@icloud.com\",\n        \"phone\": \"+265996008328\"\n    },",
-        "detail": "app",
         "documentation": {}
     },
     {
@@ -796,6 +943,51 @@
         "description": "dependencies",
         "peekOfCode": "settings = get_settings()\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\ndef get_current_user(token:str = Depends(JWTBearer())) -> User:\n    try:\n        payload = jwt.decode(token, f'{settings.SECRET_KEY}', algorithms=['HS256'])",
         "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "mentora_root",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def mentora_root():\n    return {\n        \"message\": \"Welcome to Mentora Backend App\",\n        \"documentation\": \"add '/docs' to the url\"\n    }\n# endpoint to check mentora health \n@app.get(\"/health/check\")\ndef mentora_detailed_health_check():\n    health_status = {\n        \"app\": True,",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "mentora_detailed_health_check",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def mentora_detailed_health_check():\n    health_status = {\n        \"app\": True,\n        \"database\": check_database_connection(),\n        \"dependencies\": check_dependencies()\n    }\n    if all(health_status.values()):\n        return {\"status\": \"healthy\"}\n    else:\n        return Response(content={\"status\": \"unhealthy\"}, media_type=\"application/json\", status_code=503)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "check_database_connection",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def check_database_connection():\n    # database connection check\n    #\n    return True\ndef check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "check_dependencies",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app =  FastAPI(\n    title=\"Mentora Backend App\",\n    description=\"Backend of Mentora : An AI powered mental health companion app\",\n    summary=\"API endpoints for mental health journaling,therapist chatbot,activity generation,Statistics, and user management\",\n    contact={\n        \"name\": \"Tony Kanyamuka\",\n        \"url\": \"https://www.Mentora.com\",\n        \"email\": \"tonykanyamuka@icloud.com\",\n        \"phone\": \"+265996008328\"\n    },",
+        "detail": "main",
         "documentation": {}
     }
 ]

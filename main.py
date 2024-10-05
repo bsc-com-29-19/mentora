@@ -1,6 +1,9 @@
 import uvicorn
 from fastapi import FastAPI, Response
 from typing import Dict
+from database import Base,engine
+from app.auth.routers import user_router
+
 
 
 # Mentora metadata
@@ -22,6 +25,7 @@ app =  FastAPI(
     version="v1"
 )
 
+Base.metadata.create_all(bind=engine)
 
 # root endpoint
 @app.get("/")
@@ -46,7 +50,11 @@ def mentora_detailed_health_check():
         return Response(content={"status": "unhealthy"}, media_type="application/json", status_code=503)
 
 
-# endpoint to check database connection
+app.include_router(user_router,prefix='/user')
+
+
+
+# function to check database connection
 def check_database_connection():
     # database connection check
     #
@@ -61,4 +69,4 @@ def check_dependencies():
 
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8400,reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8400,reload=True)
