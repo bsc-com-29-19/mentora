@@ -4,6 +4,7 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
@@ -17,7 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -36,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: const Text(
                         'Mentora',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
@@ -46,32 +47,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-              
+
               // Aligning "Sign Up" to the left
               Align(
                 alignment: Alignment.centerLeft,
                 child: const Text(
                   'Sign Up',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-              
+
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     TextFormField(
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: const InputDecoration(
                         labelText: 'Full Name',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(color: Colors.black),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                       validator: (value) {
@@ -84,12 +85,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: const InputDecoration(
                         labelText: 'Username',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(color: Colors.black),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                       validator: (value) {
@@ -102,12 +103,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: const InputDecoration(
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(color: Colors.black),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                       validator: (value) {
@@ -120,13 +121,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       obscureText: true,
                       decoration: const InputDecoration(
                         labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(color: Colors.black),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                       ),
                       validator: (value) {
@@ -164,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         const Text(
                           'Already have an account?',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.grey),
                         ),
                         TextButton(
                           onPressed: () {
@@ -173,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           child: const Text(
                             'Login',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.green),
                           ),
                         ),
                       ],

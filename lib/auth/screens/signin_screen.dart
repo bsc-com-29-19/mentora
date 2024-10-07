@@ -19,7 +19,7 @@ class _SigninScreenState extends State<SigninScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView( 
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -33,12 +33,16 @@ class _SigninScreenState extends State<SigninScreen> {
                     height: 20,
                   ),
                   const SizedBox(width: 5),
-                  const Text(
-                    'Mentora',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  Expanded(
+                    child: Center(
+                      child: const Text(
+                        'Mentora',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -64,7 +68,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty || !value.contains('@')) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            !value.contains('@')) {
                           return 'Please enter a valid email';
                         }
                         return null;
@@ -79,7 +85,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty || value.length < 8) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            value.length < 8) {
                           return 'Please enter a password with at least 8 characters';
                         }
                         return null;

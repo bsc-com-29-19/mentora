@@ -12,7 +12,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      
       title: 'Mentora',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -43,6 +46,7 @@ class MyApp extends StatelessWidget {
 
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
+    
   }
 }
 
