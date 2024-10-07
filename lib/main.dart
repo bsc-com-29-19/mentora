@@ -6,6 +6,8 @@ import 'package:mentora_frontend/onboarding/screens/screen3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 // import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 
+// Todo : Make onboarding one time step after app installation not onAppOpen
+
 void main() {
   runApp(const MyApp());
 }
@@ -73,7 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           MaterialPageRoute(
                               builder: (context) => const NavigationMenu()));
                     },
-                    child: Text(buttonText),
+                    //Todo : make it bold and change color
+                    child: Text(
+                      buttonText,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
                   SmoothPageIndicator(
                     controller: pageController,
@@ -93,7 +102,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                 duration: const Duration(milliseconds: 600),
                                 curve: Curves.easeIn);
                           },
-                          child: const Text("Next"),
+
+                          //Todo : make it bold and change color
+                          child: const Text(
+                            "Next",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
                         )
                 ],
               ),
