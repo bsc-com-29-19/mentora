@@ -38,6 +38,7 @@ dependencies:
   helpers: ^1.2.3
   smooth_page_indicator:
   percent_indicator:
+  google_generative_ai: ^0.4.6
 
 dev_dependencies:
   flutter_test:

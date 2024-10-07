@@ -75,7 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           MaterialPageRoute(
                               builder: (context) => const NavigationMenu()));
                     },
-                    //Todo : make it bold and change color
                     child: Text(
                       buttonText,
                       style: const TextStyle(
@@ -102,8 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 duration: const Duration(milliseconds: 600),
                                 curve: Curves.easeIn);
                           },
-
-                          //Todo : make it bold and change color
                           child: const Text(
                             "Next",
                             style: TextStyle(
