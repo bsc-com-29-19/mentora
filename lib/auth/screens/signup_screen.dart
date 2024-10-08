@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -152,6 +153,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           print('Username: $_username');
                           print('Email: $_email');
                           print('Password: $_password');
+
+                           Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => JournalPage()),
+                          );
                         }
                       },
                       child: const Text(
@@ -177,6 +183,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: TextStyle(color: Colors.green),
                           ),
                         ),
+                      
+
                       ],
                     ),
                   ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
+import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,9 +40,11 @@ class MyApp extends StatelessWidget {
       ),
 
       home: const SignUpScreen(),
+      
       routes: {
         '/login': (context) => const SigninScreen(),
         '/sign-up': (context) => const SignUpScreen(),
+        '/journal': (context) => const JournalPage(),
       },
 
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
