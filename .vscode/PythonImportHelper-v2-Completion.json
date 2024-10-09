@@ -137,6 +137,14 @@
         "documentation": {}
     },
     {
+        "label": "Enum",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "Column",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -537,6 +545,38 @@
         "documentation": {}
     },
     {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
         "label": "uuid",
         "kind": 6,
         "isExtraImport": true,
@@ -894,22 +934,6 @@
         "documentation": {}
     },
     {
-        "label": "Enum",
-        "importPath": "enum",
-        "description": "enum",
-        "isExtraImport": true,
-        "detail": "enum",
-        "documentation": {}
-    },
-    {
-        "label": "Enum",
-        "importPath": "enum",
-        "description": "enum",
-        "isExtraImport": true,
-        "detail": "enum",
-        "documentation": {}
-    },
-    {
         "label": "Base",
         "importPath": "database ",
         "description": "database ",
@@ -1054,11 +1078,20 @@
         "documentation": {}
     },
     {
+        "label": "ActivityStatus",
+        "kind": 6,
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "peekOfCode": "class ActivityStatus(PyEnum):\n    NOT_DONE = \"not_done\"\n    DONE = \"done\"\nclass Activity(Base):\n    __tablename__ = \"activities\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    title = Column(String, nullable=False)\n    description = Column(String, nullable=True)\n    status = Column(Enum(ActivityStatus), default=ActivityStatus.NOT_DONE, nullable=False)  # Set default to NOT_DONE\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"), nullable=False)",
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
         "label": "Activity",
         "kind": 6,
         "importPath": "app.activities.models",
         "description": "app.activities.models",
-        "peekOfCode": "class Activity(Base):\n    __tablename__ = \"activities\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    title = Column(String, nullable=False)\n    description = Column(String, nullable=True)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"), nullable=False)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc) )\n    updated_at = Column(DateTime, default=datetime.now(timezone.utc) , onupdate=datetime.now(timezone.utc) )\n    creator = relationship(\"User\", backref=\"activities\")",
+        "peekOfCode": "class Activity(Base):\n    __tablename__ = \"activities\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    title = Column(String, nullable=False)\n    description = Column(String, nullable=True)\n    status = Column(Enum(ActivityStatus), default=ActivityStatus.NOT_DONE, nullable=False)  # Set default to NOT_DONE\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"), nullable=False)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc) )\n    updated_at = Column(DateTime, default=datetime.now(timezone.utc) , onupdate=datetime.now(timezone.utc) )\n    creator = relationship(\"User\", backref=\"activities\")",
         "detail": "app.activities.models",
         "documentation": {}
     },
@@ -1067,7 +1100,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()",
+        "peekOfCode": "def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1094,7 +1127,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.title = activity_data.title\n    activity.description = activity_data.description\n    db.commit()\n    db.refresh(activity)\n    return activity\n# Delete an activity",
+        "peekOfCode": "def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.title = activity_data.title\n    activity.description = activity_data.description\n    activity.status = activity_data.status.value\n    db.commit()\n    db.refresh(activity)\n    return activity",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1112,8 +1145,17 @@
         "kind": 5,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "activity_router = APIRouter()\n# Create a new activity\n@activity_router.post(\"/\", response_model=ActivityResponse)\ndef create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities",
+        "peekOfCode": "activity_router = APIRouter()\n# Create a new activity\n@activity_router.post(\"/\", response_model=ActivityResponse)\ndef create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities",
         "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityStatus",
+        "kind": 6,
+        "importPath": "app.activities.schemas",
+        "description": "app.activities.schemas",
+        "peekOfCode": "class ActivityStatus(str, Enum):\n    NOT_DONE = \"not_done\"\n    DONE = \"done\"\nclass ActivityBase(BaseModel):\n    title: str\n    description: Optional[str] = None\n    status: ActivityStatus = ActivityStatus.NOT_DONE\nclass ActivityCreate(ActivityBase):\n    pass\nclass ActivityUpdate(ActivityBase):",
+        "detail": "app.activities.schemas",
         "documentation": {}
     },
     {
@@ -1121,7 +1163,7 @@
         "kind": 6,
         "importPath": "app.activities.schemas",
         "description": "app.activities.schemas",
-        "peekOfCode": "class ActivityBase(BaseModel):\n    title: str\n    description: Optional[str] = None\nclass ActivityCreate(ActivityBase):\n    pass\nclass ActivityUpdate(ActivityBase):\n    pass\nclass ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID",
+        "peekOfCode": "class ActivityBase(BaseModel):\n    title: str\n    description: Optional[str] = None\n    status: ActivityStatus = ActivityStatus.NOT_DONE\nclass ActivityCreate(ActivityBase):\n    pass\nclass ActivityUpdate(ActivityBase):\n    pass\nclass ActivityResponse(ActivityBase):\n    id: UUID",
         "detail": "app.activities.schemas",
         "documentation": {}
     },

@@ -10,7 +10,7 @@ activity_router = APIRouter()
 # Create a new activity
 @activity_router.post("/", response_model=ActivityResponse)
 def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    activity = Activity(title=activity_data.title, description=activity_data.description, user_id=user.id)
+    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)
     db.add(activity)
     db.commit()
     db.refresh(activity)
@@ -39,6 +39,7 @@ def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session
     
     activity.title = activity_data.title
     activity.description = activity_data.description
+    activity.status = activity_data.status.value
     db.commit()
     db.refresh(activity)
     return activity
