@@ -28,7 +28,7 @@ class _SigninScreenState extends State<SigninScreen> {
               Row(
                 children: [
                   Image.asset(
-                    'assets/images/mentora-logo.png',
+                    'assets/images/logo.webp',
                     width: 20,
                     height: 20,
                   ),

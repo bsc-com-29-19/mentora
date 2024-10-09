@@ -30,7 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Row(
                 children: [
                   Image.asset(
-                    'assets/images/mentora-logo.png',
+                    'assets/images/logo.webp',
                     width: 20,
                     height: 20,
                   ),
