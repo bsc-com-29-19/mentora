@@ -4,6 +4,7 @@ from typing import Dict
 from database import Base,engine
 from app.auth.routes import user_router
 from app.journal.routes import journal_router
+from app.chatbot.routes import chat_router
 
 
 
@@ -53,6 +54,7 @@ def mentora_detailed_health_check():
 
 app.include_router(user_router,prefix='/user',tags=["AUTH"])
 app.include_router(journal_router,prefix="/journals",tags=["JOURNALS"])
+app.include_router(chat_router,prefix="/chatbot",tags=["CHATBOT"])
 
 
 

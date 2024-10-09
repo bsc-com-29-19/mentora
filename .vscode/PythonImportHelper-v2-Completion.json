@@ -313,6 +313,15 @@
         "documentation": {}
     },
     {
+        "label": "fastapi",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "Request",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -346,6 +355,14 @@
     },
     {
         "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -782,6 +799,14 @@
         "documentation": {}
     },
     {
+        "label": "chat_router",
+        "importPath": "app.chatbot.routes",
+        "description": "app.chatbot.routes",
+        "isExtraImport": true,
+        "detail": "app.chatbot.routes",
+        "documentation": {}
+    },
+    {
         "label": "upgrade",
         "kind": 2,
         "importPath": "alembic.versions.faa54a879958_created_db_models",
@@ -950,6 +975,24 @@
         "description": "app.auth.utils",
         "peekOfCode": "settings = get_settings()\ndef decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid",
         "detail": "app.auth.utils",
+        "documentation": {}
+    },
+    {
+        "label": "bot_conversation",
+        "kind": 2,
+        "importPath": "app.chatbot.routes",
+        "description": "app.chatbot.routes",
+        "peekOfCode": "def bot_conversation():\n    pass",
+        "detail": "app.chatbot.routes",
+        "documentation": {}
+    },
+    {
+        "label": "chat_router",
+        "kind": 5,
+        "importPath": "app.chatbot.routes",
+        "description": "app.chatbot.routes",
+        "peekOfCode": "chat_router = APIRouter()\n@chat_router.post(\"/\")\ndef bot_conversation():\n    pass",
+        "detail": "app.chatbot.routes",
         "documentation": {}
     },
     {
