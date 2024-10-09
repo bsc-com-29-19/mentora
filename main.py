@@ -5,6 +5,7 @@ from database import Base,engine
 from app.auth.routes import user_router
 from app.journal.routes import journal_router
 from app.chatbot.routes import chat_router
+from app.activities.routes import activity_router
 
 
 
@@ -29,6 +30,7 @@ app =  FastAPI(
 
 Base.metadata.create_all(bind=engine)
 
+
 # root endpoint
 @app.get("/")
 def mentora_root():
@@ -52,10 +54,12 @@ def mentora_detailed_health_check():
         return Response(content={"status": "unhealthy"}, media_type="application/json", status_code=503)
 
 
-app.include_router(user_router,prefix='/user',tags=["AUTH"])
+# The routes for users,journals,chatbot,activities
+
+app.include_router(user_router,prefix='/users',tags=["AUTH"])
 app.include_router(journal_router,prefix="/journals",tags=["JOURNALS"])
 app.include_router(chat_router,prefix="/chatbot",tags=["CHATBOT"])
-
+app.include_router(activity_router,prefix="/activities",tags=["ACTIVITIES"])
 
 
 # function to check database connection

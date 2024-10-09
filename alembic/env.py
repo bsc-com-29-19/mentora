@@ -7,6 +7,7 @@ from alembic import context
 from decouple import config as envConfig
 from app.auth.models import User
 from app.journal.models import JournalEntryDB
+from app.activities.models import Activity
 from database import Base
 
 # this is the Alembic Config object, which provides

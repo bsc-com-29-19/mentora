@@ -24,6 +24,14 @@
         "documentation": {}
     },
     {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "List",
         "importPath": "typing",
         "description": "typing",
@@ -90,6 +98,38 @@
     },
     {
         "label": "pool",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
         "isExtraImport": true,
@@ -257,6 +297,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "JournalEntryDB",
         "importPath": "app.journal.models",
         "description": "app.journal.models",
@@ -270,6 +318,22 @@
         "description": "app.journal.models",
         "isExtraImport": true,
         "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
+        "label": "Activity",
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "isExtraImport": true,
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
         "documentation": {}
     },
     {
@@ -313,11 +377,220 @@
         "documentation": {}
     },
     {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "UUID",
+        "importPath": "sqlalchemy.dialects.postgresql",
+        "description": "sqlalchemy.dialects.postgresql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects.postgresql",
+        "documentation": {}
+    },
+    {
+        "label": "UUID",
+        "importPath": "sqlalchemy.dialects.postgresql",
+        "description": "sqlalchemy.dialects.postgresql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects.postgresql",
+        "documentation": {}
+    },
+    {
+        "label": "UUID",
+        "importPath": "sqlalchemy.dialects.postgresql",
+        "description": "sqlalchemy.dialects.postgresql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects.postgresql",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "UUID",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "UUID",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
         "label": "fastapi",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "fastapi",
         "description": "fastapi",
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
         "detail": "fastapi",
         "documentation": {}
     },
@@ -442,190 +715,19 @@
         "documentation": {}
     },
     {
-        "label": "HTTPBearer",
-        "importPath": "fastapi.security",
-        "description": "fastapi.security",
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
         "isExtraImport": true,
-        "detail": "fastapi.security",
+        "detail": "dependencies",
         "documentation": {}
     },
     {
-        "label": "HTTPAuthorizationCredentials",
-        "importPath": "fastapi.security",
-        "description": "fastapi.security",
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
         "isExtraImport": true,
-        "detail": "fastapi.security",
-        "documentation": {}
-    },
-    {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "UUID",
-        "importPath": "sqlalchemy.dialects.postgresql",
-        "description": "sqlalchemy.dialects.postgresql",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.dialects.postgresql",
-        "documentation": {}
-    },
-    {
-        "label": "UUID",
-        "importPath": "sqlalchemy.dialects.postgresql",
-        "description": "sqlalchemy.dialects.postgresql",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.dialects.postgresql",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "get_settings",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
-        "documentation": {}
-    },
-    {
-        "label": "get_settings",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
-        "documentation": {}
-    },
-    {
-        "label": "get_settings",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
-        "documentation": {}
-    },
-    {
-        "label": "get_settings",
-        "importPath": "config",
-        "description": "config",
-        "isExtraImport": true,
-        "detail": "config",
-        "documentation": {}
-    },
-    {
-        "label": "uuid",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "UUID",
-        "importPath": "uuid",
-        "description": "uuid",
-        "isExtraImport": true,
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "bcrypt",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "bcrypt",
-        "description": "bcrypt",
-        "detail": "bcrypt",
-        "documentation": {}
-    },
-    {
-        "label": "jwt",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "jwt",
-        "description": "jwt",
-        "detail": "jwt",
+        "detail": "dependencies",
         "documentation": {}
     },
     {
@@ -674,6 +776,14 @@
         "description": "dependencies",
         "isExtraImport": true,
         "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
         "documentation": {}
     },
     {
@@ -706,6 +816,72 @@
         "description": "pydantic",
         "isExtraImport": true,
         "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPBearer",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPAuthorizationCredentials",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "bcrypt",
+        "description": "bcrypt",
+        "detail": "bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jwt",
+        "description": "jwt",
+        "detail": "jwt",
         "documentation": {}
     },
     {
@@ -807,6 +983,14 @@
         "documentation": {}
     },
     {
+        "label": "activity_router",
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "isExtraImport": true,
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
         "label": "upgrade",
         "kind": 2,
         "importPath": "alembic.versions.faa54a879958_created_db_models",
@@ -867,6 +1051,105 @@
         "description": "alembic.env",
         "peekOfCode": "target_metadata = Base.metadata\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
         "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "Activity",
+        "kind": 6,
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "peekOfCode": "class Activity(Base):\n    __tablename__ = \"activities\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    title = Column(String, nullable=False)\n    description = Column(String, nullable=True)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"), nullable=False)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc) )\n    updated_at = Column(DateTime, default=datetime.now(timezone.utc) , onupdate=datetime.now(timezone.utc) )\n    creator = relationship(\"User\", backref=\"activities\")",
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
+        "label": "create_activity",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "list_activities",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "get_activity",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)\ndef update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "update_activity",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.title = activity_data.title\n    activity.description = activity_data.description\n    db.commit()\n    db.refresh(activity)\n    return activity\n# Delete an activity",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "delete_activity",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    db.delete(activity)\n    db.commit()\n    return {\"message\": \"Activity deleted successfully\"}",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "activity_router",
+        "kind": 5,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "activity_router = APIRouter()\n# Create a new activity\n@activity_router.post(\"/\", response_model=ActivityResponse)\ndef create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityBase",
+        "kind": 6,
+        "importPath": "app.activities.schemas",
+        "description": "app.activities.schemas",
+        "peekOfCode": "class ActivityBase(BaseModel):\n    title: str\n    description: Optional[str] = None\nclass ActivityCreate(ActivityBase):\n    pass\nclass ActivityUpdate(ActivityBase):\n    pass\nclass ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID",
+        "detail": "app.activities.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityCreate",
+        "kind": 6,
+        "importPath": "app.activities.schemas",
+        "description": "app.activities.schemas",
+        "peekOfCode": "class ActivityCreate(ActivityBase):\n    pass\nclass ActivityUpdate(ActivityBase):\n    pass\nclass ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:",
+        "detail": "app.activities.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityUpdate",
+        "kind": 6,
+        "importPath": "app.activities.schemas",
+        "description": "app.activities.schemas",
+        "peekOfCode": "class ActivityUpdate(ActivityBase):\n    pass\nclass ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        orm_mode = True",
+        "detail": "app.activities.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityResponse",
+        "kind": 6,
+        "importPath": "app.activities.schemas",
+        "description": "app.activities.schemas",
+        "peekOfCode": "class ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        orm_mode = True",
+        "detail": "app.activities.schemas",
         "documentation": {}
     },
     {
