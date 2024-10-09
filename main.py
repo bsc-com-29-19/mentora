@@ -2,7 +2,8 @@ import uvicorn
 from fastapi import FastAPI, Response
 from typing import Dict
 from database import Base,engine
-from app.auth.routers import user_router
+from app.auth.routes import user_router
+from app.journal.routes import journal_router
 
 
 
@@ -50,7 +51,8 @@ def mentora_detailed_health_check():
         return Response(content={"status": "unhealthy"}, media_type="application/json", status_code=503)
 
 
-app.include_router(user_router,prefix='/user')
+app.include_router(user_router,prefix='/user',tags=["AUTH"])
+app.include_router(journal_router,prefix="/journals",tags=["JOURNALS"])
 
 
 

@@ -7,7 +7,7 @@ from dependencies import get_db
 
 user_router = APIRouter()
 
-
+# Register a new user
 @user_router.post("/signup")
 def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     user = User(username=user_data.username, email=user_data.email)
@@ -17,6 +17,7 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     return {"message": "User has been Created"}
 
 
+# Login
 @user_router.post("/login")
 def login(user_data: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.username == user_data.username).first()

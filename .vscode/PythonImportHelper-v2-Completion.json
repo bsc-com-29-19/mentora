@@ -32,6 +32,22 @@
         "documentation": {}
     },
     {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -225,6 +241,22 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "JournalEntryDB",
         "importPath": "app.journal.models",
         "description": "app.journal.models",
@@ -337,6 +369,46 @@
         "documentation": {}
     },
     {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "FastAPI",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -385,7 +457,23 @@
         "documentation": {}
     },
     {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
@@ -498,6 +586,14 @@
         "documentation": {}
     },
     {
+        "label": "UUID",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
         "label": "bcrypt",
         "kind": 6,
         "isExtraImport": true,
@@ -517,6 +613,38 @@
     },
     {
         "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
         "importPath": "dependencies",
         "description": "dependencies",
         "isExtraImport": true,
@@ -548,12 +676,28 @@
         "documentation": {}
     },
     {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
         "documentation": {}
     },
     {
@@ -615,10 +759,18 @@
     },
     {
         "label": "user_router",
-        "importPath": "app.auth.routers",
-        "description": "app.auth.routers",
+        "importPath": "app.auth.routes",
+        "description": "app.auth.routes",
         "isExtraImport": true,
-        "detail": "app.auth.routers",
+        "detail": "app.auth.routes",
+        "documentation": {}
+    },
+    {
+        "label": "journal_router",
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "isExtraImport": true,
+        "detail": "app.journal.routes",
         "documentation": {}
     },
     {
@@ -705,28 +857,28 @@
     {
         "label": "signup",
         "kind": 2,
-        "importPath": "app.auth.routers",
-        "description": "app.auth.routers",
-        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n@user_router.post(\"/login\")\ndef login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):",
-        "detail": "app.auth.routers",
+        "importPath": "app.auth.routes",
+        "description": "app.auth.routes",
+        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n# Login\n@user_router.post(\"/login\")\ndef login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()",
+        "detail": "app.auth.routes",
         "documentation": {}
     },
     {
         "label": "login",
         "kind": 2,
-        "importPath": "app.auth.routers",
-        "description": "app.auth.routers",
+        "importPath": "app.auth.routes",
+        "description": "app.auth.routes",
         "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")",
-        "detail": "app.auth.routers",
+        "detail": "app.auth.routes",
         "documentation": {}
     },
     {
         "label": "user_router",
         "kind": 5,
-        "importPath": "app.auth.routers",
-        "description": "app.auth.routers",
-        "peekOfCode": "user_router = APIRouter()\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n@user_router.post(\"/login\")\ndef login(user_data: UserLogin, db: Session = Depends(get_db)):",
-        "detail": "app.auth.routers",
+        "importPath": "app.auth.routes",
+        "description": "app.auth.routes",
+        "peekOfCode": "user_router = APIRouter()\n# Register a new user\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n# Login",
+        "detail": "app.auth.routes",
         "documentation": {}
     },
     {
@@ -775,6 +927,15 @@
         "documentation": {}
     },
     {
+        "label": "get_journal_for_user",
+        "kind": 2,
+        "importPath": "app.journal.dependency",
+        "description": "app.journal.dependency",
+        "peekOfCode": "def get_journal_for_user(journal_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)) -> JournalEntryDB:\n    journal = db.query(JournalEntryDB).filter(JournalEntryDB.id == journal_id).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"Journal entry not found\")\n    if journal.user_id != user.id:\n        raise HTTPException(status_code=403, detail=\"You don't have permission to modify this journal entry\")\n    return journal",
+        "detail": "app.journal.dependency",
+        "documentation": {}
+    },
+    {
         "label": "MoodRating",
         "kind": 6,
         "importPath": "app.journal.models",
@@ -808,6 +969,87 @@
         "description": "app.journal.models",
         "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    grateful_things = Column(String, nullable=False)\n    overall_day_rating = Column(SqlEnum(MoodRating), nullable=False)\n    overall_mood_rating = Column(SqlEnum(MoodRating), nullable=False)\n    completed_most_important_task = Column(Boolean, nullable=False)",
         "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
+        "label": "create_journal",
+        "kind": 2,
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "peekOfCode": "def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,\n        day_summary=journal_data.day_summary,\n        mood_tags=','.join(journal_data.mood_tags) if journal_data.mood_tags else None,\n        user_id=user.id",
+        "detail": "app.journal.routes",
+        "documentation": {}
+    },
+    {
+        "label": "list_journals",
+        "kind": 2,
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "peekOfCode": "def list_journals(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journals = db.query(JournalEntryDB).filter(JournalEntryDB.user_id == user.id).all()\n    return {\n        \"data\": [journal.__dict__ for journal in journals]\n    }\n# View a specific journal entry\n@journal_router.get('/{journal_id}')\ndef view_journal(journal_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal = db.query(JournalEntryDB).filter(JournalEntryDB.id == journal_id, JournalEntryDB.user_id == user.id).first()\n    if not journal:",
+        "detail": "app.journal.routes",
+        "documentation": {}
+    },
+    {
+        "label": "view_journal",
+        "kind": 2,
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "peekOfCode": "def view_journal(journal_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal = db.query(JournalEntryDB).filter(JournalEntryDB.id == journal_id, JournalEntryDB.user_id == user.id).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"Journal entry not found\")\n    return {\n        \"data\": journal.__dict__\n    }\n# Update a journal entry\n@journal_router.put('/{journal_id}')\ndef edit_journal(journal_id: str, journal_data: UpdateJournal, journal: JournalEntryDB = Depends(get_journal_for_user), db: Session = Depends(get_db)):",
+        "detail": "app.journal.routes",
+        "documentation": {}
+    },
+    {
+        "label": "edit_journal",
+        "kind": 2,
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "peekOfCode": "def edit_journal(journal_id: str, journal_data: UpdateJournal, journal: JournalEntryDB = Depends(get_journal_for_user), db: Session = Depends(get_db)):\n    if journal_data.most_important_task:\n        journal.most_important_task = journal_data.most_important_task\n    if journal_data.grateful_things:\n        journal.grateful_things = ','.join(journal_data.grateful_things)\n    if journal_data.overall_day_rating:\n        journal.overall_day_rating = journal_data.overall_day_rating\n    if journal_data.overall_mood_rating:\n        journal.overall_mood_rating = journal_data.overall_mood_rating\n    if journal_data.completed_most_important_task is not None:",
+        "detail": "app.journal.routes",
+        "documentation": {}
+    },
+    {
+        "label": "delete_journal",
+        "kind": 2,
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "peekOfCode": "def delete_journal(journal: JournalEntryDB = Depends(get_journal_for_user), db: Session = Depends(get_db)):\n    db.delete(journal)\n    db.commit()\n    return {\n        \"message\": \"Journal entry deleted successfully\"\n    }",
+        "detail": "app.journal.routes",
+        "documentation": {}
+    },
+    {
+        "label": "journal_router",
+        "kind": 5,
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "peekOfCode": "journal_router = APIRouter()\n# Create journal entry\n@journal_router.post('/')\ndef create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,",
+        "detail": "app.journal.routes",
+        "documentation": {}
+    },
+    {
+        "label": "MoodRating",
+        "kind": 6,
+        "importPath": "app.journal.schema",
+        "description": "app.journal.schema",
+        "peekOfCode": "class MoodRating(str, Enum):\n    awful = \"awful\"\n    bad = \"bad\"\n    ok = \"ok\"\n    good = \"good\"\n    great = \"great\"\nclass CreateUpdateJournal(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating",
+        "detail": "app.journal.schema",
+        "documentation": {}
+    },
+    {
+        "label": "CreateUpdateJournal",
+        "kind": 6,
+        "importPath": "app.journal.schema",
+        "description": "app.journal.schema",
+        "peekOfCode": "class CreateUpdateJournal(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating\n    overall_mood_rating: MoodRating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]] = None\nclass UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None",
+        "detail": "app.journal.schema",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateJournal",
+        "kind": 6,
+        "importPath": "app.journal.schema",
+        "description": "app.journal.schema",
+        "peekOfCode": "class UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None\n    grateful_things: Optional[List[str]] = None\n    overall_day_rating: Optional[MoodRating] = None\n    overall_mood_rating: Optional[MoodRating] = None\n    completed_most_important_task: Optional[bool] = None\n    day_summary: Optional[str] = None\n    mood_tags: Optional[List[str]] = None",
+        "detail": "app.journal.schema",
         "documentation": {}
     },
     {
