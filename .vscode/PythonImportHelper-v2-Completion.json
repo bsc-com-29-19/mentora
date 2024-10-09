@@ -620,6 +620,14 @@
         "documentation": {}
     },
     {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
         "label": "get_db",
         "importPath": "dependencies",
         "description": "dependencies",
@@ -859,7 +867,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n# Login\n@user_router.post(\"/login\")\ndef login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()",
+        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -868,7 +876,16 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")",
+        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")\n# Get user profile\n@user_router.get(\"/profile\", response_model=UserResponse)\ndef get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(id=str(user.id), username=user.username, email=user.email)",
+        "detail": "app.auth.routes",
+        "documentation": {}
+    },
+    {
+        "label": "get_profile",
+        "kind": 2,
+        "importPath": "app.auth.routes",
+        "description": "app.auth.routes",
+        "peekOfCode": "def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(id=str(user.id), username=user.username, email=user.email)",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -877,7 +894,7 @@
         "kind": 5,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "user_router = APIRouter()\n# Register a new user\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}\n# Login",
+        "peekOfCode": "user_router = APIRouter()\n# Register a new user\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -895,7 +912,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str",
+        "peekOfCode": "class UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -904,7 +921,16 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str",
+        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr",
+        "detail": "app.auth.schema",
+        "documentation": {}
+    },
+    {
+        "label": "UserResponse",
+        "kind": 6,
+        "importPath": "app.auth.schema",
+        "description": "app.auth.schema",
+        "peekOfCode": "class UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr",
         "detail": "app.auth.schema",
         "documentation": {}
     },
