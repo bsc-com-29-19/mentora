@@ -23,10 +23,20 @@ class _JournalPageState extends State<JournalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Journal"),
+        backgroundColor: Colors.white,
+        elevation: 0,
         centerTitle: true,
+        title: Text(
+          "Journal",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
       ),
-      body: Padding(
+      body: Container(
+        color: Colors.green[50], // Light green background for the entire widget
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
@@ -36,13 +46,19 @@ class _JournalPageState extends State<JournalPage> {
               children: [
                 Text(
                   'Date',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
                 ),
                 TextButton(
                   onPressed: () {
                     _selectDate(context);
                   },
-                  child: Text("${selectedDate.toLocal()}".split(' ')[0]),
+                  child: Text(
+                    "${selectedDate.toLocal()}".split(' ')[0],
+                    style: TextStyle(color: Colors.green),
+                  ),
                 ),
               ],
             ),
@@ -53,19 +69,34 @@ class _JournalPageState extends State<JournalPage> {
               controller: taskController,
               decoration: InputDecoration(
                 labelText: 'Write your most important task today',
+                labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green),
+                ),
               ),
             ),
             SizedBox(height: 20),
 
             // Gratitude fields
-            Text('You are grateful for:', style: TextStyle(fontSize: 18)),
+            Text('You are grateful for:',
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
             TextField(
               controller: gratitudeController1,
               decoration: InputDecoration(
                 hintText: '1.',
                 border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green),
+                ),
               ),
             ),
             SizedBox(height: 10),
@@ -74,6 +105,11 @@ class _JournalPageState extends State<JournalPage> {
               decoration: InputDecoration(
                 hintText: '2.',
                 border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green),
+                ),
               ),
             ),
             SizedBox(height: 10),
@@ -82,6 +118,11 @@ class _JournalPageState extends State<JournalPage> {
               decoration: InputDecoration(
                 hintText: '3.',
                 border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green),
+                ),
               ),
             ),
             SizedBox(height: 20),
@@ -89,35 +130,50 @@ class _JournalPageState extends State<JournalPage> {
             // Evening section
             Text(
               'Evening',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
             SizedBox(height: 20),
 
             // Overall day rating
-            Text('Overall Day Rating', style: TextStyle(fontSize: 16)),
+            Text('Overall Day Rating',
+                style: TextStyle(fontSize: 16, color: Colors.black)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(5, (index) {
-                return _buildRadio(
-                  index + 1,
-                  overallRating,
-                  (value) => setState(() => overallRating = value!),
-                );
-              }),
+              children: [
+                _buildRadioWithLabel(1, 'Awful', overallRating,
+                    (value) => setState(() => overallRating = value!)),
+                _buildRadioWithLabel(2, 'Bad', overallRating,
+                    (value) => setState(() => overallRating = value!)),
+                _buildRadioWithLabel(3, 'Ok', overallRating,
+                    (value) => setState(() => overallRating = value!)),
+                _buildRadioWithLabel(4, 'Good', overallRating,
+                    (value) => setState(() => overallRating = value!)),
+                _buildRadioWithLabel(5, 'Great', overallRating,
+                    (value) => setState(() => overallRating = value!)),
+              ],
             ),
             SizedBox(height: 20),
 
             // Mood rating
-            Text('Mood Rating', style: TextStyle(fontSize: 16)),
+            Text('Mood Rating',
+                style: TextStyle(fontSize: 16, color: Colors.black)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(5, (index) {
-                return _buildRadio(
-                  index + 1,
-                  moodRating,
-                  (value) => setState(() => moodRating = value!),
-                );
-              }),
+              children: [
+                _buildRadioWithLabel(1, 'Awful', moodRating,
+                    (value) => setState(() => moodRating = value!)),
+                _buildRadioWithLabel(2, 'Bad', moodRating,
+                    (value) => setState(() => moodRating = value!)),
+                _buildRadioWithLabel(3, 'Ok', moodRating,
+                    (value) => setState(() => moodRating = value!)),
+                _buildRadioWithLabel(4, 'Good', moodRating,
+                    (value) => setState(() => moodRating = value!)),
+                _buildRadioWithLabel(5, 'Great', moodRating,
+                    (value) => setState(() => moodRating = value!)),
+              ],
             ),
             SizedBox(height: 20),
 
@@ -125,8 +181,10 @@ class _JournalPageState extends State<JournalPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Complete the most important task?'),
+                Text('Completed the most important task?',
+                    style: TextStyle(color: Colors.black)),
                 Switch(
+                  activeColor: Colors.green,
                   value: taskCompleted,
                   onChanged: (value) {
                     setState(() {
@@ -144,6 +202,11 @@ class _JournalPageState extends State<JournalPage> {
               decoration: InputDecoration(
                 hintText: 'How did you spend your day?',
                 border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green),
+                ),
               ),
               maxLines: 5,
             ),
@@ -154,15 +217,17 @@ class _JournalPageState extends State<JournalPage> {
     );
   }
 
-  Widget _buildRadio(int value, int groupValue, ValueChanged<int?> onChanged) {
+  Widget _buildRadioWithLabel(
+      int value, String label, int groupValue, ValueChanged<int?> onChanged) {
     return Column(
       children: [
         Radio<int>(
           value: value,
           groupValue: groupValue,
+          activeColor: Colors.green,
           onChanged: onChanged,
         ),
-        Text('$value'),
+        Text(label, style: TextStyle(color: Colors.black)),
       ],
     );
   }

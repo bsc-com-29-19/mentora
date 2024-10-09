@@ -62,10 +62,13 @@ class _SigninScreenState extends State<SigninScreen> {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Email',
                         hintText: 'Enter your email address',
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                        ),
                       ),
                       validator: (value) {
                         if (value == null ||
@@ -80,9 +83,12 @@ class _SigninScreenState extends State<SigninScreen> {
                     const SizedBox(height: 20),
                     TextFormField(
                       obscureText: true,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Password',
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                        ),
                       ),
                       validator: (value) {
                         if (value == null ||
@@ -116,7 +122,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          // Handle successful sign in logic here
+                          // ignore: avoid_print
                           print('Sign In successful!');
                         }
                       },

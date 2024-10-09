@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
 
@@ -48,8 +50,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-
-              // Aligning "Sign Up" to the left
               Align(
                 alignment: Alignment.centerLeft,
                 child: const Text(
@@ -62,18 +62,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     TextFormField(
                       style: const TextStyle(color: Colors.black),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Full Name',
-                        labelStyle: TextStyle(color: Colors.black),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                        labelStyle: const TextStyle(color: Colors.black),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
                         ),
                       ),
                       validator: (value) {
@@ -87,11 +87,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 20),
                     TextFormField(
                       style: const TextStyle(color: Colors.black),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Username',
-                        labelStyle: TextStyle(color: Colors.black),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                        labelStyle: const TextStyle(color: Colors.black),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
                         ),
                       ),
                       validator: (value) {
@@ -105,11 +106,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 20),
                     TextFormField(
                       style: const TextStyle(color: Colors.black),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.black),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                        labelStyle: const TextStyle(color: Colors.black),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
                         ),
                       ),
                       validator: (value) {
@@ -124,11 +126,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     TextFormField(
                       style: const TextStyle(color: Colors.black),
                       obscureText: true,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.black),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                        labelStyle: const TextStyle(color: Colors.black),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
                         ),
                       ),
                       validator: (value) {
@@ -147,16 +150,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          // Handle successful sign up logic here
+                          // ignore: duplicate_ignore
+                          // ignore: avoid_print
                           print('Sign up successful!');
                           print('Full Name: $_fullName');
                           print('Username: $_username');
                           print('Email: $_email');
                           print('Password: $_password');
 
-                           Navigator.pushReplacement(
+                          Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => JournalPage()),
+                            MaterialPageRoute(
+                                builder: (context) => const JournalPage()),
                           );
                         }
                       },
@@ -175,7 +180,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // Navigating to login screen
                             Navigator.pushNamed(context, '/login');
                           },
                           child: const Text(
@@ -183,8 +187,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: TextStyle(color: Colors.green),
                           ),
                         ),
-                      
-
                       ],
                     ),
                   ],
