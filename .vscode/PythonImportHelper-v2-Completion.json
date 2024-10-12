@@ -249,11 +249,35 @@
         "documentation": {}
     },
     {
-        "label": "config",
+        "label": "Config",
         "importPath": "decouple",
         "description": "decouple",
         "isExtraImport": true,
         "detail": "decouple",
+        "documentation": {}
+    },
+    {
+        "label": "RepositoryEnv",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "find_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -382,6 +406,15 @@
         "description": "database",
         "isExtraImport": true,
         "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
@@ -950,6 +983,14 @@
         "documentation": {}
     },
     {
+        "label": "SettingsConfigDict",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
         "label": "lru_cache",
         "importPath": "functools",
         "description": "functools",
@@ -1046,7 +1087,7 @@
         "kind": 2,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    connectable = engine_from_config(\n        config.get_section(config.config_ini_section, {}),\n        prefix=\"sqlalchemy.\",\n        poolclass=pool.NullPool,\n    )",
+        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    config_section = config.get_section(config.config_ini_section)\n    config_section['sqlalchemy.url'] = db_url\n    connectable = engine_from_config(\n       config_section,\n        prefix=\"sqlalchemy.\",",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1055,16 +1096,25 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "config = context.config\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\nsection = config.config_ini_section\nconfig.set_section_option(section,\"DB_NAME\",envConfig(\"DB_NAME\"))\nconfig.set_section_option(section,\"DB_USERNAME\",envConfig(\"DB_USERNAME\"))\nconfig.set_section_option(section,\"DB_PASSWORD\",envConfig(\"DB_PASSWORD\"))\n# add your model's MetaData object here",
+        "peekOfCode": "config = context.config\nenvConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod',raise_error_if_not_found=True)\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)",
         "detail": "alembic.env",
         "documentation": {}
     },
     {
-        "label": "section",
+        "label": "envConfig",
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "section = config.config_ini_section\nconfig.set_section_option(section,\"DB_NAME\",envConfig(\"DB_NAME\"))\nconfig.set_section_option(section,\"DB_USERNAME\",envConfig(\"DB_USERNAME\"))\nconfig.set_section_option(section,\"DB_PASSWORD\",envConfig(\"DB_PASSWORD\"))\n# add your model's MetaData object here\n# for 'autogenerate' support\n# from myapp import mymodel\n# target_metadata = mymodel.Base.metadata\ntarget_metadata = Base.metadata\n# other values from the config, defined by the needs of env.py,",
+        "peekOfCode": "envConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod',raise_error_if_not_found=True)\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f'postgresql://{envConfig(\"DB_USERNAME\")}:{envConfig(\"DB_PASSWORD\")}@postgres:5432/{envConfig(\"DB_NAME\")}'",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "app_env",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "app_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod',raise_error_if_not_found=True)\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f'postgresql://{envConfig(\"DB_USERNAME\")}:{envConfig(\"DB_PASSWORD\")}@postgres:5432/{envConfig(\"DB_NAME\")}'\n# section = config.config_ini_section",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1073,7 +1123,7 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "target_metadata = Base.metadata\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
+        "peekOfCode": "target_metadata = Base.metadata\nconfig.set_main_option('sqlalchemy.url',db_url)\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1496,7 +1546,16 @@
         "kind": 6,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "class Settings(BaseSettings):\n    DB_NAME: str\n    DB_USERNAME: str\n    DB_PASSWORD: str\n    PGADMIN_EMAIL: str\n    PGADMIN_PASSWORD: str\n    SECRET_KEY: str\n    TOKEN_EXPIRATION_HOURS: int\n    class Config:\n        env_file: str = \".env\"",
+        "peekOfCode": "class Settings(BaseSettings):\n    DB_HOST: str\n    DB_NAME: str\n    DB_USERNAME: str\n    DB_PASSWORD: str\n    PGADMIN_EMAIL: str\n    PGADMIN_PASSWORD: str\n    SECRET_KEY: str\n    TOKEN_EXPIRATION_HOURS: int\n    OPENAI_API_KEY: str",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "get_app_env",
+        "kind": 2,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "def get_app_env():\n    app_env = os.getenv('APP_ENV','dev')\n    if(app_env == 'prod'):\n        return '.env.prod'\n    else:\n        return '.env'\nclass Settings(BaseSettings):\n    DB_HOST: str\n    DB_NAME: str\n    DB_USERNAME: str",
         "detail": "config",
         "documentation": {}
     },
@@ -1514,7 +1573,7 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "settings = get_settings()\nDB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@localhost:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "settings = get_settings()\nDB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
         "detail": "database",
         "documentation": {}
     },
@@ -1523,7 +1582,7 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "DB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@localhost:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "DB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
         "detail": "database",
         "documentation": {}
     },

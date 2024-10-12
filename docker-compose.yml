@@ -1,12 +1,41 @@
 version: '3.8'
 
+
+# network connected all the containers
 networks:
   mentoranetwork:
     driver: bridge
 
+
+# persistent data 
+
+volumes:
+  app_data:
+  postgres_data:
+  pgadmin_data:
+
 services:
 
-#service for postgres db
+# service for the restful api
+
+  app:
+    build: .
+    image: mentora_restful_api
+    container_name: mentora_restful_api
+
+    ports:
+      - "8400:8400"
+
+    depends_on:
+      - postgres
+
+    volumes:
+      - app_data:/app_data
+
+    networks:
+      - mentoranetwork
+
+# service for postgres db
   postgres:
     image: postgres
     container_name: mentora_postgres
@@ -18,6 +47,9 @@ services:
 
     ports:
       - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
     networks:
       - mentoranetwork
@@ -33,20 +65,14 @@ services:
     ports:
       - "5054:80"
 
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
     networks:
       - mentoranetwork
+
     depends_on:
       - postgres
 
-#  service for api testing
-  # mentora_api:
-  #   build: .
-  #   container_name: mentora_api
-  #   command: uvicorn main:app --host 0.0.0.0 --port 8400 --reload
-  #   ports:
-  #     - "8400:8400"
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - mentoranetwork
+
 
