@@ -185,6 +185,14 @@
         "documentation": {}
     },
     {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "Column",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -555,6 +563,14 @@
     },
     {
         "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -1258,7 +1274,7 @@
         "kind": 6,
         "importPath": "app.auth.models",
         "description": "app.auth.models",
-        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    username = Column(String, unique=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc))\n    updated_at = Column(\n        DateTime,\n        default=datetime.now(timezone.utc),",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    username = Column(String, unique=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    is_active = Column(Boolean, default=True)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc))\n    updated_at = Column(\n        DateTime,",
         "detail": "app.auth.models",
         "documentation": {}
     },
@@ -1276,7 +1292,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")\n# Get user profile\n@user_router.get(\"/profile\", response_model=UserResponse)\ndef get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(id=str(user.id), username=user.username, email=user.email)",
+        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")\n# Get user profile\n@user_router.get(\"/profile\", response_model=UserResponse)\ndef get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1285,7 +1301,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(id=str(user.id), username=user.username, email=user.email)",
+        "peekOfCode": "def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(\n        id=str(user.id), \n        username=user.username,\n        email=user.email,\n        is_active=user.is_active,\n        created_at=user.created_at,\n        updated_at=user.updated_at\n        )",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1303,7 +1319,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserCreate(BaseModel):\n    username: str\n    email: EmailStr\n    password: str\nclass UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str",
+        "peekOfCode": "class UserCreate(BaseModel):\n    username: str\n    email: EmailStr\n    password: str\n    is_active: bool = True\nclass UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1321,7 +1337,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr",
+        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime\n    updated_at: datetime",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1330,7 +1346,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr",
+        "peekOfCode": "class UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime\n    updated_at: datetime",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1380,11 +1396,11 @@
         "documentation": {}
     },
     {
-        "label": "MoodRating",
+        "label": "Rating",
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class MoodRating(str, Enum):\n    awful = 1\n    bad = 2\n    ok = 3\n    good = 4\n    great = 5\nclass JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating",
+        "peekOfCode": "class Rating(int, Enum):\n    awful = 1\n    bad = 2\n    ok = 3\n    good = 4\n    great = 5\nclass JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: Rating",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -1393,7 +1409,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating\n    overall_mood_rating: MoodRating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]]\nclass JournalEntry(JournalEntryBase):\n    id: UUID",
+        "peekOfCode": "class JournalEntryBase(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: Rating\n    overall_mood_rating: Rating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]]\nclass JournalEntry(JournalEntryBase):\n    id: UUID",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -1411,7 +1427,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    grateful_things = Column(String, nullable=False)\n    overall_day_rating = Column(SqlEnum(MoodRating), nullable=False)\n    overall_mood_rating = Column(SqlEnum(MoodRating), nullable=False)\n    completed_most_important_task = Column(Boolean, nullable=False)",
+        "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    grateful_things = Column(String, nullable=False)\n    overall_day_rating = Column(SqlEnum(Rating), nullable=False)\n    overall_mood_rating = Column(SqlEnum(Rating), nullable=False)\n    completed_most_important_task = Column(Boolean, nullable=False)",
         "detail": "app.journal.models",
         "documentation": {}
     },

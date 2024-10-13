@@ -9,7 +9,7 @@ import uuid
 from datetime import date
 
 
-class MoodRating(str, Enum):
+class Rating(int, Enum):
     awful = 1
     bad = 2
     ok = 3
@@ -19,8 +19,8 @@ class MoodRating(str, Enum):
 class JournalEntryBase(BaseModel):
     most_important_task: str
     grateful_things: List[str]
-    overall_day_rating: MoodRating
-    overall_mood_rating: MoodRating
+    overall_day_rating: Rating
+    overall_mood_rating: Rating
     completed_most_important_task: bool
     day_summary: str
     mood_tags: Optional[List[str]]
@@ -42,8 +42,8 @@ class JournalEntryDB(Base):
     entry_date = Column(Date, nullable=False,default=date.today)
     most_important_task = Column(String, nullable=False)
     grateful_things = Column(String, nullable=False)
-    overall_day_rating = Column(SqlEnum(MoodRating), nullable=False)
-    overall_mood_rating = Column(SqlEnum(MoodRating), nullable=False)
+    overall_day_rating = Column(SqlEnum(Rating), nullable=False)
+    overall_mood_rating = Column(SqlEnum(Rating), nullable=False)
     completed_most_important_task = Column(Boolean, nullable=False)
     day_summary = Column(String, nullable=False)
     mood_tags = Column(String, nullable=True)

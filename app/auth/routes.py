@@ -41,4 +41,11 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
 # Get user profile
 @user_router.get("/profile", response_model=UserResponse)
 def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    return UserResponse(id=str(user.id), username=user.username, email=user.email)
+    return UserResponse(
+        id=str(user.id), 
+        username=user.username,
+        email=user.email,
+        is_active=user.is_active,
+        created_at=user.created_at,
+        updated_at=user.updated_at
+        )
