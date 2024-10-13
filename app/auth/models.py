@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey,DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 from database import Base
@@ -16,6 +16,12 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
+    updated_at = Column(
+        DateTime,
+        default=datetime.now(timezone.utc),
+        onupdate=datetime.now(timezone.utc),
+    )
     # journals = relationship("Journal", back_populates="author")
 
     def hash_password(self, password: str):
@@ -34,3 +40,4 @@ class User(Base):
         expiration = datetime.now(timezone.utc) + timedelta(hours=get_settings().TOKEN_EXPIRATION_HOURS)
         payload = {"sub": str(self.id), "exp": expiration}
         return jwt.encode(payload, f"{get_settings().SECRET_KEY}", algorithm="HS256")
+

@@ -177,6 +177,14 @@
         "documentation": {}
     },
     {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "Column",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -262,14 +270,6 @@
         "description": "decouple",
         "isExtraImport": true,
         "detail": "decouple",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -1087,7 +1087,7 @@
         "kind": 2,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    config_section = config.get_section(config.config_ini_section)\n    config_section['sqlalchemy.url'] = db_url\n    connectable = engine_from_config(\n       config_section,\n        prefix=\"sqlalchemy.\",",
+        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\n    In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    config_section = config.get_section(config.config_ini_section)\n    config_section['sqlalchemy.url'] = db_url\n    connectable = engine_from_config(\n        config_section,\n        prefix=\"sqlalchemy.\",",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1096,7 +1096,7 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "config = context.config\nenvConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod',raise_error_if_not_found=True)\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)",
+        "peekOfCode": "config = context.config\nenvConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod')\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1105,7 +1105,7 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "envConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod',raise_error_if_not_found=True)\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f'postgresql://{envConfig(\"DB_USERNAME\")}:{envConfig(\"DB_PASSWORD\")}@postgres:5432/{envConfig(\"DB_NAME\")}'",
+        "peekOfCode": "envConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod')\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f\"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}\"",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1114,7 +1114,7 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "app_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod',raise_error_if_not_found=True)\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f'postgresql://{envConfig(\"DB_USERNAME\")}:{envConfig(\"DB_PASSWORD\")}@postgres:5432/{envConfig(\"DB_NAME\")}'\n# section = config.config_ini_section",
+        "peekOfCode": "app_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod')\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f\"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}\"\n# section = config.config_ini_section",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1132,7 +1132,7 @@
         "kind": 6,
         "importPath": "app.activities.models",
         "description": "app.activities.models",
-        "peekOfCode": "class ActivityStatus(PyEnum):\n    NOT_DONE = \"not_done\"\n    DONE = \"done\"\nclass Activity(Base):\n    __tablename__ = \"activities\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    title = Column(String, nullable=False)\n    description = Column(String, nullable=True)\n    status = Column(Enum(ActivityStatus), default=ActivityStatus.NOT_DONE, nullable=False)  # Set default to NOT_DONE\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"), nullable=False)",
+        "peekOfCode": "class ActivityStatus(str, PyEnum):\n    NOT_DONE = \"not_done\"\n    DONE = \"done\"\nclass Activity(Base):\n    __tablename__ = \"activities\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    title = Column(String, nullable=False)\n    description = Column(String, nullable=True)\n    status = Column(Enum(ActivityStatus), default=ActivityStatus.NOT_DONE, nullable=False)  # Set default to NOT_DONE\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"), nullable=False)",
         "detail": "app.activities.models",
         "documentation": {}
     },
@@ -1195,7 +1195,7 @@
         "kind": 5,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "activity_router = APIRouter()\n# Create a new activity\n@activity_router.post(\"/\", response_model=ActivityResponse)\ndef create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities",
+        "peekOfCode": "activity_router = APIRouter()\n# Todo : Seperate code to services and routes \n# Create a new activity\n@activity_router.post(\"/\", response_model=ActivityResponse)\ndef create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1258,7 +1258,7 @@
         "kind": 6,
         "importPath": "app.auth.models",
         "description": "app.auth.models",
-        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    username = Column(String, unique=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    # journals = relationship(\"Journal\", back_populates=\"author\")\n    def hash_password(self, password: str):\n        self.hashed_password = bcrypt.hashpw(\n            password.encode(\"utf-8\"), bcrypt.gensalt()",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    username = Column(String, unique=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc))\n    updated_at = Column(\n        DateTime,\n        default=datetime.now(timezone.utc),",
         "detail": "app.auth.models",
         "documentation": {}
     },
@@ -1294,7 +1294,7 @@
         "kind": 5,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "user_router = APIRouter()\n# Register a new user\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)",
+        "peekOfCode": "user_router = APIRouter()\n# Todo : extract code to routes and services function\n# Register a new user\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1573,7 +1573,7 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "settings = get_settings()\nDB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "settings = get_settings()\nDB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
         "detail": "database",
         "documentation": {}
     },
@@ -1582,7 +1582,7 @@
         "kind": 5,
         "importPath": "database",
         "description": "database",
-        "peekOfCode": "DB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}:5432/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
+        "peekOfCode": "DB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}/{settings.DB_NAME}'\nengine = create_engine(DB_URL)\nSessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)\nBase = declarative_base()",
         "detail": "database",
         "documentation": {}
     },

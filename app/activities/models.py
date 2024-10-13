@@ -7,10 +7,10 @@ from enum import Enum as PyEnum
 import uuid
 
 
-
-class ActivityStatus(PyEnum):
+class ActivityStatus(str, PyEnum):
     NOT_DONE = "not_done"
     DONE = "done"
+
 
 
 class Activity(Base):
@@ -25,4 +25,5 @@ class Activity(Base):
     updated_at = Column(DateTime, default=datetime.now(timezone.utc) , onupdate=datetime.now(timezone.utc) )
 
     creator = relationship("User", backref="activities")
+
 

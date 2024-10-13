@@ -7,7 +7,10 @@ from dependencies import get_db,get_current_user
 
 user_router = APIRouter()
 
+# Todo : extract code to routes and services function
+
 # Register a new user
+
 @user_router.post("/signup")
 def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     # Check if username or email already exists

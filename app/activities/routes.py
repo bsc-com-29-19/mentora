@@ -7,6 +7,8 @@ from app.auth.models import User
 
 activity_router = APIRouter()
 
+# Todo : Seperate code to services and routes 
+
 # Create a new activity
 @activity_router.post("/", response_model=ActivityResponse)
 def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
