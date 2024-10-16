@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 import 'package:mentora_frontend/onboarding/screens/screen1.dart';
 import 'package:mentora_frontend/onboarding/screens/screen2.dart';
@@ -7,6 +8,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 // import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 
 // Todo : Make onboarding one time step after app installation not onAppOpen
+
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+
         title: 'Mentora',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const MyHomePage(title: 'Mentora Home Page'));
     // home: const NavigationMenu());
+
   }
 }
 
