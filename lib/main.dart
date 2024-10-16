@@ -9,7 +9,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // Todo : Make onboarding one time step after app installation not onAppOpen
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -20,9 +19,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
-
         title: 'Mentora',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -31,7 +28,6 @@ class MyApp extends StatelessWidget {
         ),
         home: const MyHomePage(title: 'Mentora Home Page'));
     // home: const NavigationMenu());
-
   }
 }
 
