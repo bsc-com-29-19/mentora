@@ -7,7 +7,7 @@ from app.journal.routes import journal_router
 from app.chatbot.routes import chat_router
 from app.activities.routes import activity_router
 
-
+# Todo : add logging ,redis-chaching and prometheus-performance monitoring
 
 # Mentora metadata
 app =  FastAPI(
@@ -56,10 +56,10 @@ def mentora_detailed_health_check():
 
 # The routes for users,journals,chatbot,activities
 
-app.include_router(user_router,prefix='/users',tags=["AUTH"])
-app.include_router(journal_router,prefix="/journals",tags=["JOURNALS"])
-app.include_router(chat_router,prefix="/chatbot",tags=["CHATBOT"])
-app.include_router(activity_router,prefix="/activities",tags=["ACTIVITIES"])
+app.include_router(user_router,prefix='/mentora/api/v1/auth',tags=["AUTH"])
+app.include_router(journal_router,prefix="/mentora/api/v1/journals",tags=["JOURNALS"])
+app.include_router(chat_router,prefix="/mentora/api/v1/chatbot",tags=["CHATBOT"])
+app.include_router(activity_router,prefix="/mentora/api/v1/activities",tags=["ACTIVITIES"])
 
 
 # function to check database connection

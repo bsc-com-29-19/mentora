@@ -1,0 +1,21 @@
+version: "3.8"
+
+# persistent data
+
+volumes:
+  app_data:
+
+services:
+  # service for the restful api
+
+  app:
+    build: .
+    image: mentora_restful_api
+    container_name: mentora_restful_api
+
+    ports:
+      - "8400:8400"
+
+
+    volumes:
+      - app_data:/app_data

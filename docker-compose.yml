@@ -30,7 +30,11 @@ services:
       - postgres
 
     volumes:
-      - app_data:/app_data
+      # - ./mentora_backend:/:rw # local directorry for live code reloading
+      - app_data:/app_data     # persistent data storage  
+
+    environment:
+      - APP_ENV=dev
 
     networks:
       - mentoranetwork

@@ -11,7 +11,7 @@ user_router = APIRouter()
 
 # Register a new user
 
-@user_router.post("/signup")
+@user_router.post("/register")
 def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     # Check if username or email already exists
     if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():

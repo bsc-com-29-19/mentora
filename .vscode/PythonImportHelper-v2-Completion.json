@@ -289,6 +289,22 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "importPath": "app.auth.models",
         "description": "app.auth.models",
@@ -443,6 +459,14 @@
     },
     {
         "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
@@ -651,15 +675,6 @@
         "documentation": {}
     },
     {
-        "label": "fastapi",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
         "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -740,6 +755,30 @@
         "documentation": {}
     },
     {
+        "label": "WebSocket",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocketDisconnect",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "HTTPException",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -801,6 +840,22 @@
         "description": "fastapi",
         "isExtraImport": true,
         "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
         "documentation": {}
     },
     {
@@ -980,6 +1035,62 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "MessagesPlaceholder",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "BaseChatMessageHistory",
+        "importPath": "langchain_core.chat_history",
+        "description": "langchain_core.chat_history",
+        "isExtraImport": true,
+        "detail": "langchain_core.chat_history",
+        "documentation": {}
+    },
+    {
+        "label": "InMemoryChatMessageHistory",
+        "importPath": "langchain_core.chat_history",
+        "description": "langchain_core.chat_history",
+        "isExtraImport": true,
+        "detail": "langchain_core.chat_history",
+        "documentation": {}
+    },
+    {
+        "label": "RunnableWithMessageHistory",
+        "importPath": "langchain_core.runnables.history",
+        "description": "langchain_core.runnables.history",
+        "isExtraImport": true,
+        "detail": "langchain_core.runnables.history",
         "documentation": {}
     },
     {
@@ -1310,7 +1421,7 @@
         "kind": 5,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "user_router = APIRouter()\n# Todo : extract code to routes and services function\n# Register a new user\n@user_router.post(\"/signup\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)",
+        "peekOfCode": "user_router = APIRouter()\n# Todo : extract code to routes and services function\n# Register a new user\n@user_router.post(\"/register\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1369,12 +1480,12 @@
         "documentation": {}
     },
     {
-        "label": "bot_conversation",
-        "kind": 2,
-        "importPath": "app.chatbot.routes",
-        "description": "app.chatbot.routes",
-        "peekOfCode": "def bot_conversation():\n    pass",
-        "detail": "app.chatbot.routes",
+        "label": "prompt",
+        "kind": 5,
+        "importPath": "app.chatbot.prompts",
+        "description": "app.chatbot.prompts",
+        "peekOfCode": "prompt = ChatPromptTemplate.from_messages(\n    [\n        (\n            \"system\",\n            \"\"\"You are a professional mental health therapist. Your role is to offer compassionate, thoughtful, and clear guidance on mental health issues such as stress, anxiety, depression, and personal growth. \n### Core Constraints for Functionality:\n1. **Confidentiality**: Always maintain confidentiality. Assure users their discussions are private and secure.\n2. **Empathy**: Respond with empathy, making users feel understood, respected, and comfortable to freely express their emotions and concerns.\n3. **Non-Judgmental**: Avoid judgmental language or assumptions. Always affirm the user’s feelings and experiences as valid.\n4. **Active Listening**: Actively engage with users by asking follow-up questions to gain deeper understanding, especially when users present general issues like 'stress' or 'anxiety.' ",
+        "detail": "app.chatbot.prompts",
         "documentation": {}
     },
     {
@@ -1382,8 +1493,53 @@
         "kind": 5,
         "importPath": "app.chatbot.routes",
         "description": "app.chatbot.routes",
-        "peekOfCode": "chat_router = APIRouter()\n@chat_router.post(\"/\")\ndef bot_conversation():\n    pass",
+        "peekOfCode": "chat_router = APIRouter()\n@chat_router.post(\"/chat/{session_id}\")\nasync def chatbot(session_id: str, user_message: str,db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    response_stream = stream_chat_session(session_id, user_message)\n    response = \"\".join([token for token in response_stream])\n    return {\"response\": response}",
         "detail": "app.chatbot.routes",
+        "documentation": {}
+    },
+    {
+        "label": "get_session_history",
+        "kind": 2,
+        "importPath": "app.chatbot.services",
+        "description": "app.chatbot.services",
+        "peekOfCode": "def get_session_history(session_id: str) -> BaseChatMessageHistory:\n    if session_id not in store:\n        store[session_id] = InMemoryChatMessageHistory()\n    return store[session_id]\n# Initialize the chain\nchain = prompt| model\n# Function to handle chat session with message history\ndef stream_chat_session(session_id: str, user_message: str):\n    config = {\"configurable\": {\"session_id\": session_id}}\n    with_message_history = RunnableWithMessageHistory(",
+        "detail": "app.chatbot.services",
+        "documentation": {}
+    },
+    {
+        "label": "stream_chat_session",
+        "kind": 2,
+        "importPath": "app.chatbot.services",
+        "description": "app.chatbot.services",
+        "peekOfCode": "def stream_chat_session(session_id: str, user_message: str):\n    config = {\"configurable\": {\"session_id\": session_id}}\n    with_message_history = RunnableWithMessageHistory(\n        chain, get_session_history, input_messages_key=\"messages\"\n    )\n    # Stream the response token by token\n    for r in with_message_history.stream(\n        {\n            \"messages\": [HumanMessage(content=user_message)],\n            \"language\": \"English\",",
+        "detail": "app.chatbot.services",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "app.chatbot.services",
+        "description": "app.chatbot.services",
+        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\n# In-memory storage for session histories\nstore = {}\n# Function to retrieve session history\ndef get_session_history(session_id: str) -> BaseChatMessageHistory:\n    if session_id not in store:\n        store[session_id] = InMemoryChatMessageHistory()\n    return store[session_id]\n# Initialize the chain\nchain = prompt| model",
+        "detail": "app.chatbot.services",
+        "documentation": {}
+    },
+    {
+        "label": "store",
+        "kind": 5,
+        "importPath": "app.chatbot.services",
+        "description": "app.chatbot.services",
+        "peekOfCode": "store = {}\n# Function to retrieve session history\ndef get_session_history(session_id: str) -> BaseChatMessageHistory:\n    if session_id not in store:\n        store[session_id] = InMemoryChatMessageHistory()\n    return store[session_id]\n# Initialize the chain\nchain = prompt| model\n# Function to handle chat session with message history\ndef stream_chat_session(session_id: str, user_message: str):",
+        "detail": "app.chatbot.services",
+        "documentation": {}
+    },
+    {
+        "label": "chain",
+        "kind": 5,
+        "importPath": "app.chatbot.services",
+        "description": "app.chatbot.services",
+        "peekOfCode": "chain = prompt| model\n# Function to handle chat session with message history\ndef stream_chat_session(session_id: str, user_message: str):\n    config = {\"configurable\": {\"session_id\": session_id}}\n    with_message_history = RunnableWithMessageHistory(\n        chain, get_session_history, input_messages_key=\"messages\"\n    )\n    # Stream the response token by token\n    for r in with_message_history.stream(\n        {",
+        "detail": "app.chatbot.services",
         "documentation": {}
     },
     {
@@ -1486,11 +1642,11 @@
         "documentation": {}
     },
     {
-        "label": "MoodRating",
+        "label": "Rating",
         "kind": 6,
         "importPath": "app.journal.schema",
         "description": "app.journal.schema",
-        "peekOfCode": "class MoodRating(str, Enum):\n    awful = \"awful\"\n    bad = \"bad\"\n    ok = \"ok\"\n    good = \"good\"\n    great = \"great\"\nclass CreateUpdateJournal(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating",
+        "peekOfCode": "class Rating(int, Enum):\n    awful = 1\n    bad = 2\n    ok = 3\n    good = 4\n    great = 5\nclass CreateUpdateJournal(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: Rating",
         "detail": "app.journal.schema",
         "documentation": {}
     },
@@ -1499,7 +1655,7 @@
         "kind": 6,
         "importPath": "app.journal.schema",
         "description": "app.journal.schema",
-        "peekOfCode": "class CreateUpdateJournal(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: MoodRating\n    overall_mood_rating: MoodRating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]] = None\nclass UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None",
+        "peekOfCode": "class CreateUpdateJournal(BaseModel):\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: Rating\n    overall_mood_rating: Rating\n    completed_most_important_task: bool\n    day_summary: str\n    mood_tags: Optional[List[str]] = None\nclass UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None",
         "detail": "app.journal.schema",
         "documentation": {}
     },
@@ -1508,7 +1664,7 @@
         "kind": 6,
         "importPath": "app.journal.schema",
         "description": "app.journal.schema",
-        "peekOfCode": "class UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None\n    grateful_things: Optional[List[str]] = None\n    overall_day_rating: Optional[MoodRating] = None\n    overall_mood_rating: Optional[MoodRating] = None\n    completed_most_important_task: Optional[bool] = None\n    day_summary: Optional[str] = None\n    mood_tags: Optional[List[str]] = None",
+        "peekOfCode": "class UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None\n    grateful_things: Optional[List[str]] = None\n    overall_day_rating: Optional[Rating] = None\n    overall_mood_rating: Optional[Rating] = None\n    completed_most_important_task: Optional[bool] = None\n    day_summary: Optional[str] = None\n    mood_tags: Optional[List[str]] = None",
         "detail": "app.journal.schema",
         "documentation": {}
     },

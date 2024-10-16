@@ -11,3 +11,7 @@ python-decouple
 httpx
 faker
 alembic
+langchain
+langchain-openai
+langchain_community
+python-dotenv
