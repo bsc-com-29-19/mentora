@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from .models import Activity
 from .schemas import ActivityCreate, ActivityUpdate, ActivityResponse
 from dependencies import get_db, get_current_user
 from app.auth.models import User
+from .services import create_activity_service, list_activities_service, get_activity_service, update_activity_service, delete_activity_service
 
 activity_router = APIRouter()
 
@@ -12,47 +12,38 @@ activity_router = APIRouter()
 # Create a new activity
 @activity_router.post("/", response_model=ActivityResponse)
 def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)
-    db.add(activity)
-    db.commit()
-    db.refresh(activity)
+    activity = create_activity_service(activity_data, db, user)
     return activity
+
+
 
 # List all activities
 @activity_router.get("/", response_model=list[ActivityResponse])
 def list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    activities = db.query(Activity).filter(Activity.user_id == user.id).all()
+    activities = list_activities_service(db, user)
     return activities
+
+
 
 # Get a single activity by ID
 @activity_router.get("/{activity_id}", response_model=ActivityResponse)
 def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()
-    if not activity:
-        raise HTTPException(status_code=404, detail="Activity not found")
+    activity = get_activity_service(activity_id, db, user)
     return activity
+
 
 # Update an existing activity
 @activity_router.put("/{activity_id}", response_model=ActivityResponse)
 def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()
-    if not activity:
-        raise HTTPException(status_code=404, detail="Activity not found")
-    
-    activity.title = activity_data.title
-    activity.description = activity_data.description
-    activity.status = activity_data.status.value
-    db.commit()
-    db.refresh(activity)
+    activity = update_activity_service(activity_id, activity_data, db, user)
     return activity
+
+
 
 # Delete an activity
 @activity_router.delete("/{activity_id}")
 def delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()
-    if not activity:
-        raise HTTPException(status_code=404, detail="Activity not found")
-    
-    db.delete(activity)
-    db.commit()
-    return {"message": "Activity deleted successfully"}
+    activity = delete_activity_service(activity_id, db, user)
+    return {"message": f"Activity : {activity.title} deleted successfully"}
+
+

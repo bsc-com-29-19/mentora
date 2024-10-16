@@ -1277,7 +1277,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()",
+        "peekOfCode": "def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = create_activity_service(activity_data, db, user)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1286,7 +1286,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity",
+        "peekOfCode": "def list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1295,7 +1295,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)\ndef update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:",
+        "peekOfCode": "def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)\ndef update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = update_activity_service(activity_id, activity_data, db, user)\n    return activity\n# Delete an activity\n@activity_router.delete(\"/{activity_id}\")",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1304,7 +1304,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.title = activity_data.title\n    activity.description = activity_data.description\n    activity.status = activity_data.status.value\n    db.commit()\n    db.refresh(activity)\n    return activity",
+        "peekOfCode": "def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = update_activity_service(activity_id, activity_data, db, user)\n    return activity\n# Delete an activity\n@activity_router.delete(\"/{activity_id}\")\ndef delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = delete_activity_service(activity_id, db, user)\n    return {\"message\": f\"Activity : {activity.title} deleted successfully\"}",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1313,7 +1313,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    db.delete(activity)\n    db.commit()\n    return {\"message\": \"Activity deleted successfully\"}",
+        "peekOfCode": "def delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = delete_activity_service(activity_id, db, user)\n    return {\"message\": f\"Activity : {activity.title} deleted successfully\"}",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1322,7 +1322,7 @@
         "kind": 5,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "activity_router = APIRouter()\n# Todo : Seperate code to services and routes \n# Create a new activity\n@activity_router.post(\"/\", response_model=ActivityResponse)\ndef create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity",
+        "peekOfCode": "activity_router = APIRouter()\n# Todo : Seperate code to services and routes \n# Create a new activity\n@activity_router.post(\"/\", response_model=ActivityResponse)\ndef create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = create_activity_service(activity_data, db, user)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1369,6 +1369,51 @@
         "description": "app.activities.schemas",
         "peekOfCode": "class ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        orm_mode = True",
         "detail": "app.activities.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "create_activity_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def create_activity_service(activity_data, db, user) -> Activity:\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef get_activity_service(activity_id: str, db, user) -> Activity:",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "list_activities_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef get_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\ndef update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "get_activity_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def get_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\ndef update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.title = activity_data.title",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "update_activity_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.title = activity_data.title\n    activity.description = activity_data.description\n    activity.status = activity_data.status.value\n    db.commit()\n    db.refresh(activity)\n    return activity",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "delete_activity_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def delete_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    db.delete(activity)\n    db.commit()\n    return activity",
+        "detail": "app.activities.services",
         "documentation": {}
     },
     {
