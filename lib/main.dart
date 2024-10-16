@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mentora_frontend/auth/screens/signin_screen.dart';
+import 'package:mentora_frontend/auth/screens/signup_screen.dart';
+import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +13,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      
+      title: 'Mentora',
       theme: ThemeData(
+        primarySwatch: Colors.blue,
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -28,11 +35,21 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+
+      home: const SignUpScreen(),
+      
+      routes: {
+        '/login': (context) => const SigninScreen(),
+        '/sign-up': (context) => const SignUpScreen(),
+        '/journal': (context) => const JournalPage(),
+      },
+
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
+    
   }
 }
 
