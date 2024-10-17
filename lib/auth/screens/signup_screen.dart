@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
+// import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
 import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/viewmodels/signup_view_model.dart';
-import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
+// import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 
 // Todo : redesign the page
 

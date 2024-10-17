@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 import 'package:mentora_frontend/utils/api_endpoints.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,29 +34,30 @@ class RegistrationController extends GetxController {
       http.Response response =
           await http.post(url, body: jsonEncode(body), headers: headers);
 
+// Todo : When registration is successful, redirect to login page
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
 
         // var token = json['data']['token'];
-        var token = json['access_token'];
+        // var token = json['access_token'];
 
-        logger.d("Response : $json");
+        logger.i("Response : $json");
 
-        print("access-token : $token");
+        // print("access-token : $token");
 
-        final SharedPreferences? prefs = await _prefs;
+        // final SharedPreferences? prefs = await _prefs;
 
-        await prefs?.setString('token', token);
+        // await prefs?.setString('token', token);
 
         usernameController.clear();
         emailController.clear();
         passwordController.clear();
 
-// Handle success Login
+        // Handle success Login
         Get.snackbar("Register", "You have successfully registered !");
 
         // Get.offAll(() => const NavigationMenu());
-        Get.off(NavigationMenu());
+        Get.off(() => const SigninScreen());
       } else {
         var errorDetail = jsonDecode(response.body)['detail'];
 
