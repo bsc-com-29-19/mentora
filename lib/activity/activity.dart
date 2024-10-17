@@ -96,7 +96,7 @@ class _ActivityPageState extends State<ActivityPage> {
             child: Center(
               child: Text(
                 '0% Completed', // Adjust this based on completed activities
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -112,7 +112,7 @@ class _ActivityPageState extends State<ActivityPage> {
               children: [
                 Text(
                   'Today',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   '15 Sep, 2024',
