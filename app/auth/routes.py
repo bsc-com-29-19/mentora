@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from .models import User
-from .schema import UserCreate, UserLogin, Token ,UserResponse
+from .schema import UserCreate, UserLogin, LoginResponse ,UserResponse
 from dependencies import get_db,get_current_user
 
 
@@ -33,9 +33,9 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.username == user_data.username).first()
 
     if user is None or not user.verify_password(user_data.password):
-        raise HTTPException(status_code=401, detail="Invalid Credentials")
+        raise HTTPException(status_code=401, detail="Unknown Username or Password")
     token = user.generate_token()
-    return Token(access_token=token, token_type="bearer")
+    return LoginResponse(access_token=token, token_type="Bearer", user_id=str(user.id),username=user.username)
 
 
 # Get user profile
@@ -44,6 +44,7 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
 def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     return UserResponse(
         id=str(user.id), 
+        full_name=user.full_name,
         username=user.username,
         email=user.email,
         is_active=user.is_active,

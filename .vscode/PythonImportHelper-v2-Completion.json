@@ -1456,7 +1456,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")\n# Get user profile\n# todo : separate code to services and routes\n@user_router.get(\"/profile\", response_model=UserResponse)\ndef get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):",
+        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Unknown Username or Password\")\n    token = user.generate_token()\n    return LoginResponse(access_token=token, token_type=\"Bearer\", user_id=str(user.id),username=user.username)\n# Get user profile\n# todo : separate code to services and routes\n@user_router.get(\"/profile\", response_model=UserResponse)\ndef get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1465,7 +1465,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(\n        id=str(user.id), \n        username=user.username,\n        email=user.email,\n        is_active=user.is_active,\n        created_at=user.created_at,\n        updated_at=user.updated_at\n        )\n@user_router.post(\"/logout\")",
+        "peekOfCode": "def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(\n        id=str(user.id), \n        full_name=user.full_name,\n        username=user.username,\n        email=user.email,\n        is_active=user.is_active,\n        created_at=user.created_at,\n        updated_at=user.updated_at\n        )",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1492,7 +1492,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserCreate(BaseModel):\n    full_name: str\n    username: str\n    email: EmailStr\n    password: str\n    is_active: bool = True\nclass UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):",
+        "peekOfCode": "class UserCreate(BaseModel):\n    full_name: str\n    username: str\n    email: EmailStr\n    password: str\n    is_active: bool = True\nclass UserLogin(BaseModel):\n    username: str\n    password: str\nclass LoginResponse(BaseModel):",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1501,16 +1501,16 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    full_name:str\n    username: str",
+        "peekOfCode": "class UserLogin(BaseModel):\n    username: str\n    password: str\nclass LoginResponse(BaseModel):\n    user_id: str\n    username: str\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str",
         "detail": "app.auth.schema",
         "documentation": {}
     },
     {
-        "label": "Token",
+        "label": "LoginResponse",
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    full_name:str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime",
+        "peekOfCode": "class LoginResponse(BaseModel):\n    user_id: str\n    username: str\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    full_name:str\n    username: str\n    email: EmailStr",
         "detail": "app.auth.schema",
         "documentation": {}
     },
