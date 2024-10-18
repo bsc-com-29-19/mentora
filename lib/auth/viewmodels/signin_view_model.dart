@@ -61,7 +61,10 @@ class LoginController extends GetxController {
         passwordController.clear();
 
         // Handle success Login
-        Get.snackbar("Login", "You are login in !");
+        Get.snackbar("Success", "Your Login was Successful!",
+            backgroundColor: Colors.green.shade300,
+            colorText: Colors.white,
+            icon: const Icon(Icons.check, color: Colors.white));
 
         Get.offAll(() => const NavigationMenu());
       } else {
@@ -73,15 +76,19 @@ class LoginController extends GetxController {
         // throw jsonDecode(response.body)['message'] ?? "unknown Error occurred";
         var errorDetail = jsonDecode(response.body)['detail'];
 
-        String errorMsg = errorDetail != null
-            ? errorDetail[0]['msg']
-            : "Unknown Error Occurred";
-        Get.snackbar("Error", errorMsg);
+        // String errorMsg = errorDetail != null
+        //     ? errorDetail[0]['msg']
+        //     : "Unknown Error Occurred";
+        // Get.snackbar("Error", errorMsg);
+
+        Get.snackbar("Login Failed", "$errorDetail",
+            colorText: Colors.white,
+            backgroundColor: Colors.red,
+            icon: const Icon(Icons.error, color: Colors.white));
       }
     } catch (e) {
       logger.e("Error during Login", error: e.toString());
-      Get.snackbar(
-          "Error", "An Error Occurred: $e during Login. Please try again");
+      Get.snackbar("Error", "An Error Occurred: $e . Please try again");
     }
   }
 }

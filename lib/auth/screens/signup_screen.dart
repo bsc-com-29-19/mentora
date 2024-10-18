@@ -22,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Get.put(RegistrationController());
 
   final _formKey = GlobalKey<FormState>();
+
   String _fullName = '';
   String _username = '';
   String _email = '';
