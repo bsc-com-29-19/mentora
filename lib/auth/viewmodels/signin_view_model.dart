@@ -38,23 +38,23 @@ class LoginController extends GetxController {
       http.Response response =
           await http.post(url, body: jsonEncode(body), headers: headers);
 
-      // print("Response : $response");
       logger.i("Response : $response");
 
-      // print("Response body : ${response.body}");
       logger.i("Response body : ${response.body}");
 
       if (response.statusCode == 200) {
+        // access access_token & username from login response and keep them in local storage: shared_preferences
         final json = jsonDecode(response.body);
 
         var token = json['access_token'];
+        var username = json['username'];
 
-        // print("Access Token : $token ");
         logger.d("Access Token : $token ");
 
         final SharedPreferences? prefs = await _prefs;
 
         await prefs?.setString('token', token);
+        await prefs?.setString('username', username);
 
         // emailController.clear();
         usernameController.clear();

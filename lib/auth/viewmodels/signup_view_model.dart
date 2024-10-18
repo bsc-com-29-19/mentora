@@ -10,6 +10,7 @@ import 'package:mentora_frontend/utils/api_endpoints.dart';
 import 'package:http/http.dart' as http;
 
 class RegistrationController extends GetxController {
+  TextEditingController fullnameController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -26,6 +27,7 @@ class RegistrationController extends GetxController {
 
       // print("Url : $url");
       Map body = {
+        "full_name": fullnameController.text,
         "username": usernameController.text,
         "email": emailController.text,
         "password": passwordController.text
@@ -49,6 +51,7 @@ class RegistrationController extends GetxController {
 
         // await prefs?.setString('token', token);
 
+        fullnameController.clear();
         usernameController.clear();
         emailController.clear();
         passwordController.clear();
