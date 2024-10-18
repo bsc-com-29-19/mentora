@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Response
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict
 from database import Base,engine
 from app.auth.routes import user_router
@@ -29,6 +30,28 @@ app =  FastAPI(
 )
 
 Base.metadata.create_all(bind=engine)
+
+
+# origins = [
+#     "http://localhost.tiangolo.com",
+#     "https://localhost.tiangolo.com",
+#     "http://localhost",
+#     "http://localhost:8080",
+#   "http://https://dashboard.render.com",
+#   "http://localhost:3003",
+#     "http://localhost:3000"
+# ]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# Todo : add middleware
 
 
 # root endpoint

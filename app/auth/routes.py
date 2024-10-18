@@ -10,7 +10,7 @@ user_router = APIRouter()
 # Todo : extract code to routes and services function
 
 # Register a new user
-
+# todo : separate code to service and route 
 @user_router.post("/register")
 def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     # Check if username or email already exists
@@ -18,9 +18,8 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Username or email already exists")
 
     #create a new user
-    user = User(username=user_data.username, email=user_data.email)
+    user = User(full_name=user_data.full_name,username=user_data.username, email=user_data.email)
     user.hash_password(user_data.password)
-
 
     db.add(user)
     db.commit()
@@ -28,6 +27,7 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
 
 
 # Login
+# todo : separate code to services and routes
 @user_router.post("/login")
 def login(user_data: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.username == user_data.username).first()
@@ -39,6 +39,7 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
 
 
 # Get user profile
+# todo : separate code to services and routes
 @user_router.get("/profile", response_model=UserResponse)
 def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     return UserResponse(
@@ -49,3 +50,8 @@ def get_profile(user: User = Depends(get_current_user), db: Session = Depends(ge
         created_at=user.created_at,
         updated_at=user.updated_at
         )
+
+@user_router.post("/logout")
+def logout(user: User = Depends(get_current_user)):
+    user.hashed_password = None
+    return {"message": "User has been logged out"}

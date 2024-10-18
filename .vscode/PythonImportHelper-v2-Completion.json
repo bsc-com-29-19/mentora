@@ -1151,6 +1151,14 @@
         "documentation": {}
     },
     {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
         "label": "user_router",
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
@@ -1430,7 +1438,7 @@
         "kind": 6,
         "importPath": "app.auth.models",
         "description": "app.auth.models",
-        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    username = Column(String, unique=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    is_active = Column(Boolean, default=True)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc))\n    updated_at = Column(\n        DateTime,",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)\n    full_name =Column(String,nullable=True)\n    username = Column(String, unique=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    is_active = Column(Boolean, default=True)\n    created_at = Column(DateTime, default=datetime.now(timezone.utc))\n    updated_at = Column(",
         "detail": "app.auth.models",
         "documentation": {}
     },
@@ -1439,7 +1447,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}",
+        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(full_name=user_data.full_name,username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1448,7 +1456,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")\n# Get user profile\n@user_router.get(\"/profile\", response_model=UserResponse)\ndef get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(",
+        "peekOfCode": "def login(user_data: UserLogin, db: Session = Depends(get_db)):\n    user = db.query(User).filter(User.username == user_data.username).first()\n    if user is None or not user.verify_password(user_data.password):\n        raise HTTPException(status_code=401, detail=\"Invalid Credentials\")\n    token = user.generate_token()\n    return Token(access_token=token, token_type=\"bearer\")\n# Get user profile\n# todo : separate code to services and routes\n@user_router.get(\"/profile\", response_model=UserResponse)\ndef get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1457,7 +1465,16 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(\n        id=str(user.id), \n        username=user.username,\n        email=user.email,\n        is_active=user.is_active,\n        created_at=user.created_at,\n        updated_at=user.updated_at\n        )",
+        "peekOfCode": "def get_profile(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    return UserResponse(\n        id=str(user.id), \n        username=user.username,\n        email=user.email,\n        is_active=user.is_active,\n        created_at=user.created_at,\n        updated_at=user.updated_at\n        )\n@user_router.post(\"/logout\")",
+        "detail": "app.auth.routes",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app.auth.routes",
+        "description": "app.auth.routes",
+        "peekOfCode": "def logout(user: User = Depends(get_current_user)):\n    user.hashed_password = None\n    return {\"message\": \"User has been logged out\"}",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1466,7 +1483,7 @@
         "kind": 5,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "user_router = APIRouter()\n# Todo : extract code to routes and services function\n# Register a new user\n@user_router.post(\"/register\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(username=user_data.username, email=user_data.email)",
+        "peekOfCode": "user_router = APIRouter()\n# Todo : extract code to routes and services function\n# Register a new user\n# todo : separate code to service and route \n@user_router.post(\"/register\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1475,7 +1492,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserCreate(BaseModel):\n    username: str\n    email: EmailStr\n    password: str\n    is_active: bool = True\nclass UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str",
+        "peekOfCode": "class UserCreate(BaseModel):\n    full_name: str\n    username: str\n    email: EmailStr\n    password: str\n    is_active: bool = True\nclass UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1484,7 +1501,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr",
+        "peekOfCode": "class UserLogin(BaseModel):\n    username: str\n    password: str\nclass Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    full_name:str\n    username: str",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1493,7 +1510,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime\n    updated_at: datetime",
+        "peekOfCode": "class Token(BaseModel):\n    access_token: str\n    token_type: str\nclass UserResponse(BaseModel):\n    id: str\n    full_name:str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1502,7 +1519,7 @@
         "kind": 6,
         "importPath": "app.auth.schema",
         "description": "app.auth.schema",
-        "peekOfCode": "class UserResponse(BaseModel):\n    id: str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime\n    updated_at: datetime",
+        "peekOfCode": "class UserResponse(BaseModel):\n    id: str\n    full_name:str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime\n    updated_at: datetime",
         "detail": "app.auth.schema",
         "documentation": {}
     },
@@ -1682,7 +1699,7 @@
         "kind": 5,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "journal_router = APIRouter()\n# Create journal entry\n@journal_router.post('/')\ndef create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,",
+        "peekOfCode": "journal_router = APIRouter()\n# Create journal entry\n#  Todo : separate to services and routes: the route should call the service\n@journal_router.post('/')\ndef create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,",
         "detail": "app.journal.routes",
         "documentation": {}
     },
