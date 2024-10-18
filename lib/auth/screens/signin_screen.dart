@@ -64,6 +64,9 @@ class _SigninScreenState extends State<SigninScreen> {
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                        ),
                         hintText: 'Enter your email address',
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
@@ -85,6 +88,9 @@ class _SigninScreenState extends State<SigninScreen> {
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                        ),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green),

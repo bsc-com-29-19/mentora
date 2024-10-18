@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -158,11 +157,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           print('Email: $_email');
                           print('Password: $_password');
 
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const JournalPage()),
-                          );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const JournalPage()),
+                          // );
                         }
                       },
                       child: const Text(
