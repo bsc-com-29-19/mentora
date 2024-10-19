@@ -3,6 +3,9 @@ class ApiEndpoints {
   static _AuthEndPoints authEndpoints = _AuthEndPoints();
   static _JornalEndpoints journalEndpoints = _JornalEndpoints();
   static _ActivityEndpoints activityEndpoints = _ActivityEndpoints();
+  static _ChatEndpoints chatEndpoints = _ChatEndpoints();
+  static _StreamChatbotEndpoints streamChatbotEndpoints =
+      _StreamChatbotEndpoints();
 }
 
 class _AuthEndPoints {
@@ -16,4 +19,12 @@ class _JornalEndpoints {
 
 class _ActivityEndpoints {
   final String activities = "/activities";
+}
+
+class _ChatEndpoints {
+  final String conversation = "/chatbot/chat";
+}
+
+class _StreamChatbotEndpoints {
+  final String streamChatbot = "/chatbot/ws/chat";
 }
