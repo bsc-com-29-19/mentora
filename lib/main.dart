@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mentora_frontend/auth/screens/signup_screen.dart';
 
-import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
+// import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 import 'package:mentora_frontend/onboarding/screens/screen1.dart';
 import 'package:mentora_frontend/onboarding/screens/screen2.dart';
 import 'package:mentora_frontend/onboarding/screens/screen3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 // import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 
 // Todo : Make onboarding one time step after app installation not onAppOpen
-
 
 void main() {
   runApp(const MyApp());
@@ -20,18 +22,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
-    return MaterialApp(
-
-        title: 'Mentora',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const MyHomePage(title: 'Mentora Home Page'));
+    return GetMaterialApp(
+      title: 'Mentora',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Mentora Home Page'),
+    );
     // home: const NavigationMenu());
-
   }
 }
 
@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const NavigationMenu()));
+                              builder: (context) => const SignUpScreen()));
                     },
                     child: Text(
                       buttonText,

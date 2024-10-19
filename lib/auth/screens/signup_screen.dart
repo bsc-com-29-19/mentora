@@ -1,7 +1,13 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
+import 'package:get/get.dart';
+// import 'package:mentora_frontend/auth/screens/journal/journal_page.dart';
+import 'package:mentora_frontend/auth/screens/signin_screen.dart';
+import 'package:mentora_frontend/auth/viewmodels/signup_view_model.dart';
+// import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
+
+// Todo : redesign the page
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -12,7 +18,11 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  RegistrationController registrationController =
+      Get.put(RegistrationController());
+
   final _formKey = GlobalKey<FormState>();
+
   String _fullName = '';
   String _username = '';
   String _email = '';
@@ -86,6 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: registrationController.usernameController,
                       style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         labelText: 'Username',
@@ -105,6 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: registrationController.emailController,
                       style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         labelText: 'Email',
@@ -124,6 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: registrationController.passwordController,
                       style: const TextStyle(color: Colors.black),
                       obscureText: true,
                       decoration: InputDecoration(
@@ -147,22 +160,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          // ignore: duplicate_ignore
-                          // ignore: avoid_print
-                          print('Sign up successful!');
-                          print('Full Name: $_fullName');
-                          print('Username: $_username');
-                          print('Email: $_email');
-                          print('Password: $_password');
+                          // _formKey.currentState!.save();
+                          // // ignore: duplicate_ignore
+                          // // ignore: avoid_print
+                          // print('Sign up successful!');
+                          // print('Full Name: $_fullName');
+                          // print('Username: $_username');
+                          // print('Email: $_email');
+                          // print('Password: $_password');
+                          await registrationController.registerUser();
 
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const JournalPage()),
-                          );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const NavigationMenu()),
+                          // );
                         }
                       },
                       child: const Text(
@@ -180,7 +194,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/login');
+                            // Navigator.pushNamed(context, '/login');
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SigninScreen()),
+                            );
                           },
                           child: const Text(
                             'Login',
