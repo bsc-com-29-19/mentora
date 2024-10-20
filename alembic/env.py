@@ -13,24 +13,35 @@ from app.activities.models import Activity
 from database import Base
 
 import os
+from dotenv import load_dotenv
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
+load_dotenv()
 config = context.config
-envConfig = Config(RepositoryEnv(".env"))
+# envConfig = Config(RepositoryEnv(".env"))
 app_env = os.getenv('APP_ENV','dev')
 
+db_username = os.getenv('DB_USERNAME')
+db_password = os.getenv('DB_PASSWORD')
+db_host = os.getenv('DB_HOST')
+db_name = os.getenv('DB_NAME')
 
-if(app_env == 'prod'):
-    env_path = find_dotenv('env.prod')
-    envConfig =Config(RepositoryEnv(env_path))
+# if(app_env == 'prod'):
+#     env_path = find_dotenv('env.prod')
+#     envConfig =Config(RepositoryEnv(env_path))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-db_url =f"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}"
+db_url = f"postgresql://{db_username}:{db_password}@{db_host}/{db_name}"
+
+
+# db_url =f"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}"
+
+
 # section = config.config_ini_section
 # config.set_section_option(section,"DB_NAME",envConfig("DB_NAME"))
 # config.set_section_option(section,"DB_USERNAME",envConfig("DB_USERNAME"))

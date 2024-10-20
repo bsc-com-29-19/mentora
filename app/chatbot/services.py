@@ -41,3 +41,21 @@ def stream_chat_session(session_id: str, user_message: str):
         config=config,
     ):
         yield r.content  # Yield the token to allow real-time streaming
+
+
+
+async def stream_chat_session_websocket(session_id: str, user_message: str):
+    config = {"configurable": {"session_id": session_id}}
+    with_message_history = RunnableWithMessageHistory(
+        chain, get_session_history, input_messages_key="messages"
+    )
+    
+    async for r in with_message_history.stream(
+        {
+            "messages": [HumanMessage(content=user_message)],
+            "language": "English",
+        },
+        config=config,
+    ):
+        yield r.content  # Yield the token for real-time streaming
+

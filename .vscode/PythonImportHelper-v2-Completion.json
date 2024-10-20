@@ -297,6 +297,14 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "importPath": "app.auth.models",
         "description": "app.auth.models",
@@ -1231,16 +1239,7 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "config = context.config\nenvConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod')\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)",
-        "detail": "alembic.env",
-        "documentation": {}
-    },
-    {
-        "label": "envConfig",
-        "kind": 5,
-        "importPath": "alembic.env",
-        "description": "alembic.env",
-        "peekOfCode": "envConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod')\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f\"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}\"",
+        "peekOfCode": "config = context.config\n# envConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\ndb_username = os.getenv('DB_USERNAME')\ndb_password = os.getenv('DB_PASSWORD')\ndb_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1249,7 +1248,52 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "app_env = os.getenv('APP_ENV','dev')\nif(app_env == 'prod'):\n    env_path = find_dotenv('env.prod')\n    envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url =f\"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}\"\n# section = config.config_ini_section",
+        "peekOfCode": "app_env = os.getenv('APP_ENV','dev')\ndb_username = os.getenv('DB_USERNAME')\ndb_password = os.getenv('DB_PASSWORD')\ndb_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "db_username",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "db_username = os.getenv('DB_USERNAME')\ndb_password = os.getenv('DB_PASSWORD')\ndb_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "db_password",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "db_password = os.getenv('DB_PASSWORD')\ndb_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "db_host",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "db_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url = f\"postgresql://{db_username}:{db_password}@{db_host}/{db_name}\"",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "db_name",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "db_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\ndb_url = f\"postgresql://{db_username}:{db_password}@{db_host}/{db_name}\"\n# db_url =f\"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}\"",
+        "detail": "alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "db_url",
+        "kind": 5,
+        "importPath": "alembic.env",
+        "description": "alembic.env",
+        "peekOfCode": "db_url = f\"postgresql://{db_username}:{db_password}@{db_host}/{db_name}\"\n# db_url =f\"postgresql://{envConfig('DB_USERNAME')}:{envConfig('DB_PASSWORD')}@{envConfig('DB_HOST')}/{envConfig('DB_NAME')}\"\n# section = config.config_ini_section\n# config.set_section_option(section,\"DB_NAME\",envConfig(\"DB_NAME\"))\n# config.set_section_option(section,\"DB_USERNAME\",envConfig(\"DB_USERNAME\"))\n# config.set_section_option(section,\"DB_PASSWORD\",envConfig(\"DB_PASSWORD\"))\n# add your model's MetaData object here\n# for 'autogenerate' support\n# from myapp import mymodel\n# target_metadata = mymodel.Base.metadata",
         "detail": "alembic.env",
         "documentation": {}
     },
@@ -1555,7 +1599,7 @@
         "kind": 5,
         "importPath": "app.chatbot.routes",
         "description": "app.chatbot.routes",
-        "peekOfCode": "chat_router = APIRouter()\n@chat_router.post(\"/chat/{session_id}\")\nasync def chatbot(session_id: str, user_message: str,db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    response_stream = stream_chat_session(session_id, user_message)\n    response = \"\".join([token for token in response_stream])\n    return {\"response\": response}",
+        "peekOfCode": "chat_router = APIRouter()\n@chat_router.post(\"/chat/{session_id}\")\nasync def chatbot(session_id: str, user_message: str,db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    response_stream = stream_chat_session(session_id, user_message)\n    response = \"\".join([token for token in response_stream])\n    return {\"response\": response}\n@chat_router.websocket(\"/ws/chat/{session_id}\")\nasync def websocket_endpoint(websocket: WebSocket, session_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    await websocket.accept()\n    try:",
         "detail": "app.chatbot.routes",
         "documentation": {}
     },
