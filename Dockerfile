@@ -4,7 +4,7 @@ FROM python:3.12-slim
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONBUFFERED=1
-ENV APP_ENV=prod
+# ENV APP_ENV=prod
 
 
 # create the working directory
