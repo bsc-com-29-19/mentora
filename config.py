@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     TOKEN_EXPIRATION_HOURS: int
     OPENAI_API_KEY: str
+    DATABASE_URL: str
 
     model_config = SettingsConfigDict(env_file=get_app_env())
     # class Config:
