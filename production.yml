@@ -20,5 +20,5 @@ services:
       # - ./mentora_backend:/:rw # local directorry for live code reloading
       - app_data:/app_data # persistent data storage
 
-    environment:
-      - APP_ENV=dev
+    # environment:
+    #   - APP_ENV=dev

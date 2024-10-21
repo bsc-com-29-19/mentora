@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: mentora-restful-api
+    docker:
+      compose:
+        file: docker-compose.yml
+        service: app
+    ports:
+      - 8400:8400
+    env:
+      - DB_NAME: ${DB_NAME}
+      - DB_USERNAME: ${DB_USERNAME}
+      - DB_PASSWORD: ${DB_PASSWORD}
+      - PGADMIN_EMAIL: ${PGADMIN_EMAIL}
+      - PGADMIN_PASSWORD: ${PGADMIN_PASSWORD}
+
+  - type: service
+    name: mentora-postgres
+    docker:
+      compose:
+        file: docker-compose.yml
+        service: postgres
+
+  - type: service
+    name: mentora-pgadmin
+    docker:
+      compose:
+        file: docker-compose.yml
+        service: pgadmin

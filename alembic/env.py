@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 load_dotenv()
 config = context.config
 # envConfig = Config(RepositoryEnv(".env"))
-app_env = os.getenv('APP_ENV','dev')
+# app_env = os.getenv('APP_ENV','dev')
 
 db_username = os.getenv('DB_USERNAME')
 db_password = os.getenv('DB_PASSWORD')

@@ -1239,16 +1239,7 @@
         "kind": 5,
         "importPath": "alembic.env",
         "description": "alembic.env",
-        "peekOfCode": "config = context.config\n# envConfig = Config(RepositoryEnv(\".env\"))\napp_env = os.getenv('APP_ENV','dev')\ndb_username = os.getenv('DB_USERNAME')\ndb_password = os.getenv('DB_PASSWORD')\ndb_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))",
-        "detail": "alembic.env",
-        "documentation": {}
-    },
-    {
-        "label": "app_env",
-        "kind": 5,
-        "importPath": "alembic.env",
-        "description": "alembic.env",
-        "peekOfCode": "app_env = os.getenv('APP_ENV','dev')\ndb_username = os.getenv('DB_USERNAME')\ndb_password = os.getenv('DB_PASSWORD')\ndb_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.",
+        "peekOfCode": "config = context.config\n# envConfig = Config(RepositoryEnv(\".env\"))\n# app_env = os.getenv('APP_ENV','dev')\ndb_username = os.getenv('DB_USERNAME')\ndb_password = os.getenv('DB_PASSWORD')\ndb_host = os.getenv('DB_HOST')\ndb_name = os.getenv('DB_NAME')\n# if(app_env == 'prod'):\n#     env_path = find_dotenv('env.prod')\n#     envConfig =Config(RepositoryEnv(env_path))",
         "detail": "alembic.env",
         "documentation": {}
     },
