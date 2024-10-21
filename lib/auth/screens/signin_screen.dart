@@ -114,6 +114,9 @@ class _SigninScreenState extends State<SigninScreen> {
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                        ),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green),
