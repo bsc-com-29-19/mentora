@@ -1,5 +1,7 @@
 class ApiEndpoints {
-  static final String baseurl = "http://10.0.2.2:8400/mentora/api/v1";
+  // static final String baseurl = "http://10.0.2.2:8400/mentora/api/v1";
+  static final String baseurl =
+      "https://mentora-6lpz.onrender.com/mentora/api/v1";
   static _AuthEndPoints authEndpoints = _AuthEndPoints();
   static _JornalEndpoints journalEndpoints = _JornalEndpoints();
   static _ActivityEndpoints activityEndpoints = _ActivityEndpoints();
