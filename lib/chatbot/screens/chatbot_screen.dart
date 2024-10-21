@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:get/get.dart';
+// import 'package:get/get.dart';
+// import 'package:google_generative_ai/google_generative_ai.dart';
+// import 'package:mentora_frontend/chatbot/models/chat_model.dart';
+import 'package:mentora_frontend/chatbot/viewmodels/chatbot_viewmodel.dart';
 import 'package:mentora_frontend/chatbot/widgets/chat_bubble.dart';
-import 'package:mentora_frontend/chatbot/widgets/chat_message.dart';
+// import 'package:mentora_frontend/chatbot/widgets/chat_message.dart';
 
-String _apiKey = "AIzaSyAeQYIn4le5MGM6z_OtXQEkrSaz3b8dUxE";
+// String _apiKey = "AIzaSyAeQYIn4le5MGM6z_OtXQEkrSaz3b8dUxE";
 
 class ChatbotScreen extends StatefulWidget {
   const ChatbotScreen({super.key});
@@ -13,54 +17,21 @@ class ChatbotScreen extends StatefulWidget {
 }
 
 class _ChatbotScreenState extends State<ChatbotScreen> {
-  late final GenerativeModel _model;
-  late final ChatSession _chat;
+  final ChatbotController _chatbotController = ChatbotController();
   final ScrollController _scrollcontroller = ScrollController();
   final TextEditingController _textController = TextEditingController();
-  final List<ChatMessage> _messages = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _model = GenerativeModel(model: "gemini-1.5-flash", apiKey: _apiKey);
-    _chat = _model.startChat();
-
-    _messages.add(
-      ChatMessage(
-        text:
-            "Hello! I'm a professional mental health therapist chatbot. I'm here to counsel, guide, and offer advice to support your mental well-being. How was your today?",
-        isUser: false,
-      ),
-    );
-  }
 
   void _scrollDown() {
-    WidgetsBinding.instance.addPostFrameCallback((_) =>
-        _scrollcontroller.animateTo(_scrollcontroller.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 750),
-            curve: Curves.easeOutCirc));
+    Future.microtask(() =>
+        _scrollcontroller.jumpTo(_scrollcontroller.position.maxScrollExtent));
   }
 
-  Future<void> _sendChatMessage(String message) async {
-    setState(() {
-      _messages.add(ChatMessage(text: message, isUser: true));
-    });
+  @override
 
-    try {
-      final response = await _chat.sendMessage(Content.text(message));
-      final text = response.text;
-
-      setState(() {
-        _messages.add(ChatMessage(text: text!, isUser: false));
-        _scrollDown();
-      });
-    } catch (e) {
-      setState(() {
-        _messages.add(ChatMessage(text: "Error: $e", isUser: false));
-      });
-    } finally {
-      _textController.clear();
-    }
+  void initState() {
+    super.initState();
+    // Call this whenever the messages list updates to scroll down
+    _chatbotController.messages.listen((_) => _scrollDown());
   }
 
   @override
@@ -74,20 +45,39 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
+            child: Obx(() {
+              if (_chatbotController.messages.isEmpty) {
+                // Show some placeholder if no messages
+                return const Center(child: Text("No messages yet"));
+              }
+
+              return ListView.builder(
+                // Use a fixed size to improve performance
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
                 controller: _scrollcontroller,
-                itemCount: _messages.length,
+                itemCount: _chatbotController.messages.length,
                 itemBuilder: (context, index) {
-                  return ChatBubble(message: _messages[index]);
-                }),
+                  return ChatBubble(
+                      message: _chatbotController.messages[index]);
+                },
+              );
+            }),
           ),
+          Obx(() => _chatbotController.isLoading.value
+              ? const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                )
+              : const SizedBox()),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Row(
               children: [
                 Expanded(
                   child: TextField(
-                    onSubmitted: _sendChatMessage,
+                    onSubmitted: (value) =>
+                        _chatbotController.sendChatMessage(value),
                     controller: _textController,
                     decoration: InputDecoration(
                       hintText: "Enter a Message",
@@ -100,7 +90,10 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                   ),
                 ),
                 IconButton(
-                    onPressed: () => _sendChatMessage(_textController.text),
+                    onPressed: () {
+                      _chatbotController.sendChatMessage(_textController.text);
+                      _textController.clear();
+                    },
                     icon: const Icon(Icons.send))
               ],
             ),

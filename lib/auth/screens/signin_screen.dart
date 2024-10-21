@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mentora_frontend/auth/screens/signup_screen.dart';
+import 'package:mentora_frontend/auth/viewmodels/signin_view_model.dart';
 
+// Todo : redesign the page
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
 
@@ -9,11 +13,15 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
+  LoginController loginController = Get.put(LoginController());
+
   final _formKey = GlobalKey<FormState>();
   // ignore: unused_field
   String _email = '';
   // ignore: unused_field
   String _password = '';
+
+  String _username = '';
 
   @override
   Widget build(BuildContext context) {
@@ -62,29 +70,47 @@ class _SigninScreenState extends State<SigninScreen> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: loginController.usernameController,
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: const TextStyle(
-                          color: Colors.black,
-                        ),
-                        hintText: 'Enter your email address',
+                        labelText: 'Username',
+                        labelStyle: const TextStyle(color: Colors.black),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green),
                         ),
                       ),
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            !value.contains('@')) {
-                          return 'Please enter a valid email';
+                        if (value!.isEmpty) {
+                          return 'Please enter a username';
                         }
                         return null;
                       },
-                      onSaved: (value) => _email = value!,
+                      onSaved: (value) => _username = value!,
                     ),
+                    // TextFormField(
+                    //   controller: loginController.emailController,
+                    //   decoration: InputDecoration(
+                    //     labelText: 'Email',
+                    //     hintText: 'Enter your email address',
+                    //     border: const OutlineInputBorder(),
+                    //     focusedBorder: const OutlineInputBorder(
+                    //       borderSide: BorderSide(color: Colors.green),
+                    //     ),
+                    //   ),
+                    //   validator: (value) {
+                    //     if (value == null ||
+                    //         value.isEmpty ||
+                    //         !value.contains('@')) {
+                    //       return 'Please enter a valid email';
+                    //     }
+                    //     return null;
+                    //   },
+                    //   onSaved: (value) => _email = value!,
+                    // ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      controller: loginController.passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
@@ -128,8 +154,10 @@ class _SigninScreenState extends State<SigninScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+
+                          loginController.loginUser();
                           // ignore: avoid_print
-                          print('Sign In successful!');
+                          // print('Sign In successful!');
                         }
                       },
                       child: const Text(
@@ -147,7 +175,13 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/sign-up');
+                            // Navigator.pushNamed(context, '/sign-up');
+                            // const SignUpScreen();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUpScreen()),
+                            );
                           },
                           child: const Text(
                             'Sign Up',

@@ -9,8 +9,6 @@ class Screen1 extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Image.asset("assets/images/image_1.png"),
-
         Stack(
           alignment: Alignment.center,
           children: [
@@ -28,8 +26,6 @@ class Screen1 extends StatelessWidget {
                 height: 290,
                 fit: BoxFit.cover,
               ),
-
-              // child: Image.network("assets/images/image_1.png"),
             )
           ],
         ),
