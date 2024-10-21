@@ -1,4 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mentora_frontend/auth/screens/signup_screen.dart';
+
+// import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
+import 'package:mentora_frontend/onboarding/screens/screen1.dart';
+import 'package:mentora_frontend/onboarding/screens/screen2.dart';
+import 'package:mentora_frontend/onboarding/screens/screen3.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+// import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
+
+// Todo : Make onboarding one time step after app installation not onAppOpen
 
 void main() {
   runApp(const MyApp());
@@ -10,14 +22,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      title: 'Mentora',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Mentora Home Page'),
     );
+    // home: const NavigationMenu());
   }
 }
 
@@ -31,60 +45,79 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  PageController pageController = PageController();
+  String buttonText = "Skip";
+  int currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        backgroundColor: Colors.green.shade300,
+        body: Stack(
+          children: [
+            PageView(
+              controller: pageController,
+              onPageChanged: (index) {
+                currentPageIndex = index;
+                if (index == 2) {
+                  buttonText = "Finish";
+                } else {
+                  buttonText = "Skip";
+                }
+                setState(() {});
+              },
+              children: const [Screen1(), Screen2(), Screen3()],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Container(
+              alignment: const Alignment(0, 0.8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpScreen()));
+                    },
+                    child: Text(
+                      buttonText,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  SmoothPageIndicator(
+                    controller: pageController,
+                    count: 3,
+                    onDotClicked: (index) => pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 600),
+                        curve: Curves.easeIn),
+                    effect: const WormEffect(activeDotColor: Colors.white),
+                  ),
+                  currentPageIndex == 2
+                      ? const SizedBox(
+                          width: 10,
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            pageController.nextPage(
+                                duration: const Duration(milliseconds: 600),
+                                curve: Curves.easeIn);
+                          },
+                          child: const Text(
+                            "Next",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        )
+                ],
+              ),
+            )
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        ));
   }
 }
