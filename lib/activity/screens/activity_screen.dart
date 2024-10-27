@@ -62,12 +62,16 @@ class _ActivityPageState extends State<ActivityScreen> {
               children: [
                 const Text(
                   '0/1', // Shows the progress for each activity
-                  style: TextStyle(fontSize: 18.0),
+                  style: TextStyle(fontSize: 22.0, color: Colors.white,
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(width: 10),
                 Checkbox(
                   value: completed,
                   onChanged: onChanged,
+                  activeColor: Colors.white,
+                  checkColor: Colors.green.shade300,
+
                 ),
               ],
             ),
