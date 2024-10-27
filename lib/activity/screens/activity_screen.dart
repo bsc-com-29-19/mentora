@@ -41,11 +41,11 @@ class _ActivityPageState extends State<ActivityScreen> {
   Widget buildActivity(
       String title, bool completed, Function(bool?) onChanged) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 64, 100, 95),
+          color: Colors.green.shade300,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -53,7 +53,10 @@ class _ActivityPageState extends State<ActivityScreen> {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                  fontSize: 22.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700),
             ),
             Row(
               children: [
