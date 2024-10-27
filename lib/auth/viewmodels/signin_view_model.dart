@@ -51,7 +51,7 @@ class LoginController extends GetxController {
 
         logger.d("Access Token : $token ");
 
-        final SharedPreferences? prefs = await _prefs;
+        final SharedPreferences prefs = await _prefs;
 
         await prefs?.setString('token', token);
         await prefs?.setString('username', username);
