@@ -18,7 +18,6 @@ class _SigninScreenState extends State<SigninScreen> {
   final _formKey = GlobalKey<FormState>();
   // ignore: unused_field
   final String _email = '';
- String _email = '';
   // ignore: unused_field
   String _password = '';
 

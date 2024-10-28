@@ -53,8 +53,8 @@ class LoginController extends GetxController {
 
         final SharedPreferences prefs = await _prefs;
 
-        await prefs?.setString('token', token);
-        await prefs?.setString('username', username);
+        await prefs.setString('token', token);
+        await prefs.setString('username', username);
 
         // emailController.clear();
         usernameController.clear();
