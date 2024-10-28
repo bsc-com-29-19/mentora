@@ -36,11 +36,11 @@ class _SigninScreenState extends State<SigninScreen> {
             children: [
               Row(
                 children: [
-                  Image.asset(
-                    'assets/images/mentora-logo.png',
-                    width: 20,
-                    height: 20,
-                  ),
+                  // Image.asset(
+                  //   'assets/images/mentora-logo.png',
+                  //   width: 20,
+                  //   height: 20,
+                  // ),
                   const SizedBox(width: 5),
                   Expanded(
                     child: Center(
