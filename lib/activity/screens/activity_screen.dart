@@ -43,35 +43,38 @@ class _ActivityPageState extends State<ActivityScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 18.0),
         decoration: BoxDecoration(
           color: Colors.green.shade300,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                  fontSize: 22.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700),
+              ),
             ),
             Row(
               children: [
-                const Text(
-                  '0/1', // Shows the progress for each activity
-                  style: TextStyle(fontSize: 22.0, color: Colors.white,
-                      fontWeight: FontWeight.w500),
-                ),
+                // const Text(
+                //   '0/1', // Shows the progress for each activity
+                //   style: TextStyle(
+                //       fontSize: 22.0,
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.w500),
+                // ),
                 SizedBox(width: 10),
                 Checkbox(
                   value: completed,
                   onChanged: onChanged,
                   activeColor: Colors.white,
                   checkColor: Colors.green.shade300,
-
                 ),
               ],
             ),
@@ -117,7 +120,7 @@ class _ActivityPageState extends State<ActivityScreen> {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.all(29.0),
+            padding: EdgeInsets.all(26.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment
                   .spaceBetween, // This aligns the two texts to opposite sides
@@ -135,7 +138,7 @@ class _ActivityPageState extends State<ActivityScreen> {
           ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 33.0),
+              padding: const EdgeInsets.symmetric(horizontal: 22.0),
               children: [
                 buildActivity('Running', runningCompleted, (value) {
                   setState(() {
