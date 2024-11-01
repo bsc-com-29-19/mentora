@@ -17,6 +17,8 @@ class LoginController extends GetxController {
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+  get emailController => null;
+
   Future<void> loginUser() async {
     try {
       var headers = {'Content-Type': 'application/json'};
