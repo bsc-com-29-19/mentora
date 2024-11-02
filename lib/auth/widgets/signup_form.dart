@@ -40,6 +40,7 @@ class _SignupFormState extends State<SignupForm> {
           const SizedBox(height: 8),
           TextFormField(
             style: const TextStyle(color: Colors.black),
+            cursorColor: Colors.black,  // Set cursor color to black
             decoration: InputDecoration(
               labelText: 'Enter your full name',
               labelStyle: const TextStyle(color: Colors.grey),
@@ -67,6 +68,7 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.usernameController,
             style: const TextStyle(color: Colors.black),
+            cursorColor: Colors.black,  // Set cursor color to black
             decoration: InputDecoration(
               labelText: 'Enter unique username',
               labelStyle: const TextStyle(color: Colors.grey),
@@ -94,6 +96,7 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.emailController,
             style: const TextStyle(color: Colors.black),
+            cursorColor: Colors.black,  // Set cursor color to black
             decoration: InputDecoration(
               labelText: 'Enter your email address',
               labelStyle: const TextStyle(color: Colors.grey),
@@ -121,6 +124,7 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.passwordController,
             style: const TextStyle(color: Colors.black),
+            cursorColor: Colors.black,  // Set cursor color to black
             obscureText: !_isPasswordVisible, // Toggle password visibility
             decoration: InputDecoration(
               labelText: '********************',

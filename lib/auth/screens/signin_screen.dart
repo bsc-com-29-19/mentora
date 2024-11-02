@@ -70,8 +70,9 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
-                      controller: loginController.emailOrUsernameController,  // Ensure this controller is defined
+                      controller: loginController.emailOrUsernameController,
                       style: const TextStyle(color: Colors.black),
+                      cursorColor: Colors.black,  // Set cursor color to black
                       decoration: InputDecoration(
                         labelText: 'Enter your email or username',
                         labelStyle: const TextStyle(color: Colors.grey),
@@ -98,6 +99,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       controller: loginController.passwordController,
                       obscureText: !_isPasswordVisible,
                       style: const TextStyle(color: Colors.black),
+                      cursorColor: Colors.black,  // Set cursor color to black
                       decoration: InputDecoration(
                         labelText: '*******************',
                         labelStyle: const TextStyle(color: Colors.grey),
@@ -107,9 +109,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                             color: Colors.green,
                           ),
                           onPressed: () {
@@ -147,7 +147,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           loginController.loginUser(
-                            emailOrUsername: _emailOrUsername,  // Modify loginUser method
+                            emailOrUsername: _emailOrUsername,
                             password: _password,
                           );
                         }
