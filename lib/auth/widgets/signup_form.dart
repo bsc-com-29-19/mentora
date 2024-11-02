@@ -17,9 +17,9 @@ class SignupForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<SignupForm> {
-  final RegistrationController registrationController =
-      Get.put(RegistrationController());
+  final RegistrationController registrationController = Get.put(RegistrationController());
 
+  String _fullName = '';
   String _username = '';
   String _email = '';
   String _password = '';
@@ -30,11 +30,37 @@ class _SignupFormState extends State<SignupForm> {
     return Form(
       key: widget.formKey,
       child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start, // Align labels to the left
+        crossAxisAlignment: CrossAxisAlignment.start, // Align labels to the left
         children: [
+          // Full Name label and field
           const Text(
-            'Username', // Username label
+            'Full Name',
+            style: TextStyle(fontSize: 16, color: Colors.black),
+          ),
+          const SizedBox(height: 8),
+          TextFormField(
+            style: const TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+              labelText: 'Enter your full name',
+              labelStyle: const TextStyle(color: Colors.grey),
+              border: const OutlineInputBorder(),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your full name';
+              }
+              return null;
+            },
+            onSaved: (value) => _fullName = value!,
+          ),
+          const SizedBox(height: 20),
+
+          // Username label and field
+          const Text(
+            'Username',
             style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           const SizedBox(height: 8),
@@ -50,7 +76,7 @@ class _SignupFormState extends State<SignupForm> {
               ),
             ),
             validator: (value) {
-              if (value!.isEmpty) {
+              if (value == null || value.isEmpty) {
                 return 'Please enter a username';
               }
               return null;
@@ -58,8 +84,10 @@ class _SignupFormState extends State<SignupForm> {
             onSaved: (value) => _username = value!,
           ),
           const SizedBox(height: 20),
+
+          // Email label and field
           const Text(
-            'Email', // Email label
+            'Email',
             style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           const SizedBox(height: 8),
@@ -75,7 +103,7 @@ class _SignupFormState extends State<SignupForm> {
               ),
             ),
             validator: (value) {
-              if (value!.isEmpty || !value.contains('@')) {
+              if (value == null || value.isEmpty || !value.contains('@')) {
                 return 'Please enter a valid email';
               }
               return null;
@@ -83,8 +111,10 @@ class _SignupFormState extends State<SignupForm> {
             onSaved: (value) => _email = value!,
           ),
           const SizedBox(height: 20),
+
+          // Password label and field
           const Text(
-            'Password', // Password label
+            'Password',
             style: TextStyle(fontSize: 16, color: Colors.black),
           ),
           const SizedBox(height: 8),
@@ -112,7 +142,7 @@ class _SignupFormState extends State<SignupForm> {
               ),
             ),
             validator: (value) {
-              if (value!.isEmpty || value.length < 8) {
+              if (value == null || value.isEmpty || value.length < 8) {
                 return 'Please enter a password with at least 8 characters';
               }
               return null;
@@ -120,6 +150,8 @@ class _SignupFormState extends State<SignupForm> {
             onSaved: (value) => _password = value!,
           ),
           const SizedBox(height: 20),
+
+          // Sign Up button
           Button(
             text: 'Sign Up',
             onPressed: () async {

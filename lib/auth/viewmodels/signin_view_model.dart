@@ -19,7 +19,9 @@ class LoginController extends GetxController {
 
   get emailController => null;
 
-  Future<void> loginUser() async {
+  get emailOrUsernameController => null;
+
+  Future<void> loginUser({required String emailOrUsername, required String password}) async {
     try {
       var headers = {'Content-Type': 'application/json'};
       var url = Uri.parse(

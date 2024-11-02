@@ -1,6 +1,4 @@
 // signin_screen.dart
-// ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
@@ -16,12 +14,12 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
-  LoginController loginController = Get.put(LoginController());
+  final LoginController loginController = Get.put(LoginController());
 
   final _formKey = GlobalKey<FormState>();
-  bool _isPasswordVisible = false; // Track password visibility
+  bool _isPasswordVisible = false;
 
-  String _email = '';
+  String _emailOrUsername = '';
   String _password = '';
 
   @override
@@ -64,19 +62,18 @@ class _SigninScreenState extends State<SigninScreen> {
               Form(
                 key: _formKey,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start, // Align labels to the left
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Email label
                     const Text(
-                      'Email',
+                      'Email or Username',
                       style: TextStyle(fontSize: 16, color: Colors.black),
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
-                      controller: loginController.emailController,
+                      controller: loginController.emailOrUsernameController,  // Ensure this controller is defined
                       style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        labelText: 'Enter your email address',
+                        labelText: 'Enter your email or username',
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
@@ -84,16 +81,14 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                       ),
                       validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your valid email';
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email or username';
                         }
                         return null;
                       },
-                      onSaved: (value) => _email = value!,
+                      onSaved: (value) => _emailOrUsername = value!,
                     ),
                     const SizedBox(height: 20),
-
-                    // Password label
                     const Text(
                       'Password',
                       style: TextStyle(fontSize: 16, color: Colors.black),
@@ -125,9 +120,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                       ),
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length < 8) {
+                        if (value == null || value.isEmpty || value.length < 8) {
                           return 'Please enter a password with at least 8 characters';
                         }
                         return null;
@@ -153,7 +146,10 @@ class _SigninScreenState extends State<SigninScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          loginController.loginUser();
+                          loginController.loginUser(
+                            emailOrUsername: _emailOrUsername,  // Modify loginUser method
+                            password: _password,
+                          );
                         }
                       },
                     ),
