@@ -30,7 +30,7 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
 # todo : separate code to services and routes
 @user_router.post("/login")
 def login(user_data: UserLogin, db: Session = Depends(get_db)):
-    user = db.query(User).filter((User.username == user_data.username) | (User.email == user_data.username)).first()
+    user = db.query(User).filter((User.username == user_data.usernameoremail) | (User.email == user_data.usernameoremail)).first()
 
     if user is None or not user.verify_password(user_data.password):
         raise HTTPException(status_code=401, detail="Unknown Username/Email or Password")
