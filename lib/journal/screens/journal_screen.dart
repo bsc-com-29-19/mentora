@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
 
@@ -39,7 +37,7 @@ class _JournalScreenState extends State<JournalScreen> {
         ),
       ),
       body: Container(
-        color: Colors.green[50], // Light green background for the entire widget
+        color: Colors.green[50], 
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
@@ -61,7 +59,7 @@ class _JournalScreenState extends State<JournalScreen> {
                   },
                   child: Text(
                     "${selectedDate.toLocal()}".split(' ')[0],
-                    style: const TextStyle(color: Colors.black), // Change to black
+                    style: const TextStyle(color: Colors.black), 
                   ),
                 ),
               ],
@@ -71,7 +69,7 @@ class _JournalScreenState extends State<JournalScreen> {
             // Morning task
             TextField(
               controller: taskController,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 labelText: 'Write your most important task today',
                 labelStyle: TextStyle(color: Colors.black),
@@ -97,7 +95,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController1,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: '1.',
                 border: OutlineInputBorder(),
@@ -111,7 +109,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController2,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: '2.',
                 border: OutlineInputBorder(),
@@ -125,7 +123,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController3,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: '3.',
                 border: OutlineInputBorder(),
@@ -215,7 +213,7 @@ class _JournalScreenState extends State<JournalScreen> {
             // How did you spend your day?
             TextField(
               controller: daySummaryController,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: 'How did you spend your day?',
                 border: OutlineInputBorder(),

@@ -10,14 +10,14 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity, // Set button to full width
+      width: double.infinity, 
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 20), // Center-align text
+          padding: const EdgeInsets.symmetric(vertical: 20), 
         ),
         onPressed: onPressed,
         child: Text(
