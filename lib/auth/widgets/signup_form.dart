@@ -17,7 +17,8 @@ class SignupForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<SignupForm> {
-  final RegistrationController registrationController = Get.put(RegistrationController());
+  final RegistrationController registrationController =
+      Get.put(RegistrationController());
 
   String _fullName = '';
   String _username = '';
@@ -30,7 +31,8 @@ class _SignupFormState extends State<SignupForm> {
     return Form(
       key: widget.formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Align labels to the left
+        crossAxisAlignment:
+            CrossAxisAlignment.start, // Align labels to the left
         children: [
           // Full Name label and field
           const Text(
@@ -40,9 +42,11 @@ class _SignupFormState extends State<SignupForm> {
           const SizedBox(height: 8),
           TextFormField(
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black,  // Set cursor color to black
+            cursorColor: Colors.black, // Set cursor color to black
             decoration: InputDecoration(
-              labelText: 'Enter your full name',
+              // labelText: 'Enter your full name',
+              hintText: 'Enter your full name',
+              hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
               focusedBorder: const OutlineInputBorder(
@@ -68,9 +72,11 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.usernameController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black,  // Set cursor color to black
+            cursorColor: Colors.black, // Set cursor color to black
             decoration: InputDecoration(
-              labelText: 'Enter unique username',
+              // labelText: 'Enter unique username',
+              hintText: 'Enter unique username',
+              hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
               focusedBorder: const OutlineInputBorder(
@@ -96,9 +102,11 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.emailController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black,  // Set cursor color to black
+            cursorColor: Colors.black, // Set cursor color to black
             decoration: InputDecoration(
-              labelText: 'Enter your email address',
+              // labelText: 'Enter your email address',
+              hintText: 'Enter your email address',
+              hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
               focusedBorder: const OutlineInputBorder(
@@ -124,10 +132,12 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.passwordController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black,  // Set cursor color to black
+            cursorColor: Colors.black, // Set cursor color to black
             obscureText: !_isPasswordVisible, // Toggle password visibility
             decoration: InputDecoration(
-              labelText: '********************',
+              // labelText: '********************',
+              hintText: "Enter your secure password",
+              hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
               focusedBorder: const OutlineInputBorder(
