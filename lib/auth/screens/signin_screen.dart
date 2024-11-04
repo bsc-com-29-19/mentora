@@ -79,7 +79,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       decoration: InputDecoration(
                         hintText: 'Enter your email or username',
                         hintStyle: const TextStyle(color: Colors.grey),
-                      
+                        // labelText: 'Enter your email or username',
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(

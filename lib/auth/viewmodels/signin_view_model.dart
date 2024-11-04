@@ -28,8 +28,8 @@ class LoginController extends GetxController {
 
       Map body = {
         // "email": emailController.text,
-        "usernameoremail": emailorusernameController.text,
-        "password": passwordController.text
+        "usernameoremail": emailorusernameController.text.trim(),
+        "password": passwordController.text.trim()
       };
 
       // print("Body : $body");
