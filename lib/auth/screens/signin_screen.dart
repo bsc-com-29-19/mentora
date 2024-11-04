@@ -70,11 +70,13 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
-                      controller: loginController.emailOrUsernameController,
+                      controller: loginController.emailorusernameController,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black,  // Set cursor color to black
+                      cursorColor: Colors.black, // Set cursor color to black
                       decoration: InputDecoration(
-                        labelText: 'Enter your email or username',
+                        hintText: 'Enter your email or username',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        // labelText: 'Enter your email or username',
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
@@ -99,9 +101,11 @@ class _SigninScreenState extends State<SigninScreen> {
                       controller: loginController.passwordController,
                       obscureText: !_isPasswordVisible,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black,  // Set cursor color to black
+                      cursorColor: Colors.black, // Set cursor color to black
                       decoration: InputDecoration(
-                        labelText: '*******************',
+                        // labelText: '*******************',
+                        hintText: 'Enter your password',
+                        hintStyle: const TextStyle(color: Colors.grey),
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
@@ -109,7 +113,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                            _isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             color: Colors.green,
                           ),
                           onPressed: () {
@@ -120,7 +126,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty || value.length < 8) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            value.length < 8) {
                           return 'Please enter a password with at least 8 characters';
                         }
                         return null;
@@ -146,10 +154,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          loginController.loginUser(
-                            emailOrUsername: _emailOrUsername,
-                            password: _password,
-                          );
+                          loginController.loginUser();
                         }
                       },
                     ),

@@ -11,17 +11,13 @@ import 'package:http/http.dart' as http;
 class LoginController extends GetxController {
   // TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailorusernameController = TextEditingController();
 
   final logger = Logger();
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  get emailController => null;
-
-  get emailOrUsernameController => null;
-
-  Future<void> loginUser({required String emailOrUsername, required String password}) async {
+  Future<void> loginUser() async {
     try {
       var headers = {'Content-Type': 'application/json'};
       var url = Uri.parse(
@@ -32,7 +28,7 @@ class LoginController extends GetxController {
 
       Map body = {
         // "email": emailController.text,
-        "username": usernameController.text,
+        "usernameoremail": emailorusernameController.text,
         "password": passwordController.text
       };
 
@@ -61,7 +57,7 @@ class LoginController extends GetxController {
         await prefs.setString('username', username);
 
         // emailController.clear();
-        usernameController.clear();
+        emailorusernameController.clear();
         passwordController.clear();
 
         // Handle success Login
