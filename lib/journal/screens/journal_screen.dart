@@ -25,8 +25,8 @@ class _JournalScreenState extends State<JournalScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
+        // elevation: 0,
+        // centerTitle: false,
         title: const Text(
           "Journal",
           style: TextStyle(

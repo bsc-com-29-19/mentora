@@ -27,7 +27,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   }
 
   @override
-
   void initState() {
     super.initState();
     // Call this whenever the messages list updates to scroll down
@@ -39,8 +38,14 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Mentora Therapist Bot"),
-        backgroundColor: Colors.white,
+        title: const Text(
+          "Mentora Therapist",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
       ),
       body: Column(
         children: [

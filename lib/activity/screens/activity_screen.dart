@@ -103,7 +103,7 @@ class _ActivityPageState extends State<ActivityScreen> {
         title: const Text(
           'Activities',
           style: TextStyle(
-              fontSize: 26, fontWeight: FontWeight.bold), // Making it bold
+              fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
         actions: const [
           Padding(
