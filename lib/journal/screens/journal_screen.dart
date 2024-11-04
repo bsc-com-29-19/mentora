@@ -196,7 +196,10 @@ class _JournalScreenState extends State<JournalScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Completed the most important task?',
-                    style: TextStyle( fontSize: 14, color: Colors.black)),
+                    style: TextStyle( 
+                      fontSize: 14,
+                      color: Colors.black, 
+                      fontWeight: FontWeight.bold)),
                 Switch(
                   activeColor: Colors.green,
                   value: taskCompleted,

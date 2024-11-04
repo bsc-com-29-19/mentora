@@ -23,7 +23,7 @@ class _SignupFormState extends State<SignupForm> {
   String _username = '';
   String _email = '';
   String _password = '';
-  bool _isPasswordVisible = false; // State variable for password visibility
+  bool _isPasswordVisible = false; 
 
   @override
   Widget build(BuildContext context) {

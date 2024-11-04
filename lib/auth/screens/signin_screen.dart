@@ -75,11 +75,11 @@ class _SigninScreenState extends State<SigninScreen> {
                     TextFormField(
                       controller: loginController.emailorusernameController,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black, // Set cursor color to black
+                      cursorColor: Colors.black, 
                       decoration: InputDecoration(
                         hintText: 'Enter your email or username',
                         hintStyle: const TextStyle(color: Colors.grey),
-                        // labelText: 'Enter your email or username',
+                      
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
@@ -104,10 +104,10 @@ class _SigninScreenState extends State<SigninScreen> {
                       controller: loginController.passwordController,
                       obscureText: !_isPasswordVisible,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black, // Set cursor color to black
+                      cursorColor: Colors.black, 
                       decoration: InputDecoration(
-                        // labelText: '*******************',
-                        hintText: 'Enter your password',
+                        
+                        hintText: 'Enter your secure password',
                         hintStyle: const TextStyle(color: Colors.grey),
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
