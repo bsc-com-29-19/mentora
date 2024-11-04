@@ -19,7 +19,7 @@ class _SigninScreenState extends State<SigninScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isPasswordVisible = false;
 
-  String _emailOrUsername = '';
+  String _userName = '';
   String _password = '';
 
   @override
@@ -70,9 +70,9 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
-                      controller: loginController.emailOrUsernameController,
+                      controller: loginController.usernameController,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black,  // Set cursor color to black
+                      cursorColor: Colors.black,
                       decoration: InputDecoration(
                         labelText: 'Enter your email or username',
                         labelStyle: const TextStyle(color: Colors.grey),
@@ -85,9 +85,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email or username';
                         }
-                        return null;
+                        return null; 
                       },
-                      onSaved: (value) => _emailOrUsername = value!,
+                      onSaved: (value) => _userName = value!,
                     ),
                     const SizedBox(height: 20),
                     const Text(
@@ -99,7 +99,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       controller: loginController.passwordController,
                       obscureText: !_isPasswordVisible,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black,  // Set cursor color to black
+                      cursorColor: Colors.black,
                       decoration: InputDecoration(
                         labelText: '*******************',
                         labelStyle: const TextStyle(color: Colors.grey),
@@ -147,7 +147,8 @@ class _SigninScreenState extends State<SigninScreen> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           loginController.loginUser(
-                            emailOrUsername: _emailOrUsername,
+                            emailOrUsername: _userName,
+                            username: _userName,
                             password: _password,
                           );
                         }
