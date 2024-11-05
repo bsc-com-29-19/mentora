@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 // import 'package:get/get.dart';
 // import 'package:google_generative_ai/google_generative_ai.dart';
 // import 'package:mentora_frontend/chatbot/models/chat_model.dart';
@@ -33,9 +34,20 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     _chatbotController.messages.listen((_) => _scrollDown());
   }
 
+  final String fullName = "";
+  final String username = "";
+  final String email = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //  floatingActionButton:
+      //  LogoutButton(
+      //   fullName: fullName,
+      //   username: username,
+      //   email: email,
+      // ),
+
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
@@ -46,6 +58,16 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
             fontSize: 24,
           ),
         ),
+        actions: [
+          LogoutButton(
+            fullName: '', // Replace with dynamic user data
+            username: '', // Replace with dynamic user data
+            email: '', // Replace with dynamic user data
+            onLogout: () {
+              // Implement your logout functionality here
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [

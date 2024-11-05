@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,6 +37,11 @@ class _ActivityPageState extends State<ActivityScreen> {
   bool gymCompleted = false;
   bool socializeCompleted = false;
   bool meditateCompleted = false;
+
+
+  final String fullName = "";
+  final String username = "";
+  final String email = "";
 
   // Function to build each activity with a completion checkbox
   Widget buildActivity(
@@ -95,18 +101,28 @@ class _ActivityPageState extends State<ActivityScreen> {
       _selectedIndex = index;
     });
   }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
+    //  floatingActionButton:
+    //      LogoutButton(
+    //     fullName: fullName,
+    //     username: username,
+    //     email: email, 
+    //     ),
+
       appBar: AppBar(
         title: const Text(
           'Activities',
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
-        actions: const [
-          Padding(
+        
+        actions: [
+          const Padding(
             padding: EdgeInsets.all(8.0),
             child: Center(
               child: Text(
@@ -115,7 +131,19 @@ class _ActivityPageState extends State<ActivityScreen> {
               ),
             ),
           ),
-        ],
+
+     LogoutButton(
+      fullName: '',  // Replace with dynamic user data
+      username: '',  // Replace with dynamic user data
+      email: '',  // Replace with dynamic user data
+      onLogout: () {
+        // Implement your logout functionality here
+      },
+    ),
+   ],
+
+        
+
       ),
       body: Column(
         children: [
@@ -176,6 +204,8 @@ class _ActivityPageState extends State<ActivityScreen> {
           ),
         ],
       ),
+
+      
     );
   }
 }

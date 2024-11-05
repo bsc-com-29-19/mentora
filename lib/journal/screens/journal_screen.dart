@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
+import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});
@@ -20,9 +21,21 @@ class _JournalScreenState extends State<JournalScreen> {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
+  final String fullName = "";
+  final String username = "";
+  final String email = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      // floatingActionButton: 
+      // LogoutButton(
+      //   fullName: fullName,
+      //   username: username,
+      //   email: email,
+      // ),
+      
       appBar: AppBar(
         backgroundColor: Colors.white,
         // elevation: 0,
@@ -35,6 +48,17 @@ class _JournalScreenState extends State<JournalScreen> {
             fontSize: 24,
           ),
         ),
+
+        actions: [
+        LogoutButton(
+        fullName: '',  // Replace with dynamic user data
+        username: '',  // Replace with dynamic user data
+        email: '',  // Replace with dynamic user data
+        onLogout: () {
+        // Implement your logout functionality here
+      },
+    ),
+  ],
       ),
       body: Container(
         color: Colors.green[50], 
@@ -197,9 +221,9 @@ class _JournalScreenState extends State<JournalScreen> {
               children: [
                 const Text('Completed the most important task?',
                     style: TextStyle( 
-                      fontSize: 14,
+                      fontSize: 16,
                       color: Colors.black, 
-                      fontWeight: FontWeight.bold)),
+                      )),
                 Switch(
                   activeColor: Colors.green,
                   value: taskCompleted,
@@ -238,6 +262,8 @@ class _JournalScreenState extends State<JournalScreen> {
           ],
         ),
       ),
+     
+
     );
   }
 
