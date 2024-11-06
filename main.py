@@ -7,6 +7,7 @@ from app.auth.routes import user_router
 from app.journal.routes import journal_router
 from app.chatbot.routes import chat_router
 from app.activities.routes import activity_router
+from app.stats.routes import stats_router
 
 # Todo : add logging ,redis-chaching and prometheus-performance monitoring
 
@@ -83,6 +84,7 @@ app.include_router(user_router,prefix='/mentora/api/v1/auth',tags=["AUTH"])
 app.include_router(journal_router,prefix="/mentora/api/v1/journals",tags=["JOURNALS"])
 app.include_router(chat_router,prefix="/mentora/api/v1/chatbot",tags=["CHATBOT"])
 app.include_router(activity_router,prefix="/mentora/api/v1/activities",tags=["ACTIVITIES"])
+app.include_router(stats_router,prefix="/mentora/api/v1/stats",tags=["STATS"])
 
 
 # function to check database connection

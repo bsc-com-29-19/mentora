@@ -56,6 +56,30 @@
         "documentation": {}
     },
     {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -369,6 +393,30 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "JournalEntryDB",
+        "importPath": "app.journal.models",
+        "description": "app.journal.models",
+        "isExtraImport": true,
+        "detail": "app.journal.models",
+        "documentation": {}
+    },
+    {
         "label": "JournalEntryDB",
         "importPath": "app.journal.models",
         "description": "app.journal.models",
@@ -386,6 +434,22 @@
     },
     {
         "label": "Activity",
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "isExtraImport": true,
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
+        "label": "Activity",
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "isExtraImport": true,
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
+        "label": "ActivityStatus",
         "importPath": "app.activities.models",
         "description": "app.activities.models",
         "isExtraImport": true,
@@ -514,6 +578,22 @@
         "documentation": {}
     },
     {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "sessionmaker",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -623,6 +703,38 @@
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
         "documentation": {}
     },
     {
@@ -851,6 +963,30 @@
         "documentation": {}
     },
     {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "Depends",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -963,6 +1099,22 @@
         "documentation": {}
     },
     {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
         "label": "BaseModel",
         "importPath": "pydantic",
         "description": "pydantic",
@@ -980,6 +1132,14 @@
     },
     {
         "label": "EmailStr",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
         "importPath": "pydantic",
         "description": "pydantic",
         "isExtraImport": true,
@@ -1126,6 +1286,63 @@
         "documentation": {}
     },
     {
+        "label": "get_stats_for_user",
+        "importPath": "app.stats.services",
+        "description": "app.stats.services",
+        "isExtraImport": true,
+        "detail": "app.stats.services",
+        "documentation": {}
+    },
+    {
+        "label": "StatsResponse",
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "isExtraImport": true,
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "WeeklyStatsResponse",
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "isExtraImport": true,
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "StatsResponse",
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "isExtraImport": true,
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "DailyStats",
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "isExtraImport": true,
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "WeeklyStatsResponse",
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "isExtraImport": true,
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "calendar",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "calendar",
+        "description": "calendar",
+        "detail": "calendar",
+        "documentation": {}
+    },
+    {
         "label": "BaseSettings",
         "importPath": "pydantic_settings",
         "description": "pydantic_settings",
@@ -1212,6 +1429,14 @@
         "description": "app.activities.routes",
         "isExtraImport": true,
         "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "stats_router",
+        "importPath": "app.stats.routes",
+        "description": "app.stats.routes",
+        "isExtraImport": true,
+        "detail": "app.stats.routes",
         "documentation": {}
     },
     {
@@ -1788,6 +2013,87 @@
         "description": "app.journal.schema",
         "peekOfCode": "class UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None\n    grateful_things: Optional[List[str]] = None\n    overall_day_rating: Optional[Rating] = None\n    overall_mood_rating: Optional[Rating] = None\n    completed_most_important_task: Optional[bool] = None\n    day_summary: Optional[str] = None\n    mood_tags: Optional[List[str]] = None",
         "detail": "app.journal.schema",
+        "documentation": {}
+    },
+    {
+        "label": "list_all_stats",
+        "kind": 2,
+        "importPath": "app.stats.routes",
+        "description": "app.stats.routes",
+        "peekOfCode": "def list_all_stats(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    \"\"\"Returns stats for all days and weekly trends.\"\"\"\n    try:\n        stats = get_stats_for_user(db, user)\n        return stats\n    except Exception as e:\n        raise HTTPException(status_code=500, detail=str(e))\n@stats_router.get(\"/weekly\", response_model=WeeklyStatsResponse)\ndef list_weekly_trends(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    \"\"\"Returns trends for the past seven days, including completion percentage.\"\"\"",
+        "detail": "app.stats.routes",
+        "documentation": {}
+    },
+    {
+        "label": "list_weekly_trends",
+        "kind": 2,
+        "importPath": "app.stats.routes",
+        "description": "app.stats.routes",
+        "peekOfCode": "def list_weekly_trends(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    \"\"\"Returns trends for the past seven days, including completion percentage.\"\"\"\n    try:\n        all_stats = get_stats_for_user(db, user)\n        return all_stats.weekly_trends\n    except Exception as e:\n        raise HTTPException(status_code=500, detail=str(e))",
+        "detail": "app.stats.routes",
+        "documentation": {}
+    },
+    {
+        "label": "stats_router",
+        "kind": 5,
+        "importPath": "app.stats.routes",
+        "description": "app.stats.routes",
+        "peekOfCode": "stats_router = APIRouter()\n@stats_router.get(\"/\", response_model=StatsResponse)\ndef list_all_stats(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    \"\"\"Returns stats for all days and weekly trends.\"\"\"\n    try:\n        stats = get_stats_for_user(db, user)\n        return stats\n    except Exception as e:\n        raise HTTPException(status_code=500, detail=str(e))\n@stats_router.get(\"/weekly\", response_model=WeeklyStatsResponse)",
+        "detail": "app.stats.routes",
+        "documentation": {}
+    },
+    {
+        "label": "DailyStats",
+        "kind": 6,
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "peekOfCode": "class DailyStats(BaseModel):\n    date: str\n    day: str\n    completed_activities: int\n    incomplete_activities: int\n    average_day_rating: Optional[float] = 0\n    mood_rating: Optional[int] = 0  # Assuming mood rating is an integer from 1 to 5\nclass WeeklyStatsResponse(BaseModel):\n    daily_trends: List[DailyStats]\n    completion_percentage: float  # percentage of completed activities over the week",
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "WeeklyStatsResponse",
+        "kind": 6,
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "peekOfCode": "class WeeklyStatsResponse(BaseModel):\n    daily_trends: List[DailyStats]\n    completion_percentage: float  # percentage of completed activities over the week\nclass StatsResponse(BaseModel):\n    all_days_trends: List[DailyStats]\n    weekly_trends: WeeklyStatsResponse",
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "StatsResponse",
+        "kind": 6,
+        "importPath": "app.stats.schemas",
+        "description": "app.stats.schemas",
+        "peekOfCode": "class StatsResponse(BaseModel):\n    all_days_trends: List[DailyStats]\n    weekly_trends: WeeklyStatsResponse",
+        "detail": "app.stats.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "get_daily_stats",
+        "kind": 2,
+        "importPath": "app.stats.services",
+        "description": "app.stats.services",
+        "peekOfCode": "def get_daily_stats(db: Session, user_id: str) -> List[DailyStats]:\n    \"\"\"Returns detailed stats per day.\"\"\"\n    daily_stats = []\n    # Query activities and journal entries per day\n    start_date = db.query(JournalEntryDB.entry_date).order_by(JournalEntryDB.entry_date).first()\n    if not start_date:\n        return daily_stats\n    end_date = datetime.now().date()\n    date_range = (end_date - start_date[0]).days + 1\n    for i in range(date_range):",
+        "detail": "app.stats.services",
+        "documentation": {}
+    },
+    {
+        "label": "get_weekly_stats",
+        "kind": 2,
+        "importPath": "app.stats.services",
+        "description": "app.stats.services",
+        "peekOfCode": "def get_weekly_stats(daily_stats: List[DailyStats]) -> WeeklyStatsResponse:\n    \"\"\"Calculate weekly trends and completion percentage.\"\"\"\n    last_seven_days = daily_stats[-7:] if len(daily_stats) >= 7 else daily_stats\n    total_completed = sum(day.completed_activities for day in last_seven_days)\n    total_activities = sum(day.completed_activities + day.incomplete_activities for day in last_seven_days)\n    completion_percentage = (total_completed / total_activities * 100) if total_activities > 0 else 0\n    return WeeklyStatsResponse(\n        daily_trends=last_seven_days,\n        completion_percentage=completion_percentage\n    )",
+        "detail": "app.stats.services",
+        "documentation": {}
+    },
+    {
+        "label": "get_stats_for_user",
+        "kind": 2,
+        "importPath": "app.stats.services",
+        "description": "app.stats.services",
+        "peekOfCode": "def get_stats_for_user(db: Session, user: User) -> StatsResponse:\n    \"\"\"Fetch and return all days and weekly stats for the user.\"\"\"\n    daily_stats = get_daily_stats(db, user.id)\n    weekly_stats = get_weekly_stats(daily_stats)\n    return StatsResponse(\n        all_days_trends=daily_stats,\n        weekly_trends=weekly_stats\n    )",
+        "detail": "app.stats.services",
         "documentation": {}
     },
     {
