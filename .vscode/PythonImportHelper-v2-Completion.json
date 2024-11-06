@@ -682,6 +682,22 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "timezone",
         "importPath": "datetime",
         "description": "datetime",
@@ -1578,7 +1594,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = create_activity_service(activity_data, db, user)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)",
+        "peekOfCode": "def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = create_activity_service(activity_data, db, user)\n    return activity\n# List all activities\n@activity_router.get(\"/\", response_model=list[ActivityResponse])\ndef list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_service(db, user)\n    return activities\n@activity_router.get(\"/today\", response_model=list[ActivityResponse])\ndef list_today_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1587,7 +1603,16 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)",
+        "peekOfCode": "def list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_service(db, user)\n    return activities\n@activity_router.get(\"/today\", response_model=list[ActivityResponse])\ndef list_today_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_for_today_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "list_today_activities",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def list_today_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_for_today_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1677,7 +1702,7 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def create_activity_service(activity_data, db, user) -> Activity:\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef get_activity_service(activity_id: str, db, user) -> Activity:",
+        "peekOfCode": "def create_activity_service(activity_data, db, user) -> Activity:\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef list_activities_for_today_service(db, user) -> list[Activity]:",
         "detail": "app.activities.services",
         "documentation": {}
     },
@@ -1686,7 +1711,16 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef get_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\ndef update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()",
+        "peekOfCode": "def list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef list_activities_for_today_service(db, user) -> list[Activity]:\n    today_start = datetime.now().date()\n    today_end = today_start + timedelta(days=1)\n    activities = db.query(Activity).filter(\n        Activity.user_id == user.id,\n        Activity.updated_at >= today_start,\n        Activity.updated_at < today_end",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "list_activities_for_today_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def list_activities_for_today_service(db, user) -> list[Activity]:\n    today_start = datetime.now().date()\n    today_end = today_start + timedelta(days=1)\n    activities = db.query(Activity).filter(\n        Activity.user_id == user.id,\n        Activity.updated_at >= today_start,\n        Activity.updated_at < today_end\n    ).all()\n    return activities\ndef get_activity_service(activity_id: str, db, user) -> Activity:",
         "detail": "app.activities.services",
         "documentation": {}
     },

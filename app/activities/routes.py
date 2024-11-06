@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from .schemas import ActivityCreate, ActivityUpdate, ActivityResponse
 from dependencies import get_db, get_current_user
 from app.auth.models import User
-from .services import create_activity_service, list_activities_service, get_activity_service, update_activity_service, delete_activity_service
+from .services import create_activity_service, list_activities_service,list_activities_for_today_service, get_activity_service, update_activity_service, delete_activity_service
 
 activity_router = APIRouter()
 
@@ -21,6 +21,11 @@ def create_activity(activity_data: ActivityCreate, db: Session = Depends(get_db)
 @activity_router.get("/", response_model=list[ActivityResponse])
 def list_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     activities = list_activities_service(db, user)
+    return activities
+
+@activity_router.get("/today", response_model=list[ActivityResponse])
+def list_today_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    activities = list_activities_for_today_service(db, user)
     return activities
 
 

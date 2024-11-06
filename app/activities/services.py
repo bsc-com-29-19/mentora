@@ -1,5 +1,6 @@
 from fastapi import  HTTPException
 from .models import Activity
+from datetime import datetime, timedelta
 
 
 def create_activity_service(activity_data, db, user) -> Activity:
@@ -13,6 +14,19 @@ def create_activity_service(activity_data, db, user) -> Activity:
 
 def list_activities_service(db, user) -> list[Activity]:
     activities = db.query(Activity).filter(Activity.user_id == user.id).all()
+    return activities
+
+
+def list_activities_for_today_service(db, user) -> list[Activity]:
+    today_start = datetime.now().date()
+    today_end = today_start + timedelta(days=1)
+    
+    activities = db.query(Activity).filter(
+        Activity.user_id == user.id,
+        Activity.updated_at >= today_start,
+        Activity.updated_at < today_end
+    ).all()
+    
     return activities
 
 
