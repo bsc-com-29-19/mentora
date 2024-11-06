@@ -1,6 +1,7 @@
 # app/stats/services.py
 
 from sqlalchemy.orm import Session
+from sqlalchemy import and_
 from app.activities.models import Activity, ActivityStatus
 from app.journal.models import JournalEntryDB
 from app.stats.schemas import StatsResponse, DailyStats, WeeklyStatsResponse
@@ -29,12 +30,21 @@ def get_daily_stats(db: Session, user_id: str) -> List[DailyStats]:
         completed_activities = db.query(Activity).filter(
             Activity.user_id == user_id,
             Activity.status == ActivityStatus.DONE,
-            Activity.updated_at == day_date
+            # Activity.updated_at == day_date
+            and_(
+                Activity.updated_at >= datetime.combine(day_date, datetime.min.time()),
+                Activity.updated_at < datetime.combine(day_date + timedelta(days=1), datetime.min.time())
+            )
         ).count()
 
         total_activities = db.query(Activity).filter(
             Activity.user_id == user_id,
-            Activity.updated_at == day_date
+            # Activity.updated_at == day_date
+            and_(
+                Activity.updated_at >= datetime.combine(day_date, datetime.min.time()),
+                Activity.updated_at < datetime.combine(day_date + timedelta(days=1), datetime.min.time())
+            )
+
         ).count()
 
         incomplete_activities = total_activities - completed_activities
