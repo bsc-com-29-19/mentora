@@ -1,24 +1,29 @@
-version: "3.8"
-
-# persistent data
-
-volumes:
-  app_data:
-
 services:
-  # service for the restful api
-
-  app:
-    build: .
-    image: mentora_restful_api
-    container_name: mentora_restful_api
-
+  - type: web
+    name: mentora-restful-api
+    docker:
+      compose:
+        file: docker-compose.yml
+        service: app
     ports:
-      - "8400:8400"
+      - 8400:8400
+    env:
+      - DB_NAME: ${DB_NAME}
+      - DB_USERNAME: ${DB_USERNAME}
+      - DB_PASSWORD: ${DB_PASSWORD}
+      - PGADMIN_EMAIL: ${PGADMIN_EMAIL}
+      - PGADMIN_PASSWORD: ${PGADMIN_PASSWORD}
 
-    volumes:
-      # - ./mentora_backend:/:rw # local directorry for live code reloading
-      - app_data:/app_data # persistent data storage
+  - type: service
+    name: mentora-postgres
+    docker:
+      compose:
+        file: docker-compose.yml
+        service: postgres
 
-    # environment:
-    #   - APP_ENV=dev
+  - type: service
+    name: mentora-pgadmin
+    docker:
+      compose:
+        file: docker-compose.yml
+        service: pgadmin

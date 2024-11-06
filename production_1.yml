@@ -1,0 +1,24 @@
+version: "3.8"
+
+# persistent data
+
+volumes:
+  app_data:
+
+services:
+  # service for the restful api
+
+  app:
+    build: .
+    image: mentora_restful_api
+    container_name: mentora_restful_api
+
+    ports:
+      - "8400:8400"
+
+    volumes:
+      # - ./mentora_backend:/:rw # local directorry for live code reloading
+      - app_data:/app_data # persistent data storage
+
+    # environment:
+    #   - APP_ENV=dev
