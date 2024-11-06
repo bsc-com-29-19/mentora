@@ -29,12 +29,12 @@ def get_daily_stats(db: Session, user_id: str) -> List[DailyStats]:
         completed_activities = db.query(Activity).filter(
             Activity.user_id == user_id,
             Activity.status == ActivityStatus.DONE,
-            Activity.completed_date == day_date
+            Activity.updated_at == day_date
         ).count()
 
         total_activities = db.query(Activity).filter(
             Activity.user_id == user_id,
-            Activity.completed_date == day_date
+            Activity.updated_at == day_date
         ).count()
 
         incomplete_activities = total_activities - completed_activities
