@@ -26,7 +26,7 @@ class _LogoutButtonState extends State<LogoutButton> {
   }
 
   Future<void> _loadUserData() async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance(); 
     setState(() {
       fullName = prefs.getString('fullName') ?? 'User';
       username = prefs.getString('username') ?? 'User';

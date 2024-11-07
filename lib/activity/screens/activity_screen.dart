@@ -2,30 +2,25 @@ import 'package:flutter/material.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// void main() {
+//   runApp(MyApp());
+// }
 
- 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  
-  
-  
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Activity Tracker',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      home: ActivityScreen(),
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Activity Tracker',
+//       theme: ThemeData(
+//         primarySwatch: Colors.teal,
+//       ),
+//       home: ActivityScreen(),
+//     );
+//   }
+// }
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -34,7 +29,6 @@ class ActivityScreen extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _ActivityPageState createState() => _ActivityPageState();
 }
-
 
 class _ActivityPageState extends State<ActivityScreen> {
   // Variables to store activity completion status
@@ -103,8 +97,8 @@ class _ActivityPageState extends State<ActivityScreen> {
       _selectedIndex = index;
     });
   }
-  
-   void _handleLogout() {
+
+  void _handleLogout() {
     // Add navigation logic here
     Navigator.of(context).pushReplacementNamed('/login');
   }
@@ -112,30 +106,17 @@ class _ActivityPageState extends State<ActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       appBar: AppBar(
         title: const Text(
           'Activities',
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
-        
         actions: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                '0% Completed', // Adjust this based on completed activities
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
+          LogoutButton(
+            onLogout: _handleLogout,
           ),
-
-        LogoutButton(
-        onLogout: _handleLogout,
-          ),
-       ],
-
+        ],
       ),
       body: Column(
         children: [
@@ -152,6 +133,16 @@ class _ActivityPageState extends State<ActivityScreen> {
                 Text(
                   '15 Sep, 2024',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text(
+                      '0% Completed', // Adjust this based on completed activities
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -196,8 +187,6 @@ class _ActivityPageState extends State<ActivityScreen> {
           ),
         ],
       ),
-
-      
     );
   }
 }
