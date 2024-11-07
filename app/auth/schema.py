@@ -20,6 +20,8 @@ class LoginResponse(BaseModel):
     username: str
     access_token: str
     token_type: str
+    full_name:str
+    email:str
 
 
 

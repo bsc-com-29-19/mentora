@@ -41,7 +41,7 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
     if user is None or not user.verify_password(user_data.password):
         raise HTTPException(status_code=401, detail="Unknown Username/Email or Password")
     token = user.generate_token()
-    return LoginResponse(access_token=token, token_type="Bearer", user_id=str(user.id),username=user.username)
+    return LoginResponse(access_token=token, token_type="Bearer", user_id=str(user.id),username=user.username, full_name=user.full_name, email=user.email)
 
 
 # Get user profile
