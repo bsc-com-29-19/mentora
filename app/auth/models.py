@@ -44,3 +44,11 @@ class User(Base):
         payload = {"sub": str(self.id), "exp": expiration}
         return jwt.encode(payload, f"{get_settings().SECRET_KEY}", algorithm="HS256")
 
+
+
+class TokenBlacklist(Base):
+    __tablename__ = "token_blacklist"
+
+    token = Column(String, primary_key=True, unique=True, index=True)
+    blacklisted_at = Column(DateTime, default=datetime.utcnow)
+    expires_at = Column(DateTime, nullable=False)

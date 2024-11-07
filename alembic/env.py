@@ -7,7 +7,7 @@ from alembic import context
 # from decouple import config as envConfig
 from decouple import Config, RepositoryEnv
 from dotenv import find_dotenv
-from app.auth.models import User
+from app.auth.models import User, TokenBlacklist
 from app.journal.models import JournalEntryDB
 from app.activities.models import Activity
 from database import Base

@@ -345,6 +345,14 @@
         "documentation": {}
     },
     {
+        "label": "TokenBlacklist",
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "isExtraImport": true,
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "importPath": "app.auth.models",
         "description": "app.auth.models",
@@ -570,6 +578,14 @@
         "documentation": {}
     },
     {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "relationship",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -699,6 +715,30 @@
     },
     {
         "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -1200,6 +1240,14 @@
         "description": "fastapi.security",
         "isExtraImport": true,
         "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "get_settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
         "documentation": {}
     },
     {
@@ -1770,6 +1818,15 @@
         "documentation": {}
     },
     {
+        "label": "TokenBlacklist",
+        "kind": 6,
+        "importPath": "app.auth.models",
+        "description": "app.auth.models",
+        "peekOfCode": "class TokenBlacklist(Base):\n    __tablename__ = \"token_blacklist\"\n    token = Column(String, primary_key=True, unique=True, index=True)\n    blacklisted_at = Column(DateTime, default=datetime.utcnow)\n    expires_at = Column(DateTime, nullable=False)",
+        "detail": "app.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "signup",
         "kind": 2,
         "importPath": "app.auth.routes",
@@ -1801,7 +1858,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def logout(user: User = Depends(get_current_user)):\n    user.hashed_password = None\n    return {\"message\": \"User has been logged out\"}",
+        "peekOfCode": "def logout(user: User = Depends(get_current_user), db: Session = Depends(get_db)):\n    # Extract token and expiration time\n    token = user.token  # Assumes token is attached to the user in get_current_user\n    decoded_token = jwt.decode(token, f\"{settings.SECRET_KEY}\", algorithms=[\"HS256\"])\n    expires_at = datetime.utcfromtimestamp(decoded_token[\"exp\"])\n    # Blacklist the token in the database\n    blacklist_token(token, db, expires_at)\n    return {\"message\": \"User has been logged out\"}",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1810,7 +1867,16 @@
         "kind": 5,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "user_router = APIRouter()\n# Todo : extract code to routes and services function\n# Register a new user\n# todo : separate code to service and route \n@user_router.post(\"/register\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user",
+        "peekOfCode": "user_router = APIRouter()\nsettings = get_settings()\n# Todo : extract code to routes and services function\n# Register a new user\n# todo : separate code to service and route \n@user_router.post(\"/register\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")",
+        "detail": "app.auth.routes",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "app.auth.routes",
+        "description": "app.auth.routes",
+        "peekOfCode": "settings = get_settings()\n# Todo : extract code to routes and services function\n# Register a new user\n# todo : separate code to service and route \n@user_router.post(\"/register\")\ndef signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user",
         "detail": "app.auth.routes",
         "documentation": {}
     },
@@ -1855,7 +1921,16 @@
         "kind": 2,
         "importPath": "app.auth.utils",
         "description": "app.auth.utils",
-        "peekOfCode": "def decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid",
+        "peekOfCode": "def decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid\ndef blacklist_token(token: str, db: Session, expires_at: datetime):\n    blacklisted_token = TokenBlacklist(token=token, expires_at=expires_at)",
+        "detail": "app.auth.utils",
+        "documentation": {}
+    },
+    {
+        "label": "blacklist_token",
+        "kind": 2,
+        "importPath": "app.auth.utils",
+        "description": "app.auth.utils",
+        "peekOfCode": "def blacklist_token(token: str, db: Session, expires_at: datetime):\n    blacklisted_token = TokenBlacklist(token=token, expires_at=expires_at)\n    db.add(blacklisted_token)\n    db.commit()",
         "detail": "app.auth.utils",
         "documentation": {}
     },
@@ -1864,7 +1939,7 @@
         "kind": 5,
         "importPath": "app.auth.utils",
         "description": "app.auth.utils",
-        "peekOfCode": "settings = get_settings()\ndef decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid",
+        "peekOfCode": "settings = get_settings()\ndef decodeJWT(token:str)->dict:\n    try:\n        decoded_token = jwt.decode(token,f'{settings.SECRET_KEY}',algorithms=['HS256'])\n        return decoded_token if decoded_token['exp'] >= time.time() else None\n    except jwt.ExpiredSignatureError:\n        return None  # Token has expired\n    except jwt.InvalidTokenError:\n        return None  # Token is invalid\ndef blacklist_token(token: str, db: Session, expires_at: datetime):",
         "detail": "app.auth.utils",
         "documentation": {}
     },

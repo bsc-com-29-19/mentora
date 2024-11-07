@@ -3,9 +3,15 @@ from sqlalchemy.orm import Session
 from .models import User
 from .schema import UserCreate, UserLogin, LoginResponse ,UserResponse
 from dependencies import get_db,get_current_user
+from .utils import blacklist_token
+import jwt
+from config import get_settings
+from datetime import datetime, timedelta
 
 
 user_router = APIRouter()
+
+settings = get_settings()
 
 # Todo : extract code to routes and services function
 
@@ -52,7 +58,18 @@ def get_profile(user: User = Depends(get_current_user), db: Session = Depends(ge
         updated_at=user.updated_at
         )
 
+# @user_router.post("/logout")
+# def logout(user: User = Depends(get_current_user)):
+#     user.hashed_password = None
+#     return {"message": "User has been logged out"}
+
 @user_router.post("/logout")
-def logout(user: User = Depends(get_current_user)):
-    user.hashed_password = None
+def logout(user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    # Extract token and expiration time
+    token = user.token  # Assumes token is attached to the user in get_current_user
+    decoded_token = jwt.decode(token, f"{settings.SECRET_KEY}", algorithms=["HS256"])
+    expires_at = datetime.utcfromtimestamp(decoded_token["exp"])
+
+    # Blacklist the token in the database
+    blacklist_token(token, db, expires_at)
     return {"message": "User has been logged out"}

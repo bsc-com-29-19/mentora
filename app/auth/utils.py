@@ -1,6 +1,9 @@
 import jwt
 import time
 from config import get_settings
+from .models import TokenBlacklist
+from sqlalchemy.orm import Session
+from datetime import datetime
 
 settings = get_settings()
 
@@ -12,3 +15,9 @@ def decodeJWT(token:str)->dict:
         return None  # Token has expired
     except jwt.InvalidTokenError:
         return None  # Token is invalid
+    
+
+def blacklist_token(token: str, db: Session, expires_at: datetime):
+    blacklisted_token = TokenBlacklist(token=token, expires_at=expires_at)
+    db.add(blacklisted_token)
+    db.commit()
