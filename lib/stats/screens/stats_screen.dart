@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+
 
 class StatsScreen extends StatelessWidget {
   const StatsScreen({super.key});
-
   
-  final String fullName = "";
-  final String username = "";
-  final String email = "";
   
+//  void _handleLogout() {
+//     // Add navigation logic here
+//     Navigator.of(context).pushReplacementNamed('/login');
+//   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
 
-      // floatingActionButton:
-      //    LogoutButton(
-      //   fullName: fullName,
-      //   username: username,
-      //   email: email,
-      //   ),
-        
+ 
+    return Scaffold(  
       appBar: AppBar(
         title: const Text(
           "Stats",
@@ -31,17 +27,13 @@ class StatsScreen extends StatelessWidget {
           ),
 
           ),
-
-          actions: [
-           LogoutButton(
-            fullName: '',  // Replace with dynamic user data
-            username: '',  // Replace with dynamic user data
-            email: '',  // Replace with dynamic user data
-            onLogout: () {
-        // Implement your logout functionality here
-      },
-    ),
-  ],
+       
+      // actions: [
+      //   LogoutButton(
+      //   onLogout: _handleLogout,
+      //     ),
+      //   ],
+          
       ),
 
       

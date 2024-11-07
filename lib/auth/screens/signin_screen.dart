@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
 import 'package:mentora_frontend/auth/viewmodels/signin_view_model.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -22,8 +23,17 @@ class _SigninScreenState extends State<SigninScreen> {
   bool _isPasswordVisible = false;
 
 
-  String _userName = '';
+  String _username = '';
   String _password = '';
+  
+//Newly added code
+  //  Future<void> saveUserData(String fullName, String username, String email) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final fullName = prefs.getString('fullName') ?? 'User';
+  //   final username = prefs.getString('username') ?? 'User';
+  //   final email = prefs.getString('email') ?? 'User';
+   
+  //  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +102,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         }
                         return null; 
                       },
-                      onSaved: (value) => _userName = value!,
+                      onSaved: (value) => _username = value!,
                     ),
                     const SizedBox(height: 20),
                     const Text(

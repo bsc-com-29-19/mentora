@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LogoutButton extends StatelessWidget {
-  final String fullName;
-  final String username;
-  final String email;
+class LogoutButton extends StatefulWidget {
   final VoidCallback? onLogout;
 
   const LogoutButton({
     super.key,
-    required this.fullName,
-    required this.username,
-    required this.email,
     this.onLogout,
   });
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _LogoutButtonState createState() => _LogoutButtonState();
+}
+
+class _LogoutButtonState extends State<LogoutButton> {
+  String fullName = '';
+  String username = '';
+  String email = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      fullName = prefs.getString('fullName') ?? 'User';
+      username = prefs.getString('username') ?? 'User';
+      email = prefs.getString('email') ?? 'User';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +85,7 @@ class LogoutButton extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    onLogout?.call();
+                    _logout();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
@@ -143,5 +163,13 @@ class LogoutButton extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> _logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear(); // Clear stored user data
+
+    // Navigate to login screen or perform other logout logic
+    widget.onLogout?.call();
   }
 }

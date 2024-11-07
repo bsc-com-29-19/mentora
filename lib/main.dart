@@ -50,9 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int currentPageIndex = 0;
   
 
-  // final String fullName = "";
-  // final String username = "";
-  // final String email = "";
+  final String fullName = "";
+  final String username = "";
+  final String email = "";
   
 
   @override

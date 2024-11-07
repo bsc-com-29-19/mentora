@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+ 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
+  
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,6 +25,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
 
@@ -28,6 +34,7 @@ class ActivityScreen extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _ActivityPageState createState() => _ActivityPageState();
 }
+
 
 class _ActivityPageState extends State<ActivityScreen> {
   // Variables to store activity completion status
@@ -37,11 +44,6 @@ class _ActivityPageState extends State<ActivityScreen> {
   bool gymCompleted = false;
   bool socializeCompleted = false;
   bool meditateCompleted = false;
-
-
-  final String fullName = "";
-  final String username = "";
-  final String email = "";
 
   // Function to build each activity with a completion checkbox
   Widget buildActivity(
@@ -102,18 +104,15 @@ class _ActivityPageState extends State<ActivityScreen> {
     });
   }
   
+   void _handleLogout() {
+    // Add navigation logic here
+    Navigator.of(context).pushReplacementNamed('/login');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
-    //  floatingActionButton:
-    //      LogoutButton(
-    //     fullName: fullName,
-    //     username: username,
-    //     email: email, 
-    //     ),
-
+    
       appBar: AppBar(
         title: const Text(
           'Activities',
@@ -132,17 +131,10 @@ class _ActivityPageState extends State<ActivityScreen> {
             ),
           ),
 
-     LogoutButton(
-      fullName: '',  // Replace with dynamic user data
-      username: '',  // Replace with dynamic user data
-      email: '',  // Replace with dynamic user data
-      onLogout: () {
-        // Implement your logout functionality here
-      },
-    ),
-   ],
-
-        
+        LogoutButton(
+        onLogout: _handleLogout,
+          ),
+       ],
 
       ),
       body: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
 class JournalScreen extends StatefulWidget {
@@ -9,6 +10,8 @@ class JournalScreen extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _JournalScreenState createState() => _JournalScreenState();
 }
+
+
 
 class _JournalScreenState extends State<JournalScreen> {
   DateTime selectedDate = DateTime.now();
@@ -21,21 +24,15 @@ class _JournalScreenState extends State<JournalScreen> {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
-  final String fullName = "";
-  final String username = "";
-  final String email = "";
+void _handleLogout() {
+    // Add navigation logic here
+    Navigator.of(context).pushReplacementNamed('/login');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      // floatingActionButton: 
-      // LogoutButton(
-      //   fullName: fullName,
-      //   username: username,
-      //   email: email,
-      // ),
-      
+    
       appBar: AppBar(
         backgroundColor: Colors.white,
         // elevation: 0,
@@ -49,16 +46,12 @@ class _JournalScreenState extends State<JournalScreen> {
           ),
         ),
 
-        actions: [
+      actions: [
         LogoutButton(
-        fullName: '',  // Replace with dynamic user data
-        username: '',  // Replace with dynamic user data
-        email: '',  // Replace with dynamic user data
-        onLogout: () {
-        // Implement your logout functionality here
-      },
-    ),
-  ],
+        onLogout: _handleLogout,
+          ),
+        ],
+
       ),
       body: Container(
         color: Colors.green[50], 
