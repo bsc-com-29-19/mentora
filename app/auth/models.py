@@ -50,5 +50,5 @@ class TokenBlacklist(Base):
     __tablename__ = "token_blacklist"
 
     token = Column(String, primary_key=True, unique=True, index=True)
-    blacklisted_at = Column(DateTime, default=datetime.utcnow)
+    blacklisted_at = Column(DateTime, default=datetime.now(timezone.utc))
     expires_at = Column(DateTime, nullable=False)
