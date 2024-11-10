@@ -55,6 +55,7 @@ class LoginController extends GetxController {
 
         await prefs.setString('token', token);
         await prefs.setString('username', username);
+        await prefs.setBool("isAuthenticated", true);
 
         // emailController.clear();
         emailorusernameController.clear();

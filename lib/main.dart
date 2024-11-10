@@ -1,23 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
+import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 
 // import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 import 'package:mentora_frontend/onboarding/screens/screen1.dart';
 import 'package:mentora_frontend/onboarding/screens/screen2.dart';
 import 'package:mentora_frontend/onboarding/screens/screen3.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 
 // Todo : Make onboarding one time step after app installation not onAppOpen
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final bool onBoardingCompleted =
+      prefs.getBool('onBoardingCompleted') ?? false;
+
+  final bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
+
+  runApp(MyApp(
+    onBoardingCompleted: onBoardingCompleted,
+    isAuthenticated: isAuthenticated,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool onBoardingCompleted;
+  final bool isAuthenticated;
+
+  const MyApp(
+      {super.key,
+      required this.onBoardingCompleted,
+      required this.isAuthenticated});
 
   // This widget is the root of your application.
   @override
@@ -29,7 +49,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Mentora Home Page'),
+      home: onBoardingCompleted
+          ? (isAuthenticated ? const NavigationMenu() : const SignUpScreen())
+          : const MyHomePage(title: 'Mentora Home Page'),
+      // home: onBoardingCompleted
+      //     ? const SignUpScreen()
+      //     : const MyHomePage(title: 'Mentora Home Page'),
     );
     // home: const NavigationMenu());
   }
@@ -48,6 +73,23 @@ class _MyHomePageState extends State<MyHomePage> {
   PageController pageController = PageController();
   String buttonText = "Skip";
   int currentPageIndex = 0;
+
+  Future<void> completeOnBoarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onBoardingCompleted', true);
+
+    // final bool isAuthenti
+    final bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
+    if (isAuthenticated) {
+      Get.offAll(() => const NavigationMenu());
+    } else {
+      Get.offAll(() => const SignUpScreen());
+    }
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => const SignUpScreen()),
+    // );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +117,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpScreen()));
+                      if (currentPageIndex == 2) {
+                        completeOnBoarding();
+                      } else {
+                        completeOnBoarding();
+                        //  complete
+                      }
+                      // Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const SignUpScreen()));
                     },
                     child: Text(
                       buttonText,
