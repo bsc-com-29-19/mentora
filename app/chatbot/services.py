@@ -44,7 +44,9 @@ def stream_chat_session(session_id: str, user_message: str):
 
 
 
+#
 async def stream_chat_session_websocket(session_id: str, user_message: str):
+    
     config = {"configurable": {"session_id": session_id}}
     with_message_history = RunnableWithMessageHistory(
         chain, get_session_history, input_messages_key="messages"

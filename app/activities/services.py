@@ -17,6 +17,11 @@ def list_activities_service(db, user) -> list[Activity]:
     return activities
 
 
+def list_all_activities_service(db) -> list[Activity]:
+    activities = db.query(Activity).all()
+    return activities
+
+
 def list_activities_for_today_service(db, user) -> list[Activity]:
     today_start = datetime.now().date()
     today_end = today_start + timedelta(days=1)

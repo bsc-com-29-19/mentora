@@ -8,6 +8,7 @@ from app.journal.routes import journal_router
 from app.chatbot.routes import chat_router
 from app.activities.routes import activity_router
 from app.stats.routes import stats_router
+from app.activities.db_connection import get_db_connection_check, shutdown_scheduler
 
 # Todo : add logging ,redis-chaching and prometheus-performance monitoring
 
@@ -76,7 +77,14 @@ def mentora_detailed_health_check():
         return {"status": "healthy"}
     else:
         return Response(content={"status": "unhealthy"}, media_type="application/json", status_code=503)
+@app.get("/db_connection_check")
+def check_db_connection():
+    
+    return get_db_connection_check()
 
+# @app.on_event("shutdown")
+# async def shutdown():
+#     await shutdown_scheduler()
 
 # The routes for users,journals,chatbot,activities
 

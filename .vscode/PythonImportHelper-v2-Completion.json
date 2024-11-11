@@ -16,6 +16,14 @@
         "documentation": {}
     },
     {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Optional",
         "importPath": "typing",
         "description": "typing",
@@ -273,6 +281,14 @@
         "documentation": {}
     },
     {
+        "label": "JSON",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "and_",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -314,6 +330,14 @@
     },
     {
         "label": "find_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
         "importPath": "dotenv",
         "description": "dotenv",
         "isExtraImport": true,
@@ -530,6 +554,231 @@
         "documentation": {}
     },
     {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "SQLDatabase",
+        "importPath": "langchain_community.utilities.sql_database",
+        "description": "langchain_community.utilities.sql_database",
+        "isExtraImport": true,
+        "detail": "langchain_community.utilities.sql_database",
+        "documentation": {}
+    },
+    {
+        "label": "SQLDatabaseChain",
+        "importPath": "langchain_experimental.sql",
+        "description": "langchain_experimental.sql",
+        "isExtraImport": true,
+        "detail": "langchain_experimental.sql",
+        "documentation": {}
+    },
+    {
+        "label": "BackgroundScheduler",
+        "importPath": "apscheduler.schedulers.background",
+        "description": "apscheduler.schedulers.background",
+        "isExtraImport": true,
+        "detail": "apscheduler.schedulers.background",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "list_all_journals_service",
+        "importPath": "app.journal.services",
+        "description": "app.journal.services",
+        "isExtraImport": true,
+        "detail": "app.journal.services",
+        "documentation": {}
+    },
+    {
+        "label": "ast",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ast",
+        "description": "ast",
+        "detail": "ast",
+        "documentation": {}
+    },
+    {
         "label": "relationship",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -587,6 +836,14 @@
     },
     {
         "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
@@ -647,150 +904,6 @@
         "description": "sqlalchemy.dialects.postgresql",
         "isExtraImport": true,
         "detail": "sqlalchemy.dialects.postgresql",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -1051,6 +1164,30 @@
         "documentation": {}
     },
     {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "Depends",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -1156,6 +1293,14 @@
     },
     {
         "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
         "importPath": "dependencies",
         "description": "dependencies",
         "isExtraImport": true,
@@ -1307,14 +1452,6 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "ChatOpenAI",
-        "importPath": "langchain_openai",
-        "description": "langchain_openai",
-        "isExtraImport": true,
-        "detail": "langchain_openai",
         "documentation": {}
     },
     {
@@ -1512,6 +1649,22 @@
         "documentation": {}
     },
     {
+        "label": "get_db_connection_check",
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "isExtraImport": true,
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "shutdown_scheduler",
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "isExtraImport": true,
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
         "label": "upgrade",
         "kind": 2,
         "importPath": "alembic.versions.faa54a879958_created_db_models",
@@ -1611,6 +1764,87 @@
         "documentation": {}
     },
     {
+        "label": "generate_activities_for_user",
+        "kind": 2,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "def generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])\n    # journal_text = \"\\n\".join([f\"Date: {entry['entry_date']}\\nSummary: {entry['day_summary']}\\nMood: {entry['mood']}\\nMost Important Task: {entry['important_task']}\\nGrateful Things: {', '.join(entry['grateful_things'])}\\nCompleted: {entry['completed_task']}\\n\" for entry in journals])\n    # # AI prompt to analyze journals and suggest activities\n    # prompt = f\"\"\"\n    # Based on the following journal entries from user '{user['full_name']}', suggest six personalized activities to support their mental and emotional well-being:\n    # Journals:\n    # {journal_text}",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "generate_daily_activities",
+        "kind": 2,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "def generate_daily_activities():\n    \"\"\"\n    Function to generate six activities for each user based on their journal entries.\n    This function will be called daily at 23:00 CAT by the scheduler.\n    \"\"\"\n    try:\n        # Query to fetch all users and their journal entries\n        # query = \"\"\"\n        # SELECT users.id AS user_id, users.name, journals.content AS journal_content, journals.created_at\n        # FROM users",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "shutdown_scheduler",
+        "kind": 2,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "def shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)\n    return {\"status\": \"success\", \"data\": result}",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_connection_check",
+        "kind": 2,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "def get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)\n    return {\"status\": \"success\", \"data\": result}",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_URL",
+        "kind": 5,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "DATABASE_URL = os.getenv('DATABASE_URL')\n##### db = sql_database(DATABASE_URL)\ndb = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "db = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])\n    # journal_text = \"\\n\".join([f\"Date: {entry['entry_date']}\\nSummary: {entry['day_summary']}\\nMood: {entry['mood']}\\nMost Important Task: {entry['important_task']}\\nGrateful Things: {', '.join(entry['grateful_things'])}\\nCompleted: {entry['completed_task']}\\n\" for entry in journals])\n    # # AI prompt to analyze journals and suggest activities\n    # prompt = f\"\"\"\n    # Based on the following journal entries from user '{user['full_name']}', suggest six personalized activities to support their mental and emotional well-being:",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "db_chain",
+        "kind": 5,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])\n    # journal_text = \"\\n\".join([f\"Date: {entry['entry_date']}\\nSummary: {entry['day_summary']}\\nMood: {entry['mood']}\\nMost Important Task: {entry['important_task']}\\nGrateful Things: {', '.join(entry['grateful_things'])}\\nCompleted: {entry['completed_task']}\\n\" for entry in journals])\n    # # AI prompt to analyze journals and suggest activities\n    # prompt = f\"\"\"\n    # Based on the following journal entries from user '{user['full_name']}', suggest six personalized activities to support their mental and emotional well-being:\n    # Journals:",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "scheduler",
+        "kind": 5,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "scheduler = BackgroundScheduler()\nscheduler.add_job(generate_daily_activities, 'cron', hour=21, minute=30)\nscheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)\n    return {\"status\": \"success\", \"data\": result}",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
         "label": "ActivityStatus",
         "kind": 6,
         "importPath": "app.activities.models",
@@ -1633,7 +1867,16 @@
         "kind": 5,
         "importPath": "app.activities.prompts",
         "description": "app.activities.prompts",
-        "peekOfCode": "prompt = ChatPromptTemplate.from_messages(\n    [\n        (\n            \"system\",\n            \"\"\"You are a professional mental health therapist. Your role is to offer compassionate, thoughtful, and clear guidance on mental health issues such as stress, anxiety, depression, and personal growth. \n### Core Constraints for Functionality:\n1. **Confidentiality**: Always maintain confidentiality. Assure users their discussions are private and secure.\n2. **Empathy**: Respond with empathy, making users feel understood, respected, and comfortable to freely express their emotions and concerns.\n3. **Non-Judgmental**: Avoid judgmental language or assumptions. Always affirm the user’s feelings and experiences as valid.\n4. **Active Listening**: Actively engage with users by asking follow-up questions to gain deeper understanding, especially when users present general issues like 'stress' or 'anxiety.' ",
+        "peekOfCode": "prompt = ChatPromptTemplate.from_messages(\n    [\n        (\n             \"system\",\n            \"\"\"You are a database assistant helping to retrieve information from a PostgreSQL database. Your role is to generate SQL queries that retrieve data accurately based on the user’s request.\n            ### Task:\n            - Retrieve a list of all users, where each user includes a list of activities from the activities table.\n            - The `users` table has columns `id` and `name`.\n            - The `activities` table has columns `user_id` (foreign key to users.id) and `activity_name`.\n            ### Query Requirements:",
+        "detail": "app.activities.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "prompt1",
+        "kind": 5,
+        "importPath": "app.activities.prompts",
+        "description": "app.activities.prompts",
+        "peekOfCode": "prompt1 = ChatPromptTemplate.from_messages(\n    [\n        (\n            \"system\",\n            \"\"\"You are a database assistant helping to retrieve and organize information from a PostgreSQL database. Your role is to generate SQL queries and Python functions that accurately retrieve and process data based on the user’s request.\n            ### Task:\n            - For each user, generate six activities at night (`22:35`) CAT based on all journal entries.\n            - Use the `journals` table to analyze each user’s entries and determine suitable activities.\n            - The activities should follow the format: \n                ```python",
         "detail": "app.activities.prompts",
         "documentation": {}
     },
@@ -1750,7 +1993,7 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def create_activity_service(activity_data, db, user) -> Activity:\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef list_activities_for_today_service(db, user) -> list[Activity]:",
+        "peekOfCode": "def create_activity_service(activity_data, db, user) -> Activity:\n    activity = Activity(title=activity_data.title, description=activity_data.description, status=activity_data.status.value, user_id=user.id)\n    db.add(activity)\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef list_all_activities_service(db) -> list[Activity]:",
         "detail": "app.activities.services",
         "documentation": {}
     },
@@ -1759,7 +2002,16 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef list_activities_for_today_service(db, user) -> list[Activity]:\n    today_start = datetime.now().date()\n    today_end = today_start + timedelta(days=1)\n    activities = db.query(Activity).filter(\n        Activity.user_id == user.id,\n        Activity.updated_at >= today_start,\n        Activity.updated_at < today_end",
+        "peekOfCode": "def list_activities_service(db, user) -> list[Activity]:\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    return activities\ndef list_all_activities_service(db) -> list[Activity]:\n    activities = db.query(Activity).all()\n    return activities\ndef list_activities_for_today_service(db, user) -> list[Activity]:\n    today_start = datetime.now().date()\n    today_end = today_start + timedelta(days=1)\n    activities = db.query(Activity).filter(",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "list_all_activities_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def list_all_activities_service(db) -> list[Activity]:\n    activities = db.query(Activity).all()\n    return activities\ndef list_activities_for_today_service(db, user) -> list[Activity]:\n    today_start = datetime.now().date()\n    today_end = today_start + timedelta(days=1)\n    activities = db.query(Activity).filter(\n        Activity.user_id == user.id,\n        Activity.updated_at >= today_start,\n        Activity.updated_at < today_end",
         "detail": "app.activities.services",
         "documentation": {}
     },
@@ -2047,7 +2299,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    grateful_things = Column(String, nullable=False)\n    overall_day_rating = Column(SqlEnum(Rating), nullable=False)\n    overall_mood_rating = Column(SqlEnum(Rating), nullable=False)\n    completed_most_important_task = Column(Boolean, nullable=False)",
+        "peekOfCode": "class JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)\n    user_id = Column(UUID(as_uuid=True), ForeignKey(\"users.id\"))\n    entry_date = Column(Date, nullable=False,default=date.today)\n    most_important_task = Column(String, nullable=False)\n    # grateful_things = Column(String, nullable=False)\n    grateful_things = Column(JSON, nullable=False)\n    overall_day_rating = Column(SqlEnum(Rating), nullable=False)\n    overall_mood_rating = Column(SqlEnum(Rating), nullable=False)",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -2130,6 +2382,15 @@
         "description": "app.journal.schema",
         "peekOfCode": "class UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None\n    grateful_things: Optional[List[str]] = None\n    overall_day_rating: Optional[Rating] = None\n    overall_mood_rating: Optional[Rating] = None\n    completed_most_important_task: Optional[bool] = None\n    day_summary: Optional[str] = None\n    mood_tags: Optional[List[str]] = None",
         "detail": "app.journal.schema",
+        "documentation": {}
+    },
+    {
+        "label": "list_all_journals_service",
+        "kind": 2,
+        "importPath": "app.journal.services",
+        "description": "app.journal.services",
+        "peekOfCode": "def list_all_journals_service(db: Session = Depends(get_db)) -> list[JournalEntry]:\n    journals = db.query(JournalEntry).all()\n    return journals",
+        "detail": "app.journal.services",
         "documentation": {}
     },
     {
@@ -2372,6 +2633,15 @@
         "importPath": "main",
         "description": "main",
         "peekOfCode": "def mentora_detailed_health_check():\n    health_status = {\n        \"app\": True,\n        \"database\": check_database_connection(),\n        \"dependencies\": check_dependencies()\n    }\n    if all(health_status.values()):\n        return {\"status\": \"healthy\"}\n    else:\n        return Response(content={\"status\": \"unhealthy\"}, media_type=\"application/json\", status_code=503)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "check_db_connection",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def check_db_connection():\n    return get_db_connection_check()\n# @app.on_event(\"shutdown\")\n# async def shutdown():\n#     await shutdown_scheduler()\n# The routes for users,journals,chatbot,activities\napp.include_router(user_router,prefix='/mentora/api/v1/auth',tags=[\"AUTH\"])\napp.include_router(journal_router,prefix=\"/mentora/api/v1/journals\",tags=[\"JOURNALS\"])\napp.include_router(chat_router,prefix=\"/mentora/api/v1/chatbot\",tags=[\"CHATBOT\"])\napp.include_router(activity_router,prefix=\"/mentora/api/v1/activities\",tags=[\"ACTIVITIES\"])",
         "detail": "main",
         "documentation": {}
     },

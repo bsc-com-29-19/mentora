@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional, List
 from enum import Enum
-from sqlalchemy import Column, Integer, String, Boolean, Date,ForeignKey, Enum as SqlEnum
+from sqlalchemy import Column, Integer, String, Boolean, Date,ForeignKey, Enum as SqlEnum,JSON
 from sqlalchemy.dialects.postgresql import UUID
 from  sqlalchemy.orm import relationship
 from database  import Base
@@ -41,10 +41,14 @@ class JournalEntryDB(Base):
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
     entry_date = Column(Date, nullable=False,default=date.today)
     most_important_task = Column(String, nullable=False)
-    grateful_things = Column(String, nullable=False)
+    # grateful_things = Column(String, nullable=False)
+    grateful_things = Column(JSON, nullable=False)
+
     overall_day_rating = Column(SqlEnum(Rating), nullable=False)
     overall_mood_rating = Column(SqlEnum(Rating), nullable=False)
     completed_most_important_task = Column(Boolean, nullable=False)
     day_summary = Column(String, nullable=False)
-    mood_tags = Column(String, nullable=True)
+    # mood_tags = Column(String, nullable=True)
+    mood_tags = Column(JSON, nullable=True)
+
     creator = relationship("User",backref="journal_entries")
