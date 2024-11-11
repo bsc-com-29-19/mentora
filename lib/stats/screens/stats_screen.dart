@@ -62,7 +62,7 @@ class StatsScreen extends StatelessWidget {
             // Title for the mood trend section
             const Text(
               'Mood Trend',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16), // Spacing below the mood trend title
@@ -100,9 +100,9 @@ class StatCardExpandable extends StatelessWidget {
           borderRadius: BorderRadius.circular(8), // Rounded corners
           color: Colors.grey.shade900, // Background color
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 4.0), // Margin between cards
+        margin: const EdgeInsets.symmetric(horizontal: 8.0), // Margin between cards
         child: Card(
-          elevation: 2,
+          elevation: 8,
           // Expansion tile allows the card to be expandable
           child: ExpansionTile(
             title: Column(
@@ -142,22 +142,29 @@ class MoodTrendChart extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: const [
-        // Each MoodBar represents a data point in the mood trend chart
-        MoodBar(value: 76, label: '26.4%'),
-        MoodBar(value: 95, label: '33.0%'),
-        MoodBar(value: 36, label: '12.5%'),
-        MoodBar(value: 81, label: '28.1%'),
+        // Each MoodBar represents a data point in the mood trend chart for each day of the week
+        MoodBar(value: 76, label: '26.4%', day: 'Mon'),
+        MoodBar(value: 95, label: '33.0%', day: 'Tue'),
+        MoodBar(value: 36, label: '12.5%', day: 'Wed'),
+        MoodBar(value: 81, label: '28.1%', day: 'Thu'),
+        MoodBar(value: 45, label: '15.0%', day: 'Fri'),
+        MoodBar(value: 68, label: '21.7%', day: 'Sat'),
+        MoodBar(value: 52, label: '17.6%', day: 'Sun'),
       ],
+      
     );
+    
+    
   }
 }
 
 // Widget representing a single bar in the mood trend chart
 class MoodBar extends StatelessWidget {
   final double value; // Value of the mood bar (percentage)
-  final String label; // Label shown below the bar
+  final String label; // Percentage label shown below the bar
+  final String day;   // Day label for each bar
 
-  const MoodBar({required this.value, required this.label});
+  const MoodBar({required this.value, required this.label, required this.day});
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +191,9 @@ class MoodBar extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4), // Space between bar and label
-        Text(label, style: const TextStyle(fontSize: 12)), // Display the label
+        Text(label, style: const TextStyle(fontSize: 12)), // Display the percentage label
+        Text(day, style: const TextStyle(fontSize: 12)), // Display the day label
+       
       ],
     );
   }
