@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+
 // import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:get/get.dart';
@@ -9,6 +9,7 @@ import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 // import 'package:mentora_frontend/chatbot/models/chat_model.dart';
 import 'package:mentora_frontend/chatbot/viewmodels/chatbot_viewmodel.dart';
 import 'package:mentora_frontend/chatbot/widgets/chat_bubble.dart';
+
 // import 'package:mentora_frontend/chatbot/widgets/chat_message.dart';
 
 // String _apiKey = "AIzaSyAeQYIn4le5MGM6z_OtXQEkrSaz3b8dUxE";
@@ -37,10 +38,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     _chatbotController.messages.listen((_) => _scrollDown());
   }
 
-  void _handleLogout() {
-    // Add navigation logic here
-    Navigator.of(context).pushReplacementNamed('/login');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +55,15 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           ),
         ),
       
-       actions: [
-        LogoutButton(
-        onLogout: _handleLogout,
-          ),
-        ],
+         actions: [
+         LogoutButton(
+         onLogout: () {
+          // Navigate to signin screen
+          Navigator.pushReplacementNamed(context, '/signin');
+        },
+       ),
+      ],
+        
 
       ),
       body: Column(

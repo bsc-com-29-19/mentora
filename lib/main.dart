@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
 // import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
@@ -25,15 +26,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Mentora',
+      
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Mentora Home Page'),
+
+      initialRoute: '/signin',
+      routes: {
+        '/signin': (context) => const SigninScreen(),
+      },
+   
+      
     );
-    // home: const NavigationMenu());
+      //  home: const NavigationMenu(),
   }
+  
 }
 
 class MyHomePage extends StatefulWidget {
@@ -129,13 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
             
           ],
         ),
-        
-        // floatingActionButton:
-        //  LogoutButton(
-        // fullName: fullName,
-        // username: username,
-        // email: email,
-        // ),
+  
         
         );
   }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+// import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+// import 'package:mentora_frontend/navigation_drawer.dart';
+
+// import 'package:shared_preferences/shared_preferences.dart';
+
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});
@@ -24,35 +28,40 @@ class _JournalScreenState extends State<JournalScreen> {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
-void _handleLogout() {
-    // Add navigation logic here
-    Navigator.of(context).pushReplacementNamed('/login');
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
+
+      
       appBar: AppBar(
         backgroundColor: Colors.white,
         // elevation: 0,
         // centerTitle: false,
         title: const Text(
           "Journal",
+          
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
         ),
-
-      actions: [
-        LogoutButton(
-        onLogout: _handleLogout,
-          ),
-        ],
-
+        
+        actions: [
+         LogoutButton(
+         onLogout: () {
+          // Navigate to signin screen
+          Navigator.pushReplacementNamed(context, '/signin');
+        },
+       ),
+      ],
+        
       ),
+      
+    
+
       body: Container(
         color: Colors.green[50], 
         padding: const EdgeInsets.all(16.0),
@@ -214,7 +223,7 @@ void _handleLogout() {
               children: [
                 const Text('Completed the most important task?',
                     style: TextStyle( 
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.black, 
                       )),
                 Switch(
@@ -256,7 +265,7 @@ void _handleLogout() {
         ),
       ),
      
-
+     
     );
   }
 

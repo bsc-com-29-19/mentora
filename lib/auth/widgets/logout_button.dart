@@ -10,8 +10,7 @@ class LogoutButton extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _LogoutButtonState createState() => _LogoutButtonState();
+  State<LogoutButton> createState() => _LogoutButtonState();
 }
 
 class _LogoutButtonState extends State<LogoutButton> {
@@ -26,105 +25,118 @@ class _LogoutButtonState extends State<LogoutButton> {
   }
 
   Future<void> _loadUserData() async {
-    final prefs = await SharedPreferences.getInstance(); 
-    setState(() {
-      fullName = prefs.getString('fullName') ?? 'User';
-      username = prefs.getString('username') ?? 'User';
-      email = prefs.getString('email') ?? 'User';
-    });
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      setState(() {
+        // Add debug print to check the stored value
+        print('Stored fullName: ${prefs.getString('fullName')}');
+        
+        fullName = prefs.getString('fullName') ?? 'User';
+        username = prefs.getString('username') ?? 'User';
+        email = prefs.getString('email') ?? 'User';
+      });
+    } catch (e) {
+      print('Error loading user data: $e');
+    }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.account_circle, color: Colors.black),
-      onPressed: () => _showProfileDialog(context),
-      tooltip: 'Profile & Logout',
-    );
+  Future<void> _logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    widget.onLogout?.call();
+  }
+
+  Future<void> _updateUserData(String newFullName, String newUsername, String newEmail) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      
+      // Debug print before saving
+      print('Saving fullName: $newFullName');
+      
+      await prefs.setString('fullName', newFullName.trim());
+      await prefs.setString('username', newUsername.trim());
+      await prefs.setString('email', newEmail.trim());
+      
+      // Verify the save was successful
+      final savedFullName = prefs.getString('fullName');
+      print('Verified saved fullName: $savedFullName');
+      
+      await _loadUserData();
+    } catch (e) {
+      print('Error updating user data: $e');
+    }
   }
 
   void _showProfileDialog(BuildContext context) {
+    TextEditingController fullNameController = TextEditingController(text: fullName);
+    TextEditingController usernameController = TextEditingController(text: username);
+    TextEditingController emailController = TextEditingController(text: email);
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          title: Row(
-            children: [
-              const Icon(
-                Icons.account_circle,
-                color: Colors.black,
-                size: 24,
-              ),
-              const SizedBox(width: 8),
-              const Text(
-                "Profile",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildProfileItem(Icons.person_outline, 'Full Name', fullName),
-              const SizedBox(height: 12),
-              _buildProfileItem(Icons.alternate_email, 'Username', username),
-              const SizedBox(height: 12),
-              _buildProfileItem(Icons.email_outlined, 'Email', email),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    _logout();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.logout, size: 18),
-                      SizedBox(width: 8),
-                      Text(
-                        "Logout",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+          title: Text('Edit Profile', style: TextStyle(color: Colors.black)),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: fullNameController,
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'Full Name',
+                    labelStyle: TextStyle(color: Colors.black),
+                    icon: Icon(Icons.person, color: Colors.green),
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+                TextField(
+                  controller: usernameController,
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'Username',
+                    labelStyle: TextStyle(color: Colors.black),
+                    icon: Icon(Icons.account_circle, color: Colors.green),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: emailController,
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.black),
+                    icon: Icon(Icons.email, color: Colors.green),
+                  ),
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.black,
-              ),
-              child: const Text(
-                "Close",
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancel', style: TextStyle(color: Colors.green)),
+            ),
+            TextButton(
+              onPressed: () async {
+                if (fullNameController.text.trim().isNotEmpty) {
+                  await _updateUserData(
+                    fullNameController.text,
+                    usernameController.text,
+                    emailController.text,
+                  );
+                  // ignore: use_build_context_synchronously
+                  Navigator.pop(context);
+                } else {
+                  // Show error if full name is empty
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Full name cannot be empty')),
+                  );
+                }
+              },
+              child: Text('Save', style: TextStyle(color: Colors.green)),
             ),
           ],
         );
@@ -132,44 +144,88 @@ class _LogoutButtonState extends State<LogoutButton> {
     );
   }
 
-  Widget _buildProfileItem(IconData icon, String label, String value) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.black54,
-            fontSize: 12,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            Icon(icon, size: 16, color: Colors.black),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
-      ],
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.menu, color: Colors.green),
+      onPressed: () => _showDrawer(context),
+      tooltip: 'Profile & Logout',
     );
   }
 
-  Future<void> _logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear(); // Clear stored user data
+  void _showDrawer(BuildContext context) {
+    Drawer drawer = Drawer(
+      backgroundColor: Colors.white,
+      child: ListView(
+        children: [
+          UserAccountsDrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.green,
+            ),
+            accountName: Text(
+              fullName.isNotEmpty ? fullName : 'User',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            accountEmail: Text(
+              email,
+              style: TextStyle(color: Colors.white),
+            ),
+            currentAccountPicture: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Text(
+                fullName.isNotEmpty ? fullName[0].toUpperCase() : 'U',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle, color: Colors.green),
+            title: Text('Profile', style: TextStyle(color: Colors.black)),
+            subtitle: Text(fullName, style: TextStyle(color: Colors.black)), // Added to show full name
+            onTap: () {
+              Navigator.pop(context);
+              _showProfileDialog(context);
+            },
+          ),
+          Divider(color: Colors.green),
+          ListTile(
+            leading: Icon(Icons.person_outline, color: Colors.green),
+            title: Text('Username', style: TextStyle(color: Colors.black)),
+            subtitle: Text(username, style: TextStyle(color: Colors.black)),
+          ),
+          ListTile(
+            leading: Icon(Icons.email_outlined, color: Colors.green),
+            title: Text('Email', style: TextStyle(color: Colors.black)),
+            subtitle: Text(email, style: TextStyle(color: Colors.black)),
+          ),
+          Divider(color: Colors.green),
+          ListTile(
+            leading: Icon(Icons.logout, color: Colors.green),
+            title: Text('Logout', style: TextStyle(color: Colors.black)),
+            onTap: () {
+              Navigator.of(context).pop();
+              _logout();
+            },
+          ),
+        ],
+      ),
+    );
 
-    // Navigate to login screen or perform other logout logic
-    widget.onLogout?.call();
+    Scaffold.of(context).openDrawer();
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return drawer;
+      },
+    );
   }
 }

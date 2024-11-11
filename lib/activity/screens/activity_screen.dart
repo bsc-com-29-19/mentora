@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+
+// import 'package:mentora_frontend/navigation_drawer.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+
 
 // void main() {
 //   runApp(MyApp());
@@ -98,10 +101,10 @@ class _ActivityPageState extends State<ActivityScreen> {
     });
   }
 
-  void _handleLogout() {
-    // Add navigation logic here
-    Navigator.of(context).pushReplacementNamed('/login');
-  }
+  // void _handleLogout() {
+  //   // Add navigation logic here
+  //   Navigator.of(context).pushReplacementNamed('/login');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -112,12 +115,18 @@ class _ActivityPageState extends State<ActivityScreen> {
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
-        actions: [
-          LogoutButton(
-            onLogout: _handleLogout,
-          ),
-        ],
+          actions: [
+         LogoutButton(
+         onLogout: () {
+          // Navigate to signin screen
+          Navigator.pushReplacementNamed(context, '/signin');
+        },
+       ),
+      ],
+        
       ),
+
+      
       body: Column(
         children: [
           const Padding(

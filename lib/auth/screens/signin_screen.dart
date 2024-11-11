@@ -1,6 +1,4 @@
 // signin_screen.dart
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
@@ -26,18 +24,12 @@ class _SigninScreenState extends State<SigninScreen> {
   String _username = '';
   String _password = '';
   
-//Newly added code
-  //  Future<void> saveUserData(String fullName, String username, String email) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final fullName = prefs.getString('fullName') ?? 'User';
-  //   final username = prefs.getString('username') ?? 'User';
-  //   final email = prefs.getString('email') ?? 'User';
-   
-  //  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -202,6 +194,8 @@ class _SigninScreenState extends State<SigninScreen> {
           ),
         ),
       ),
+      
+
     );
   }
 }
