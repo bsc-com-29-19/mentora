@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 class LoginController extends GetxController {
   // TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailorusernameController = TextEditingController();
 
   final logger = Logger();
 
@@ -28,8 +28,8 @@ class LoginController extends GetxController {
 
       Map body = {
         // "email": emailController.text,
-        "username": usernameController.text,
-        "password": passwordController.text
+        "usernameoremail": emailorusernameController.text.trim(),
+        "password": passwordController.text.trim()
       };
 
       // print("Body : $body");
@@ -45,9 +45,11 @@ class LoginController extends GetxController {
       if (response.statusCode == 200) {
         // access access_token & username from login response and keep them in local storage: shared_preferences
         final json = jsonDecode(response.body);
-
+        logger.d("Response body : ${response.body}");
         var token = json['access_token'];
         var username = json['username'];
+        var email = json['email'];
+        var fullName = json['full_name'];
 
         logger.d("Access Token : $token ");
 
@@ -55,9 +57,12 @@ class LoginController extends GetxController {
 
         await prefs.setString('token', token);
         await prefs.setString('username', username);
+        await prefs.setString('email', email);
+        await prefs.setString('fullName', fullName);
+        await prefs.setBool("isAuthenticated", true);
 
         // emailController.clear();
-        usernameController.clear();
+        emailorusernameController.clear();
         passwordController.clear();
 
         // Handle success Login

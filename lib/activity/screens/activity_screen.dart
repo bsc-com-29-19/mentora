@@ -1,24 +1,5 @@
 import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Activity Tracker',
-//       theme: ThemeData(
-//         primarySwatch: Colors.teal,
-//       ),
-//       home: ActivityScreen(),
-//     );
-//   }
-// }
+import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -37,34 +18,66 @@ class _ActivityPageState extends State<ActivityScreen> {
   bool socializeCompleted = false;
   bool meditateCompleted = false;
 
+  // double completionPercentage = 0.0;
+  int completedCount = 0;
+
+  void _updateCompletionCount() {
+    completedCount = [
+      runningCompleted,
+      readingCompleted,
+      walkOutsideCompleted,
+      gymCompleted,
+      socializeCompleted,
+      meditateCompleted
+    ].where((completed) => completed).length;
+
+    setState(() {
+      // completionPercentage = (completedActivities / 6) * 100;
+    });
+  }
+
   // Function to build each activity with a completion checkbox
   Widget buildActivity(
       String title, bool completed, Function(bool?) onChanged) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 18.0),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 64, 100, 95),
+          color: Colors.green.shade300,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: TextStyle(fontSize: 18.0),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700),
+              ),
             ),
             Row(
               children: [
-                const Text(
-                  '0/1', // Shows the progress for each activity
-                  style: TextStyle(fontSize: 18.0),
-                ),
+                // const Text(
+                //   '0/1', // Shows the progress for each activity
+                //   style: TextStyle(
+                //       fontSize: 22.0,
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.w500),
+                // ),
                 SizedBox(width: 10),
                 Checkbox(
                   value: completed,
-                  onChanged: onChanged,
+                  // onChanged: onChanged,
+                  onChanged: (value) {
+                    onChanged(value);
+                    _updateCompletionCount(); // Update percentage on change
+                  },
+                  activeColor: Colors.white,
+                  checkColor: Colors.green.shade300,
                 ),
               ],
             ),
@@ -86,6 +99,11 @@ class _ActivityPageState extends State<ActivityScreen> {
     });
   }
 
+  // void _handleLogout() {
+  //   // Add navigation logic here
+  //   Navigator.of(context).pushReplacementNamed('/login');
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,24 +111,21 @@ class _ActivityPageState extends State<ActivityScreen> {
         title: const Text(
           'Activities',
           style: TextStyle(
-              fontSize: 26, fontWeight: FontWeight.bold), // Making it bold
+              fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                '0% Completed', // Adjust this based on completed activities
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
+        actions: [
+          LogoutButton(
+            onLogout: () {
+              // Navigate to signin screen
+              Navigator.pushReplacementNamed(context, '/signin');
+            },
           ),
         ],
       ),
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(29.0),
+          Padding(
+            padding: EdgeInsets.all(26.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment
                   .spaceBetween, // This aligns the two texts to opposite sides
@@ -120,15 +135,28 @@ class _ActivityPageState extends State<ActivityScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '15 Sep, 2024',
+                  // '15 Sep, 2024',
+                  "${DateTime.now().toLocal()}".split(' ')[0],
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text(
+                      // '0% Completed', // Adjust this based on completed activities
+                      // '${completionPercentage.toStringAsFixed(0)}% Completed',
+                      '$completedCount/6 Completed',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 33.0),
+              padding: const EdgeInsets.symmetric(horizontal: 22.0),
               children: [
                 buildActivity('Running', runningCompleted, (value) {
                   setState(() {

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+
+// import 'package:shared_preferences/shared_preferences.dart';
+
 // import 'package:get/get.dart';
 // import 'package:google_generative_ai/google_generative_ai.dart';
 // import 'package:mentora_frontend/chatbot/models/chat_model.dart';
 import 'package:mentora_frontend/chatbot/viewmodels/chatbot_viewmodel.dart';
 import 'package:mentora_frontend/chatbot/widgets/chat_bubble.dart';
+
 // import 'package:mentora_frontend/chatbot/widgets/chat_message.dart';
 
 // String _apiKey = "AIzaSyAeQYIn4le5MGM6z_OtXQEkrSaz3b8dUxE";
@@ -27,20 +32,39 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   }
 
   @override
-
   void initState() {
     super.initState();
     // Call this whenever the messages list updates to scroll down
     _chatbotController.messages.listen((_) => _scrollDown());
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+  
+
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Mentora Therapist Bot"),
-        backgroundColor: Colors.white,
+        title: const Text(
+          "Mentora Therapist",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
+      
+         actions: [
+         LogoutButton(
+         onLogout: () {
+          // Navigate to signin screen
+          Navigator.pushReplacementNamed(context, '/signin');
+        },
+       ),
+      ],
+        
+
       ),
       body: Column(
         children: [

@@ -27,10 +27,10 @@ class RegistrationController extends GetxController {
 
       // print("Url : $url");
       Map body = {
-        "full_name": fullnameController.text,
-        "username": usernameController.text,
-        "email": emailController.text,
-        "password": passwordController.text
+        "full_name": fullnameController.text.trim(),
+        "username": usernameController.text.trim(),
+        "email": emailController.text.trim(),
+        "password": passwordController.text.trim()
       };
 
       http.Response response =

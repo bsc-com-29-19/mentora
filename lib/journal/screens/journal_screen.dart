@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+// import 'package:mentora_frontend/auth/screens/signin_screen.dart';
+import 'package:mentora_frontend/auth/widgets/button.dart';
+import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+// import 'package:mentora_frontend/navigation_drawer.dart';
+
+// import 'package:shared_preferences/shared_preferences.dart';
+
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});
@@ -7,6 +14,8 @@ class JournalScreen extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _JournalScreenState createState() => _JournalScreenState();
 }
+
+
 
 class _JournalScreenState extends State<JournalScreen> {
   DateTime selectedDate = DateTime.now();
@@ -19,24 +28,42 @@ class _JournalScreenState extends State<JournalScreen> {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
+        // elevation: 0,
+        // centerTitle: false,
         title: const Text(
           "Journal",
+          
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
         ),
+        
+        actions: [
+         LogoutButton(
+         onLogout: () {
+          // Navigate to signin screen
+          Navigator.pushReplacementNamed(context, '/signin');
+        },
+       ),
+      ],
+        
       ),
+      
+    
+
       body: Container(
-        color: Colors.green[50], // Light green background for the entire widget
+        color: Colors.green[50], 
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
@@ -58,7 +85,7 @@ class _JournalScreenState extends State<JournalScreen> {
                   },
                   child: Text(
                     "${selectedDate.toLocal()}".split(' ')[0],
-                    style: const TextStyle(color: Colors.black), // Change to black
+                    style: const TextStyle(color: Colors.black), 
                   ),
                 ),
               ],
@@ -68,7 +95,7 @@ class _JournalScreenState extends State<JournalScreen> {
             // Morning task
             TextField(
               controller: taskController,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 labelText: 'Write your most important task today',
                 labelStyle: TextStyle(color: Colors.black),
@@ -94,7 +121,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController1,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: '1.',
                 border: OutlineInputBorder(),
@@ -108,7 +135,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController2,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: '2.',
                 border: OutlineInputBorder(),
@@ -122,7 +149,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController3,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: '3.',
                 border: OutlineInputBorder(),
@@ -195,7 +222,10 @@ class _JournalScreenState extends State<JournalScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Completed the most important task?',
-                    style: TextStyle(color: Colors.black)),
+                    style: TextStyle( 
+                      fontSize: 14,
+                      color: Colors.black, 
+                      )),
                 Switch(
                   activeColor: Colors.green,
                   value: taskCompleted,
@@ -212,7 +242,7 @@ class _JournalScreenState extends State<JournalScreen> {
             // How did you spend your day?
             TextField(
               controller: daySummaryController,
-              cursorColor: Colors.black, // Set cursor color to black
+              cursorColor: Colors.black, 
               decoration: const InputDecoration(
                 hintText: 'How did you spend your day?',
                 border: OutlineInputBorder(),
@@ -225,10 +255,49 @@ class _JournalScreenState extends State<JournalScreen> {
               maxLines: 5,
             ),
             const SizedBox(height: 20),
+
+            // Submit button
+            Button(
+              text: 'Submit Journal',
+              onPressed: _submitJournal,
+            ),
           ],
         ),
       ),
+     
+     
     );
+  }
+
+  void _submitJournal() {
+    // Gather the input data and perform submission logic
+    String task = taskController.text;
+    String gratitude1 = gratitudeController1.text;
+    String gratitude2 = gratitudeController2.text;
+    String gratitude3 = gratitudeController3.text;
+    String daySummary = daySummaryController.text;
+
+    // Print to console for now (replace with actual submission logic)
+    print("Task: $task");
+    print("Gratitude 1: $gratitude1");
+    print("Gratitude 2: $gratitude2");
+    print("Gratitude 3: $gratitude3");
+    print("Overall Rating: $overallRating");
+    print("Mood Rating: $moodRating");
+    print("Task Completed: $taskCompleted");
+    print("Day Summary: $daySummary");
+
+    // Optionally clear the fields after submission
+    taskController.clear();
+    gratitudeController1.clear();
+    gratitudeController2.clear();
+    gratitudeController3.clear();
+    daySummaryController.clear();
+    setState(() {
+      overallRating = 0;
+      moodRating = 0;
+      taskCompleted = false;
+    });
   }
 
   Widget _buildRadioWithLabel(
@@ -250,19 +319,8 @@ class _JournalScreenState extends State<JournalScreen> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime(2020),
+      firstDate: DateTime(2000),
       lastDate: DateTime(2101),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: ColorScheme.light(
-              primary: Colors.black, // Set calendar color to black
-              onSurface: Colors.black, // Set the text color to black
-            ),
-          ),
-          child: child!,
-        );
-      },
     );
     if (picked != null && picked != selectedDate) {
       setState(() {
@@ -271,3 +329,60 @@ class _JournalScreenState extends State<JournalScreen> {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
