@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
 void main() {
   runApp(MentoraApp());
@@ -29,6 +30,21 @@ class StatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Stats',
+          style: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
+        ),
+        actions: [
+          LogoutButton(
+            onLogout: () {
+              // Navigate to signin screen
+              Navigator.pushReplacementNamed(context, '/signin');
+            },
+          ),
+        ],
+      ),
       
       body: Padding(
         padding: const EdgeInsets.all(16.0),
