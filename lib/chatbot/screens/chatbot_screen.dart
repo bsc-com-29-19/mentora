@@ -43,6 +43,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
   
+      drawer: LogoutButton.buildDrawer(context),
 
       backgroundColor: Colors.white,
       appBar: AppBar(

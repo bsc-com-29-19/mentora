@@ -99,14 +99,14 @@ class _ActivityPageState extends State<ActivityScreen> {
     });
   }
 
-  // void _handleLogout() {
-  //   // Add navigation logic here
-  //   Navigator.of(context).pushReplacementNamed('/login');
-  // }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      drawer: LogoutButton.buildDrawer(context),
+
       appBar: AppBar(
         title: const Text(
           'Activities',
