@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// void main() {
+//   runApp(MyApp());
+// }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Activity Tracker',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      home: ActivityScreen(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Activity Tracker',
+//       theme: ThemeData(
+//         primarySwatch: Colors.teal,
+//       ),
+//       home: ActivityScreen(),
+//     );
+//   }
+// }
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
