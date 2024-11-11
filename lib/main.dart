@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
+// import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
 // import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 import 'package:mentora_frontend/onboarding/screens/screen1.dart';
@@ -24,20 +26,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Mentora',
+      
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Mentora Home Page'),
+
+      initialRoute: '/signin',
+      routes: {
+        '/signin': (context) => const SigninScreen(),
+      },
+   
+      
     );
-    // home: const NavigationMenu());
+      //  home: const NavigationMenu(),
   }
+  
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
   final String title;
 
   @override
@@ -48,6 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
   PageController pageController = PageController();
   String buttonText = "Skip";
   int currentPageIndex = 0;
+  
+
+  final String fullName = "";
+  final String username = "";
+  final String email = "";
+  
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               children: const [Screen1(), Screen2(), Screen3()],
             ),
+            
+
             Container(
               alignment: const Alignment(0, 0.8),
               child: Row(
@@ -113,11 +131,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500),
                           ),
-                        )
+                        ),
+                        
                 ],
               ),
-            )
+            ),
+            
           ],
-        ));
+        ),
+  
+        
+        );
   }
 }

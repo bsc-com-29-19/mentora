@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
 import 'package:mentora_frontend/auth/viewmodels/signin_view_model.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -19,12 +20,16 @@ class _SigninScreenState extends State<SigninScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isPasswordVisible = false;
 
-  String _emailOrUsername = '';
+
+  String _username = '';
   String _password = '';
+  
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -72,7 +77,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     TextFormField(
                       controller: loginController.emailorusernameController,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black, // Set cursor color to black
+                      cursorColor: Colors.black, 
                       decoration: InputDecoration(
                         hintText: 'Enter your email or username',
                         hintStyle: const TextStyle(color: Colors.grey),
@@ -87,9 +92,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email or username';
                         }
-                        return null;
+                        return null; 
                       },
-                      onSaved: (value) => _emailOrUsername = value!,
+                      onSaved: (value) => _username = value!,
                     ),
                     const SizedBox(height: 20),
                     const Text(
@@ -101,10 +106,10 @@ class _SigninScreenState extends State<SigninScreen> {
                       controller: loginController.passwordController,
                       obscureText: !_isPasswordVisible,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black, // Set cursor color to black
+                      cursorColor: Colors.black, 
                       decoration: InputDecoration(
-                        // labelText: '*******************',
-                        hintText: 'Enter your password',
+                        
+                        hintText: 'Enter your secure password',
                         hintStyle: const TextStyle(color: Colors.grey),
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
@@ -155,6 +160,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           loginController.loginUser();
+                          
                         }
                       },
                     ),
@@ -188,6 +194,8 @@ class _SigninScreenState extends State<SigninScreen> {
           ),
         ),
       ),
+      
+
     );
   }
 }
