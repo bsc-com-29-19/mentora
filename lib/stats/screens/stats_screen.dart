@@ -23,9 +23,7 @@ class StatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Stats'), // Title of the app bar
-      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -65,6 +63,7 @@ class StatsScreen extends StatelessWidget {
             const Text(
               'Mood Trend',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16), // Spacing below the mood trend title
             // Mood trend chart
