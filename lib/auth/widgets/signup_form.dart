@@ -1,5 +1,4 @@
 // signup_form.dart
-// ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +23,7 @@ class _SignupFormState extends State<SignupForm> {
   String _username = '';
   String _email = '';
   String _password = '';
-  bool _isPasswordVisible = false; // State variable for password visibility
+  bool _isPasswordVisible = false; 
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class _SignupFormState extends State<SignupForm> {
       key: widget.formKey,
       child: Column(
         crossAxisAlignment:
-            CrossAxisAlignment.start, // Align labels to the left
+            CrossAxisAlignment.start, 
         children: [
           // Full Name label and field
           const Text(
@@ -42,9 +41,9 @@ class _SignupFormState extends State<SignupForm> {
           const SizedBox(height: 8),
           TextFormField(
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, // Set cursor color to black
+            cursorColor: Colors.black, 
             decoration: InputDecoration(
-              // labelText: 'Enter your full name',
+              
               hintText: 'Enter your full name',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
@@ -72,9 +71,9 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.usernameController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, // Set cursor color to black
+            cursorColor: Colors.black, 
             decoration: InputDecoration(
-              // labelText: 'Enter unique username',
+              
               hintText: 'Enter unique username',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
@@ -102,9 +101,9 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.emailController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, // Set cursor color to black
+            cursorColor: Colors.black, 
             decoration: InputDecoration(
-              // labelText: 'Enter your email address',
+             
               hintText: 'Enter your email address',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
@@ -132,10 +131,10 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.passwordController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, // Set cursor color to black
-            obscureText: !_isPasswordVisible, // Toggle password visibility
+            cursorColor: Colors.black, 
+            obscureText: !_isPasswordVisible, 
             decoration: InputDecoration(
-              // labelText: '********************',
+              
               hintText: "Enter your secure password",
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
