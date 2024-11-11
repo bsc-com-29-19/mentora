@@ -6,17 +6,23 @@ void main() {
 
 // Root widget for the application
 class MentoraApp extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       title: 'Mentora',
+
+      debugShowCheckedModeBanner: false,  // Remove the debug banner
       theme: ThemeData(
         brightness: Brightness.dark, // Set the theme to dark mode
       ),
-      home: StatsScreen(), // Set the StatsScreen as the home screen
+      home: StatsScreen(), 
+      // Set the StatsScreen as the home screen
     );
   }
 }
+
 
 // Main screen widget that displays the stats summary and mood trend
 class StatsScreen extends StatelessWidget {
@@ -69,6 +75,8 @@ class StatsScreen extends StatelessWidget {
             // Mood trend chart
             Expanded(
               child: MoodTrendChart(),
+
+              
             ),
           ],
         ),
@@ -152,6 +160,7 @@ class MoodTrendChart extends StatelessWidget {
         MoodBar(value: 52, label: '17.6%', day: 'Sun'),
       ],
       
+
     );
     
     
