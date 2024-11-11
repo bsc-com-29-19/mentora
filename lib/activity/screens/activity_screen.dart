@@ -1,30 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
-// import 'package:mentora_frontend/navigation_drawer.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Activity Tracker',
-//       theme: ThemeData(
-//         primarySwatch: Colors.teal,
-//       ),
-//       home: ActivityScreen(),
-//     );
-//   }
-// }
-
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
 
@@ -41,6 +17,24 @@ class _ActivityPageState extends State<ActivityScreen> {
   bool gymCompleted = false;
   bool socializeCompleted = false;
   bool meditateCompleted = false;
+
+  // double completionPercentage = 0.0;
+  int completedCount = 0;
+
+  void _updateCompletionCount() {
+    completedCount = [
+      runningCompleted,
+      readingCompleted,
+      walkOutsideCompleted,
+      gymCompleted,
+      socializeCompleted,
+      meditateCompleted
+    ].where((completed) => completed).length;
+
+    setState(() {
+      // completionPercentage = (completedActivities / 6) * 100;
+    });
+  }
 
   // Function to build each activity with a completion checkbox
   Widget buildActivity(
@@ -77,7 +71,11 @@ class _ActivityPageState extends State<ActivityScreen> {
                 SizedBox(width: 10),
                 Checkbox(
                   value: completed,
-                  onChanged: onChanged,
+                  // onChanged: onChanged,
+                  onChanged: (value) {
+                    onChanged(value);
+                    _updateCompletionCount(); // Update percentage on change
+                  },
                   activeColor: Colors.white,
                   checkColor: Colors.green.shade300,
                 ),
@@ -115,21 +113,18 @@ class _ActivityPageState extends State<ActivityScreen> {
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
-          actions: [
-         LogoutButton(
-         onLogout: () {
-          // Navigate to signin screen
-          Navigator.pushReplacementNamed(context, '/signin');
-        },
-       ),
-      ],
-        
+        actions: [
+          LogoutButton(
+            onLogout: () {
+              // Navigate to signin screen
+              Navigator.pushReplacementNamed(context, '/signin');
+            },
+          ),
+        ],
       ),
-
-      
       body: Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(26.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment
@@ -140,14 +135,17 @@ class _ActivityPageState extends State<ActivityScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '15 Sep, 2024',
+                  // '15 Sep, 2024',
+                  "${DateTime.now().toLocal()}".split(' ')[0],
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
-                      '0% Completed', // Adjust this based on completed activities
+                      // '0% Completed', // Adjust this based on completed activities
+                      // '${completionPercentage.toStringAsFixed(0)}% Completed',
+                      '$completedCount/6 Completed',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
