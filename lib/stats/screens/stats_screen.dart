@@ -4,97 +4,137 @@ void main() {
   runApp(MentoraApp());
 }
 
+// Root widget for the application
 class MentoraApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mentora',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.dark, // Set the theme to dark mode
       ),
-      home: StatsScreen(),
-      
+      home: StatsScreen(), // Set the StatsScreen as the home screen
     );
   }
 }
 
+// Main screen widget that displays the stats summary and mood trend
 class StatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stats'),
-        
-        centerTitle: true,
+        title: Text('Stats'), // Title of the app bar
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Title for the summary section
             const Text(
               'Summary: Last 30 days',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 16), // Spacing below the title
+            // Row containing the expandable stat cards
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
-                StatCard(label: 'Activities completion', value: '0 %'),
-                StatCard(label: 'Average self rating', value: '0 / 5'),
-                StatCard(label: 'Incomplete Activities', value: '23'),
+                // Each card displays a stat with expandable details
+                StatCardExpandable(
+                  label: 'Activities completion',
+                  value: '0 %',
+                  details: 'Details about Activities completion',
+                ),
+                StatCardExpandable(
+                  label: 'Average self rating',
+                  value: '0 / 5',
+                  details: 'Details about Average self rating',
+                ),
+                StatCardExpandable(
+                  label: 'Incomplete Activities',
+                  value: '23',
+                  details: 'Details about Incomplete Activities',
+                ),
               ],
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 32), // Spacing below the stat cards
+            // Title for the mood trend section
             const Text(
               'Mood Trend',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 16), // Spacing below the mood trend title
+            // Mood trend chart
             Expanded(
               child: MoodTrendChart(),
             ),
           ],
         ),
       ),
-      
     );
   }
 }
 
-class StatCard extends StatelessWidget {
-  final String label;
-  final String value;
+// Widget representing an expandable stat card with details
+class StatCardExpandable extends StatelessWidget {
+  final String label; // Label for the stat
+  final String value; // Main value displayed on the card
+  final String details; // Additional details shown when expanded
 
-  const StatCard({super.key, required this.label, required this.value});
+  const StatCardExpandable({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.details,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        children: [
-          Text(
-            value,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Expanded(
+      child: Container(
+        // Box decoration for the card container
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey), // Border color
+          borderRadius: BorderRadius.circular(8), // Rounded corners
+          color: Colors.grey.shade900, // Background color
+        ),
+        margin: const EdgeInsets.symmetric(horizontal: 4.0), // Margin between cards
+        child: Card(
+          elevation: 2,
+          // Expansion tile allows the card to be expandable
+          child: ExpansionTile(
+            title: Column(
+              children: [
+                Text(
+                  value, // Display the main value
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  label, // Display the label
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 14),
+                ),
+              ],
+            ),
+            // Additional details shown when expanded
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(details),
+              ),
+            ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 14),
-          ),
-        ],
+        ),
       ),
     );
   }
 }
 
+// Widget representing the mood trend chart with vertical bars
 class MoodTrendChart extends StatelessWidget {
   const MoodTrendChart({super.key});
 
@@ -103,6 +143,7 @@ class MoodTrendChart extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: const [
+        // Each MoodBar represents a data point in the mood trend chart
         MoodBar(value: 76, label: '26.4%'),
         MoodBar(value: 95, label: '33.0%'),
         MoodBar(value: 36, label: '12.5%'),
@@ -112,9 +153,10 @@ class MoodTrendChart extends StatelessWidget {
   }
 }
 
+// Widget representing a single bar in the mood trend chart
 class MoodBar extends StatelessWidget {
-  final double value;
-  final String label;
+  final double value; // Value of the mood bar (percentage)
+  final String label; // Label shown below the bar
 
   const MoodBar({required this.value, required this.label});
 
@@ -123,29 +165,28 @@ class MoodBar extends StatelessWidget {
     return Column(
       children: [
         Expanded(
+          // Container for the bar itself
           child: Container(
             width: 30,
             decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(4),
+              color: Colors.grey, // Bar background color
+              borderRadius: BorderRadius.circular(4), // Rounded corners for the bar
             ),
             child: FractionallySizedBox(
               alignment: Alignment.bottomCenter,
-              heightFactor: value / 100,
+              heightFactor: value / 100, // Scale the bar height based on value
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.green.shade300,
+                  color: Colors.green.shade300, // Bar fill color
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
             ),
           ),
         ),
-        const SizedBox(height: 4),
-        Text(label, style: const TextStyle(fontSize: 12)),
+        const SizedBox(height: 4), // Space between bar and label
+        Text(label, style: const TextStyle(fontSize: 12)), // Display the label
       ],
     );
   }
 }
-
-
