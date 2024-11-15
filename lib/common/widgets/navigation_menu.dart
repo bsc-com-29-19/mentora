@@ -48,7 +48,7 @@ class NavigationController extends GetxController {
 
   final screens = [
     const ActivityScreen(),
-    const JournalScreen(),
+    JournalScreen(),
     const ChatbotScreen(),
     const StatsScreen()
   ];

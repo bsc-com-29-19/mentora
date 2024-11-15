@@ -95,7 +95,7 @@ class _LogoutButtonState extends State<LogoutButton> {
                   decoration: InputDecoration(
                     labelText: 'Full Name',
                     labelStyle: TextStyle(color: Colors.black),
-                    icon: Icon(Icons.person, color: Colors.green),
+                    icon: Icon(Icons.person, color: Colors.green.shade300),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -105,7 +105,7 @@ class _LogoutButtonState extends State<LogoutButton> {
                   decoration: InputDecoration(
                     labelText: 'Username',
                     labelStyle: TextStyle(color: Colors.black),
-                    icon: Icon(Icons.account_circle, color: Colors.green),
+                    icon: Icon(Icons.account_circle, color: Colors.green.shade300),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -115,7 +115,7 @@ class _LogoutButtonState extends State<LogoutButton> {
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(color: Colors.black),
-                    icon: Icon(Icons.email, color: Colors.green),
+                    icon: Icon(Icons.email, color: Colors.green.shade300),
                   ),
                 ),
               ],
@@ -124,7 +124,7 @@ class _LogoutButtonState extends State<LogoutButton> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Cancel', style: TextStyle(color: Colors.green)),
+              child: Text('Cancel', style: TextStyle(color: Colors.green.shade300)),
             ),
             TextButton(
               onPressed: () async {
@@ -143,7 +143,7 @@ class _LogoutButtonState extends State<LogoutButton> {
                   );
                 }
               },
-              child: Text('Save', style: TextStyle(color: Colors.green)),
+              child: Text('Save', style: TextStyle(color: Colors.green.shade300)),
             ),
           ],
         );
@@ -154,7 +154,7 @@ class _LogoutButtonState extends State<LogoutButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.menu, color: Colors.green),
+      icon: Icon(Icons.menu, color: Colors.green.shade300),
       onPressed: () => _showDrawer(context),
       tooltip: 'Profile & Logout',
     );
@@ -167,7 +167,7 @@ class _LogoutButtonState extends State<LogoutButton> {
         children: [
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: Colors.green.shade300,
             ),
             accountName: Text(
               fullName.isNotEmpty ? fullName : 'User',
@@ -194,8 +194,8 @@ class _LogoutButtonState extends State<LogoutButton> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle, color: Colors.green),
-            title: Text('Profile', style: TextStyle(color: Colors.black)),
+            leading: Icon(Icons.account_circle, color: Colors.green.shade300),
+            title: Text('Edit Profile', style: TextStyle(color: Colors.black)),
             subtitle: Text(fullName,
                 style:
                     TextStyle(color: Colors.black)), // Added to show full name
@@ -204,20 +204,20 @@ class _LogoutButtonState extends State<LogoutButton> {
               _showProfileDialog(context);
             },
           ),
-          Divider(color: Colors.green),
+          Divider(color: Colors.green.shade300),
           ListTile(
-            leading: Icon(Icons.person_outline, color: Colors.green),
+            leading: Icon(Icons.person_outline, color: Colors.green.shade300),
             title: Text('Username', style: TextStyle(color: Colors.black)),
             subtitle: Text(username, style: TextStyle(color: Colors.black)),
           ),
           ListTile(
-            leading: Icon(Icons.email_outlined, color: Colors.green),
+            leading: Icon(Icons.email_outlined, color: Colors.green.shade300),
             title: Text('Email', style: TextStyle(color: Colors.black)),
             subtitle: Text(email, style: TextStyle(color: Colors.black)),
           ),
-          Divider(color: Colors.green),
+          Divider(color: Colors.green.shade300),
           ListTile(
-            leading: Icon(Icons.logout, color: Colors.green),
+            leading: Icon(Icons.logout, color: Colors.green.shade300),
             title: Text('Logout', style: TextStyle(color: Colors.black)),
             onTap: () {
               Navigator.of(context).pop();
