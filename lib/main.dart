@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:mentora_frontend/auth/screens/profile_screen.dart';
 // import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
@@ -55,7 +54,6 @@ class MyApp extends StatelessWidget {
       // initialRoute: '/signin',
       routes: {
         '/signin': (context) => const SigninScreen(),
-        '/profile': (context) => const ProfileScreen(),
       },
       home: onBoardingCompleted
           ? (isAuthenticated ? const NavigationMenu() : const SigninScreen())

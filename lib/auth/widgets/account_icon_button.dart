@@ -100,7 +100,7 @@ class AccountIconButton extends StatelessWidget {
                     ),
                     leading: const Icon(Icons.person_outline, size: 28),
                     title: const Text(
-                      "View Profile",
+                      "Profile",
                       style: TextStyle(fontSize: 18),
                     ),
                     onTap: () async {
@@ -110,7 +110,7 @@ class AccountIconButton extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: const Text("User Details"),
+                              title: const Text("Details"),
                               content: SingleChildScrollView(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
