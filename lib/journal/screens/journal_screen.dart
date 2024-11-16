@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:mentora_frontend/auth/screens/signin_screen.dart';
+import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
-import 'package:mentora_frontend/auth/widgets/logout_button.dart';
-// import 'package:mentora_frontend/navigation_drawer.dart';
-
-// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});
@@ -15,6 +13,8 @@ class JournalScreen extends StatefulWidget {
 }
 
 class _JournalScreenState extends State<JournalScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   DateTime selectedDate = DateTime.now();
   int overallRating = 0;
   int moodRating = 0;
@@ -25,14 +25,33 @@ class _JournalScreenState extends State<JournalScreen> {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
+  String userName = '';
+  String email = '';
+  String fullName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userName = prefs.getString('userName') ?? 'User';
+      email = prefs.getString('email') ?? 'email@example.com';
+      fullName = prefs.getString('fullName') ?? 'Full Name';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: LogoutButton.buildDrawer(context),
+      key: _scaffoldKey,
+      // drawer: const CustomNavigationDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        // elevation: 0,
-        // centerTitle: false,
+        automaticallyImplyLeading: false,
+
         title: const Text(
           "Journal",
           style: TextStyle(
@@ -41,16 +60,22 @@ class _JournalScreenState extends State<JournalScreen> {
             fontSize: 24,
           ),
         ),
+        backgroundColor: Colors.white,
+        // leading: IconButton(
+        //   icon: const Icon(Icons.person),
+        //   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+        // ),
 
         actions: [
-          LogoutButton(
-            onLogout: () {
-              // Navigate to signin screen
-              Navigator.pushReplacementNamed(context, '/signin');
-            },
+          AccountIconButton(
+            userName: '',
+            email: '',
+            onLogout: () {},
+            fullName: '',
           ),
         ],
       ),
+
       body: Container(
         color: Colors.green[50],
         padding: const EdgeInsets.all(16.0),
@@ -212,7 +237,7 @@ class _JournalScreenState extends State<JournalScreen> {
               children: [
                 const Text('Completed the most important task?',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 16,
                       color: Colors.black,
                     )),
                 Switch(

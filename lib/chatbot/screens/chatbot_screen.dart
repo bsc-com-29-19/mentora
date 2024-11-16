@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mentora_frontend/auth/widgets/logout_button.dart';
-
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
+// import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
 
 // import 'package:get/get.dart';
 // import 'package:google_generative_ai/google_generative_ai.dart';
 // import 'package:mentora_frontend/chatbot/models/chat_model.dart';
 import 'package:mentora_frontend/chatbot/viewmodels/chatbot_viewmodel.dart';
 import 'package:mentora_frontend/chatbot/widgets/chat_bubble.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:mentora_frontend/chatbot/widgets/chat_message.dart';
 
@@ -22,6 +22,29 @@ class ChatbotScreen extends StatefulWidget {
 }
 
 class _ChatbotScreenState extends State<ChatbotScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  
+  String userName = '';
+  String email = '';
+  String fullName = '';
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _loadUserData();
+  // }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userName = prefs.getString('userName') ?? 'User';
+      email = prefs.getString('email') ?? 'email@example.com';
+      fullName = prefs.getString('fullName') ?? 'Full Name';
+    });
+  }
+
+
   final ChatbotController _chatbotController = ChatbotController();
   final ScrollController _scrollcontroller = ScrollController();
   final TextEditingController _textController = TextEditingController();
@@ -36,17 +59,20 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     super.initState();
     // Call this whenever the messages list updates to scroll down
     _chatbotController.messages.listen((_) => _scrollDown());
+     _loadUserData();
   }
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  
-      drawer: LogoutButton.buildDrawer(context),
+     key: _scaffoldKey,
+      //  drawer: const CustomNavigationDrawer(),
 
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+
         title: const Text(
           "Mentora Therapist",
           style: TextStyle(
@@ -55,18 +81,17 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
             fontSize: 24,
           ),
         ),
-      
-         actions: [
-         LogoutButton(
-         onLogout: () {
-          // Navigate to signin screen
-          Navigator.pushReplacementNamed(context, '/signin');
-        },
-       ),
-      ],
-        
 
+        // leading: IconButton(
+        //   icon: const Icon(Icons.person),
+        //   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+        // ),
+        
+         actions: [
+                AccountIconButton(userName: '', email: '', onLogout: () {  }, fullName: '',),
+                ],
       ),
+    
       body: Column(
         children: [
           Expanded(

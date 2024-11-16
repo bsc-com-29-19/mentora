@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
+// import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -10,6 +12,28 @@ class ActivityScreen extends StatefulWidget {
 }
 
 class _ActivityPageState extends State<ActivityScreen> {
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  String userName = '';
+  String email = '';
+  String fullName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userName = prefs.getString('userName') ?? 'User';
+      email = prefs.getString('email') ?? 'email@example.com';
+      fullName = prefs.getString('fullName') ?? 'Full Name';
+    });
+  }
+  
   // Variables to store activity completion status
   bool runningCompleted = false;
   bool readingCompleted = false;
@@ -104,24 +128,29 @@ class _ActivityPageState extends State<ActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      drawer: LogoutButton.buildDrawer(context),
-
+       key: _scaffoldKey,
+      //  drawer: const CustomNavigationDrawer(),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        
         title: const Text(
           'Activities',
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
-        actions: [
-          LogoutButton(
-            onLogout: () {
-              // Navigate to signin screen
-              Navigator.pushReplacementNamed(context, '/signin');
-            },
-          ),
-        ],
+        
+        // leading: IconButton(
+        //   icon: const Icon(Icons.person),
+        //   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+        // ),
+        
+         actions: [
+                AccountIconButton( userName: '', email: '', onLogout: () {}, fullName: '',),
+                ],
       ),
+     
+     
+
       body: Column(
         children: [
           Padding(
