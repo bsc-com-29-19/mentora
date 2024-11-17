@@ -554,6 +554,400 @@
         "documentation": {}
     },
     {
+        "label": "app.activities.db_connection",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "generate_activities_custom_for_all_users",
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "isExtraImport": true,
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_connection_check",
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "isExtraImport": true,
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "shutdown_scheduler",
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "isExtraImport": true,
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocket",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocketDisconnect",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "ChatOpenAI",
         "importPath": "langchain_openai",
         "description": "langchain_openai",
@@ -762,6 +1156,126 @@
         "documentation": {}
     },
     {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "dependencies",
+        "description": "dependencies",
+        "isExtraImport": true,
+        "detail": "dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "list_all_users_service",
+        "importPath": "app.auth.services",
+        "description": "app.auth.services",
+        "isExtraImport": true,
+        "detail": "app.auth.services",
+        "documentation": {}
+    },
+    {
         "label": "list_all_journals_service",
         "importPath": "app.journal.services",
         "description": "app.journal.services",
@@ -779,107 +1293,21 @@
         "documentation": {}
     },
     {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "logging",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
         "documentation": {}
     },
     {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "random",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
@@ -1001,326 +1429,6 @@
         "description": "langchain_core.prompts",
         "isExtraImport": true,
         "detail": "langchain_core.prompts",
-        "documentation": {}
-    },
-    {
-        "label": "APIRouter",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Request",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "APIRouter",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "APIRouter",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "WebSocket",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "WebSocketDisconnect",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "APIRouter",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "APIRouter",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "APIRouter",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "FastAPI",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "Response",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_current_user",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_current_user",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_current_user",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_current_user",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_current_user",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
-        "documentation": {}
-    },
-    {
-        "label": "get_current_user",
-        "importPath": "dependencies",
-        "description": "dependencies",
-        "isExtraImport": true,
-        "detail": "dependencies",
         "documentation": {}
     },
     {
@@ -1649,22 +1757,6 @@
         "documentation": {}
     },
     {
-        "label": "get_db_connection_check",
-        "importPath": "app.activities.db_connection",
-        "description": "app.activities.db_connection",
-        "isExtraImport": true,
-        "detail": "app.activities.db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "shutdown_scheduler",
-        "importPath": "app.activities.db_connection",
-        "description": "app.activities.db_connection",
-        "isExtraImport": true,
-        "detail": "app.activities.db_connection",
-        "documentation": {}
-    },
-    {
         "label": "upgrade",
         "kind": 2,
         "importPath": "alembic.versions.faa54a879958_created_db_models",
@@ -1764,20 +1856,11 @@
         "documentation": {}
     },
     {
-        "label": "generate_activities_for_user",
+        "label": "generate_activities_custom_for_all_users",
         "kind": 2,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "def generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])\n    # journal_text = \"\\n\".join([f\"Date: {entry['entry_date']}\\nSummary: {entry['day_summary']}\\nMood: {entry['mood']}\\nMost Important Task: {entry['important_task']}\\nGrateful Things: {', '.join(entry['grateful_things'])}\\nCompleted: {entry['completed_task']}\\n\" for entry in journals])\n    # # AI prompt to analyze journals and suggest activities\n    # prompt = f\"\"\"\n    # Based on the following journal entries from user '{user['full_name']}', suggest six personalized activities to support their mental and emotional well-being:\n    # Journals:\n    # {journal_text}",
-        "detail": "app.activities.db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "generate_daily_activities",
-        "kind": 2,
-        "importPath": "app.activities.db_connection",
-        "description": "app.activities.db_connection",
-        "peekOfCode": "def generate_daily_activities():\n    \"\"\"\n    Function to generate six activities for each user based on their journal entries.\n    This function will be called daily at 23:00 CAT by the scheduler.\n    \"\"\"\n    try:\n        # Query to fetch all users and their journal entries\n        # query = \"\"\"\n        # SELECT users.id AS user_id, users.name, journals.content AS journal_content, journals.created_at\n        # FROM users",
+        "peekOfCode": "def generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",\n    #     \"Title: Connect with a friend\\nDescription: Socializing and spending time with friends improves emotional well-being.\",\n    #     \"Title: Journal\\nDescription: Writing about your feelings can help process emotions and clear your mind.\",",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1804,7 +1887,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "DATABASE_URL = os.getenv('DATABASE_URL')\n##### db = sql_database(DATABASE_URL)\ndb = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []",
+        "peekOfCode": "DATABASE_URL = os.getenv('DATABASE_URL')\n##### db = sql_database(DATABASE_URL)\ndb = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  ",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1813,7 +1896,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "db = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])",
+        "peekOfCode": "db = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1822,7 +1905,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])\n    # journal_text = \"\\n\".join([f\"Date: {entry['entry_date']}\\nSummary: {entry['day_summary']}\\nMood: {entry['mood']}\\nMost Important Task: {entry['important_task']}\\nGrateful Things: {', '.join(entry['grateful_things'])}\\nCompleted: {entry['completed_task']}\\n\" for entry in journals])\n    # # AI prompt to analyze journals and suggest activities\n    # prompt = f\"\"\"\n    # Based on the following journal entries from user '{user['full_name']}', suggest six personalized activities to support their mental and emotional well-being:",
+        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1831,7 +1914,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_for_user(user, journals, db):\n    activities = []\n    # Combine journal entries into one prompt for the AI\n    # journal_text = \"\\n\".join([entry['journal_content'] for entry in journals])\n    # journal_text = \"\\n\".join([f\"Date: {entry['entry_date']}\\nSummary: {entry['day_summary']}\\nMood: {entry['mood']}\\nMost Important Task: {entry['important_task']}\\nGrateful Things: {', '.join(entry['grateful_things'])}\\nCompleted: {entry['completed_task']}\\n\" for entry in journals])\n    # # AI prompt to analyze journals and suggest activities\n    # prompt = f\"\"\"\n    # Based on the following journal entries from user '{user['full_name']}', suggest six personalized activities to support their mental and emotional well-being:\n    # Journals:",
+        "peekOfCode": "db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",\n    #     \"Title: Connect with a friend\\nDescription: Socializing and spending time with friends improves emotional well-being.\",",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1840,7 +1923,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "scheduler = BackgroundScheduler()\nscheduler.add_job(generate_daily_activities, 'cron', hour=21, minute=30)\nscheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)\n    return {\"status\": \"success\", \"data\": result}",
+        "peekOfCode": "scheduler = BackgroundScheduler()\nscheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=22, minute=0)\nscheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)\n    return {\"status\": \"success\", \"data\": result}",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -2166,6 +2249,15 @@
         "description": "app.auth.schema",
         "peekOfCode": "class UserResponse(BaseModel):\n    id: str\n    full_name:str\n    username: str\n    email: EmailStr\n    is_active: bool\n    created_at: datetime\n    updated_at: datetime",
         "detail": "app.auth.schema",
+        "documentation": {}
+    },
+    {
+        "label": "list_all_users_service",
+        "kind": 2,
+        "importPath": "app.auth.services",
+        "description": "app.auth.services",
+        "peekOfCode": "def list_all_users_service(db) -> list[User]:\n    users = db.query(User).all()\n    return users",
+        "detail": "app.auth.services",
         "documentation": {}
     },
     {
@@ -2637,11 +2729,11 @@
         "documentation": {}
     },
     {
-        "label": "check_db_connection",
+        "label": "check_db_connection2_activities",
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def check_db_connection():\n    return get_db_connection_check()\n# @app.on_event(\"shutdown\")\n# async def shutdown():\n#     await shutdown_scheduler()\n# The routes for users,journals,chatbot,activities\napp.include_router(user_router,prefix='/mentora/api/v1/auth',tags=[\"AUTH\"])\napp.include_router(journal_router,prefix=\"/mentora/api/v1/journals\",tags=[\"JOURNALS\"])\napp.include_router(chat_router,prefix=\"/mentora/api/v1/chatbot\",tags=[\"CHATBOT\"])\napp.include_router(activity_router,prefix=\"/mentora/api/v1/activities\",tags=[\"ACTIVITIES\"])",
+        "peekOfCode": "def check_db_connection2_activities():\n    return generate_activities_custom_for_all_users()\n# @app.on_event(\"shutdown\")\n# async def shutdown():\n#     await shutdown_scheduler()\n# The routes for users,journals,chatbot,activities\napp.include_router(user_router,prefix='/mentora/api/v1/auth',tags=[\"AUTH\"])\napp.include_router(journal_router,prefix=\"/mentora/api/v1/journals\",tags=[\"JOURNALS\"])\napp.include_router(chat_router,prefix=\"/mentora/api/v1/chatbot\",tags=[\"CHATBOT\"])\napp.include_router(activity_router,prefix=\"/mentora/api/v1/activities\",tags=[\"ACTIVITIES\"])",
         "detail": "main",
         "documentation": {}
     },
