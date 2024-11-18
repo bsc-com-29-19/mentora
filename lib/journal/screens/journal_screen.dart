@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:mentora_frontend/auth/screens/signin_screen.dart';
+import 'package:mentora_frontend/auth/screens/profile_screen.dart';
+import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
-import 'package:mentora_frontend/auth/widgets/logout_button.dart';
-// import 'package:mentora_frontend/navigation_drawer.dart';
-
-// import 'package:shared_preferences/shared_preferences.dart';
-
+// import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});
@@ -15,9 +13,9 @@ class JournalScreen extends StatefulWidget {
   _JournalScreenState createState() => _JournalScreenState();
 }
 
-
-
 class _JournalScreenState extends State<JournalScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   DateTime selectedDate = DateTime.now();
   int overallRating = 0;
   int moodRating = 0;
@@ -28,42 +26,55 @@ class _JournalScreenState extends State<JournalScreen> {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
-  
+  String username = '';
+  String email = '';
+  String fullName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = prefs.getString('username') ?? 'User';
+      email = prefs.getString('email') ?? 'email@example.com';
+      fullName = prefs.getString('fullName') ?? 'Full Name';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      
+      key: _scaffoldKey,
+      // drawer: const CustomNavigationDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        // elevation: 0,
-        // centerTitle: false,
+        automaticallyImplyLeading: false,
+
         title: const Text(
           "Journal",
-          
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
         ),
-        
-        actions: [
-         LogoutButton(
-         onLogout: () {
-          // Navigate to signin screen
-          Navigator.pushReplacementNamed(context, '/signin');
-        },
-       ),
-      ],
-        
-      ),
+        backgroundColor: Colors.white,
       
-    
+        actions: [
+          AccountIconButton(
+            username: username,
+            email: email,
+            fullName: fullName,
+            onLogout: ProfileScreen.handleLogout,
+          ),
+        ],
+      ),
 
       body: Container(
-        color: Colors.green[50], 
+        color: Colors.green[50],
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
@@ -85,7 +96,7 @@ class _JournalScreenState extends State<JournalScreen> {
                   },
                   child: Text(
                     "${selectedDate.toLocal()}".split(' ')[0],
-                    style: const TextStyle(color: Colors.black), 
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ],
@@ -95,7 +106,7 @@ class _JournalScreenState extends State<JournalScreen> {
             // Morning task
             TextField(
               controller: taskController,
-              cursorColor: Colors.black, 
+              cursorColor: Colors.black,
               decoration: const InputDecoration(
                 labelText: 'Write your most important task today',
                 labelStyle: TextStyle(color: Colors.black),
@@ -121,7 +132,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController1,
-              cursorColor: Colors.black, 
+              cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: '1.',
                 border: OutlineInputBorder(),
@@ -135,7 +146,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController2,
-              cursorColor: Colors.black, 
+              cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: '2.',
                 border: OutlineInputBorder(),
@@ -149,7 +160,7 @@ class _JournalScreenState extends State<JournalScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: gratitudeController3,
-              cursorColor: Colors.black, 
+              cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: '3.',
                 border: OutlineInputBorder(),
@@ -222,12 +233,12 @@ class _JournalScreenState extends State<JournalScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Completed the most important task?',
-                    style: TextStyle( 
-                      fontSize: 14,
-                      color: Colors.black, 
-                      )),
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                    )),
                 Switch(
-                  activeColor: Colors.green,
+                  activeColor: Colors.green.shade300,
                   value: taskCompleted,
                   onChanged: (value) {
                     setState(() {
@@ -242,7 +253,7 @@ class _JournalScreenState extends State<JournalScreen> {
             // How did you spend your day?
             TextField(
               controller: daySummaryController,
-              cursorColor: Colors.black, 
+              cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: 'How did you spend your day?',
                 border: OutlineInputBorder(),
@@ -264,8 +275,6 @@ class _JournalScreenState extends State<JournalScreen> {
           ],
         ),
       ),
-     
-     
     );
   }
 
@@ -307,7 +316,7 @@ class _JournalScreenState extends State<JournalScreen> {
         Radio<int>(
           value: value,
           groupValue: groupValue,
-          activeColor: Colors.green,
+          activeColor: Colors.green.shade300,
           onChanged: onChanged,
         ),
         Text(label, style: const TextStyle(color: Colors.black)),
@@ -329,5 +338,3 @@ class _JournalScreenState extends State<JournalScreen> {
     }
   }
 }
-
-

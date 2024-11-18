@@ -1,32 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mentora_frontend/auth/widgets/logout_button.dart';
+import 'package:get/get.dart';
+import 'package:mentora_frontend/auth/screens/profile_screen.dart';
+import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
+import 'package:mentora_frontend/stats/viewmodels/stats_view_model.dart';
+import 'package:mentora_frontend/stats/widgets/activities_trend_chart.dart';
+import 'package:mentora_frontend/stats/widgets/mood_trend_chart.dart';
+import 'package:mentora_frontend/stats/widgets/stats_card.dart';
 
-void main() {
-  runApp(MentoraApp());
-}
-
-// Root widget for the application
-class MentoraApp extends StatelessWidget {
-  
-  @override
-  Widget build(BuildContext context) {
-    
-    return MaterialApp(
-      title: 'Mentora',
-
-      debugShowCheckedModeBanner: false,  // Remove the debug banner
-      theme: ThemeData(
-        brightness: Brightness.dark, // Set the theme to dark mode
-      ),
-      home: StatsScreen(), 
-      // Set the StatsScreen as the home screen
-    );
-  }
-}
-
-
-// Main screen widget that displays the stats summary and mood trend
 class StatsScreen extends StatelessWidget {
+  final StatsController statsController = Get.put(StatsController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,192 +17,78 @@ class StatsScreen extends StatelessWidget {
         title: const Text(
           'Stats',
           style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
         ),
         actions: [
-          LogoutButton(
-            onLogout: () {
-              // Navigate to signin screen
-              Navigator.pushReplacementNamed(context, '/signin');
-            },
-          ),
+          Obx(() {
+            return AccountIconButton(
+              username: statsController.username.value,
+              email: statsController.email.value,
+              fullName: statsController.fullName.value,
+              onLogout: ProfileScreen.handleLogout,
+            );
+          }),
         ],
       ),
-      
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Title for the summary section
-            const Text(
-              'Summary: Last 30 days',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16), // Spacing below the title
-            // Row containing the expandable stat cards
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                // Each card displays a stat with expandable details
-                StatCardExpandable(
-                  label: 'Activities completion',
-                  value: '0 %',
-                  details: 'Details about Activities completion',
-                ),
-                StatCardExpandable(
-                  label: 'Average self rating',
-                  value: '0 / 5',
-                  details: 'Details about Average self rating',
-                ),
-                StatCardExpandable(
-                  label: 'Incomplete Activities',
-                  value: '23',
-                  details: 'Details about Incomplete Activities',
-                ),
-              ],
-            ),
-            const SizedBox(height: 32), // Spacing below the stat cards
-            // Title for the mood trend section
-            const Text(
-              'Mood Trend',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16), // Spacing below the mood trend title
-            // Mood trend chart
-            Expanded(
-              child: MoodTrendChart(),
+      body: Obx(() {
+        if (statsController.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (statsController.errorMessage.isNotEmpty) {
+          return Center(child: Text(statsController.errorMessage.value));
+        }
 
-              
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// Widget representing an expandable stat card with details
-class StatCardExpandable extends StatelessWidget {
-  final String label; // Label for the stat
-  final String value; // Main value displayed on the card
-  final String details; // Additional details shown when expanded
-
-  const StatCardExpandable({
-    super.key,
-    required this.label,
-    required this.value,
-    required this.details,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        // Box decoration for the card container
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey), // Border color
-          borderRadius: BorderRadius.circular(8), // Rounded corners
-          color: Colors.grey.shade900, // Background color
-        ),
-        margin: const EdgeInsets.symmetric(horizontal: 8.0), // Margin between cards
-        child: Card(
-          elevation: 8,
-          // Expansion tile allows the card to be expandable
-          child: ExpansionTile(
-            title: Column(
-              children: [
-                Text(
-                  value, // Display the main value
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  label, // Display the label
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 14),
-                ),
-              ],
-            ),
-            // Additional details shown when expanded
+        // Safely fetch stats values
+        final completionPercentage =
+            statsController.getCompletionPercentage().toStringAsFixed(1);
+        final allDaysTrends = statsController.getAllDaysTrends();
+        final allDaysTrendsTyped = allDaysTrends.cast<Map<String, dynamic>>();
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(details),
+              const Text(
+                'Summary: Last 30 Days',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  StatCardExpandable(
+                    label: 'Activities completion',
+                    value: '${statsController.getCompletionPercentage()}%',
+                    details: 'Completion details for the week.',
+                  ),
+                  StatCardExpandable(
+                    label: 'Incomplete Activities',
+                    value: '${statsController.calculateIncompleteActivities()}',
+                    details: 'Details about incomplete activities.',
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+              const Text(
+                'Mood Trend',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Expanded(
+                child: MoodTrendChart(moodData: allDaysTrendsTyped),
+              ),
+              const SizedBox(height: 32),
+              const Text(
+                'Activities Trend',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Expanded(
+                child: ActivitiesTrendChart(activitiesData: allDaysTrendsTyped),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-// Widget representing the mood trend chart with vertical bars
-class MoodTrendChart extends StatelessWidget {
-  const MoodTrendChart({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: const [
-        // Each MoodBar represents a data point in the mood trend chart for each day of the week
-        MoodBar(value: 76, label: '26.4%', day: 'Mon'),
-        MoodBar(value: 95, label: '33.0%', day: 'Tue'),
-        MoodBar(value: 36, label: '12.5%', day: 'Wed'),
-        MoodBar(value: 81, label: '28.1%', day: 'Thu'),
-        MoodBar(value: 45, label: '15.0%', day: 'Fri'),
-        MoodBar(value: 68, label: '21.7%', day: 'Sat'),
-        MoodBar(value: 52, label: '17.6%', day: 'Sun'),
-      ],
-      
-
-    );
-    
-    
-  }
-}
-
-// Widget representing a single bar in the mood trend chart
-class MoodBar extends StatelessWidget {
-  final double value; // Value of the mood bar (percentage)
-  final String label; // Percentage label shown below the bar
-  final String day;   // Day label for each bar
-
-  const MoodBar({required this.value, required this.label, required this.day});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          // Container for the bar itself
-          child: Container(
-            width: 30,
-            decoration: BoxDecoration(
-              color: Colors.grey, // Bar background color
-              borderRadius: BorderRadius.circular(4), // Rounded corners for the bar
-            ),
-            child: FractionallySizedBox(
-              alignment: Alignment.bottomCenter,
-              heightFactor: value / 100, // Scale the bar height based on value
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.green.shade300, // Bar fill color
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 4), // Space between bar and label
-        Text(label, style: const TextStyle(fontSize: 12)), // Display the percentage label
-        Text(day, style: const TextStyle(fontSize: 12)), // Display the day label
-       
-      ],
+        );
+      }),
     );
   }
 }

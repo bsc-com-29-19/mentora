@@ -8,6 +8,8 @@ class ApiEndpoints {
   static _ChatEndpoints chatEndpoints = _ChatEndpoints();
   static _StreamChatbotEndpoints streamChatbotEndpoints =
       _StreamChatbotEndpoints();
+
+  static _StatsEndpoints statsEndpoints = _StatsEndpoints();
 }
 
 class _AuthEndPoints {
@@ -29,4 +31,8 @@ class _ChatEndpoints {
 
 class _StreamChatbotEndpoints {
   final String streamChatbot = "/chatbot/ws/chat";
+}
+
+class _StatsEndpoints {
+  final String stats = "/stats/";
 }

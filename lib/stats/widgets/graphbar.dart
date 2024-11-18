@@ -1,11 +1,13 @@
+//
 import 'package:flutter/material.dart';
 
-
-class MoodBar extends StatelessWidget {
+class GraphBar extends StatelessWidget {
   final double value;
   final String label;
+  final String day;
 
-  const MoodBar({required this.value, required this.label});
+  const GraphBar(
+      {required this.value, required this.label, required this.day, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class MoodBar extends StatelessWidget {
               heightFactor: value / 100,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: Colors.green.shade300,
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -32,6 +34,8 @@ class MoodBar extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(label, style: const TextStyle(fontSize: 12)),
+        Text(day, style: const TextStyle(fontSize: 12)),
+        const SizedBox(height: 4),
       ],
     );
   }
