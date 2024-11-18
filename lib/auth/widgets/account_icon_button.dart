@@ -1,4 +1,3 @@
-// account_icon_button.dart
 import 'package:flutter/material.dart';
 
 class AccountIconButton extends StatelessWidget {
@@ -15,13 +14,11 @@ class AccountIconButton extends StatelessWidget {
     required this.onLogout,
   });
 
-  
-
-
+  // Method to handle logout confirmation with user interaction
   void _handleLogoutConfirmation(BuildContext context) async {
     try {
       Navigator.pop(context); // Close the account menu
-      final result = await showDialog<bool>(
+      final result = await showDialog<bool>( // Show confirmation dialog
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -32,11 +29,11 @@ class AccountIconButton extends StatelessWidget {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context, false),
+                onPressed: () => Navigator.pop(context, false), // Cancel logout
                 child: const Text("Cancel"),
               ),
               TextButton(
-                onPressed: () => Navigator.pop(context, true),
+                onPressed: () => Navigator.pop(context, true), // Confirm logout
                 child: const Text(
                   "Logout",
                   style: TextStyle(color: Colors.red),
@@ -48,24 +45,25 @@ class AccountIconButton extends StatelessWidget {
       );
 
       if (result == true) {
-        await Future.delayed(const Duration(milliseconds: 200));
-        onLogout!();
+        await Future.delayed(const Duration(milliseconds: 200)); // Slight delay for effect
+        onLogout!(); // Call the logout function passed as a callback
       }
     } catch (e) {
       debugPrint('Error during logout process: $e');
     }
   }
 
+  // Method to display account menu with options
   void _showAccountMenu(BuildContext context) {
     final size = MediaQuery.of(context).size;
     
     showDialog(
       context: context,
-      barrierColor: Colors.black54,
-      barrierDismissible: true,
+      barrierColor: Colors.black54, // Dim the background
+      barrierDismissible: true, // Allow dismissing by tapping outside
       builder: (BuildContext context) {
         return Align(
-          alignment: Alignment.topRight,
+          alignment: Alignment.topRight, // Align the menu to top-right
           child: Material(
             color: Colors.transparent,
             child: Container(
@@ -73,8 +71,8 @@ class AccountIconButton extends StatelessWidget {
                 top: MediaQuery.of(context).padding.top,
                 right: 0,
               ),
-              width: size.width * 0.85,
-              height: size.height * 0.9,
+              width: size.width * 0.85, // Ensure the menu uses 85% of screen width
+              height: size.height * 0.9, // Menu height is 90% of screen height
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -145,7 +143,7 @@ class AccountIconButton extends StatelessWidget {
                     ),
                     onTap: () async {
                       try {
-                        Navigator.pop(context);
+                        Navigator.pop(context); // Close menu on profile tap
                         await showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -156,7 +154,7 @@ class AccountIconButton extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    if (username.isNotEmpty) ...[
+                                    if (username.isNotEmpty) ...[ // If username is available
                                       const Text(
                                         "Username:",
                                         style: TextStyle(
@@ -166,7 +164,7 @@ class AccountIconButton extends StatelessWidget {
                                       Text(username),
                                       const SizedBox(height: 16),
                                     ],
-                                    if (fullName.isNotEmpty) ...[
+                                    if (fullName.isNotEmpty) ...[ // If full name is available
                                       const Text(
                                         "Full Name:",
                                         style: TextStyle(
@@ -176,7 +174,7 @@ class AccountIconButton extends StatelessWidget {
                                       Text(fullName),
                                       const SizedBox(height: 16),
                                     ],
-                                    if (email.isNotEmpty) ...[
+                                    if (email.isNotEmpty) ...[ // If email is available
                                       const Text(
                                         "Email:",
                                         style: TextStyle(
@@ -190,7 +188,7 @@ class AccountIconButton extends StatelessWidget {
                               ),
                               actions: [
                                 TextButton(
-                                  onPressed: () => Navigator.pop(context),
+                                  onPressed: () => Navigator.pop(context), // Close details dialog
                                   child: const Text("Close"),
                                 ),
                               ],
@@ -222,7 +220,7 @@ class AccountIconButton extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    onTap: () => _handleLogoutConfirmation(context),
+                    onTap: () => _handleLogoutConfirmation(context), // Handle logout confirmation
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -237,20 +235,8 @@ class AccountIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.person, color: Colors.black),
-      onPressed: () => _showAccountMenu(context),
+      icon: const Icon(Icons.person, color: Colors.black), // Icon for the account menu
+      onPressed: () => _showAccountMenu(context), // Show account menu on tap
     );
   }
 }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return IconButton(
-//       icon: Icon(Icons.logout),
-//       onPressed: onLogout ?? () {
-//         // Default action if onLogout is null
-//         print("Logout function not provided");
-//       },
-//     );
-//   }
-// }

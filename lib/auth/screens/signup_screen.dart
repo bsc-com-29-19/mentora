@@ -1,4 +1,3 @@
-// signup_screen.dart
 import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/widgets/signup_form.dart';
@@ -7,7 +6,6 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
@@ -17,28 +15,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white, // Background color set to white
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0), // Consistent padding
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
             children: [
+              // Header
               Row(
                 children: [
-                  // Image.asset(
-                  //   'assets/images/mentora-logo.png',
-                  //   width: 20,
-                  //   height: 20,
-                  // ),
                   const SizedBox(width: 5),
                   Expanded(
                     child: Center(
                       child: const Text(
                         'Mentora',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                          color: Colors.black, // Text color
+                          fontSize: 24, // Header font size
+                          fontWeight: FontWeight.bold, // Emphasized header
                         ),
                       ),
                     ),
@@ -46,26 +41,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+
+              // Page Title
+              const Text(
+                'Sign Up',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 20),
+
+              // Sign Up Form
               SignupForm(formKey: _formKey),
               const SizedBox(height: 20),
+
+              // Login Prompt
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     'Already have an account?',
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.grey), // Subtle prompt color
                   ),
                   TextButton(
                     onPressed: () {
@@ -78,7 +76,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                     child: const Text(
                       'Login',
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(
+                        color: Colors.black, // Text color
+                        fontWeight: FontWeight.bold, // Highlight the action
+                      ),
                     ),
                   ),
                 ],

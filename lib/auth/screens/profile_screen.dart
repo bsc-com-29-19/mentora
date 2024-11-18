@@ -1,4 +1,3 @@
-// profile_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
@@ -17,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
       await prefs.remove('fullName');
       await prefs.remove('token');
       await prefs.setBool('isAuthenticated', false);
-      
+
       await Get.offAllNamed('/signin'); // Redirect to the sign-in screen
     } catch (e) {
       debugPrint('Error during logout: $e');
@@ -33,7 +32,6 @@ class ProfileScreen extends StatefulWidget {
   }
 
   @override
-  // ignore: library_private_types_in_public_api
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
@@ -52,13 +50,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _loadUserData() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      
+
       // Retrieve user data from SharedPreferences with default empty strings
       final storedUsername = prefs.getString('username') ?? '';
       final storedEmail = prefs.getString('email') ?? '';
       final storedFullName = prefs.getString('fullName') ?? '';
       final isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
-      
+
       if (mounted) {
         // Check both authentication status and data presence
         if (!isAuthenticated || (storedUsername.isEmpty && storedEmail.isEmpty)) {
@@ -66,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           await ProfileScreen.handleLogout();
           return;
         }
-        
+
         setState(() {
           username = storedUsername;
           email = storedEmail;
@@ -108,15 +106,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white, // Background color set to white
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
           "Profile",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black, // AppBar text color
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
+        backgroundColor: Colors.white, // AppBar background color
+        elevation: 0, // Remove shadow
         iconTheme: const IconThemeData(color: Colors.black),
         actions: [
           AccountIconButton(
@@ -137,6 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // Profile Avatar
                   CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.grey.shade200,
@@ -144,25 +146,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       username.isNotEmpty ? username[0].toUpperCase() : 'U',
                       style: TextStyle(
                         fontSize: 40,
-                        color: Colors.green.shade300,
+                        color: Colors.green.shade300, // Avatar text color
                       ),
                     ),
                   ),
                   const SizedBox(height: 18),
+
+                  // Full Name
                   Text(
                     fullName.isNotEmpty ? fullName : 'No name available',
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.black, // Text color
                     ),
                   ),
                   const SizedBox(height: 8),
+
+                  // Email
                   Text(
                     email.isNotEmpty ? email : 'No email available',
                     style: const TextStyle(
                       fontSize: 16,
-                      color: Colors.black87,
+                      color: Colors.black87, // Subtle text color
                     ),
                   ),
                 ],

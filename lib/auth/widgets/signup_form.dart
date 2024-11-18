@@ -1,5 +1,3 @@
-// signup_form.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/viewmodels/signup_view_model.dart';
@@ -16,22 +14,20 @@ class SignupForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<SignupForm> {
-  final RegistrationController registrationController =
-      Get.put(RegistrationController());
+  final RegistrationController registrationController = Get.put(RegistrationController());
 
   String _fullName = '';
   String _username = '';
   String _email = '';
   String _password = '';
-  bool _isPasswordVisible = false; 
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,
       child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start, 
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Full Name label and field
           const Text(
@@ -41,20 +37,22 @@ class _SignupFormState extends State<SignupForm> {
           const SizedBox(height: 8),
           TextFormField(
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
+            cursorColor: Colors.green.shade300,
             decoration: InputDecoration(
-              
               hintText: 'Enter your full name',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green.shade300),
               ),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your full name';
+              }
+              if (value.length < 2) {
+                return 'Full name must be at least 2 characters long';
               }
               return null;
             },
@@ -71,20 +69,22 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.usernameController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
+            cursorColor: Colors.green.shade300,
             decoration: InputDecoration(
-              
               hintText: 'Enter unique username',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green.shade300),
               ),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter a username';
+              }
+              if (value.contains(' ')) {
+                return 'Username should not contain spaces';
               }
               return null;
             },
@@ -101,15 +101,14 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.emailController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
+            cursorColor: Colors.green.shade300,
             decoration: InputDecoration(
-             
               hintText: 'Enter your email address',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green.shade300),
               ),
             ),
             validator: (value) {
@@ -131,21 +130,20 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.passwordController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
-            obscureText: !_isPasswordVisible, 
+            cursorColor: Colors.green.shade300,
+            obscureText: !_isPasswordVisible,
             decoration: InputDecoration(
-              
               hintText: "Enter your secure password",
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green.shade300),
               ),
               suffixIcon: IconButton(
                 icon: Icon(
                   _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.green,
+                  color: Colors.green.shade300,
                 ),
                 onPressed: () {
                   setState(() {
@@ -158,22 +156,26 @@ class _SignupFormState extends State<SignupForm> {
               if (value == null || value.isEmpty || value.length < 8) {
                 return 'Please enter a password with at least 8 characters';
               }
+              if (!RegExp(r'(?=.*[A-Z])(?=.*[0-9])').hasMatch(value)) {
+                return 'Password must include at least one number and one uppercase letter';
+              }
               return null;
             },
             onSaved: (value) => _password = value!,
           ),
           const SizedBox(height: 20),
 
-          // Sign Up button
           Button(
-            text: 'Sign Up',
-            onPressed: () async {
-              if (widget.formKey.currentState!.validate()) {
-                // Perform sign up actions
-                await registrationController.registerUser();
-              }
-            },
+           text: 'Sign Up',
+           onPressed: () async {
+           if (widget.formKey.currentState!.validate()) {
+           widget.formKey.currentState!.save();
+           await registrationController.registerUser();
+           }
+           },
+           color: Colors.green.shade300, // Matches your color scheme
           ),
+
         ],
       ),
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mentora_frontend/auth/screens/profile_screen.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
-// import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalScreen extends StatefulWidget {
@@ -49,10 +48,8 @@ class _JournalScreenState extends State<JournalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      // drawer: const CustomNavigationDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
         title: const Text(
           "Journal",
           style: TextStyle(
@@ -62,7 +59,6 @@ class _JournalScreenState extends State<JournalScreen> {
           ),
         ),
         backgroundColor: Colors.white,
-      
         actions: [
           AccountIconButton(
             username: username,
@@ -72,7 +68,6 @@ class _JournalScreenState extends State<JournalScreen> {
           ),
         ],
       ),
-
       body: Container(
         color: Colors.green[50],
         padding: const EdgeInsets.all(16.0),
@@ -107,14 +102,14 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: taskController,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Write your most important task today',
                 labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -133,13 +128,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: gratitudeController1,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: '1.',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -147,13 +142,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: gratitudeController2,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: '2.',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -161,13 +156,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: gratitudeController3,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: '3.',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -254,13 +249,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: daySummaryController,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'How did you spend your day?',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
               maxLines: 5,
@@ -279,47 +274,24 @@ class _JournalScreenState extends State<JournalScreen> {
   }
 
   void _submitJournal() {
-    // Gather the input data and perform submission logic
-    String task = taskController.text;
-    String gratitude1 = gratitudeController1.text;
-    String gratitude2 = gratitudeController2.text;
-    String gratitude3 = gratitudeController3.text;
-    String daySummary = daySummaryController.text;
-
-    // Print to console for now (replace with actual submission logic)
-    print("Task: $task");
-    print("Gratitude 1: $gratitude1");
-    print("Gratitude 2: $gratitude2");
-    print("Gratitude 3: $gratitude3");
-    print("Overall Rating: $overallRating");
-    print("Mood Rating: $moodRating");
-    print("Task Completed: $taskCompleted");
-    print("Day Summary: $daySummary");
-
-    // Optionally clear the fields after submission
-    taskController.clear();
-    gratitudeController1.clear();
-    gratitudeController2.clear();
-    gratitudeController3.clear();
-    daySummaryController.clear();
-    setState(() {
-      overallRating = 0;
-      moodRating = 0;
-      taskCompleted = false;
-    });
+    // Gather the input data here for processing or saving
+    print("Journal Submitted");
   }
 
-  Widget _buildRadioWithLabel(
-      int value, String label, int groupValue, ValueChanged<int?> onChanged) {
+  Widget _buildRadioWithLabel(int value, String label, int groupValue,
+      ValueChanged<int?> onChanged) {
     return Column(
       children: [
+        Text(
+          label,
+          style: const TextStyle(color: Colors.black),
+        ),
         Radio<int>(
           value: value,
           groupValue: groupValue,
-          activeColor: Colors.green.shade300,
           onChanged: onChanged,
+          activeColor: Colors.green.shade300,
         ),
-        Text(label, style: const TextStyle(color: Colors.black)),
       ],
     );
   }
