@@ -21,7 +21,7 @@ class StatsController extends GetxController {
     errorMessage('');
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-    logger.d("Token retrieved: $token");
+    // logger.d("Token retrieved: $token");
 
     try {
       if (token == null || token.isEmpty) {
@@ -31,8 +31,8 @@ class StatsController extends GetxController {
       final url =
           Uri.parse(ApiEndpoints.baseurl + ApiEndpoints.statsEndpoints.stats);
 
-      logger.d("Fetching stats data from $url");
-      logger.d("Token retrieved: $token");
+      // logger.d("Fetching stats data from $url");
+      // logger.d("Token retrieved: $token");
 
       final response = await http.get(
         url,
@@ -44,7 +44,7 @@ class StatsController extends GetxController {
 
       if (response.statusCode == 200) {
         stats.value = jsonDecode(response.body);
-        logger.d("fetched stats: ${response.body}");
+        // logger.d("fetched stats: ${response.body}");
         username.value = prefs.getString('username') ?? 'User';
         email.value = prefs.getString('email') ?? 'email@example.com';
         fullName.value = prefs.getString('fullName') ?? 'Full Name';
@@ -53,7 +53,7 @@ class StatsController extends GetxController {
         throw jsonDecode(response.body)['detail'] ?? 'Unknown error occurred.';
       }
     } catch (e) {
-      logger.e("Error during stats fetch", error: e.toString());
+      // logger.e("Error during stats fetch", error: e.toString());
       errorMessage.value = e.toString();
     } finally {
       isLoading(false);

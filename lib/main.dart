@@ -7,6 +7,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
 import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
+import 'package:mentora_frontend/journal/viewmodel/journal_view_model.dart';
 
 // import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
 import 'package:mentora_frontend/onboarding/screens/screen1.dart';
@@ -27,7 +28,8 @@ void main() async {
       prefs.getBool('onBoardingCompleted') ?? false;
 
   final bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
-
+  Get.put(JournalController());
+  
   runApp(MyApp(
     onBoardingCompleted: onBoardingCompleted,
     isAuthenticated: isAuthenticated,
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
   final bool isAuthenticated;
   final StatsController statsController = Get.put(StatsController());
 
-   MyApp(
+  MyApp(
       {super.key,
       required this.onBoardingCompleted,
       required this.isAuthenticated});
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-     statsController.fetchStatsData();
+    statsController.fetchStatsData();
     return GetMaterialApp(
       title: 'Mentora',
 
@@ -106,7 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: Colors.green.shade300,
       body: Stack(
         children: [
