@@ -2400,7 +2400,7 @@
         "kind": 2,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,\n        day_summary=journal_data.day_summary,\n        mood_tags=','.join(journal_data.mood_tags) if journal_data.mood_tags else None,\n        user_id=user.id",
+        "peekOfCode": "def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=journal_data.grateful_things,  \n        # grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,\n        day_summary=journal_data.day_summary,\n        mood_tags=journal_data.mood_tags if journal_data.mood_tags else None,",
         "detail": "app.journal.routes",
         "documentation": {}
     },
@@ -2445,7 +2445,7 @@
         "kind": 5,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "journal_router = APIRouter()\n# Create journal entry\n#  Todo : separate to services and routes: the route should call the service\n@journal_router.post('/')\ndef create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,",
+        "peekOfCode": "journal_router = APIRouter()\n# Create journal entry\n#  Todo : separate to services and routes: the route should call the service\n@journal_router.post('/')\ndef create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=journal_data.grateful_things,  \n        # grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,",
         "detail": "app.journal.routes",
         "documentation": {}
     },

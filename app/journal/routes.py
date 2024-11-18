@@ -14,12 +14,14 @@ journal_router = APIRouter()
 def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     journal_entry = JournalEntryDB(
         most_important_task=journal_data.most_important_task,
-        grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string
+        grateful_things=journal_data.grateful_things,  
+        # grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string
         overall_day_rating=journal_data.overall_day_rating,
         overall_mood_rating=journal_data.overall_mood_rating,
         completed_most_important_task=journal_data.completed_most_important_task,
         day_summary=journal_data.day_summary,
-        mood_tags=','.join(journal_data.mood_tags) if journal_data.mood_tags else None,
+        mood_tags=journal_data.mood_tags if journal_data.mood_tags else None,
+        # mood_tags=','.join(journal_data.mood_tags) if journal_data.mood_tags else None,
         user_id=user.id
     )
     db.add(journal_entry)
