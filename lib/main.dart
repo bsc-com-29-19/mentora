@@ -1,3 +1,4 @@
+//main.dart
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -52,9 +53,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // initialRoute: '/signin',
-      // routes: {
-      //   '/signin': (context) => const SigninScreen(),
-      // },
+      routes: {
+        '/signin': (context) => const SigninScreen(),
+        // '/signup': (context) => const SignUpScreen(),
+        // '/navigation': (context) => const NavigationMenu(),
+      },
       home: onBoardingCompleted
           ? (isAuthenticated ? const NavigationMenu() : const SigninScreen())
           : const MyHomePage(title: 'Mentora Home Page'),
@@ -99,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       backgroundColor: Colors.green.shade300,
       body: Stack(
         children: [
