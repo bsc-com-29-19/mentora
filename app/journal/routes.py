@@ -5,6 +5,7 @@ from app.auth.models import User
 from .schema import CreateUpdateJournal, UpdateJournal
 from .models import JournalEntryDB
 from .dependency import get_journal_for_user
+import json
 
 journal_router = APIRouter()
 
@@ -24,18 +25,24 @@ def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_
         # mood_tags=','.join(journal_data.mood_tags) if journal_data.mood_tags else None,
         user_id=user.id
     )
+
+
     db.add(journal_entry)
     db.commit()
     db.refresh(journal_entry)
     # return {
     #     "data": journal_entry.__dict__
+
     # }
+    grateful_things = json.loads(journal_entry.grateful_things)
+    mood_tags = json.loads(journal_entry.mood_tags) if journal_entry.mood_tags else None
+
     return {
         "data": {
             "id": str(journal_entry.id),
-            "grateful_things": journal_entry.grateful_things,
+            "grateful_things": grateful_things,
             "completed_most_important_task": journal_entry.completed_most_important_task,
-            "mood_tags": journal_entry.mood_tags,
+            "mood_tags": mood_tags,
             "entry_date": journal_entry.entry_date.isoformat(),
             "user_id": str(journal_entry.user_id),
             "most_important_task": journal_entry.most_important_task,
