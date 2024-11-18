@@ -1,20 +1,60 @@
-
 // account_icon_button.dart
 import 'package:flutter/material.dart';
 
 class AccountIconButton extends StatelessWidget {
-  final String userName;
+  final String username;
   final String email;
   final String fullName;
-  final VoidCallback onLogout;
+  final VoidCallback? onLogout;
 
   const AccountIconButton({
     super.key,
-    required this.userName,
+    required this.username,
     required this.email,
     required this.fullName,
     required this.onLogout,
   });
+
+  
+
+
+  void _handleLogoutConfirmation(BuildContext context) async {
+    try {
+      Navigator.pop(context); // Close the account menu
+      final result = await showDialog<bool>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Confirm Logout"),
+            content: const Text(
+              "Are you sure you want to logout?",
+              style: TextStyle(fontSize: 16),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text("Cancel"),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text(
+                  "Logout",
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+
+      if (result == true) {
+        await Future.delayed(const Duration(milliseconds: 200));
+        onLogout!();
+      }
+    } catch (e) {
+      debugPrint('Error during logout process: $e');
+    }
+  }
 
   void _showAccountMenu(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -66,7 +106,7 @@ class AccountIconButton extends StatelessWidget {
                           radius: 45,
                           backgroundColor: Colors.grey.shade200,
                           child: Text(
-                            userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
+                            username.isNotEmpty ? username[0].toUpperCase() : 'U',
                             style: TextStyle(
                               fontSize: 35,
                               fontWeight: FontWeight.bold,
@@ -116,14 +156,14 @@ class AccountIconButton extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    if (userName.isNotEmpty) ...[
+                                    if (username.isNotEmpty) ...[
                                       const Text(
                                         "Username:",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      Text(userName),
+                                      Text(username),
                                       const SizedBox(height: 16),
                                     ],
                                     if (fullName.isNotEmpty) ...[
@@ -182,44 +222,7 @@ class AccountIconButton extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    onTap: () async {
-                      try {
-                        Navigator.pop(context);
-                        await showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text("Confirm Logout"),
-                              content: const Text(
-                                "Are you sure you want to logout?",
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text("Cancel"),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                    await Future.delayed(
-                                      const Duration(milliseconds: 200)
-                                    );
-                                    onLogout();
-                                  },
-                                  child: const Text(
-                                    "Logout",
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      } catch (e) {
-                        debugPrint('Error during logout process: $e');
-                      }
-                    },
+                    onTap: () => _handleLogoutConfirmation(context),
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -239,3 +242,15 @@ class AccountIconButton extends StatelessWidget {
     );
   }
 }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return IconButton(
+//       icon: Icon(Icons.logout),
+//       onPressed: onLogout ?? () {
+//         // Default action if onLogout is null
+//         print("Logout function not provided");
+//       },
+//     );
+//   }
+// }

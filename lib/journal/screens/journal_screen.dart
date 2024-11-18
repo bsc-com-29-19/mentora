@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentora_frontend/auth/screens/profile_screen.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
 // import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
@@ -25,7 +26,7 @@ class _JournalScreenState extends State<JournalScreen> {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
-  String userName = '';
+  String username = '';
   String email = '';
   String fullName = '';
 
@@ -38,7 +39,7 @@ class _JournalScreenState extends State<JournalScreen> {
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      userName = prefs.getString('userName') ?? 'User';
+      username = prefs.getString('username') ?? 'User';
       email = prefs.getString('email') ?? 'email@example.com';
       fullName = prefs.getString('fullName') ?? 'Full Name';
     });
@@ -61,17 +62,13 @@ class _JournalScreenState extends State<JournalScreen> {
           ),
         ),
         backgroundColor: Colors.white,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.person),
-        //   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-        // ),
-
+      
         actions: [
           AccountIconButton(
-            userName: '',
-            email: '',
-            onLogout: () {},
-            fullName: '',
+            username: username,
+            email: email,
+            fullName: fullName,
+            onLogout: ProfileScreen.handleLogout,
           ),
         ],
       ),
@@ -237,7 +234,7 @@ class _JournalScreenState extends State<JournalScreen> {
               children: [
                 const Text('Completed the most important task?',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       color: Colors.black,
                     )),
                 Switch(

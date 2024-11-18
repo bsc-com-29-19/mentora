@@ -1,10 +1,36 @@
 // profile_screen.dart
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  // Static method for handling logout
+  static Future<void> handleLogout() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Clear all user data
+      await prefs.remove('username');
+      await prefs.remove('email');
+      await prefs.remove('fullName');
+      await prefs.remove('token');
+      await prefs.setBool('isAuthenticated', false);
+      
+      await Get.offAllNamed('/signin'); // Redirect to the sign-in screen
+    } catch (e) {
+      debugPrint('Error during logout: $e');
+      Get.snackbar(
+        'Error',
+        'Error logging out. Please try again.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3),
+      );
+    }
+  }
 
   @override
   // ignore: library_private_types_in_public_api
@@ -12,7 +38,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String userName = '';
+  String username = '';
   String email = '';
   String fullName = '';
   bool isLoading = true;
@@ -28,20 +54,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final prefs = await SharedPreferences.getInstance();
       
       // Retrieve user data from SharedPreferences with default empty strings
-      final storedUserName = prefs.getString('userName') ?? '';
+      final storedUsername = prefs.getString('username') ?? '';
       final storedEmail = prefs.getString('email') ?? '';
       final storedFullName = prefs.getString('fullName') ?? '';
+      final isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
       
       if (mounted) {
-        // Check if essential data is missing
-        if (storedUserName.isEmpty && storedEmail.isEmpty) {
-          debugPrint('No user data found, redirecting to signin');
-          await _handleLogout();
+        // Check both authentication status and data presence
+        if (!isAuthenticated || (storedUsername.isEmpty && storedEmail.isEmpty)) {
+          debugPrint('User not authenticated or no data found, redirecting to signin');
+          await ProfileScreen.handleLogout();
           return;
         }
         
         setState(() {
-          userName = storedUserName;
+          username = storedUsername;
           email = storedEmail;
           fullName = storedFullName;
           isLoading = false;
@@ -54,39 +81,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
           isLoading = false;
         });
         _showErrorSnackBar('Error loading user data. Please login again.');
-        await _handleLogout();
+        await ProfileScreen.handleLogout();
       }
     }
   }
 
   void _showErrorSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
-        duration: const Duration(seconds: 3),
-      ),
+    Get.snackbar(
+      'Error',
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+      duration: const Duration(seconds: 3),
     );
-  }
-
-  Future<void> _handleLogout() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.clear();
-      
-      if (mounted) {
-        // Navigate to signin screen and remove all previous routes
-        await Navigator.of(context).pushNamedAndRemoveUntil(
-          '/signin',
-          (Route<dynamic> route) => false,
-        );
-      }
-    } catch (e) {
-      debugPrint('Error during logout: $e');
-      if (mounted) {
-        _showErrorSnackBar('Error logging out. Please try again.');
-      }
-    }
   }
 
   @override
@@ -112,10 +120,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         iconTheme: const IconThemeData(color: Colors.black),
         actions: [
           AccountIconButton(
-            userName: userName,
+            username: username,
             email: email,
             fullName: fullName,
-            onLogout: _handleLogout,
+            onLogout: ProfileScreen.handleLogout,
           ),
         ],
       ),
@@ -133,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     radius: 50,
                     backgroundColor: Colors.grey.shade200,
                     child: Text(
-                      userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
+                      username.isNotEmpty ? username[0].toUpperCase() : 'U',
                       style: TextStyle(
                         fontSize: 40,
                         color: Colors.green.shade300,

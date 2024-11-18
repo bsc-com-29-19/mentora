@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentora_frontend/auth/screens/profile_screen.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 // import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +16,7 @@ class _ActivityPageState extends State<ActivityScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  String userName = '';
+  String username = '';
   String email = '';
   String fullName = '';
 
@@ -28,7 +29,7 @@ class _ActivityPageState extends State<ActivityScreen> {
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      userName = prefs.getString('userName') ?? 'User';
+      username = prefs.getString('username') ?? 'User';
       email = prefs.getString('email') ?? 'email@example.com';
       fullName = prefs.getString('fullName') ?? 'Full Name';
     });
@@ -139,14 +140,14 @@ class _ActivityPageState extends State<ActivityScreen> {
               fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
         
-        // leading: IconButton(
-        //   icon: const Icon(Icons.person),
-        //   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-        // ),
-        
-         actions: [
-                AccountIconButton( userName: '', email: '', onLogout: () {}, fullName: '',),
-                ],
+          actions: [
+          AccountIconButton(
+            username: username,
+            email: email,
+            fullName: fullName,
+            onLogout: ProfileScreen.handleLogout,
+          ),
+        ],
       ),
      
      
