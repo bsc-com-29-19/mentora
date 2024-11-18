@@ -27,8 +27,22 @@ def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_
     db.add(journal_entry)
     db.commit()
     db.refresh(journal_entry)
+    # return {
+    #     "data": journal_entry.__dict__
+    # }
     return {
-        "data": journal_entry.__dict__
+        "data": {
+            "id": str(journal_entry.id),
+            "grateful_things": journal_entry.grateful_things,
+            "completed_most_important_task": journal_entry.completed_most_important_task,
+            "mood_tags": journal_entry.mood_tags,
+            "entry_date": journal_entry.entry_date.isoformat(),
+            "user_id": str(journal_entry.user_id),
+            "most_important_task": journal_entry.most_important_task,
+            "overall_day_rating": journal_entry.overall_day_rating,
+            "overall_mood_rating": journal_entry.overall_mood_rating,
+            "day_summary": journal_entry.day_summary,
+        }
     }
 
 # List all journal entries for the user
