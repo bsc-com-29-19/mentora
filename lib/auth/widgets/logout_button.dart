@@ -238,3 +238,4 @@ class _LogoutButtonState extends State<LogoutButton> {
     );
   }
 }
+

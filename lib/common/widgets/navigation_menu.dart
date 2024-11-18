@@ -50,6 +50,6 @@ class NavigationController extends GetxController {
     const ActivityScreen(),
     JournalScreen(),
     const ChatbotScreen(),
-    const StatsScreen()
+    StatsScreen()
   ];
 }
