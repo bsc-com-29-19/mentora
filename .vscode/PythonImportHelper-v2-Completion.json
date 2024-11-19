@@ -2020,7 +2020,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update activity status\n@activity_router.patch(\"/{activity_id}/status\", response_model=ActivityResponse)\ndef update_activity_status(\n    activity_id: str,\n    status_update: ActivityStatus,\n    db: Session = Depends(get_db),\n    user: User = Depends(get_current_user)",
+        "peekOfCode": "def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update activity status\n@activity_router.patch(\"/{activity_id}/status\", response_model=ActivityResponse)\ndef update_activity_status(\n    activity_id: str,\n    status_update: UpdateStatusRequest,\n    db: Session = Depends(get_db),\n    user: User = Depends(get_current_user)",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -2029,7 +2029,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def update_activity_status(\n    activity_id: str,\n    status_update: ActivityStatus,\n    db: Session = Depends(get_db),\n    user: User = Depends(get_current_user)\n):\n    activity = update_activity_status_service(activity_id, status_update.value, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)",
+        "peekOfCode": "def update_activity_status(\n    activity_id: str,\n    status_update: UpdateStatusRequest,\n    db: Session = Depends(get_db),\n    user: User = Depends(get_current_user)\n):\n    activity = update_activity_status_service(activity_id, status_update.status, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -2092,7 +2092,7 @@
         "kind": 6,
         "importPath": "app.activities.schemas",
         "description": "app.activities.schemas",
-        "peekOfCode": "class ActivityUpdate(ActivityBase):\n    pass\nclass ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        orm_mode = True",
+        "peekOfCode": "class ActivityUpdate(ActivityBase):\n    pass\nclass ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        orm_mode = True\nclass UpdateStatusRequest(BaseModel):",
         "detail": "app.activities.schemas",
         "documentation": {}
     },
@@ -2101,7 +2101,16 @@
         "kind": 6,
         "importPath": "app.activities.schemas",
         "description": "app.activities.schemas",
-        "peekOfCode": "class ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        orm_mode = True",
+        "peekOfCode": "class ActivityResponse(ActivityBase):\n    id: UUID\n    user_id: UUID\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        orm_mode = True\nclass UpdateStatusRequest(BaseModel):\n    status: str",
+        "detail": "app.activities.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateStatusRequest",
+        "kind": 6,
+        "importPath": "app.activities.schemas",
+        "description": "app.activities.schemas",
+        "peekOfCode": "class UpdateStatusRequest(BaseModel):\n    status: str",
         "detail": "app.activities.schemas",
         "documentation": {}
     },

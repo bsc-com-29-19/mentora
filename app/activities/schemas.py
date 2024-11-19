@@ -27,3 +27,6 @@ class ActivityResponse(ActivityBase):
 
     class Config:
         orm_mode = True
+
+class UpdateStatusRequest(BaseModel):
+    status: str
