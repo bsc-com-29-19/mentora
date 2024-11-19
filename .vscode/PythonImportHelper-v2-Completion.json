@@ -1885,16 +1885,7 @@
         "kind": 2,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "def start_scheduler():\n    scheduler = BackgroundScheduler()\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)",
-        "detail": "app.activities.db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "shutdown_scheduler",
-        "kind": 2,
-        "importPath": "app.activities.db_connection",
-        "description": "app.activities.db_connection",
-        "peekOfCode": "def shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)\n    return {\"status\": \"success\", \"data\": result}",
+        "peekOfCode": "def start_scheduler():\n    scheduler = BackgroundScheduler()\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\n# def shutdown_scheduler():\n#     scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1940,15 +1931,6 @@
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
         "peekOfCode": "db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",\n    #     \"Title: Connect with a friend\\nDescription: Socializing and spending time with friends improves emotional well-being.\",",
-        "detail": "app.activities.db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "scheduler",
-        "kind": 5,
-        "importPath": "app.activities.db_connection",
-        "description": "app.activities.db_connection",
-        "peekOfCode": "scheduler = BackgroundScheduler()\nscheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=22, minute=0)\nscheduler.start()\ndef start_scheduler():\n    scheduler = BackgroundScheduler()\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
