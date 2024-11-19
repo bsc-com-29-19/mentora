@@ -481,6 +481,14 @@
         "documentation": {}
     },
     {
+        "label": "ActivityStatus",
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "isExtraImport": true,
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
         "label": "Activity",
         "importPath": "app.activities.models",
         "description": "app.activities.models",
@@ -580,6 +588,14 @@
     },
     {
         "label": "shutdown_scheduler",
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "isExtraImport": true,
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "start_scheduler",
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
         "isExtraImport": true,
@@ -1865,6 +1881,15 @@
         "documentation": {}
     },
     {
+        "label": "start_scheduler",
+        "kind": 2,
+        "importPath": "app.activities.db_connection",
+        "description": "app.activities.db_connection",
+        "peekOfCode": "def start_scheduler():\n    scheduler = BackgroundScheduler()\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)",
+        "detail": "app.activities.db_connection",
+        "documentation": {}
+    },
+    {
         "label": "shutdown_scheduler",
         "kind": 2,
         "importPath": "app.activities.db_connection",
@@ -1923,7 +1948,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "scheduler = BackgroundScheduler()\nscheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=22, minute=0)\nscheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)\n    return {\"status\": \"success\", \"data\": result}",
+        "peekOfCode": "scheduler = BackgroundScheduler()\nscheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=22, minute=0)\nscheduler.start()\ndef start_scheduler():\n    scheduler = BackgroundScheduler()\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\ndef shutdown_scheduler():\n    scheduler.shutdown()\ndef get_db_connection_check():",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1986,7 +2011,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def list_today_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_for_today_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)",
+        "peekOfCode": "def list_today_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activities = list_activities_for_today_service(db, user)\n    return activities\n# Get a single activity by ID\n@activity_router.get(\"/{activity_id}\", response_model=ActivityResponse)\ndef get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update activity status\n@activity_router.patch(\"/{activity_id}/status\", response_model=ActivityResponse)",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -1995,7 +2020,16 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)\ndef update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = update_activity_service(activity_id, activity_data, db, user)\n    return activity\n# Delete an activity\n@activity_router.delete(\"/{activity_id}\")",
+        "peekOfCode": "def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = get_activity_service(activity_id, db, user)\n    return activity\n# Update activity status\n@activity_router.patch(\"/{activity_id}/status\", response_model=ActivityResponse)\ndef update_activity_status(\n    activity_id: str,\n    status_update: ActivityStatus,\n    db: Session = Depends(get_db),\n    user: User = Depends(get_current_user)",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "update_activity_status",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def update_activity_status(\n    activity_id: str,\n    status_update: ActivityStatus,\n    db: Session = Depends(get_db),\n    user: User = Depends(get_current_user)\n):\n    activity = update_activity_status_service(activity_id, status_update.value, db, user)\n    return activity\n# Update an existing activity\n@activity_router.put(\"/{activity_id}\", response_model=ActivityResponse)",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -2112,7 +2146,16 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def get_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\ndef update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.title = activity_data.title",
+        "peekOfCode": "def get_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\ndef update_activity_status_service(activity_id: str, status: str, db: Session, user: User) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.status = status",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "update_activity_status_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def update_activity_status_service(activity_id: str, status: str, db: Session, user: User) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.status = status\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()",
         "detail": "app.activities.services",
         "documentation": {}
     },
@@ -2742,7 +2785,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def check_database_connection():\n    # database connection check\n    #\n    return True\ndef check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "peekOfCode": "def check_database_connection():\n    # database connection check\n    #\n    return True\ndef check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    start_scheduler()\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
         "detail": "main",
         "documentation": {}
     },
@@ -2751,7 +2794,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "peekOfCode": "def check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    start_scheduler()\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
         "detail": "main",
         "documentation": {}
     },

@@ -44,6 +44,15 @@ def get_activity_service(activity_id: str, db, user) -> Activity:
     return activity
 
 
+def update_activity_status_service(activity_id: str, status: str, db: Session, user: User) -> Activity:
+    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()
+    if not activity:
+        raise HTTPException(status_code=404, detail="Activity not found")
+    
+    activity.status = status
+    db.commit()
+    db.refresh(activity)
+    return activity
 
 def update_activity_service(activity_id: str, activity_data, db, user) -> Activity:
     activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()

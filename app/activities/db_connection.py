@@ -537,6 +537,10 @@ scheduler = BackgroundScheduler()
 scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=22, minute=0)
 scheduler.start()
 
+def start_scheduler():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)
+    scheduler.start()
 
 
 def shutdown_scheduler():

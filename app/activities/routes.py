@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+
+from app.activities.models import ActivityStatus
 from .schemas import ActivityCreate, ActivityUpdate, ActivityResponse
 from dependencies import get_db, get_current_user
 from app.auth.models import User
-from .services import create_activity_service, list_activities_service,list_activities_for_today_service, get_activity_service, update_activity_service, delete_activity_service
+from .services import create_activity_service, list_activities_service,list_activities_for_today_service, get_activity_service, update_activity_service, delete_activity_service, update_activity_status_service
 from .db_connection import get_db_connection_check
 
 activity_router = APIRouter()
@@ -37,6 +39,16 @@ def get_activity(activity_id: str, db: Session = Depends(get_db), user: User = D
     activity = get_activity_service(activity_id, db, user)
     return activity
 
+# Update activity status
+@activity_router.patch("/{activity_id}/status", response_model=ActivityResponse)
+def update_activity_status(
+    activity_id: str,
+    status_update: ActivityStatus,
+    db: Session = Depends(get_db),
+    user: User = Depends(get_current_user)
+):
+    activity = update_activity_status_service(activity_id, status_update.value, db, user)
+    return activity
 
 # Update an existing activity
 @activity_router.put("/{activity_id}", response_model=ActivityResponse)
