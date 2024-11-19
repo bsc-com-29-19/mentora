@@ -2020,7 +2020,7 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = update_activity_service(activity_id, activity_data, db, user)\n    return activity\n# Delete an activity\n@activity_router.delete(\"/{activity_id}\")\ndef delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = delete_activity_service(activity_id, db, user)\n    return {\"message\": f\"Activity : {activity.title} deleted successfully\"}",
+        "peekOfCode": "def update_activity(activity_id: str, activity_data: ActivityUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = update_activity_service(activity_id, activity_data, db, user)\n    return activity\n# Delete an activity\n@activity_router.delete(\"/{activity_id}\")\ndef delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = delete_activity_service(activity_id, db, user)\n    return {\"message\": f\"Activity : {activity.title} deleted successfully\"}\n@activity_router.delete(\"/all\")\ndef delete_all_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -2029,7 +2029,16 @@
         "kind": 2,
         "importPath": "app.activities.routes",
         "description": "app.activities.routes",
-        "peekOfCode": "def delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = delete_activity_service(activity_id, db, user)\n    return {\"message\": f\"Activity : {activity.title} deleted successfully\"}",
+        "peekOfCode": "def delete_activity(activity_id: str, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    activity = delete_activity_service(activity_id, db, user)\n    return {\"message\": f\"Activity : {activity.title} deleted successfully\"}\n@activity_router.delete(\"/all\")\ndef delete_all_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    result = delete_all_activities_service(db, user)\n    return result",
+        "detail": "app.activities.routes",
+        "documentation": {}
+    },
+    {
+        "label": "delete_all_activities",
+        "kind": 2,
+        "importPath": "app.activities.routes",
+        "description": "app.activities.routes",
+        "peekOfCode": "def delete_all_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    result = delete_all_activities_service(db, user)\n    return result",
         "detail": "app.activities.routes",
         "documentation": {}
     },
@@ -2164,7 +2173,16 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def delete_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    db.delete(activity)\n    db.commit()\n    return activity",
+        "peekOfCode": "def delete_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    db.delete(activity)\n    db.commit()\n    return activity\ndef delete_all_activities_service(db, user):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    if not activities:",
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
+        "label": "delete_all_activities_service",
+        "kind": 2,
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "peekOfCode": "def delete_all_activities_service(db, user):\n    activities = db.query(Activity).filter(Activity.user_id == user.id).all()\n    if not activities:\n        raise HTTPException(status_code=404, detail=\"No activities found\")\n    for activity in activities:\n        db.delete(activity)\n    db.commit()\n    return {\"message\": f\"All activities for user {user.id} have been deleted successfully.\"}",
         "detail": "app.activities.services",
         "documentation": {}
     },

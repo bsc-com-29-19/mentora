@@ -5,7 +5,7 @@ from app.activities.models import ActivityStatus
 from .schemas import ActivityCreate, ActivityUpdate, ActivityResponse,UpdateStatusRequest
 from dependencies import get_db, get_current_user
 from app.auth.models import User
-from .services import create_activity_service, list_activities_service,list_activities_for_today_service, get_activity_service, update_activity_service, delete_activity_service, update_activity_status_service
+from .services import create_activity_service, delete_all_activities_service, list_activities_service,list_activities_for_today_service, get_activity_service, update_activity_service, delete_activity_service, update_activity_status_service
 from .db_connection import get_db_connection_check
 
 activity_router = APIRouter()
@@ -65,4 +65,8 @@ def delete_activity(activity_id: str, db: Session = Depends(get_db), user: User 
     return {"message": f"Activity : {activity.title} deleted successfully"}
 
 
+@activity_router.delete("/all")
+def delete_all_activities(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    result = delete_all_activities_service(db, user)
+    return result
 

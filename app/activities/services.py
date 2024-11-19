@@ -77,3 +77,14 @@ def delete_activity_service(activity_id: str, db, user) -> Activity:
     db.delete(activity)
     db.commit()
     return activity
+
+def delete_all_activities_service(db, user):
+    activities = db.query(Activity).filter(Activity.user_id == user.id).all()
+    if not activities:
+        raise HTTPException(status_code=404, detail="No activities found")
+    
+    for activity in activities:
+        db.delete(activity)
+    
+    db.commit()
+    return {"message": f"All activities for user {user.id} have been deleted successfully."}
