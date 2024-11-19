@@ -58,18 +58,56 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
             ),
           );
         }
+        final totalActivities = _activitiesController.activities.length;
+        final completedCount = _activitiesController.activities
+            .where((activity) => activity['status'] == 'done')
+            .length;
 
-        return ListView.builder(
-          itemCount: _activitiesController.activities.length,
-          itemBuilder: (context, index) {
-            final activity = _activitiesController.activities[index];
-            return ActivityCard(
-              title: activity['title'],
-              completed: activity['status'] == 'done',
-              onChanged: (value) =>
-                  toggleActivityStatus(activity['id'], activity['status']),
-            );
-          },
+        return Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(26.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Today',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "${DateTime.now().toLocal()}".split(' ')[0],
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        '$completedCount/$totalActivities Completed',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _activitiesController.activities.length,
+                itemBuilder: (context, index) {
+                  final activity = _activitiesController.activities[index];
+                  return ActivityCard(
+                    title: activity['title'],
+                    completed: activity['status'] == 'done',
+                    onChanged: (value) => toggleActivityStatus(
+                        activity['id'], activity['status']),
+                  );
+                },
+              ),
+            ),
+          ],
         );
       }),
     );
