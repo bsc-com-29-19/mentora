@@ -21,8 +21,8 @@ class _SigninScreenState extends State<SigninScreen> {
   bool _isPasswordVisible = false;
 
 
-  String _username = '';
-  String _password = '';
+  String username = '';
+  String password = '';
   
 
 
@@ -94,7 +94,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         }
                         return null; 
                       },
-                      onSaved: (value) => _username = value!,
+                      onSaved: (value) => username = value!,
                     ),
                     const SizedBox(height: 20),
                     const Text(
@@ -138,7 +138,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         }
                         return null;
                       },
-                      onSaved: (value) => _password = value!,
+                      onSaved: (value) => password = value!,
                     ),
                     const SizedBox(height: 10),
                     Align(

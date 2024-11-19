@@ -19,19 +19,18 @@ class _SignupFormState extends State<SignupForm> {
   final RegistrationController registrationController =
       Get.put(RegistrationController());
 
-  String _fullName = '';
-  String _username = '';
-  String _email = '';
-  String _password = '';
-  bool _isPasswordVisible = false; 
+  String fullName = '';
+  String username = '';
+  String email = '';
+  String password = '';
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,
       child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start, 
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Full Name label and field
           const Text(
@@ -40,10 +39,10 @@ class _SignupFormState extends State<SignupForm> {
           ),
           const SizedBox(height: 8),
           TextFormField(
+            controller: registrationController.fullnameController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
+            cursorColor: Colors.black,
             decoration: InputDecoration(
-              
               hintText: 'Enter your full name',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
@@ -58,7 +57,7 @@ class _SignupFormState extends State<SignupForm> {
               }
               return null;
             },
-            onSaved: (value) => _fullName = value!,
+            onSaved: (value) => fullName = value!,
           ),
           const SizedBox(height: 20),
 
@@ -71,9 +70,8 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.usernameController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
+            cursorColor: Colors.black,
             decoration: InputDecoration(
-              
               hintText: 'Enter unique username',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
@@ -88,7 +86,7 @@ class _SignupFormState extends State<SignupForm> {
               }
               return null;
             },
-            onSaved: (value) => _username = value!,
+            onSaved: (value) => username = value!,
           ),
           const SizedBox(height: 20),
 
@@ -101,9 +99,8 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.emailController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
+            cursorColor: Colors.black,
             decoration: InputDecoration(
-             
               hintText: 'Enter your email address',
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
@@ -118,7 +115,7 @@ class _SignupFormState extends State<SignupForm> {
               }
               return null;
             },
-            onSaved: (value) => _email = value!,
+            onSaved: (value) => email = value!,
           ),
           const SizedBox(height: 20),
 
@@ -131,10 +128,9 @@ class _SignupFormState extends State<SignupForm> {
           TextFormField(
             controller: registrationController.passwordController,
             style: const TextStyle(color: Colors.black),
-            cursorColor: Colors.black, 
-            obscureText: !_isPasswordVisible, 
+            cursorColor: Colors.black,
+            obscureText: !_isPasswordVisible,
             decoration: InputDecoration(
-              
               hintText: "Enter your secure password",
               hintStyle: const TextStyle(color: Colors.grey),
               labelStyle: const TextStyle(color: Colors.grey),
@@ -160,7 +156,7 @@ class _SignupFormState extends State<SignupForm> {
               }
               return null;
             },
-            onSaved: (value) => _password = value!,
+            onSaved: (value) => password = value!,
           ),
           const SizedBox(height: 20),
 

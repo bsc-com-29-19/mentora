@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/screens/profile_screen.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
+import 'package:mentora_frontend/journal/viewmodel/journal_view_model.dart';
 // import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalScreen extends StatefulWidget {
-  const JournalScreen({super.key});
+  JournalScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -15,16 +17,17 @@ class JournalScreen extends StatefulWidget {
 
 class _JournalScreenState extends State<JournalScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final JournalController journalController = Get.find<JournalController>();
 
   DateTime selectedDate = DateTime.now();
-  int overallRating = 0;
-  int moodRating = 0;
-  bool taskCompleted = false;
-  TextEditingController taskController = TextEditingController();
-  TextEditingController gratitudeController1 = TextEditingController();
-  TextEditingController gratitudeController2 = TextEditingController();
-  TextEditingController gratitudeController3 = TextEditingController();
-  TextEditingController daySummaryController = TextEditingController();
+  // int overallRating = 0;
+  // int moodRating = 0;
+  // bool taskCompleted = false;
+  // TextEditingController taskController = TextEditingController();
+  // TextEditingController gratitudeController1 = TextEditingController();
+  // TextEditingController gratitudeController2 = TextEditingController();
+  // TextEditingController gratitudeController3 = TextEditingController();
+  // TextEditingController daySummaryController = TextEditingController();
 
   String username = '';
   String email = '';
@@ -52,7 +55,6 @@ class _JournalScreenState extends State<JournalScreen> {
       // drawer: const CustomNavigationDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
         title: const Text(
           "Journal",
           style: TextStyle(
@@ -62,7 +64,6 @@ class _JournalScreenState extends State<JournalScreen> {
           ),
         ),
         backgroundColor: Colors.white,
-      
         actions: [
           AccountIconButton(
             username: username,
@@ -105,7 +106,7 @@ class _JournalScreenState extends State<JournalScreen> {
 
             // Morning task
             TextField(
-              controller: taskController,
+              controller: journalController.taskController,
               cursorColor: Colors.black,
               decoration: const InputDecoration(
                 labelText: 'Write your most important task today',
@@ -131,7 +132,7 @@ class _JournalScreenState extends State<JournalScreen> {
             ),
             const SizedBox(height: 10),
             TextField(
-              controller: gratitudeController1,
+              controller: journalController.gratitudeController1,
               cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: '1.',
@@ -145,7 +146,7 @@ class _JournalScreenState extends State<JournalScreen> {
             ),
             const SizedBox(height: 10),
             TextField(
-              controller: gratitudeController2,
+              controller: journalController.gratitudeController2,
               cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: '2.',
@@ -159,7 +160,7 @@ class _JournalScreenState extends State<JournalScreen> {
             ),
             const SizedBox(height: 10),
             TextField(
-              controller: gratitudeController3,
+              controller: journalController.gratitudeController3,
               cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: '3.',
@@ -192,16 +193,36 @@ class _JournalScreenState extends State<JournalScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildRadioWithLabel(1, 'Awful', overallRating,
-                    (value) => setState(() => overallRating = value!)),
-                _buildRadioWithLabel(2, 'Bad', overallRating,
-                    (value) => setState(() => overallRating = value!)),
-                _buildRadioWithLabel(3, 'Ok', overallRating,
-                    (value) => setState(() => overallRating = value!)),
-                _buildRadioWithLabel(4, 'Good', overallRating,
-                    (value) => setState(() => overallRating = value!)),
-                _buildRadioWithLabel(5, 'Great', overallRating,
-                    (value) => setState(() => overallRating = value!)),
+                _buildRadioWithLabel(
+                    1,
+                    'Awful',
+                    journalController.overallRating.value,
+                    (value) => setState(
+                        () => journalController.overallRating.value = value!)),
+                _buildRadioWithLabel(
+                    2,
+                    'Bad',
+                    journalController.overallRating.value,
+                    (value) => setState(
+                        () => journalController.overallRating.value = value!)),
+                _buildRadioWithLabel(
+                    3,
+                    'Ok',
+                    journalController.overallRating.value,
+                    (value) => setState(
+                        () => journalController.overallRating.value = value!)),
+                _buildRadioWithLabel(
+                    4,
+                    'Good',
+                    journalController.overallRating.value,
+                    (value) => setState(
+                        () => journalController.overallRating.value = value!)),
+                _buildRadioWithLabel(
+                    5,
+                    'Great',
+                    journalController.overallRating.value,
+                    (value) => setState(
+                        () => journalController.overallRating.value = value!)),
               ],
             ),
             const SizedBox(height: 20),
@@ -214,16 +235,36 @@ class _JournalScreenState extends State<JournalScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildRadioWithLabel(1, 'Awful', moodRating,
-                    (value) => setState(() => moodRating = value!)),
-                _buildRadioWithLabel(2, 'Bad', moodRating,
-                    (value) => setState(() => moodRating = value!)),
-                _buildRadioWithLabel(3, 'Ok', moodRating,
-                    (value) => setState(() => moodRating = value!)),
-                _buildRadioWithLabel(4, 'Good', moodRating,
-                    (value) => setState(() => moodRating = value!)),
-                _buildRadioWithLabel(5, 'Great', moodRating,
-                    (value) => setState(() => moodRating = value!)),
+                _buildRadioWithLabel(
+                    1,
+                    'Awful',
+                    journalController.moodRating.value,
+                    (value) => setState(
+                        () => journalController.moodRating.value = value!)),
+                _buildRadioWithLabel(
+                    2,
+                    'Bad',
+                    journalController.moodRating.value,
+                    (value) => setState(
+                        () => journalController.moodRating.value = value!)),
+                _buildRadioWithLabel(
+                    3,
+                    'Ok',
+                    journalController.moodRating.value,
+                    (value) => setState(
+                        () => journalController.moodRating.value = value!)),
+                _buildRadioWithLabel(
+                    4,
+                    'Good',
+                    journalController.moodRating.value,
+                    (value) => setState(
+                        () => journalController.moodRating.value = value!)),
+                _buildRadioWithLabel(
+                    5,
+                    'Great',
+                    journalController.moodRating.value,
+                    (value) => setState(
+                        () => journalController.moodRating.value = value!)),
               ],
             ),
             const SizedBox(height: 20),
@@ -239,10 +280,10 @@ class _JournalScreenState extends State<JournalScreen> {
                     )),
                 Switch(
                   activeColor: Colors.green.shade300,
-                  value: taskCompleted,
+                  value: journalController.taskCompleted.value,
                   onChanged: (value) {
                     setState(() {
-                      taskCompleted = value;
+                      journalController.taskCompleted.value = value;
                     });
                   },
                 ),
@@ -252,7 +293,7 @@ class _JournalScreenState extends State<JournalScreen> {
 
             // How did you spend your day?
             TextField(
-              controller: daySummaryController,
+              controller: journalController.daySummaryController,
               cursorColor: Colors.black,
               decoration: const InputDecoration(
                 hintText: 'How did you spend your day?',
@@ -270,7 +311,7 @@ class _JournalScreenState extends State<JournalScreen> {
             // Submit button
             Button(
               text: 'Submit Journal',
-              onPressed: _submitJournal,
+              onPressed: journalController.submitJournal,
             ),
           ],
         ),
@@ -278,36 +319,36 @@ class _JournalScreenState extends State<JournalScreen> {
     );
   }
 
-  void _submitJournal() {
-    // Gather the input data and perform submission logic
-    String task = taskController.text;
-    String gratitude1 = gratitudeController1.text;
-    String gratitude2 = gratitudeController2.text;
-    String gratitude3 = gratitudeController3.text;
-    String daySummary = daySummaryController.text;
+  // void _submitJournal() {
+  //   // Gather the input data and perform submission logic
+  //   String task = taskController.text;
+  //   String gratitude1 = gratitudeController1.text;
+  //   String gratitude2 = gratitudeController2.text;
+  //   String gratitude3 = gratitudeController3.text;
+  //   String daySummary = daySummaryController.text;
 
-    // Print to console for now (replace with actual submission logic)
-    print("Task: $task");
-    print("Gratitude 1: $gratitude1");
-    print("Gratitude 2: $gratitude2");
-    print("Gratitude 3: $gratitude3");
-    print("Overall Rating: $overallRating");
-    print("Mood Rating: $moodRating");
-    print("Task Completed: $taskCompleted");
-    print("Day Summary: $daySummary");
+  //   // Print to console for now (replace with actual submission logic)
+  //   print("Task: $task");
+  //   print("Gratitude 1: $gratitude1");
+  //   print("Gratitude 2: $gratitude2");
+  //   print("Gratitude 3: $gratitude3");
+  //   print("Overall Rating: $overallRating");
+  //   print("Mood Rating: $moodRating");
+  //   print("Task Completed: $taskCompleted");
+  //   print("Day Summary: $daySummary");
 
-    // Optionally clear the fields after submission
-    taskController.clear();
-    gratitudeController1.clear();
-    gratitudeController2.clear();
-    gratitudeController3.clear();
-    daySummaryController.clear();
-    setState(() {
-      overallRating = 0;
-      moodRating = 0;
-      taskCompleted = false;
-    });
-  }
+  //   // Optionally clear the fields after submission
+  //   taskController.clear();
+  //   gratitudeController1.clear();
+  //   gratitudeController2.clear();
+  //   gratitudeController3.clear();
+  //   daySummaryController.clear();
+  //   setState(() {
+  //     overallRating = 0;
+  //     moodRating = 0;
+  //     taskCompleted = false;
+  //   });
+  // }
 
   Widget _buildRadioWithLabel(
       int value, String label, int groupValue, ValueChanged<int?> onChanged) {
