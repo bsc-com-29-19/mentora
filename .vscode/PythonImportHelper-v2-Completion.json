@@ -2146,7 +2146,7 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def get_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\ndef update_activity_status_service(activity_id: str, status: str, db: Session, user: User) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.status = status",
+        "peekOfCode": "def get_activity_service(activity_id: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    return activity\ndef update_activity_status_service(activity_id: str, status: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.status = status",
         "detail": "app.activities.services",
         "documentation": {}
     },
@@ -2155,7 +2155,7 @@
         "kind": 2,
         "importPath": "app.activities.services",
         "description": "app.activities.services",
-        "peekOfCode": "def update_activity_status_service(activity_id: str, status: str, db: Session, user: User) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.status = status\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()",
+        "peekOfCode": "def update_activity_status_service(activity_id: str, status: str, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()\n    if not activity:\n        raise HTTPException(status_code=404, detail=\"Activity not found\")\n    activity.status = status\n    db.commit()\n    db.refresh(activity)\n    return activity\ndef update_activity_service(activity_id: str, activity_data, db, user) -> Activity:\n    activity = db.query(Activity).filter(Activity.id == activity_id, Activity.user_id == user.id).first()",
         "detail": "app.activities.services",
         "documentation": {}
     },
