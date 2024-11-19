@@ -8,8 +8,7 @@ from app.journal.routes import journal_router
 from app.chatbot.routes import chat_router
 from app.activities.routes import activity_router
 from app.stats.routes import stats_router
-from app.activities.db_connection import (generate_activities_custom_for_all_users, get_db_connection_check,
-    shutdown_scheduler, start_scheduler)
+from app.activities.db_connection import (generate_activities_custom_for_all_users, get_db_connection_check,start_scheduler)
 
 # Todo : add logging ,redis-chaching and prometheus-performance monitoring
 

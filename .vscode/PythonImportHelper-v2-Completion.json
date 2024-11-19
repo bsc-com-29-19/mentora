@@ -587,14 +587,6 @@
         "documentation": {}
     },
     {
-        "label": "shutdown_scheduler",
-        "importPath": "app.activities.db_connection",
-        "description": "app.activities.db_connection",
-        "isExtraImport": true,
-        "detail": "app.activities.db_connection",
-        "documentation": {}
-    },
-    {
         "label": "start_scheduler",
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
