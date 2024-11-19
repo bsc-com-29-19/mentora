@@ -16,8 +16,9 @@ class ProfileScreen extends StatefulWidget {
       await prefs.remove('email');
       await prefs.remove('fullName');
       await prefs.remove('token');
+      await prefs.clear();
       await prefs.setBool('isAuthenticated', false);
-      
+
       await Get.offAllNamed('/signin'); // Redirect to the sign-in screen
     } catch (e) {
       debugPrint('Error during logout: $e');
@@ -52,21 +53,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _loadUserData() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      
+
       // Retrieve user data from SharedPreferences with default empty strings
       final storedUsername = prefs.getString('username') ?? '';
       final storedEmail = prefs.getString('email') ?? '';
       final storedFullName = prefs.getString('fullName') ?? '';
       final isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
-      
+
       if (mounted) {
         // Check both authentication status and data presence
-        if (!isAuthenticated || (storedUsername.isEmpty && storedEmail.isEmpty)) {
-          debugPrint('User not authenticated or no data found, redirecting to signin');
+        if (!isAuthenticated ||
+            (storedUsername.isEmpty && storedEmail.isEmpty)) {
+          debugPrint(
+              'User not authenticated or no data found, redirecting to signin');
           await ProfileScreen.handleLogout();
           return;
         }
-        
+
         setState(() {
           username = storedUsername;
           email = storedEmail;

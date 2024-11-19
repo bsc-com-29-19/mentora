@@ -10,6 +10,8 @@ import 'package:mentora_frontend/stats/widgets/stats_card.dart';
 class StatsScreen extends StatelessWidget {
   final StatsController statsController = Get.put(StatsController());
 
+   StatsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +43,8 @@ class StatsScreen extends StatelessWidget {
         }
 
         // Safely fetch stats values
-        final completionPercentage =
-            statsController.getCompletionPercentage().toStringAsFixed(1);
+        // final completionPercentage =
+        //     statsController.getCompletionPercentage().toStringAsFixed(1);
         final allDaysTrends = statsController.getAllDaysTrends();
         final allDaysTrendsTyped = allDaysTrends.cast<Map<String, dynamic>>();
         return Padding(

@@ -47,7 +47,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectIndex = 0.obs;
 
   final screens = [
-    const ActivityScreen(),
+    const ActivitiesScreen(),
     JournalScreen(),
     const ChatbotScreen(),
     StatsScreen()

@@ -17,7 +17,7 @@ class JournalController extends GetxController {
   TextEditingController gratitudeController3 = TextEditingController();
   TextEditingController daySummaryController = TextEditingController();
 
-  Rx<DateTime> selectedDate = DateTime.now().obs;
+  // Rx<DateTime> selectedDate = DateTime.now().obs;
   RxInt overallRating = 1.obs;
   RxInt moodRating = 1.obs;
   RxBool taskCompleted = false.obs;
@@ -34,7 +34,7 @@ class JournalController extends GetxController {
         'Authorization': 'Bearer $token',
       };
 
-      Map<String, dynamic> body = {
+      Map body = {
         "most_important_task": taskController.text.trim(),
         "grateful_things": [
           gratitudeController1.text,
@@ -61,7 +61,8 @@ class JournalController extends GetxController {
 
       if (response.statusCode == 200) {
         if (response.body.isNotEmpty) {
-          var responseData = jsonDecode(response.body);
+          var responseData = jsonDecode(response.body
+          );
           logger.i("Response body : $responseData ");
           // Handle the response data
         }
@@ -72,7 +73,7 @@ class JournalController extends GetxController {
       } else {
         var errorDetail =
             jsonDecode(response.body)['detail'] ?? "Unknown error";
-      logger.e("Error submitting journal: $errorDetail");
+        logger.e("Error submitting journal: $errorDetail");
         Get.snackbar("Submission Failed", errorDetail,
             backgroundColor: Colors.red.shade300, colorText: Colors.white);
       }

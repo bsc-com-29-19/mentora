@@ -20,6 +20,7 @@ class LoginController extends GetxController {
 
   Future<void> loginUser() async {
     try {
+      
       var headers = {'Content-Type': 'application/json'};
       var url = Uri.parse(
           ApiEndpoints.baseurl + ApiEndpoints.authEndpoints.loginEmail);
@@ -47,6 +48,7 @@ class LoginController extends GetxController {
         // access access_token & username from login response and keep them in local storage: shared_preferences
         final json = jsonDecode(response.body);
         logger.d("Response body : ${response.body}");
+        logger.d("Response JSON : $json ");
         var token = json['access_token'];
         var username = json['username'];
         var email = json['email'];
@@ -61,6 +63,11 @@ class LoginController extends GetxController {
         await prefs.setString('email', email);
         await prefs.setString('fullName', fullName);
         await prefs.setBool("isAuthenticated", true);
+
+        logger.d("Full Name : $fullName");
+        logger.d("Username : $username");
+        logger.d("Email : $email");
+        logger.d("Token : $token");
 
         // emailController.clear();
         emailorusernameController.clear();

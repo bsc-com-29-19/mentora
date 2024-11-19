@@ -22,6 +22,9 @@ class StatsController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     // logger.d("Token retrieved: $token");
+    username.value = prefs.getString('username') ?? 'User';
+    email.value = prefs.getString('email') ?? 'email@example.com';
+    fullName.value = prefs.getString('fullName') ?? 'Full Name';
 
     try {
       if (token == null || token.isEmpty) {
@@ -45,9 +48,6 @@ class StatsController extends GetxController {
       if (response.statusCode == 200) {
         stats.value = jsonDecode(response.body);
         // logger.d("fetched stats: ${response.body}");
-        username.value = prefs.getString('username') ?? 'User';
-        email.value = prefs.getString('email') ?? 'email@example.com';
-        fullName.value = prefs.getString('fullName') ?? 'Full Name';
       } else {
         logger.d("Error fetching stats: ${response.body}");
         throw jsonDecode(response.body)['detail'] ?? 'Unknown error occurred.';

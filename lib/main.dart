@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:mentora_frontend/activity/viewmodels/activities_view_model.dart';
 // import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mentora_frontend/auth/screens/signin_screen.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
@@ -29,7 +30,7 @@ void main() async {
 
   final bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
   Get.put(JournalController());
-  
+
   runApp(MyApp(
     onBoardingCompleted: onBoardingCompleted,
     isAuthenticated: isAuthenticated,
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
   final bool onBoardingCompleted;
   final bool isAuthenticated;
   final StatsController statsController = Get.put(StatsController());
+  final ActivitiesController activitiesController =
+      Get.put(ActivitiesController());
 
   MyApp(
       {super.key,
@@ -50,6 +53,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     statsController.fetchStatsData();
+    activitiesController.fetchActivities();
     return GetMaterialApp(
       title: 'Mentora',
 
