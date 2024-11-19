@@ -4,7 +4,6 @@ import 'package:mentora_frontend/activity/viewmodels/activities_view_model.dart'
 import 'package:mentora_frontend/activity/widgets/activity_card.dart';
 import 'package:mentora_frontend/auth/screens/profile_screen.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
-// import 'package:mentora_frontend/controllers/activities_controller.dart';
 
 class ActivitiesScreen extends StatefulWidget {
   const ActivitiesScreen({super.key});
