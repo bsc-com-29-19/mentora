@@ -182,8 +182,8 @@ def view_journal(journal_id: str, db: Session = Depends(get_db), user: User = De
 def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     today = date.today()
     journal = db.query(JournalEntryDB).filter(
-        JournalEntryDB.user_id == user.id,
-        JournalEntryDB.entry_date == today
+        JournalEntryDB.entry_date == today,
+        JournalEntryDB.user_id == user.id
     ).first()
 
     if not journal:

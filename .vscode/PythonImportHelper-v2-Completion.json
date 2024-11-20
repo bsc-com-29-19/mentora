@@ -2449,7 +2449,7 @@
         "kind": 6,
         "importPath": "app.journal.models",
         "description": "app.journal.models",
-        "peekOfCode": "class JournalEntry(JournalEntryBase):\n    id: UUID\n    user_id: UUID\n    entry_date: str\n    class Config:\n        from_attributes = True\n        arbitrary_types_allowed = True\nclass JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)",
+        "peekOfCode": "class JournalEntry(JournalEntryBase):\n    id: UUID\n    user_id: UUID\n    entry_date: date\n    class Config:\n        from_attributes = True\n        arbitrary_types_allowed = True\nclass JournalEntryDB(Base):\n    __tablename__ = \"journal_entries\"\n    id = Column(UUID(as_uuid=True), primary_key=True,default=uuid.uuid4)",
         "detail": "app.journal.models",
         "documentation": {}
     },
@@ -2503,7 +2503,7 @@
         "kind": 2,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    today = date.today()\n    journal = db.query(JournalEntryDB).filter(\n        JournalEntryDB.user_id == user.id,\n        JournalEntryDB.entry_date == today\n    ).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"No journal entry found for today\")\n    return {\n        \"data\": {",
+        "peekOfCode": "def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    today = date.today()\n    journal = db.query(JournalEntryDB).filter(\n        JournalEntryDB.entry_date == today,\n        JournalEntryDB.user_id == user.id\n    ).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"No journal entry found for today\")\n    return {\n        \"data\": {",
         "detail": "app.journal.routes",
         "documentation": {}
     },

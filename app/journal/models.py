@@ -28,7 +28,7 @@ class JournalEntryBase(BaseModel):
 class JournalEntry(JournalEntryBase):
     id: UUID
     user_id: UUID
-    entry_date: str
+    entry_date: date
 
     class Config:
         from_attributes = True
