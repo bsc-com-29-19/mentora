@@ -8,7 +8,7 @@ import 'package:mentora_frontend/journal/viewmodel/journal_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalScreen extends StatefulWidget {
-  JournalScreen({super.key});
+  const JournalScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -52,7 +52,6 @@ class _JournalScreenState extends State<JournalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      // drawer: const CustomNavigationDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
@@ -73,7 +72,6 @@ class _JournalScreenState extends State<JournalScreen> {
           ),
         ],
       ),
-
       body: Container(
         color: Colors.green[50],
         padding: const EdgeInsets.all(16.0),
@@ -108,14 +106,14 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: journalController.taskController,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Write your most important task today',
                 labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -134,13 +132,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: journalController.gratitudeController1,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: '1.',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -148,13 +146,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: journalController.gratitudeController2,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: '2.',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -162,13 +160,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: journalController.gratitudeController3,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: '3.',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
             ),
@@ -295,13 +293,13 @@ class _JournalScreenState extends State<JournalScreen> {
             TextField(
               controller: journalController.daySummaryController,
               cursorColor: Colors.black,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'How did you spend your day?',
                 border: OutlineInputBorder(),
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Colors.green.shade300),
                 ),
               ),
               maxLines: 5,
@@ -350,17 +348,20 @@ class _JournalScreenState extends State<JournalScreen> {
   //   });
   // }
 
-  Widget _buildRadioWithLabel(
-      int value, String label, int groupValue, ValueChanged<int?> onChanged) {
+  Widget _buildRadioWithLabel(int value, String label, int groupValue,
+      ValueChanged<int?> onChanged) {
     return Column(
       children: [
+        Text(
+          label,
+          style: const TextStyle(color: Colors.black),
+        ),
         Radio<int>(
           value: value,
           groupValue: groupValue,
-          activeColor: Colors.green.shade300,
           onChanged: onChanged,
+          activeColor: Colors.green.shade300,
         ),
-        Text(label, style: const TextStyle(color: Colors.black)),
       ],
     );
   }

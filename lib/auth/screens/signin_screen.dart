@@ -1,10 +1,8 @@
-// signin_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mentora_frontend/auth/screens/signup_screen.dart';
 import 'package:mentora_frontend/auth/viewmodels/signin_view_model.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -19,8 +17,7 @@ class _SigninScreenState extends State<SigninScreen> {
 
   final _formKey = GlobalKey<FormState>();
   bool _isPasswordVisible = false;
-
-
+  
   String username = '';
   String password = '';
   
@@ -29,14 +26,14 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white, // Background color set to white
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0), // Consistent padding
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
             children: [
+              // Header
               Row(
                 children: [
                   const SizedBox(width: 5),
@@ -45,9 +42,9 @@ class _SigninScreenState extends State<SigninScreen> {
                       child: const Text(
                         'Mentora',
                         style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          fontSize: 24, // Header font size
+                          fontWeight: FontWeight.bold, // Emphasized header
+                          color: Colors.black, // Text color
                         ),
                       ),
                     ),
@@ -55,20 +52,25 @@ class _SigninScreenState extends State<SigninScreen> {
                 ],
               ),
               const SizedBox(height: 30),
+
+              // Page Title
               const Text(
                 'Sign In',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.black, // Text color
                 ),
               ),
               const SizedBox(height: 20),
+
+              // Sign In Form
               Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Username or Email Field
                     const Text(
                       'Email or Username',
                       style: TextStyle(fontSize: 16, color: Colors.black),
@@ -77,11 +79,10 @@ class _SigninScreenState extends State<SigninScreen> {
                     TextFormField(
                       controller: loginController.emailorusernameController,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black, 
+                      cursorColor: Colors.green.shade300, // Cursor color
                       decoration: InputDecoration(
                         hintText: 'Enter your email or username',
                         hintStyle: const TextStyle(color: Colors.grey),
-                        // labelText: 'Enter your email or username',
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                         focusedBorder: const OutlineInputBorder(
@@ -92,11 +93,13 @@ class _SigninScreenState extends State<SigninScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email or username';
                         }
-                        return null; 
+                        return null;
                       },
                       onSaved: (value) => username = value!,
                     ),
                     const SizedBox(height: 20),
+
+                    // Password Field
                     const Text(
                       'Password',
                       style: TextStyle(fontSize: 16, color: Colors.black),
@@ -106,9 +109,8 @@ class _SigninScreenState extends State<SigninScreen> {
                       controller: loginController.passwordController,
                       obscureText: !_isPasswordVisible,
                       style: const TextStyle(color: Colors.black),
-                      cursorColor: Colors.black, 
+                      cursorColor: Colors.green.shade300, // Cursor color
                       decoration: InputDecoration(
-                        
                         hintText: 'Enter your secure password',
                         hintStyle: const TextStyle(color: Colors.grey),
                         labelStyle: const TextStyle(color: Colors.grey),
@@ -121,7 +123,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             _isPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.green,
+                            color: Colors.green.shade300, // Icon color
                           ),
                           onPressed: () {
                             setState(() {
@@ -131,9 +133,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                       ),
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length < 8) {
+                        if (value == null || value.isEmpty || value.length < 8) {
                           return 'Please enter a password with at least 8 characters';
                         }
                         return null;
@@ -141,11 +141,13 @@ class _SigninScreenState extends State<SigninScreen> {
                       onSaved: (value) => password = value!,
                     ),
                     const SizedBox(height: 10),
+
+                    // Forgot Password
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          // Implement forgot password logic here
+                          // Implement forgot password logic
                         },
                         child: const Text(
                           'Forgot Password?',
@@ -154,17 +156,20 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
+
+                    // Sign In Button
                     Button(
                       text: 'Sign In',
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           loginController.loginUser();
-                          
                         }
                       },
                     ),
                     const SizedBox(height: 20),
+
+                    // Sign Up Prompt
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -177,12 +182,16 @@ class _SigninScreenState extends State<SigninScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen()),
+                                builder: (context) => const SignUpScreen(),
+                              ),
                             );
                           },
                           child: const Text(
                             'Sign Up',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold, // Highlight action
+                            ),
                           ),
                         ),
                       ],
@@ -194,8 +203,6 @@ class _SigninScreenState extends State<SigninScreen> {
           ),
         ),
       ),
-      
-
     );
   }
 }
