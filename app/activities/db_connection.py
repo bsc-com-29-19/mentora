@@ -24,6 +24,7 @@ from app.journal.services import list_all_journals_service
 import ast
 import logging
 import random
+# from pytz import UTC
 
 
 
@@ -538,7 +539,7 @@ def generate_activities_custom_for_all_users():
 # scheduler.start()
 
 def start_scheduler():
-    scheduler = BackgroundScheduler()
+    scheduler = BackgroundScheduler(timezone="UTC")
     scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)
     scheduler.start()
 

@@ -1877,7 +1877,7 @@
         "kind": 2,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "def start_scheduler():\n    scheduler = BackgroundScheduler()\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\n# def shutdown_scheduler():\n#     scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)",
+        "peekOfCode": "def start_scheduler():\n    scheduler = BackgroundScheduler(timezone=\"UTC\")\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\n# def shutdown_scheduler():\n#     scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    result = db_chain.invoke(query)",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
