@@ -2,7 +2,7 @@ import random
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 
-from app.activities.models import Activity
+from app.activities.models import Activity, ActivityStatus
 from app.activities.services import create_activity_service
 from .models import User
 from .schema import UserCreate, UserLogin, LoginResponse ,UserResponse
@@ -61,7 +61,7 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
             activity_data=Activity(
                 title=activity_info["title"], 
                 description=activity_info["description"], 
-                status="NOT_DONE"
+                status=ActivityStatus.NOT_DONE
             ),
             db=db,
             user=user

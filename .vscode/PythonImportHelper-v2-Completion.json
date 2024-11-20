@@ -497,6 +497,14 @@
         "documentation": {}
     },
     {
+        "label": "ActivityStatus",
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "isExtraImport": true,
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
         "label": "Activity",
         "importPath": "app.activities.models",
         "description": "app.activities.models",
