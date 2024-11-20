@@ -10,9 +10,65 @@ import json
 
 journal_router = APIRouter()
 
+
+@journal_router.post('/')
+def create_journal(
+    journal_data: CreateUpdateJournal, 
+    db: Session = Depends(get_db), 
+    user: User = Depends(get_current_user)
+):
+    # Check if a journal entry already exists for today
+    today = date.today()
+    existing_journal = db.query(JournalEntryDB).filter(
+        JournalEntryDB.user_id == user.id,
+        JournalEntryDB.entry_date == today
+    ).first()
+
+    if existing_journal:
+        raise HTTPException(
+            status_code=400, 
+            detail="A journal entry for today already exists."
+        )
+
+    # Create the new journal entry
+    journal_entry = JournalEntryDB(
+        most_important_task=journal_data.most_important_task,
+        grateful_things=journal_data.grateful_things,  
+        overall_day_rating=journal_data.overall_day_rating,
+        overall_mood_rating=journal_data.overall_mood_rating,
+        completed_most_important_task=journal_data.completed_most_important_task,
+        day_summary=journal_data.day_summary,
+        mood_tags=journal_data.mood_tags if journal_data.mood_tags else None,
+        user_id=user.id
+    )
+
+    db.add(journal_entry)
+    db.commit()
+    db.refresh(journal_entry)
+
+    # Deserialize JSON fields for the response
+    grateful_things = journal_entry.grateful_things
+    mood_tags = journal_entry.mood_tags if journal_entry.mood_tags else None
+
+    return {
+        "data": {
+            "id": str(journal_entry.id),
+            "grateful_things": grateful_things,
+            "completed_most_important_task": journal_entry.completed_most_important_task,
+            "mood_tags": mood_tags,
+            "entry_date": journal_entry.entry_date.isoformat(),
+            "user_id": str(journal_entry.user_id),
+            "most_important_task": journal_entry.most_important_task,
+            "overall_day_rating": journal_entry.overall_day_rating,
+            "overall_mood_rating": journal_entry.overall_mood_rating,
+            "day_summary": journal_entry.day_summary,
+        }
+    }
+
+
 # Create journal entry
 #  Todo : separate to services and routes: the route should call the service
-@journal_router.post('/')
+@journal_router.post('/keeps')
 def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     journal_entry = JournalEntryDB(
         most_important_task=journal_data.most_important_task,
