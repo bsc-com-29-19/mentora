@@ -17,9 +17,11 @@ class _SigninScreenState extends State<SigninScreen> {
 
   final _formKey = GlobalKey<FormState>();
   bool _isPasswordVisible = false;
+  
+  String username = '';
+  String password = '';
+  
 
-  String _username = '';
-  String _password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         }
                         return null;
                       },
-                      onSaved: (value) => _username = value!,
+                      onSaved: (value) => username = value!,
                     ),
                     const SizedBox(height: 20),
 
@@ -136,7 +138,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         }
                         return null;
                       },
-                      onSaved: (value) => _password = value!,
+                      onSaved: (value) => password = value!,
                     ),
                     const SizedBox(height: 10),
 

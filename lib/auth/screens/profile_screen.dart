@@ -15,6 +15,7 @@ class ProfileScreen extends StatefulWidget {
       await prefs.remove('email');
       await prefs.remove('fullName');
       await prefs.remove('token');
+      await prefs.clear();
       await prefs.setBool('isAuthenticated', false);
 
       await Get.offAllNamed('/signin'); // Redirect to the sign-in screen
@@ -60,8 +61,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       if (mounted) {
         // Check both authentication status and data presence
-        if (!isAuthenticated || (storedUsername.isEmpty && storedEmail.isEmpty)) {
-          debugPrint('User not authenticated or no data found, redirecting to signin');
+        if (!isAuthenticated ||
+            (storedUsername.isEmpty && storedEmail.isEmpty)) {
+          debugPrint(
+              'User not authenticated or no data found, redirecting to signin');
           await ProfileScreen.handleLogout();
           return;
         }

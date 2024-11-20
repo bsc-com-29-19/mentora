@@ -18,7 +18,8 @@ class Button extends StatelessWidget {
       width: double.infinity, // Ensures button stretches across the parent
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: color, // Use the passed or default color
+          // backgroundColor: color, // Use the passed or default color
+          backgroundColor: Colors.green.shade300,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8), // Rounded corners
           ),
