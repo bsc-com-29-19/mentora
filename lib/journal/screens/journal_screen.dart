@@ -20,14 +20,6 @@ class _JournalScreenState extends State<JournalScreen> {
   final JournalController journalController = Get.find<JournalController>();
 
   DateTime selectedDate = DateTime.now();
-  // int overallRating = 0;
-  // int moodRating = 0;
-  // bool taskCompleted = false;
-  // TextEditingController taskController = TextEditingController();
-  // TextEditingController gratitudeController1 = TextEditingController();
-  // TextEditingController gratitudeController2 = TextEditingController();
-  // TextEditingController gratitudeController3 = TextEditingController();
-  // TextEditingController daySummaryController = TextEditingController();
 
   String username = '';
   String email = '';
@@ -318,37 +310,6 @@ class _JournalScreenState extends State<JournalScreen> {
       ),
     );
   }
-
-  // void _submitJournal() {
-  //   // Gather the input data and perform submission logic
-  //   String task = taskController.text;
-  //   String gratitude1 = gratitudeController1.text;
-  //   String gratitude2 = gratitudeController2.text;
-  //   String gratitude3 = gratitudeController3.text;
-  //   String daySummary = daySummaryController.text;
-
-  //   // Print to console for now (replace with actual submission logic)
-  //   print("Task: $task");
-  //   print("Gratitude 1: $gratitude1");
-  //   print("Gratitude 2: $gratitude2");
-  //   print("Gratitude 3: $gratitude3");
-  //   print("Overall Rating: $overallRating");
-  //   print("Mood Rating: $moodRating");
-  //   print("Task Completed: $taskCompleted");
-  //   print("Day Summary: $daySummary");
-
-  //   // Optionally clear the fields after submission
-  //   taskController.clear();
-  //   gratitudeController1.clear();
-  //   gratitudeController2.clear();
-  //   gratitudeController3.clear();
-  //   daySummaryController.clear();
-  //   setState(() {
-  //     overallRating = 0;
-  //     moodRating = 0;
-  //     taskCompleted = false;
-  //   });
-  // }
 
   Widget _buildRadioWithLabel(
       int value, String label, int groupValue, ValueChanged<int?> onChanged) {

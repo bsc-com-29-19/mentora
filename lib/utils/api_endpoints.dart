@@ -18,7 +18,7 @@ class _AuthEndPoints {
 }
 
 class _JornalEndpoints {
-  final String journal = "/journals";
+  final String journal = "/journals/";
 }
 
 class _ActivityEndpoints {
