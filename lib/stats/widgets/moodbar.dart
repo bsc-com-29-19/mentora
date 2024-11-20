@@ -5,7 +5,7 @@ class MoodBar extends StatelessWidget {
   final double value;
   final String label;
 
-  const MoodBar({required this.value, required this.label});
+  const MoodBar({super.key, required this.value, required this.label});
 
   @override
   Widget build(BuildContext context) {

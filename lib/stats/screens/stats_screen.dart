@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:mentora_frontend/auth/widgets/logout_button.dart';
 
-void main() {
-  runApp(MentoraApp());
-}
 
-// Root widget for the application
-class MentoraApp extends StatelessWidget {
+// void main() {
+//   runApp(MentoraApp());
+// }
+
+// // Root widget for the application
+// class MentoraApp extends StatelessWidget {
+//   const MentoraApp({super.key});
+
   
-  @override
-  Widget build(BuildContext context) {
+//   @override
+//   Widget build(BuildContext context) {
     
-    return MaterialApp(
-      title: 'Mentora',
+//     return MaterialApp(
+//       title: 'Mentora',
 
-      debugShowCheckedModeBanner: false,  // Remove the debug banner
-      theme: ThemeData(
-        brightness: Brightness.dark, // Set the theme to dark mode
-      ),
-      home: StatsScreen(), 
-      // Set the StatsScreen as the home screen
-    );
-  }
-}
+//       debugShowCheckedModeBanner: false,  // Remove the debug banner
+//       theme: ThemeData(
+//         brightness: Brightness.dark, // Set the theme to dark mode
+//       ),
+//       home: StatsScreen(), 
+//       // Set the StatsScreen as the home screen
+//     );
+//   }
+// }
 
 
 // Main screen widget that displays the stats summary and mood trend
 class StatsScreen extends StatelessWidget {
+  const StatsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,14 +40,7 @@ class StatsScreen extends StatelessWidget {
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold), // Making it bold
         ),
-        actions: [
-          LogoutButton(
-            onLogout: () {
-              // Navigate to signin screen
-              Navigator.pushReplacementNamed(context, '/signin');
-            },
-          ),
-        ],
+       
       ),
       
       body: Padding(
@@ -103,6 +100,8 @@ class StatsScreen extends StatelessWidget {
 
 // Widget representing an expandable stat card with details
 class StatCardExpandable extends StatelessWidget {
+
+
   final String label; // Label for the stat
   final String value; // Main value displayed on the card
   final String details; // Additional details shown when expanded
@@ -113,6 +112,8 @@ class StatCardExpandable extends StatelessWidget {
     required this.value,
     required this.details,
   });
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +190,7 @@ class MoodBar extends StatelessWidget {
   final String label; // Percentage label shown below the bar
   final String day;   // Day label for each bar
 
-  const MoodBar({required this.value, required this.label, required this.day});
+  const MoodBar({super.key, required this.value, required this.label, required this.day});
 
   @override
   Widget build(BuildContext context) {
