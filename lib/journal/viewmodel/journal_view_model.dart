@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:mentora_frontend/stats/viewmodels/stats_view_model.dart';
 import 'package:mentora_frontend/utils/api_endpoints.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +11,7 @@ import 'package:http/http.dart' as http;
 class JournalController extends GetxController {
   final logger = Logger();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final StatsController statsController = Get.put(StatsController());
 
   // Controllers for form fields
   TextEditingController taskController = TextEditingController();
@@ -21,6 +24,72 @@ class JournalController extends GetxController {
   RxInt overallRating = 1.obs;
   RxInt moodRating = 1.obs;
   RxBool taskCompleted = false.obs;
+
+  Timer? resetTimer;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _loadSavedJournalData();
+    _startResetTimer();
+  }
+
+  @override
+  void onClose() {
+    resetTimer?.cancel();
+    super.onClose();
+  }
+
+  void _loadSavedJournalData() async {
+    final SharedPreferences prefs = await _prefs;
+    String? savedJournalData = prefs.getString('journal_data');
+
+    if (savedJournalData != null) {
+      var data = jsonDecode(savedJournalData);
+
+      // Populate form fields with saved data
+      taskController.text = data['most_important_task'] ?? '';
+      List<String> gratefulThings =
+          List<String>.from(data['grateful_things'] ?? []);
+      gratitudeController1.text =
+          gratefulThings.isNotEmpty ? gratefulThings[0] : '';
+      gratitudeController2.text =
+          gratefulThings.length > 1 ? gratefulThings[1] : '';
+      gratitudeController3.text =
+          gratefulThings.length > 2 ? gratefulThings[2] : '';
+      daySummaryController.text = data['day_summary'] ?? '';
+      overallRating.value = data['overall_day_rating'] ?? 1;
+      moodRating.value = data['overall_mood_rating'] ?? 1;
+      taskCompleted.value = data['completed_most_important_task'] ?? false;
+
+      logger.i("Loaded saved journal data: $data");
+    }
+  }
+
+  void _startResetTimer() {
+    final now = DateTime.now();
+    final midnight = DateTime(now.year, now.month, now.day + 1);
+    final durationUntilMidnight = midnight.difference(now);
+
+    resetTimer = Timer(durationUntilMidnight, () {
+      clearForm();
+      _startResetTimer(); // Restart the timer for the next day
+    });
+  }
+
+  void clearForm() async {
+    final SharedPreferences prefs = await _prefs;
+    await prefs.remove('journal_data');
+
+    taskController.clear();
+    gratitudeController1.clear();
+    gratitudeController2.clear();
+    gratitudeController3.clear();
+    daySummaryController.clear();
+    overallRating.value = 1;
+    moodRating.value = 1;
+    taskCompleted.value = false;
+  }
 
   Future<void> submitJournal() async {
     try {
@@ -56,13 +125,14 @@ class JournalController extends GetxController {
       http.Response response =
           await http.post(url, body: encodedBody, headers: headers);
 
-      logger.i("URL : $url");
-      logger.i("Response : $response");
+      // logger.i("URL : $url");
+      // logger.i("Response : ${response}");
 
       if (response.statusCode == 200) {
+        statsController.fetchStatsData();
         if (response.body.isNotEmpty) {
-          var responseData = jsonDecode(response.body
-          );
+          var responseData = jsonDecode(response.body);
+          await prefs.setString('journal_data', jsonEncode(responseData));
           logger.i("Response body : $responseData ");
           // Handle the response data
         }
@@ -83,16 +153,4 @@ class JournalController extends GetxController {
           backgroundColor: Colors.red.shade300, colorText: Colors.white);
     }
   }
-
-  // void _clearForm() {
-  //   taskController.clear();
-  //   gratitudeController1.clear();
-  //   gratitudeController2.clear();
-  //   gratitudeController3.clear();
-  //   daySummaryController.clear();
-  //   overallRating.value = 0;
-  //   moodRating.value = 0;
-  //   taskCompleted.value = false;
-  //   selectedDate.value = DateTime.now();
-  // }
 }
