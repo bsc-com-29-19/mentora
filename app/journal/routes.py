@@ -1,3 +1,4 @@
+from datetime import date
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from dependencies import get_db, get_current_user
@@ -56,9 +57,29 @@ def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_
 @journal_router.get('/')
 def list_journals(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     journals = db.query(JournalEntryDB).filter(JournalEntryDB.user_id == user.id).all()
+    data = []
+
+    for journal in journals:
+        data.append({
+            "id": str(journal.id),
+            "user_id": str(journal.user_id),
+            "entry_date": journal.entry_date.isoformat(),
+            "most_important_task": journal.most_important_task,
+            "grateful_things": json.loads(journal.grateful_things) if journal.grateful_things else None,
+            "overall_day_rating": journal.overall_day_rating,
+            "overall_mood_rating": journal.overall_mood_rating,
+            "completed_most_important_task": journal.completed_most_important_task,
+            "day_summary": journal.day_summary,
+            "mood_tags": json.loads(journal.mood_tags) if journal.mood_tags else None,
+        })
+
     return {
-        "data": [journal.__dict__ for journal in journals]
+        "data": data
     }
+    # journals = db.query(JournalEntryDB).filter(JournalEntryDB.user_id == user.id).all()
+    # return {
+    #     "data": [journal.__dict__ for journal in journals]
+    # }
 
 # View a specific journal entry
 @journal_router.get('/{journal_id}')
@@ -66,9 +87,55 @@ def view_journal(journal_id: str, db: Session = Depends(get_db), user: User = De
     journal = db.query(JournalEntryDB).filter(JournalEntryDB.id == journal_id, JournalEntryDB.user_id == user.id).first()
     if not journal:
         raise HTTPException(status_code=404, detail="Journal entry not found")
+
     return {
-        "data": journal.__dict__
+        "data": {
+            "id": str(journal.id),
+            "user_id": str(journal.user_id),
+            "entry_date": journal.entry_date.isoformat(),
+            "most_important_task": journal.most_important_task,
+            "grateful_things": json.loads(journal.grateful_things) if journal.grateful_things else None,
+            "overall_day_rating": journal.overall_day_rating,
+            "overall_mood_rating": journal.overall_mood_rating,
+            "completed_most_important_task": journal.completed_most_important_task,
+            "day_summary": journal.day_summary,
+            "mood_tags": json.loads(journal.mood_tags) if journal.mood_tags else None,
+        }
     }
+    # journal = db.query(JournalEntryDB).filter(JournalEntryDB.id == journal_id, JournalEntryDB.user_id == user.id).first()
+    # if not journal:
+    #     raise HTTPException(status_code=404, detail="Journal entry not found")
+    # return {
+    #     "data": journal.__dict__
+    # }
+
+
+journal_router.get('/today')
+def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    today = date.today()
+    journal = db.query(JournalEntryDB).filter(
+        JournalEntryDB.user_id == user.id,
+        JournalEntryDB.entry_date == today
+    ).first()
+
+    if not journal:
+        raise HTTPException(status_code=404, detail="No journal entry found for today")
+
+    return {
+        "data": {
+            "id": str(journal.id),
+            "user_id": str(journal.user_id),
+            "entry_date": journal.entry_date.isoformat(),
+            "most_important_task": journal.most_important_task,
+            "grateful_things": json.loads(journal.grateful_things) if journal.grateful_things else None,
+            "overall_day_rating": journal.overall_day_rating,
+            "overall_mood_rating": journal.overall_mood_rating,
+            "completed_most_important_task": journal.completed_most_important_task,
+            "day_summary": journal.day_summary,
+            "mood_tags": json.loads(journal.mood_tags) if journal.mood_tags else None,
+        }
+    }
+
 
 # Update a journal entry
 @journal_router.put('/{journal_id}')
