@@ -1,5 +1,9 @@
+import random
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
+
+from app.activities.models import Activity
+from app.activities.services import create_activity_service
 from .models import User
 from .schema import UserCreate, UserLogin, LoginResponse ,UserResponse
 from dependencies import get_db,get_current_user
@@ -29,6 +33,40 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
 
     db.add(user)
     db.commit()
+    db.refresh(user)
+
+
+    # Generate six activities for the new user
+    suggested_activities = [
+        {"title": "Go for a walk", "description": "A 30-minute walk in nature can improve mood and reduce anxiety."},
+        {"title": "Meditate", "description": "Spend 15 minutes focusing on your breath to relax your mind."},
+        {"title": "Read a book", "description": "Reading can be a great escape and help reduce stress."},
+        {"title": "Gym exercise", "description": "Physical activity boosts serotonin and can help alleviate depression."},
+        {"title": "Connect with a friend", "description": "Socializing and spending time with friends improves emotional well-being."},
+        {"title": "Journal", "description": "Writing about your feelings can help process emotions and clear your mind."},
+        {"title": "Listen to music", "description": "Listening to uplifting music can improve mood and reduce stress."},
+        {"title": "Deep breathing", "description": "Practicing deep breathing can reduce tension and improve focus."},
+        {"title": "Cook a meal", "description": "Preparing healthy meals can increase feelings of accomplishment and improve health."},
+        {"title": "Yoga", "description": "Yoga can enhance physical and mental flexibility while promoting relaxation."},
+        {"title": "Spend time with pets", "description": "Interacting with animals can reduce stress and enhance emotional well-being."},
+        {"title": "Take a nap", "description": "A short nap can recharge energy and improve mental clarity."}
+    ]
+
+    # Select six random activities
+    random_activities = random.sample(suggested_activities, 6)
+
+    # Create activities for the new user
+    for activity_info in random_activities:
+        create_activity_service(
+            activity_data=Activity(
+                title=activity_info["title"], 
+                description=activity_info["description"], 
+                status="NOT_DONE"
+            ),
+            db=db,
+            user=user
+        )
+
     return {"message": "User has been Created"}
 
 

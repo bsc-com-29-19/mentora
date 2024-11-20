@@ -497,6 +497,14 @@
         "documentation": {}
     },
     {
+        "label": "Activity",
+        "importPath": "app.activities.models",
+        "description": "app.activities.models",
+        "isExtraImport": true,
+        "detail": "app.activities.models",
+        "documentation": {}
+    },
+    {
         "label": "ActivityStatus",
         "importPath": "app.activities.models",
         "description": "app.activities.models",
@@ -1562,6 +1570,14 @@
         "documentation": {}
     },
     {
+        "label": "create_activity_service",
+        "importPath": "app.activities.services",
+        "description": "app.activities.services",
+        "isExtraImport": true,
+        "detail": "app.activities.services",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -2210,7 +2226,7 @@
         "kind": 2,
         "importPath": "app.auth.routes",
         "description": "app.auth.routes",
-        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(full_name=user_data.full_name,username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    return {\"message\": \"User has been Created\"}",
+        "peekOfCode": "def signup(user_data: UserCreate, db: Session = Depends(get_db)):\n    # Check if username or email already exists\n    if db.query(User).filter(User.username == user_data.username).first() or db.query(User).filter(User.email == user_data.email).first():\n        raise HTTPException(status_code=400, detail=\"Username or email already exists\")\n    #create a new user\n    user = User(full_name=user_data.full_name,username=user_data.username, email=user_data.email)\n    user.hash_password(user_data.password)\n    db.add(user)\n    db.commit()\n    db.refresh(user)",
         "detail": "app.auth.routes",
         "documentation": {}
     },
