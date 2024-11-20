@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //     pageController.jumpToPage(0); // Optionally reset to the first page.
   //   });
   // }
+
   Future<void> _refreshData() async {
     if (!_isRefreshing) {
       _isRefreshing = true;
@@ -112,118 +113,80 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     backgroundColor: Colors.green.shade300,
-  //     body: RefreshIndicator(
-  //       onRefresh: _refreshData,
-  //       child: Stack(
-  //         children: [
-  //           PageView(
-  //             controller: pageController,
-  //             onPageChanged: (index) {
-  //               currentPageIndex = index;
-  //               if (index == 2) {
-  //                 buttonText = "Finish";
-  //               } else {
-  //                 buttonText = "Skip";
-  //               }
-  //               setState(() {});
-  //             },
-  //             children: const [Screen1(), Screen2(), Screen3()],
-  //           ),
-  //           Container(
-  //             alignment: const Alignment(0, 0.8),
-  //             child: Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //               children: [
-  //                 GestureDetector(
-  //                   onTap: () {
-  //                     if (currentPageIndex == 2) {
-  //                       completeOnBoarding();
-  //                     } else {
-  //                       completeOnBoarding();
-  //                       //  complete
-  //                     }
-  //                   },
-  //                   child: Text(
-  //                     buttonText,
-  //                     style: const TextStyle(
-  //                         color: Colors.white,
-  //                         fontSize: 18,
-  //                         fontWeight: FontWeight.w500),
-  //                   ),
-  //                 ),
-  //                 SmoothPageIndicator(
-  //                   controller: pageController,
-  //                   count: 3,
-  //                   onDotClicked: (index) => pageController.animateToPage(index,
-  //                       duration: const Duration(milliseconds: 600),
-  //                       curve: Curves.easeIn),
-  //                   effect: const WormEffect(activeDotColor: Colors.white),
-  //                 ),
-  //                 currentPageIndex == 2
-  //                     ? const SizedBox(
-  //                         width: 10,
-  //                       )
-  //                     : GestureDetector(
-  //                         onTap: () {
-  //                           pageController.nextPage(
-  //                               duration: const Duration(milliseconds: 600),
-  //                               curve: Curves.easeIn);
-  //                         },
-  //                         child: const Text(
-  //                           "Next",
-  //                           style: TextStyle(
-  //                               color: Colors.white,
-  //                               fontSize: 18,
-  //                               fontWeight: FontWeight.w500),
-  //                         ),
-  //                       ),
-  //               ],
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green.shade300,
-      body: Stack(
-        children: [
-          RefreshIndicator(
-            key: _refreshKey,
-            onRefresh: _refreshData,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onPanDown: (details) {
-                _isRefreshing = false;
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: Stack(
+          children: [
+            PageView(
+              controller: pageController,
+              onPageChanged: (index) {
+                currentPageIndex = index;
+                if (index == 2) {
+                  buttonText = "Finish";
+                } else {
+                  buttonText = "Skip";
+                }
+                setState(() {});
               },
-              onPanCancel: () {
-                _isRefreshing = false;
-              },
-              child: PageView(
-                controller: pageController,
-                onPageChanged: (index) {
-                  currentPageIndex = index;
-                  if (index == 2) {
-                    buttonText = "Finish";
-                  } else {
-                    buttonText = "Skip";
-                  }
-                  setState(() {});
-                },
-                children: const [Screen1(), Screen2(), Screen3()],
+              children: const [Screen1(), Screen2(), Screen3()],
+            ),
+            Container(
+              alignment: const Alignment(0, 0.8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      if (currentPageIndex == 2) {
+                        completeOnBoarding();
+                      } else {
+                        completeOnBoarding();
+                        //  complete
+                      }
+                    },
+                    child: Text(
+                      buttonText,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  SmoothPageIndicator(
+                    controller: pageController,
+                    count: 3,
+                    onDotClicked: (index) => pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 600),
+                        curve: Curves.easeIn),
+                    effect: const WormEffect(activeDotColor: Colors.white),
+                  ),
+                  currentPageIndex == 2
+                      ? const SizedBox(
+                          width: 10,
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            pageController.nextPage(
+                                duration: const Duration(milliseconds: 600),
+                                curve: Curves.easeIn);
+                          },
+                          child: const Text(
+                            "Next",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                ],
               ),
             ),
-          ),
-          // ... (rest of your code remains the same)
-        ],
+          ],
+        ),
       ),
     );
   }
