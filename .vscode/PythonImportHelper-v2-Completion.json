@@ -1927,7 +1927,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "DATABASE_URL = os.getenv('DATABASE_URL')\n##### db = sql_database(DATABASE_URL)\ndb = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  ",
+        "peekOfCode": "DATABASE_URL = os.getenv('DATABASE_URL')\n##### db = sql_database(DATABASE_URL)\ndb = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  ",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1936,7 +1936,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "db = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [",
+        "peekOfCode": "db = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1945,16 +1945,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\ndb_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",",
-        "detail": "app.activities.db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "db_chain",
-        "kind": 5,
-        "importPath": "app.activities.db_connection",
-        "description": "app.activities.db_connection",
-        "peekOfCode": "db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",\n    #     \"Title: Connect with a friend\\nDescription: Socializing and spending time with friends improves emotional well-being.\",",
+        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -2486,6 +2477,15 @@
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
         "peekOfCode": "def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=journal_data.grateful_things,  \n        # grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,\n        day_summary=journal_data.day_summary,\n        mood_tags=journal_data.mood_tags if journal_data.mood_tags else None,",
+        "detail": "app.journal.routes",
+        "documentation": {}
+    },
+    {
+        "label": "list_journals",
+        "kind": 2,
+        "importPath": "app.journal.routes",
+        "description": "app.journal.routes",
+        "peekOfCode": "def list_journals(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journals = db.query(JournalEntryDB).filter(JournalEntryDB.user_id == user.id).all()\n    data = []\n    for journal in journals:\n        # Safely parse `grateful_things`\n        try:\n            grateful_things = json.loads(journal.grateful_things) if journal.grateful_things else None\n        except json.JSONDecodeError:\n            grateful_things = None\n        # Safely parse `mood_tags`",
         "detail": "app.journal.routes",
         "documentation": {}
     },

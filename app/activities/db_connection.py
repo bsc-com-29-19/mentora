@@ -42,7 +42,7 @@ print(f"DB: {db}")  # Print the database object (for debugging pub)
 model = ChatOpenAI(model="gpt-3.5-turbo")
 
 
-db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  
+# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  
 
 def generate_activities_custom_for_all_users():
 
