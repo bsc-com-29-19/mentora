@@ -8,7 +8,7 @@ import 'package:mentora_frontend/journal/viewmodel/journal_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalScreen extends StatefulWidget {
-  JournalScreen({super.key});
+  const JournalScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api

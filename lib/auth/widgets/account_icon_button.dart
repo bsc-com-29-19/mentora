@@ -14,11 +14,10 @@ class AccountIconButton extends StatelessWidget {
     required this.onLogout,
   });
 
-  // Method to handle logout confirmation with user interaction
   void _handleLogoutConfirmation(BuildContext context) async {
     try {
-      Navigator.pop(context); // Close the account menu
-      final result = await showDialog<bool>( // Show confirmation dialog
+      Navigator.pop(context);
+      final result = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -29,11 +28,11 @@ class AccountIconButton extends StatelessWidget {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context, false), // Cancel logout
+                onPressed: () => Navigator.pop(context, false),
                 child: const Text("Cancel"),
               ),
               TextButton(
-                onPressed: () => Navigator.pop(context, true), // Confirm logout
+                onPressed: () => Navigator.pop(context, true),
                 child: const Text(
                   "Logout",
                   style: TextStyle(color: Colors.red),
@@ -45,25 +44,24 @@ class AccountIconButton extends StatelessWidget {
       );
 
       if (result == true) {
-        await Future.delayed(const Duration(milliseconds: 200)); // Slight delay for effect
-        onLogout!(); // Call the logout function passed as a callback
+        await Future.delayed(const Duration(milliseconds: 200));
+        onLogout!();
       }
     } catch (e) {
       debugPrint('Error during logout process: $e');
     }
   }
 
-  // Method to display account menu with options
   void _showAccountMenu(BuildContext context) {
     final size = MediaQuery.of(context).size;
     
     showDialog(
       context: context,
-      barrierColor: Colors.black54, // Dim the background
-      barrierDismissible: true, // Allow dismissing by tapping outside
+      barrierColor: Colors.black54,
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return Align(
-          alignment: Alignment.topRight, // Align the menu to top-right
+          alignment: Alignment.topRight,
           child: Material(
             color: Colors.transparent,
             child: Container(
@@ -71,8 +69,8 @@ class AccountIconButton extends StatelessWidget {
                 top: MediaQuery.of(context).padding.top,
                 right: 0,
               ),
-              width: size.width * 0.85, // Ensure the menu uses 85% of screen width
-              height: size.height * 0.9, // Menu height is 90% of screen height
+              width: size.width * 0.85,
+              height: size.height * 0.9,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -90,6 +88,7 @@ class AccountIconButton extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // Header section with user info
                   Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
@@ -104,7 +103,9 @@ class AccountIconButton extends StatelessWidget {
                           radius: 45,
                           backgroundColor: Colors.grey.shade200,
                           child: Text(
-                            username.isNotEmpty ? username[0].toUpperCase() : 'U',
+                            fullName.isNotEmpty 
+                              ? fullName.split(' ')[0][0].toUpperCase() 
+                              : 'U',
                             style: TextStyle(
                               fontSize: 35,
                               fontWeight: FontWeight.bold,
@@ -130,77 +131,107 @@ class AccountIconButton extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Divider(height: 1),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 8,
-                    ),
-                    leading: const Icon(Icons.person_outline, size: 28),
-                    title: const Text(
-                      "Profile",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    onTap: () async {
-                      try {
-                        Navigator.pop(context); // Close menu on profile tap
-                        await showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text("Details"),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    if (username.isNotEmpty) ...[ // If username is available
-                                      const Text(
-                                        "Username:",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(username),
-                                      const SizedBox(height: 16),
-                                    ],
-                                    if (fullName.isNotEmpty) ...[ // If full name is available
-                                      const Text(
-                                        "Full Name:",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(fullName),
-                                      const SizedBox(height: 16),
-                                    ],
-                                    if (email.isNotEmpty) ...[ // If email is available
-                                      const Text(
-                                        "Email:",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(email),
-                                    ],
-                                  ],
-                                ),
+                  
+                  // Profile Details Section
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          // Profile Button
+                          ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 8,
+                            ),
+                            leading: const Icon(
+                              Icons.person_outline,
+                              color: Colors.black87,
+                              size: 28,
+                            ),
+                            title: const Text(
+                              "Profile",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
                               ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context), // Close details dialog
-                                  child: const Text("Close"),
-                                ),
+                            ),
+                            onTap: () {
+                              Navigator.pop(context);
+                              // You can add navigation to profile screen here if needed
+                            },
+                          ),
+                          
+                          // Profile Details
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 16,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (username.isNotEmpty) ...[
+                                  const Text(
+                                    "Username",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    username,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                ],
+                                if (fullName.isNotEmpty) ...[
+                                  const Text(
+                                    "Full Name",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    fullName,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                ],
+                                if (email.isNotEmpty) ...[
+                                  const Text(
+                                    "Email",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    email,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ],
-                            );
-                          },
-                        );
-                      } catch (e) {
-                        debugPrint('Error showing profile details: $e');
-                      }
-                    },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  const Spacer(),
+                  
+                  // Logout Section at the bottom
                   const Divider(height: 1),
                   ListTile(
                     contentPadding: const EdgeInsets.symmetric(
@@ -220,7 +251,7 @@ class AccountIconButton extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    onTap: () => _handleLogoutConfirmation(context), // Handle logout confirmation
+                    onTap: () => _handleLogoutConfirmation(context),
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -235,8 +266,8 @@ class AccountIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.person, color: Colors.black), // Icon for the account menu
-      onPressed: () => _showAccountMenu(context), // Show account menu on tap
+      icon: const Icon(Icons.person, color: Colors.black),
+      onPressed: () => _showAccountMenu(context),
     );
   }
 }

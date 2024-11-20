@@ -57,7 +57,7 @@ class JournalController extends GetxController {
           await http.post(url, body: encodedBody, headers: headers);
 
       logger.i("URL : $url");
-      logger.i("Response : ${response}");
+      logger.i("Response : $response");
 
       if (response.statusCode == 200) {
         if (response.body.isNotEmpty) {
