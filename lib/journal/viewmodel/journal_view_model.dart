@@ -40,6 +40,18 @@ class JournalController extends GetxController {
     super.onClose();
   }
 
+  Future<String?> _loadToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    if (token == null || token.isEmpty) {
+      Get.snackbar("Error", "Token is missing. Please log in again.",
+          backgroundColor: Colors.red.shade300, colorText: Colors.white);
+      return null;
+    }
+    return token;
+  }
+
   void _loadSavedJournalData() async {
     final SharedPreferences prefs = await _prefs;
     String? savedJournalData = prefs.getString('journal_data');
@@ -92,9 +104,13 @@ class JournalController extends GetxController {
   }
 
   Future<void> submitJournal() async {
+    final token = await _loadToken();
+    if (token == null) return;
+    final prefs = await SharedPreferences.getInstance();
+
     try {
-      final SharedPreferences prefs = await _prefs;
-      var token = prefs.getString('token') ?? '';
+      // final SharedPreferences prefs = await _prefs;
+      // var token = prefs.getString('token') ?? '';
 
       var url = Uri.parse(
           ApiEndpoints.baseurl + ApiEndpoints.journalEndpoints.journal);

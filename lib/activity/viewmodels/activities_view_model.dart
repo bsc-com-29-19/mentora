@@ -18,25 +18,47 @@ class ActivitiesController extends GetxController {
   var email = ''.obs;
   var fullName = ''.obs;
 
-  Future<void> fetchActivities() async {
-    isLoading(true);
-    errorMessage('');
+  Future<String?> _loadToken() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
+
     username.value = prefs.getString('username') ?? 'User';
     email.value = prefs.getString('email') ?? 'email@example.com';
     fullName.value = prefs.getString('fullName') ?? 'Full Name';
 
+    if (token == null || token.isEmpty) {
+      errorMessage.value = "Token is missing. Please log in again.";
+      return null;
+    }
+
+    return token;
+  }
+
+  Future<void> fetchActivities() async {
+    isLoading(true);
+    errorMessage('');
+
+    final token = await _loadToken();
+    if (token == null) {
+      isLoading(false);
+      return; // Stop execution if token is missing
+    }
+    // final prefs = await SharedPreferences.getInstance();
+    // final token = prefs.getString('token');
+    // username.value = prefs.getString('username') ?? 'User';
+    // email.value = prefs.getString('email') ?? 'email@example.com';
+    // fullName.value = prefs.getString('fullName') ?? 'Full Name';
+
     try {
-      if (token == null || token.isEmpty) {
-        throw Exception("Token is missing. Please log in again.");
-      }
+      // if (token == null || token.isEmpty) {
+      //   throw Exception("Token is missing. Please log in again.");
+      // }
 
       final url = Uri.parse(
           ApiEndpoints.baseurl + ApiEndpoints.activityEndpoints.activities);
 
-      logger.d("Fetching activities from $url");
-      logger.d("Token retrieved:$token");
+      // logger.d("Fetching activities from $url");
+      // logger.d("Token retrieved:$token");
 
       final response = await http.get(
         url,
@@ -64,12 +86,14 @@ class ActivitiesController extends GetxController {
 
   Future<void> updateActivityStatus(String activityId, String newStatus) async {
     isLoading(true);
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+    // final prefs = await SharedPreferences.getInstance();
+    // final token = prefs.getString('token');
 
     try {
-      if (token == null || token.isEmpty) {
-        throw Exception("Token is missing. Please log in again.");
+      final token = await _loadToken();
+      if (token == null) {
+        isLoading(false);
+        return; // Stop execution if token is missing
       }
 
       final url = Uri.parse(ApiEndpoints.baseurl +
@@ -85,7 +109,7 @@ class ActivitiesController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        fetchActivities(); // Refresh activities
+        await fetchActivities(); // Refresh activities
         statsController.fetchStatsData();
       } else {
         throw jsonDecode(response.body)['detail'] ?? 'Error updating activity.';

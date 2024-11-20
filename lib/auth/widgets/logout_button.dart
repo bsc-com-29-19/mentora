@@ -31,7 +31,7 @@ class _LogoutButtonState extends State<LogoutButton> {
       final prefs = await SharedPreferences.getInstance();
       setState(() {
         // Add debug print to check the stored value
-        print('Stored fullName: ${prefs.getString('fullName')}');
+        // print('Stored fullName: ${prefs.getString('fullName')}');
 
         fullName = prefs.getString('fullName') ?? 'User';
         username = prefs.getString('username') ?? 'User';
@@ -44,7 +44,13 @@ class _LogoutButtonState extends State<LogoutButton> {
 
   Future<void> _logout() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isAuthenticated', false);
+    await prefs.clear();
+    // await prefs.remove('username');
+    // await prefs.remove('email');
+    // await prefs.remove('fullName');
+    // await prefs.remove('token');
+    // await prefs.setBool('isAuthenticated', false);
+    await prefs.setBool('onBoardingCompleted', true);
     Get.offAll(() => const SigninScreen());
     // await prefs.clear();
     // widget.onLogout?.call();
@@ -105,7 +111,8 @@ class _LogoutButtonState extends State<LogoutButton> {
                   decoration: InputDecoration(
                     labelText: 'Username',
                     labelStyle: TextStyle(color: Colors.black),
-                    icon: Icon(Icons.account_circle, color: Colors.green.shade300),
+                    icon: Icon(Icons.account_circle,
+                        color: Colors.green.shade300),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -124,7 +131,8 @@ class _LogoutButtonState extends State<LogoutButton> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Cancel', style: TextStyle(color: Colors.green.shade300)),
+              child: Text('Cancel',
+                  style: TextStyle(color: Colors.green.shade300)),
             ),
             TextButton(
               onPressed: () async {
@@ -143,7 +151,8 @@ class _LogoutButtonState extends State<LogoutButton> {
                   );
                 }
               },
-              child: Text('Save', style: TextStyle(color: Colors.green.shade300)),
+              child:
+                  Text('Save', style: TextStyle(color: Colors.green.shade300)),
             ),
           ],
         );
@@ -238,4 +247,3 @@ class _LogoutButtonState extends State<LogoutButton> {
     );
   }
 }
-
