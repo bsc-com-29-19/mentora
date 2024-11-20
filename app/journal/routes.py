@@ -116,17 +116,29 @@ def list_journals(db: Session = Depends(get_db), user: User = Depends(get_curren
     data = []
 
     for journal in journals:
+        # Safely parse `grateful_things`
+        try:
+            grateful_things = json.loads(journal.grateful_things) if journal.grateful_things else None
+        except json.JSONDecodeError:
+            grateful_things = None
+
+        # Safely parse `mood_tags`
+        try:
+            mood_tags = json.loads(journal.mood_tags) if journal.mood_tags else None
+        except json.JSONDecodeError:
+            mood_tags = None
+
         data.append({
             "id": str(journal.id),
             "user_id": str(journal.user_id),
             "entry_date": journal.entry_date.isoformat(),
             "most_important_task": journal.most_important_task,
-            "grateful_things": json.loads(journal.grateful_things) if journal.grateful_things else None,
+            "grateful_things": grateful_things,
             "overall_day_rating": journal.overall_day_rating,
             "overall_mood_rating": journal.overall_mood_rating,
             "completed_most_important_task": journal.completed_most_important_task,
             "day_summary": journal.day_summary,
-            "mood_tags": json.loads(journal.mood_tags) if journal.mood_tags else None,
+            "mood_tags": mood_tags,
         })
 
     return {
@@ -166,7 +178,7 @@ def view_journal(journal_id: str, db: Session = Depends(get_db), user: User = De
     # }
 
 
-journal_router.get('/today')
+@journal_router.get('/today')
 def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     today = date.today()
     journal = db.query(JournalEntryDB).filter(

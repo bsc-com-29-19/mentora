@@ -2494,7 +2494,7 @@
         "kind": 2,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "def list_journals(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journals = db.query(JournalEntryDB).filter(JournalEntryDB.user_id == user.id).all()\n    data = []\n    for journal in journals:\n        data.append({\n            \"id\": str(journal.id),\n            \"user_id\": str(journal.user_id),\n            \"entry_date\": journal.entry_date.isoformat(),\n            \"most_important_task\": journal.most_important_task,\n            \"grateful_things\": json.loads(journal.grateful_things) if journal.grateful_things else None,",
+        "peekOfCode": "def list_journals(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journals = db.query(JournalEntryDB).filter(JournalEntryDB.user_id == user.id).all()\n    data = []\n    for journal in journals:\n        # Safely parse `grateful_things`\n        try:\n            grateful_things = json.loads(journal.grateful_things) if journal.grateful_things else None\n        except json.JSONDecodeError:\n            grateful_things = None\n        # Safely parse `mood_tags`",
         "detail": "app.journal.routes",
         "documentation": {}
     },
