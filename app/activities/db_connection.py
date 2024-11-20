@@ -551,7 +551,8 @@ def start_scheduler():
 def get_db_connection_check():
     # query = "How many users have signed up show  their username and email and list of activities for every user"
     query= "show all activities"
-    result = db_chain.invoke(query)
+    # result = db_chain.invoke(query)
+    result = ""
 
     return {"status": "success", "data": result}
 
