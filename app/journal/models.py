@@ -50,7 +50,7 @@ class JournalEntryDB(Base):
     day_summary = Column(String, nullable=False)
     # mood_tags = Column(String, nullable=True)
     mood_tags = Column(JSON, nullable=True)
-    created_at = Column(DateTime, default=datetime.now(timezone.utc) )
-    updated_at = Column(DateTime, default=datetime.now(timezone.utc) , onupdate=datetime.now(timezone.utc) )
+    # created_at = Column(DateTime, default=datetime.now(timezone.utc) )
+    # updated_at = Column(DateTime, default=datetime.now(timezone.utc) , onupdate=datetime.now(timezone.utc) )
 
     creator = relationship("User",backref="journal_entries")
