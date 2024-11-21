@@ -257,6 +257,14 @@
         "documentation": {}
     },
     {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "Date",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -1132,7 +1140,47 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -2485,7 +2533,7 @@
         "kind": 2,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    today = date.today\n    journal = db.query(JournalEntryDB).filter(\n        JournalEntryDB.entry_date == today,\n        JournalEntryDB.user_id == user.id\n    ).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"No journal entry found for today\")\n    return {\n        \"data\": {",
+        "peekOfCode": "def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    # today = date.today\n    today = datetime.now().date()\n    journal = db.query(JournalEntryDB).filter(\n        JournalEntryDB.updated_at == today,\n        JournalEntryDB.user_id == user.id\n    ).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"No journal entry found for today\")\n    return {",
         "detail": "app.journal.routes",
         "documentation": {}
     },

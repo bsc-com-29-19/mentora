@@ -1,12 +1,12 @@
 from pydantic import BaseModel
 from typing import Optional, List
 from enum import Enum
-from sqlalchemy import Column, Integer, String, Boolean, Date,ForeignKey, Enum as SqlEnum,JSON
+from sqlalchemy import Column, Integer, String, Boolean,DateTime, Date,ForeignKey, Enum as SqlEnum,JSON
 from sqlalchemy.dialects.postgresql import UUID
 from  sqlalchemy.orm import relationship
 from database  import Base
 import uuid
-from datetime import date
+from datetime import date,datetime,timezone
 
 
 class Rating(int, Enum):
@@ -50,5 +50,7 @@ class JournalEntryDB(Base):
     day_summary = Column(String, nullable=False)
     # mood_tags = Column(String, nullable=True)
     mood_tags = Column(JSON, nullable=True)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc) )
+    updated_at = Column(DateTime, default=datetime.now(timezone.utc) , onupdate=datetime.now(timezone.utc) )
 
     creator = relationship("User",backref="journal_entries")

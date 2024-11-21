@@ -7,6 +7,7 @@ from .schema import CreateUpdateJournal, UpdateJournal
 from .models import JournalEntryDB
 from .dependency import get_journal_for_user
 import json
+from datetime import date,datetime,timezone
 
 journal_router = APIRouter()
 
@@ -62,6 +63,9 @@ def create_journal(
             "overall_day_rating": journal_entry.overall_day_rating,
             "overall_mood_rating": journal_entry.overall_mood_rating,
             "day_summary": journal_entry.day_summary,
+            "created_at": journal_entry.created_at.isoformat(),
+            "updated_at": journal_entry.updated_at.isoformat(),
+
         }
     }
 
@@ -106,16 +110,20 @@ def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_
             "overall_day_rating": journal_entry.overall_day_rating,
             "overall_mood_rating": journal_entry.overall_mood_rating,
             "day_summary": journal_entry.day_summary,
+            "created_at": journal_entry.created_at.isoformat(),
+            "updated_at": journal_entry.updated_at.isoformat(),
+
         }
     }
 
 
 @journal_router.get('/today')
 def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    today = date.today
+    # today = date.today
+    today = datetime.now().date()
     
     journal = db.query(JournalEntryDB).filter(
-        JournalEntryDB.entry_date == today,
+        JournalEntryDB.updated_at == today,
         JournalEntryDB.user_id == user.id
     ).first()
 
@@ -134,6 +142,9 @@ def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_
             "completed_most_important_task": journal.completed_most_important_task,
             "day_summary": journal.day_summary,
             "mood_tags": json.loads(journal.mood_tags) if journal.mood_tags else None,
+            "created_at": journal.created_at.isoformat(),
+            "updated_at": journal.updated_at.isoformat(),
+
         }
     }
 
