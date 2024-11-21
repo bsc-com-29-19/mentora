@@ -31,6 +31,7 @@ class JournalController extends GetxController {
   void onInit() {
     super.onInit();
     _loadSavedJournalData();
+    fetchJournal();
     _startResetTimer();
   }
 
@@ -38,6 +39,71 @@ class JournalController extends GetxController {
   void onClose() {
     resetTimer?.cancel();
     super.onClose();
+  }
+
+  Future<String?> _loadToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    if (token == null || token.isEmpty) {
+      Get.snackbar("Error", "Token is missing. Please log in again.",
+          backgroundColor: Colors.red.shade300, colorText: Colors.white);
+      return null;
+    }
+    return token;
+  }
+
+  Future<void> fetchJournal() async {
+    final token = await _loadToken();
+    if (token == null) return;
+
+    try {
+      var url = Uri.parse(
+          ApiEndpoints.baseurl + ApiEndpoints.journalEndpoints.todayJournal);
+      var headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      };
+
+      final response = await http.get(url, headers: headers);
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+
+        // Extract data from the nested 'data' key
+        final journalData = responseData['data'] ?? {};
+
+        // Populate form fields with fetched data
+        taskController.text = journalData['most_important_task'] ?? '';
+        List<String> gratefulThings =
+            List<String>.from(journalData['grateful_things'] ?? []);
+        gratitudeController1.text =
+            gratefulThings.isNotEmpty ? gratefulThings[0] : '';
+        gratitudeController2.text =
+            gratefulThings.length > 1 ? gratefulThings[1] : '';
+        gratitudeController3.text =
+            gratefulThings.length > 2 ? gratefulThings[2] : '';
+        daySummaryController.text = journalData['day_summary'] ?? '';
+        overallRating.value = journalData['overall_day_rating'] ?? 1;
+        moodRating.value = journalData['overall_mood_rating'] ?? 1;
+        taskCompleted.value =
+            journalData['completed_most_important_task'] ?? false;
+
+        // Save fetched data locally
+        final SharedPreferences prefs = await _prefs;
+        await prefs.setString('journal_data', jsonEncode(journalData));
+
+        logger.i("Fetched journal data: $journalData");
+      } else {
+        logger.e("Failed to fetch journal data: ${response.statusCode}");
+        Get.snackbar("Error", "Failed to load journal data.",
+            backgroundColor: Colors.red.shade300, colorText: Colors.white);
+      }
+    } catch (error) {
+      logger.e("Error fetching journal data: $error");
+      Get.snackbar("Error", "An error occurred while fetching journal data.",
+          backgroundColor: Colors.red.shade300, colorText: Colors.white);
+    }
   }
 
   void _loadSavedJournalData() async {
@@ -92,9 +158,13 @@ class JournalController extends GetxController {
   }
 
   Future<void> submitJournal() async {
+    final token = await _loadToken();
+    if (token == null) return;
+    final prefs = await SharedPreferences.getInstance();
+
     try {
-      final SharedPreferences prefs = await _prefs;
-      var token = prefs.getString('token') ?? '';
+      // final SharedPreferences prefs = await _prefs;
+      // var token = prefs.getString('token') ?? '';
 
       var url = Uri.parse(
           ApiEndpoints.baseurl + ApiEndpoints.journalEndpoints.journal);

@@ -13,8 +13,9 @@ class ProfileScreen extends StatefulWidget {
       await prefs.remove('email');
       await prefs.remove('fullName');
       await prefs.remove('token');
-      await prefs.clear();
+      // await prefs.clear();
       await prefs.setBool('isAuthenticated', false);
+      await prefs.setBool('onBoardingCompleted', true);
       await Get.offAllNamed('/signin');
     } catch (e) {
       debugPrint('Error during logout: $e');
@@ -55,8 +56,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
 
       if (mounted) {
-        if (!isAuthenticated || (storedUsername.isEmpty && storedEmail.isEmpty)) {
-          debugPrint('User not authenticated or no data found, redirecting to signin');
+        if (!isAuthenticated ||
+            (storedUsername.isEmpty && storedEmail.isEmpty)) {
+          debugPrint(
+              'User not authenticated or no data found, redirecting to signin');
           await ProfileScreen.handleLogout();
           return;
         }
@@ -138,10 +141,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
-                
+
                 // Profile Details
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

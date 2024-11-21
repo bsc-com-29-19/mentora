@@ -14,7 +14,8 @@ class SignupForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<SignupForm> {
-  final RegistrationController registrationController = Get.put(RegistrationController());
+  final RegistrationController registrationController =
+      Get.put(RegistrationController());
 
   String fullName = '';
   String username = '';
@@ -167,16 +168,15 @@ class _SignupFormState extends State<SignupForm> {
           const SizedBox(height: 20),
 
           Button(
-           text: 'Sign Up',
-           onPressed: () async {
-           if (widget.formKey.currentState!.validate()) {
-           widget.formKey.currentState!.save();
-           await registrationController.registerUser();
-           }
-           },
-           color: Colors.green.shade300, // Matches your color scheme
+            text: 'Sign Up',
+            onPressed: () async {
+              if (widget.formKey.currentState!.validate()) {
+                widget.formKey.currentState!.save();
+                await registrationController.registerUser();
+              }
+            },
+            color: Colors.green.shade300, // Matches your color scheme
           ),
-
         ],
       ),
     );
