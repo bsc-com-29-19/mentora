@@ -18,7 +18,7 @@ class ActivitiesController extends GetxController {
   var email = ''.obs;
   var fullName = ''.obs;
 
-  Future<String?> _loadToken() async {
+  Future<String?> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
 
@@ -38,7 +38,7 @@ class ActivitiesController extends GetxController {
     isLoading(true);
     errorMessage('');
 
-    final token = await _loadToken();
+    final token = await loadToken();
     if (token == null) {
       isLoading(false);
       return; // Stop execution if token is missing
@@ -90,7 +90,7 @@ class ActivitiesController extends GetxController {
     // final token = prefs.getString('token');
 
     try {
-      final token = await _loadToken();
+      final token = await loadToken();
       if (token == null) {
         isLoading(false);
         return; // Stop execution if token is missing

@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String buttonText = "Skip";
   int currentPageIndex = 0;
 
-  final _refreshKey = GlobalKey<RefreshIndicatorState>();
+  final refreshKey = GlobalKey<RefreshIndicatorState>();
   bool _isRefreshing = false;
 
   // Future<void> _refreshData() async {

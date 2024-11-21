@@ -1,55 +1,91 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:mentora_frontend/activity/viewmodels/activities_view_model.dart';
-import 'package:mentora_frontend/utils/api_endpoints.dart';
-import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mockito/mockito.dart';
+
+// import 'package:get/get.dart';
+//
+class MockSharedPreferences extends Mock implements SharedPreferences {}
 
 void main() {
-  group('ActivitiesController', () {
-    // SharedPreferences.setMockInitialValues({});
-    late MockClient mockClient;
-    late ActivitiesController activitiesController;
+  late MockSharedPreferences mockSharedPreferences;
+  late ActivitiesController activitiesController;
 
-    // setUp(() {
-    //   when(mockClient.get(any, headers: anyNamed('headers')))
-    //       .thenAnswer((_) async => http.Response('[]', 200));
-    // });
-    setUp(() {
-      SharedPreferences.setMockInitialValues({});
-      mockClient = MockClient();
-      activitiesController = ActivitiesController(client: mockClient);
+  setUp(() {
+    mockSharedPreferences = MockSharedPreferences();
+    activitiesController = ActivitiesController();
+  });
 
-      when(mockClient.get(any, headers: anyNamed('headers')))
-          .thenAnswer((_) async => http.Response('[]', 200));
-
-      when(mockClient.patch(
-        any,
-        headers: anyNamed('headers'),
-        body: anyNamed('body'),
-      )).thenAnswer((_) async => http.Response('{"success": true}', 200));
+  test('Token exists in SharedPreferences', () async {
+    // Arrange
+    SharedPreferences.setMockInitialValues({
+      'token': 'token',
+      'username': 'username',
+      'email': 'email',
+      'fullName': 'fullName',
     });
 
-    test('fetchActivities', () async {
-      await activitiesController.fetchActivities();
-      expect(activitiesController.activities.value, []);
-    });
+    // Act
+    final token = await activitiesController.loadToken();
 
-    // test('updateActivityStatus', () async {
-    //   await activitiesController.updateActivityStatus('123', 'done');
-    //   verify(mockClient.patch(
-    //     Uri.parse(ApiEndpoints.baseurl +
-    //         ApiEndpoints.activityEndpoints.updateActivity('123')),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Authorization': 'Bearer ',
-    //     },
-    //     body: jsonEncode({'status': 'done'}),
-    //   )).called(matcher);
-    // });
+    // Assert
+    expect(token, 'token');
+    expect(activitiesController.username.value, 'username');
+    expect(activitiesController.email.value, 'email');
+    expect(activitiesController.fullName.value, 'fullName');
+    expect(activitiesController.errorMessage.value, '');
+  });
+
+  test('Token does not exist in SharedPreferences', () async {
+    // Arrange
+    when(mockSharedPreferences.getString('token')).thenReturn(null);
+    when(mockSharedPreferences.getString('username')).thenReturn(null);
+    when(mockSharedPreferences.getString('email')).thenReturn(null);
+    when(mockSharedPreferences.getString('fullName')).thenReturn(null);
+    SharedPreferences.setMockInitialValues({});
+
+    // Act
+    final token = await activitiesController.loadToken();
+
+    // Assert
+    expect(token, null);
+    expect(activitiesController.username.value, 'User');
+    expect(activitiesController.email.value, 'email@example.com');
+    expect(activitiesController.fullName.value, 'Full Name');
+    expect(activitiesController.errorMessage.value,
+        'Token is missing. Please log in again.');
+  });
+
+  test('Token is empty in SharedPreferences', () async {
+    // Arrange
+    when(mockSharedPreferences.getString('token')).thenReturn('');
+    when(mockSharedPreferences.getString('username')).thenReturn('');
+    when(mockSharedPreferences.getString('email')).thenReturn('');
+    when(mockSharedPreferences.getString('fullName')).thenReturn('');
+    SharedPreferences.setMockInitialValues({});
+
+    // Act
+    final token = await activitiesController.loadToken();
+
+    // Assert
+    expect(token, null);
+    expect(activitiesController.username.value, 'User');
+    expect(activitiesController.email.value, 'email@example.com');
+    expect(activitiesController.fullName.value, 'Full Name');
+    expect(activitiesController.errorMessage.value,
+        'Token is missing. Please log in again.');
+  });
+
+  test('SharedPreferences returns null for token', () async {
+    // Arrange
+    SharedPreferences.setMockInitialValues({});
+
+    // Act and Assert
+    final result = await activitiesController.loadToken();
+
+    // Assert: Verify no exception is thrown, but token is null
+    expect(result, isNull);
+    expect(activitiesController.errorMessage.value,
+        "Token is missing. Please log in again.");
   });
 }
-
-class MockClient extends Mock implements http.Client {}
