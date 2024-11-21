@@ -1,15 +1,21 @@
+//sign_view_model.dart
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:mentora_frontend/activity/viewmodels/activities_view_model.dart';
 import 'package:mentora_frontend/common/widgets/navigation_menu.dart';
+import 'package:mentora_frontend/stats/viewmodels/stats_view_model.dart';
 import 'package:mentora_frontend/utils/api_endpoints.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
-  // TextEditingController emailController = TextEditingController();
+  final ActivitiesController activitiesController =
+      Get.put(ActivitiesController());
+  final StatsController statsController = Get.put(StatsController());
+
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailorusernameController = TextEditingController();
 
@@ -46,6 +52,7 @@ class LoginController extends GetxController {
         // access access_token & username from login response and keep them in local storage: shared_preferences
         final json = jsonDecode(response.body);
         logger.d("Response body : ${response.body}");
+        logger.d("Response JSON : $json ");
         var token = json['access_token'];
         var username = json['username'];
         var email = json['email'];
@@ -55,23 +62,41 @@ class LoginController extends GetxController {
 
         final SharedPreferences prefs = await _prefs;
 
-        await prefs.setString('token', token);
-        await prefs.setString('username', username);
-        await prefs.setString('email', email);
-        await prefs.setString('fullName', fullName);
-        await prefs.setBool("isAuthenticated", true);
+        bool tokenSaved = await prefs.setString('token', token);
+        bool usernameSaved = await prefs.setString('username', username);
+        bool emailSaved = await prefs.setString('email', email);
+        bool fullNameSaved = await prefs.setString('fullName', fullName);
+        bool isAuthenticatedSaved =
+            await prefs.setBool("isAuthenticated", true);
+        bool isOnBoardingCompletedSaved =
+            await prefs.setBool("onBoardingCompleted", true);
+
+        await activitiesController.fetchActivities();
+        await statsController.fetchStatsData();
+
+        if (tokenSaved &&
+            usernameSaved &&
+            emailSaved &&
+            fullNameSaved &&
+            isAuthenticatedSaved &&
+            isOnBoardingCompletedSaved) {
+          logger.d("Token saved successfully");
+          emailorusernameController.clear();
+          passwordController.clear();
+
+          // Handle success Login
+          Get.snackbar("Success", "Your Login was Successful!",
+              backgroundColor: Colors.green.shade300,
+              colorText: Colors.white,
+              icon: const Icon(Icons.check, color: Colors.white));
+
+          Get.offAll(() => const NavigationMenu());
+        } else {
+          logger.d("Token failed to save");
+          throw Exception("Failed to save users data");
+        }
 
         // emailController.clear();
-        emailorusernameController.clear();
-        passwordController.clear();
-
-        // Handle success Login
-        Get.snackbar("Success", "Your Login was Successful!",
-            backgroundColor: Colors.green.shade300,
-            colorText: Colors.white,
-            icon: const Icon(Icons.check, color: Colors.white));
-
-        Get.offAll(() => const NavigationMenu());
       } else {
         logger.d("Response body : ${response.body}");
         logger.d("Response status code : ${response.statusCode}");
