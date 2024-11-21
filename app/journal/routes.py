@@ -63,8 +63,8 @@ def create_journal(
             "overall_day_rating": journal_entry.overall_day_rating,
             "overall_mood_rating": journal_entry.overall_mood_rating,
             "day_summary": journal_entry.day_summary,
-            "created_at": journal_entry.created_at.isoformat(),
-            "updated_at": journal_entry.updated_at.isoformat(),
+            # "created_at": journal_entry.created_at.isoformat(),
+            # "updated_at": journal_entry.updated_at.isoformat(),
 
         }
     }
@@ -73,7 +73,7 @@ def create_journal(
 # Create journal entry
 #  Todo : separate to services and routes: the route should call the service
 @journal_router.post('/keeps')
-def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+def create_journal_keeps(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     journal_entry = JournalEntryDB(
         most_important_task=journal_data.most_important_task,
         grateful_things=journal_data.grateful_things,  
@@ -110,8 +110,8 @@ def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_
             "overall_day_rating": journal_entry.overall_day_rating,
             "overall_mood_rating": journal_entry.overall_mood_rating,
             "day_summary": journal_entry.day_summary,
-            "created_at": journal_entry.created_at.isoformat(),
-            "updated_at": journal_entry.updated_at.isoformat(),
+            # "created_at": journal_entry.created_at.isoformat(),
+            # "updated_at": journal_entry.updated_at.isoformat(),
 
         }
     }
@@ -119,11 +119,11 @@ def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_
 
 @journal_router.get('/today')
 def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    # today = date.today
-    today = datetime.now().date()
+    today = date.today()
+    # today = datetime.now().date()
     
     journal = db.query(JournalEntryDB).filter(
-        JournalEntryDB.updated_at == today,
+        JournalEntryDB.entry_date == today,
         JournalEntryDB.user_id == user.id
     ).first()
 
@@ -142,8 +142,8 @@ def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_
             "completed_most_important_task": journal.completed_most_important_task,
             "day_summary": journal.day_summary,
             "mood_tags": json.loads(journal.mood_tags) if journal.mood_tags else None,
-            "created_at": journal.created_at.isoformat(),
-            "updated_at": journal.updated_at.isoformat(),
+            # "created_at": journal.created_at.isoformat(),
+            # "updated_at": journal.updated_at.isoformat(),
 
         }
     }

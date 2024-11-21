@@ -1188,6 +1188,22 @@
         "documentation": {}
     },
     {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -2520,11 +2536,11 @@
         "documentation": {}
     },
     {
-        "label": "create_journal",
+        "label": "create_journal_keeps",
         "kind": 2,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "def create_journal(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=journal_data.grateful_things,  \n        # grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,\n        day_summary=journal_data.day_summary,\n        mood_tags=journal_data.mood_tags if journal_data.mood_tags else None,",
+        "peekOfCode": "def create_journal_keeps(journal_data: CreateUpdateJournal, db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    journal_entry = JournalEntryDB(\n        most_important_task=journal_data.most_important_task,\n        grateful_things=journal_data.grateful_things,  \n        # grateful_things=','.join(journal_data.grateful_things),  # Assuming grateful_things is stored as a string\n        overall_day_rating=journal_data.overall_day_rating,\n        overall_mood_rating=journal_data.overall_mood_rating,\n        completed_most_important_task=journal_data.completed_most_important_task,\n        day_summary=journal_data.day_summary,\n        mood_tags=journal_data.mood_tags if journal_data.mood_tags else None,",
         "detail": "app.journal.routes",
         "documentation": {}
     },
@@ -2533,7 +2549,7 @@
         "kind": 2,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    # today = date.today\n    today = datetime.now().date()\n    journal = db.query(JournalEntryDB).filter(\n        JournalEntryDB.updated_at == today,\n        JournalEntryDB.user_id == user.id\n    ).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"No journal entry found for today\")\n    return {",
+        "peekOfCode": "def fetch_today_journal(db: Session = Depends(get_db), user: User = Depends(get_current_user)):\n    today = date.today()\n    # today = datetime.now().date()\n    journal = db.query(JournalEntryDB).filter(\n        JournalEntryDB.entry_date == today,\n        JournalEntryDB.user_id == user.id\n    ).first()\n    if not journal:\n        raise HTTPException(status_code=404, detail=\"No journal entry found for today\")\n    return {",
         "detail": "app.journal.routes",
         "documentation": {}
     },
@@ -2605,7 +2621,16 @@
         "kind": 6,
         "importPath": "app.journal.schema",
         "description": "app.journal.schema",
-        "peekOfCode": "class UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None\n    grateful_things: Optional[List[str]] = None\n    overall_day_rating: Optional[Rating] = None\n    overall_mood_rating: Optional[Rating] = None\n    completed_most_important_task: Optional[bool] = None\n    day_summary: Optional[str] = None\n    mood_tags: Optional[List[str]] = None",
+        "peekOfCode": "class UpdateJournal(CreateUpdateJournal):\n    most_important_task: Optional[str] = None\n    grateful_things: Optional[List[str]] = None\n    overall_day_rating: Optional[Rating] = None\n    overall_mood_rating: Optional[Rating] = None\n    completed_most_important_task: Optional[bool] = None\n    day_summary: Optional[str] = None\n    mood_tags: Optional[List[str]] = None\nclass JournalResponse(BaseModel):\n    id: str",
+        "detail": "app.journal.schema",
+        "documentation": {}
+    },
+    {
+        "label": "JournalResponse",
+        "kind": 6,
+        "importPath": "app.journal.schema",
+        "description": "app.journal.schema",
+        "peekOfCode": "class JournalResponse(BaseModel):\n    id: str\n    user_id: str\n    entry_date: date\n    most_important_task: str\n    grateful_things: List[str]\n    overall_day_rating: Rating\n    overall_mood_rating: Rating\n    completed_most_important_task: bool\n    day_summary: str",
         "detail": "app.journal.schema",
         "documentation": {}
     },

@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from pydantic import BaseModel
 from typing import Optional, List
 from enum import Enum
@@ -31,3 +32,20 @@ class UpdateJournal(CreateUpdateJournal):
     completed_most_important_task: Optional[bool] = None
     day_summary: Optional[str] = None
     mood_tags: Optional[List[str]] = None
+
+
+
+
+class JournalResponse(BaseModel):
+    id: str
+    user_id: str
+    entry_date: date
+    most_important_task: str
+    grateful_things: List[str]
+    overall_day_rating: Rating
+    overall_mood_rating: Rating
+    completed_most_important_task: bool
+    day_summary: str
+    mood_tags: Optional[List[str]]
+    created_at: datetime
+    updated_at: datetime
