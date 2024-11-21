@@ -37,6 +37,8 @@ class MyApp extends StatelessWidget {
   final ActivitiesController activitiesController =
       Get.put(ActivitiesController());
 
+  final JournalController journalController = Get.put(JournalController());
+
   MyApp(
       {super.key,
       required this.onBoardingCompleted,
@@ -47,6 +49,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     statsController.fetchStatsData();
     activitiesController.fetchActivities();
+    journalController.fetchJournal();
     return GetMaterialApp(
       title: 'Mentora',
 

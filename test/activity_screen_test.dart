@@ -63,7 +63,6 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-
     testWidgets('error message is displayed when errorMessage is not empty',
         (tester) async {
       final activitiesController = Get.put(ActivitiesController());
