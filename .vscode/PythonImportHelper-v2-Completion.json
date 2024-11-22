@@ -2585,7 +2585,7 @@
         "kind": 2,
         "importPath": "app.journal.routes",
         "description": "app.journal.routes",
-        "peekOfCode": "def edit_journal(journal_id: str, journal_data: UpdateJournal, journal: JournalEntryDB = Depends(get_journal_for_user), db: Session = Depends(get_db)):\n    if journal_data.most_important_task:\n        journal.most_important_task = journal_data.most_important_task\n    if journal_data.grateful_things:\n        journal.grateful_things = ','.join(journal_data.grateful_things)\n    if journal_data.overall_day_rating:\n        journal.overall_day_rating = journal_data.overall_day_rating\n    if journal_data.overall_mood_rating:\n        journal.overall_mood_rating = journal_data.overall_mood_rating\n    if journal_data.completed_most_important_task is not None:",
+        "peekOfCode": "def edit_journal(\n    journal_id: str, \n    journal_data: UpdateJournal, \n    journal: JournalEntryDB = Depends(get_journal_for_user), \n    db: Session = Depends(get_db)\n):\n    # Update only the provided fields\n    if journal_data.most_important_task:\n        journal.most_important_task = journal_data.most_important_task\n    if journal_data.grateful_things:",
         "detail": "app.journal.routes",
         "documentation": {}
     },

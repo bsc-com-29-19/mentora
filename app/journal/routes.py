@@ -226,11 +226,17 @@ def view_journal(journal_id: str, db: Session = Depends(get_db), user: User = De
 
 # Update a journal entry
 @journal_router.put('/{journal_id}')
-def edit_journal(journal_id: str, journal_data: UpdateJournal, journal: JournalEntryDB = Depends(get_journal_for_user), db: Session = Depends(get_db)):
+def edit_journal(
+    journal_id: str, 
+    journal_data: UpdateJournal, 
+    journal: JournalEntryDB = Depends(get_journal_for_user), 
+    db: Session = Depends(get_db)
+):
+    # Update only the provided fields
     if journal_data.most_important_task:
         journal.most_important_task = journal_data.most_important_task
     if journal_data.grateful_things:
-        journal.grateful_things = ','.join(journal_data.grateful_things)
+        journal.grateful_things = json.dumps(journal_data.grateful_things)  # Store as JSON string
     if journal_data.overall_day_rating:
         journal.overall_day_rating = journal_data.overall_day_rating
     if journal_data.overall_mood_rating:
@@ -240,13 +246,53 @@ def edit_journal(journal_id: str, journal_data: UpdateJournal, journal: JournalE
     if journal_data.day_summary:
         journal.day_summary = journal_data.day_summary
     if journal_data.mood_tags is not None:
-        journal.mood_tags = ','.join(journal_data.mood_tags)
-    
+        journal.mood_tags = json.dumps(journal_data.mood_tags)  # Store as JSON string
+
+    # Commit the changes
     db.commit()
     db.refresh(journal)
+
+    # Deserialize JSON fields for response
+    grateful_things = json.loads(journal.grateful_things) if journal.grateful_things else None
+    mood_tags = json.loads(journal.mood_tags) if journal.mood_tags else None
+
     return {
-        "data": journal.__dict__
+        "data": {
+            "id": str(journal.id),
+            "grateful_things": grateful_things,
+            "completed_most_important_task": journal.completed_most_important_task,
+            "mood_tags": mood_tags,
+            "entry_date": journal.entry_date.isoformat(),
+            "user_id": str(journal.user_id),
+            "most_important_task": journal.most_important_task,
+            "overall_day_rating": journal.overall_day_rating,
+            "overall_mood_rating": journal.overall_mood_rating,
+            "day_summary": journal.day_summary,
+        }
     }
+
+# @journal_router.put('/{journal_id}')
+# def edit_journal(journal_id: str, journal_data: UpdateJournal, journal: JournalEntryDB = Depends(get_journal_for_user), db: Session = Depends(get_db)):
+#     if journal_data.most_important_task:
+#         journal.most_important_task = journal_data.most_important_task
+#     if journal_data.grateful_things:
+#         journal.grateful_things = ','.join(journal_data.grateful_things)
+#     if journal_data.overall_day_rating:
+#         journal.overall_day_rating = journal_data.overall_day_rating
+#     if journal_data.overall_mood_rating:
+#         journal.overall_mood_rating = journal_data.overall_mood_rating
+#     if journal_data.completed_most_important_task is not None:
+#         journal.completed_most_important_task = journal_data.completed_most_important_task
+#     if journal_data.day_summary:
+#         journal.day_summary = journal_data.day_summary
+#     if journal_data.mood_tags is not None:
+#         journal.mood_tags = ','.join(journal_data.mood_tags)
+    
+#     db.commit()
+#     db.refresh(journal)
+#     return {
+#         "data": journal.__dict__
+#     }
 
 # Delete a journal entry
 @journal_router.delete('/{journal_id}')
