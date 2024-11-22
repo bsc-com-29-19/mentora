@@ -19,6 +19,8 @@ class _AuthEndPoints {
 
 class _JornalEndpoints {
   final String journal = "/journals/";
+  final String todayJournal = "/journals/today";
+  String updateJournal(String journalId) => "/journals/$journalId";
 }
 
 class _ActivityEndpoints {

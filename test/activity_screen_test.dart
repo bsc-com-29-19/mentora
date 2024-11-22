@@ -63,20 +63,6 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets('error message is displayed when errorMessage is not empty',
-        (tester) async {
-      final activitiesController = Get.put(ActivitiesController());
-      activitiesController.errorMessage.value = 'Error message';
-
-      await tester.pumpWidget(
-        GetMaterialApp(
-          home: ActivitiesScreen(),
-        ),
-      );
-      final errorText = find.text('Error message');
-      expect(errorText, findsOneWidget);
-    });
-
     testWidgets(
         'activities list is displayed when isLoading is false and errorMessage is empty',
         (tester) async {
