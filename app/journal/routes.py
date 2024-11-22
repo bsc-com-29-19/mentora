@@ -27,7 +27,7 @@ def create_journal(
 
     if existing_journal:
         raise HTTPException(
-            status_code=400, 
+            status_code=409, 
             detail="A journal entry for today already exists."
         )
 
