@@ -4,11 +4,10 @@ import 'package:mentora_frontend/auth/screens/profile_screen.dart';
 import 'package:mentora_frontend/auth/widgets/account_icon_button.dart';
 import 'package:mentora_frontend/auth/widgets/button.dart';
 import 'package:mentora_frontend/journal/viewmodel/journal_view_model.dart';
-// import 'package:mentora_frontend/auth/widgets/custom_navigation_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalScreen extends StatefulWidget {
-  JournalScreen({super.key});
+  const JournalScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -44,7 +43,6 @@ class _JournalScreenState extends State<JournalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      // drawer: const CustomNavigationDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
@@ -65,254 +63,282 @@ class _JournalScreenState extends State<JournalScreen> {
           ),
         ],
       ),
-
       body: Container(
         color: Colors.green[50],
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            // Date selector
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Date',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Date selector
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Date',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      _selectDate(context);
+                    },
+                    child: Text(
+                      "${selectedDate.toLocal()}".split(' ')[0],
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+
+              // Morning task
+              TextField(
+                controller: journalController.taskController,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  labelText: 'Write your most important task today',
+                  labelStyle: TextStyle(color: Colors.black),
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green),
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    _selectDate(context);
-                  },
-                  child: Text(
-                    "${selectedDate.toLocal()}".split(' ')[0],
-                    style: const TextStyle(color: Colors.black),
+              ),
+              const SizedBox(height: 20),
+
+              // Gratitude fields
+              const Text(
+                'You are grateful for:',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: journalController.gratitudeController1,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  hintText: '1.',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            // Morning task
-            TextField(
-              controller: journalController.taskController,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                labelText: 'Write your most important task today',
-                labelStyle: TextStyle(color: Colors.black),
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: journalController.gratitudeController2,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  hintText: '2.',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-
-            // Gratitude fields
-            const Text(
-              'You are grateful for:',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: journalController.gratitudeController1,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                hintText: '1.',
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+              const SizedBox(height: 10),
+              TextField(
+                controller: journalController.gratitudeController3,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  hintText: '3.',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: journalController.gratitudeController2,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                hintText: '2.',
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+              const SizedBox(height: 20),
+
+              // Evening section
+              const Text(
+                'Evening',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: journalController.gratitudeController3,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                hintText: '3.',
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-            // Evening section
-            const Text(
-              'Evening',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+              // Overall day rating
+              const Text(
+                'Overall Day Rating',
+                style: TextStyle(fontSize: 16, color: Colors.black),
               ),
-            ),
-            const SizedBox(height: 20),
-
-            // Overall day rating
-            const Text(
-              'Overall Day Rating',
-              style: TextStyle(fontSize: 16, color: Colors.black),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildRadioWithLabel(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildRadioWithLabel(
                     1,
                     'Awful',
                     journalController.overallRating.value,
-                    (value) => setState(
-                        () => journalController.overallRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.overallRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     2,
                     'Bad',
                     journalController.overallRating.value,
-                    (value) => setState(
-                        () => journalController.overallRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.overallRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     3,
                     'Ok',
                     journalController.overallRating.value,
-                    (value) => setState(
-                        () => journalController.overallRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.overallRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     4,
                     'Good',
                     journalController.overallRating.value,
-                    (value) => setState(
-                        () => journalController.overallRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.overallRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     5,
                     'Great',
                     journalController.overallRating.value,
-                    (value) => setState(
-                        () => journalController.overallRating.value = value!)),
-              ],
-            ),
-            const SizedBox(height: 20),
+                    (value) => setState(() => journalController.overallRating.value = value!),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
 
-            // Mood rating
-            const Text(
-              'Mood Rating',
-              style: TextStyle(fontSize: 16, color: Colors.black),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildRadioWithLabel(
+              // Mood rating
+              const Text(
+                'Mood Rating',
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildRadioWithLabel(
                     1,
                     'Awful',
                     journalController.moodRating.value,
-                    (value) => setState(
-                        () => journalController.moodRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.moodRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     2,
                     'Bad',
                     journalController.moodRating.value,
-                    (value) => setState(
-                        () => journalController.moodRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.moodRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     3,
                     'Ok',
                     journalController.moodRating.value,
-                    (value) => setState(
-                        () => journalController.moodRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.moodRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     4,
                     'Good',
                     journalController.moodRating.value,
-                    (value) => setState(
-                        () => journalController.moodRating.value = value!)),
-                _buildRadioWithLabel(
+                    (value) => setState(() => journalController.moodRating.value = value!),
+                  ),
+                  _buildRadioWithLabel(
                     5,
                     'Great',
                     journalController.moodRating.value,
-                    (value) => setState(
-                        () => journalController.moodRating.value = value!)),
-              ],
-            ),
-            const SizedBox(height: 20),
+                    (value) => setState(() => journalController.moodRating.value = value!),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
 
-            // Task completed
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Completed the most important task?',
+              // Task completed
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Completed the most important task?',
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
-                    )),
-                Switch(
-                  activeColor: Colors.green.shade300,
-                  value: journalController.taskCompleted.value,
-                  onChanged: (value) {
-                    setState(() {
-                      journalController.taskCompleted.value = value;
-                    });
+                    ),
+                  ),
+                  Switch(
+                    activeColor: Colors.green.shade300,
+                    value: journalController.taskCompleted.value,
+                    onChanged: (value) {
+                      setState(() {
+                        journalController.taskCompleted.value = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+
+              // How did you spend your day?
+              TextField(
+                controller: journalController.daySummaryController,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  hintText: 'How did you spend your day?',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green),
+                  ),
+                ),
+                maxLines: 5,
+              ),
+              const SizedBox(height: 20),
+
+              // Submit button
+              Button(
+                text: 'Submit Journal',
+                onPressed: journalController.submitJournal,
+              ),
+
+              const SizedBox(height: 20),
+
+              // List items
+              Container(
+                height: 200, // Adjust this height as needed
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: ListView.builder(
+                  itemCount: 50,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text('Item $index'),
+                    );
                   },
                 ),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            // How did you spend your day?
-            TextField(
-              controller: journalController.daySummaryController,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                hintText: 'How did you spend your day?',
-                border: OutlineInputBorder(),
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
-                ),
               ),
-              maxLines: 5,
-            ),
-            const SizedBox(height: 20),
-
-            // Submit button
-            Button(
-              text: 'Submit Journal',
-              onPressed: journalController.submitJournal,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildRadioWithLabel(
-      int value, String label, int groupValue, ValueChanged<int?> onChanged) {
+    int value,
+    String label,
+    int groupValue,
+    ValueChanged<int?> onChanged,
+  ) {
     return Column(
       children: [
         Radio<int>(
@@ -321,7 +347,10 @@ class _JournalScreenState extends State<JournalScreen> {
           activeColor: Colors.green.shade300,
           onChanged: onChanged,
         ),
-        Text(label, style: const TextStyle(color: Colors.black)),
+        Text(
+          label,
+          style: const TextStyle(color: Colors.black),
+        ),
       ],
     );
   }
