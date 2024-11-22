@@ -95,14 +95,17 @@ class JournalController extends GetxController {
 
         logger.i("Fetched journal data: $journalData");
       } else {
-        logger.e("Failed to fetch journal data: ${response.statusCode}");
-        Get.snackbar("Error", "Failed to load journal data.",
-            backgroundColor: Colors.red.shade300, colorText: Colors.white);
+        var errorDetail =
+            jsonDecode(response.body)['detail'] ?? "Unknown error";
+        logger.e("Failed to fetch journal data: $errorDetail");
+        // Get.snackbar("Error", "Failed to load journal data.",
+        //     backgroundColor: Colors.red.shade300, colorText: Colors.white);
       }
     } catch (error) {
       logger.e("Error fetching journal data: $error");
-      Get.snackbar("Error", "An error occurred while fetching journal data.",
-          backgroundColor: Colors.red.shade300, colorText: Colors.white);
+
+      // Get.snackbar("Error", "An error occurred while fetching journal data.",
+      //     backgroundColor: Colors.red.shade300, colorText: Colors.white);
     }
   }
 
