@@ -57,6 +57,8 @@ class JournalController extends GetxController {
     final token = await _loadToken();
     if (token == null) return;
 
+    final SharedPreferences prefs = await _prefs;
+
     try {
       var url = Uri.parse(
           ApiEndpoints.baseurl + ApiEndpoints.journalEndpoints.todayJournal);
@@ -65,7 +67,11 @@ class JournalController extends GetxController {
         'Content-Type': 'application/json',
       };
 
+      logger.i("Fetching journal data from $url");
+      logger.i("Token retrieved: $token");
+
       final response = await http.get(url, headers: headers);
+      logger.i("Response: $response");
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -90,19 +96,24 @@ class JournalController extends GetxController {
             journalData['completed_most_important_task'] ?? false;
 
         // Save fetched data locally
-        final SharedPreferences prefs = await _prefs;
+
         await prefs.setString('journal_data', jsonEncode(journalData));
 
-        logger.i("Fetched journal data: $journalData");
+        // logger.i("Fetched journal data: $journalData");
       } else {
-        logger.e("Failed to fetch journal data: ${response.statusCode}");
-        Get.snackbar("Error", "Failed to load journal data.",
-            backgroundColor: Colors.red.shade300, colorText: Colors.white);
+        var errorDetail =
+            jsonDecode(response.body)['detail'] ?? "Unknown error";
+        logger.e("Failed to fetch journal data: $errorDetail");
+        await prefs.remove('journal_data');
+
+        // Get.snackbar("Error", "Failed to fetch journal data: $errorDetail",
+        //     backgroundColor: Colors.red.shade300, colorText: Colors.white);
       }
     } catch (error) {
       logger.e("Error fetching journal data: $error");
-      Get.snackbar("Error", "An error occurred while fetching journal data.",
-          backgroundColor: Colors.red.shade300, colorText: Colors.white);
+
+      // Get.snackbar("Error", "An error occurred while fetching journal data.",
+      //     backgroundColor: Colors.red.shade300, colorText: Colors.white);
     }
   }
 
@@ -128,7 +139,7 @@ class JournalController extends GetxController {
       moodRating.value = data['overall_mood_rating'] ?? 1;
       taskCompleted.value = data['completed_most_important_task'] ?? false;
 
-      logger.i("Loaded saved journal data: $data");
+      // logger.i("Loaded saved journal data: $data");
     }
   }
 
@@ -190,7 +201,7 @@ class JournalController extends GetxController {
       };
 
       var encodedBody = jsonEncode(body);
-      logger.d("Submitting Journal: $encodedBody");
+      // logger.d("Submitting Journal: $encodedBody");
 
       http.Response response =
           await http.post(url, body: encodedBody, headers: headers);
@@ -203,13 +214,40 @@ class JournalController extends GetxController {
         if (response.body.isNotEmpty) {
           var responseData = jsonDecode(response.body);
           await prefs.setString('journal_data', jsonEncode(responseData));
-          logger.i("Response body : $responseData ");
-          // Handle the response data
+          // logger.i("Response body : $responseData ");
         }
 
         Get.snackbar("Success", "Journal submitted successfully!",
             backgroundColor: Colors.green.shade300, colorText: Colors.white);
-        // _clearForm();
+      } else if (response.statusCode == 409) {
+        final errorDetail = jsonDecode(response.body)['detail'];
+        final journalId = errorDetail['journal_id'];
+
+        var updateUrl = Uri.parse(ApiEndpoints.baseurl +
+            ApiEndpoints.journalEndpoints.updateJournal(
+                journalId)); // Define the correct update endpoint
+        http.Response updateResponse =
+            await http.put(updateUrl, body: encodedBody, headers: headers);
+
+        if (updateResponse.statusCode == 200) {
+          // Journal updated successfully
+          statsController.fetchStatsData();
+          if (updateResponse.body.isNotEmpty) {
+            var updatedData = jsonDecode(updateResponse.body);
+            await prefs.setString('journal_data', jsonEncode(updatedData));
+            logger.i("Updated journal data: $updatedData");
+          }
+
+          Get.snackbar("Success", "Journal updated successfully!",
+              backgroundColor: Colors.green.shade300, colorText: Colors.white);
+        } else {
+          // Handle update failure
+          var updateError =
+              jsonDecode(updateResponse.body)['detail'] ?? "Unknown error";
+          logger.e("Error updating journal: $updateError");
+          Get.snackbar("Update Failed", updateError,
+              backgroundColor: Colors.red.shade300, colorText: Colors.white);
+        }
       } else {
         var errorDetail =
             jsonDecode(response.body)['detail'] ?? "Unknown error";
