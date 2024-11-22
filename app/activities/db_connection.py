@@ -42,26 +42,15 @@ print(f"DB: {db}")  # Print the database object (for debugging pub)
 model = ChatOpenAI(model="gpt-3.5-turbo")
 
 
+logging.basicConfig(level=logging.INFO)
+
+
 # db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  
 
 def generate_activities_custom_for_all_users():
 
     db1 = next(get_db())  
     # List of mental health-improving activities with shortened titles
-    # suggested_activities = [
-    #     "Title: Go for a walk\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.",
-    #     "Title: Meditate\nDescription: Spend 15 minutes focusing on your breath to relax your mind.",
-    #     "Title: Read a book\nDescription: Reading can be a great escape and help reduce stress.",
-    #     "Title: Gym exercise\nDescription: Physical activity boosts serotonin and can help alleviate depression.",
-    #     "Title: Connect with a friend\nDescription: Socializing and spending time with friends improves emotional well-being.",
-    #     "Title: Journal\nDescription: Writing about your feelings can help process emotions and clear your mind.",
-    #     "Title: Listen to music\nDescription: Listening to uplifting music can improve mood and reduce stress.",
-    #     "Title: Deep breathing\nDescription: Practicing deep breathing can reduce tension and improve focus.",
-    #     "Title: Cook a meal\nDescription: Preparing healthy meals can increase feelings of accomplishment and improve health.",
-    #     "Title: Yoga\nDescription: Yoga can enhance physical and mental flexibility while promoting relaxation.",
-    #     "Title: Spend time with pets\nDescription: Interacting with animals can reduce stress and enhance emotional well-being.",
-    #     "Title: Take a nap\nDescription: A short nap can recharge energy and improve mental clarity."
-    # ]
     suggested_activities = [
         {"title": "Go for a walk", "description": "A 30-minute walk in nature can improve mood and reduce anxiety."},
         {"title": "Meditate", "description": "Spend 15 minutes focusing on your breath to relax your mind."},
@@ -540,8 +529,9 @@ def generate_activities_custom_for_all_users():
 
 def start_scheduler():
     scheduler = BackgroundScheduler(timezone="UTC")
-    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)
+    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=7, minute=45)
     scheduler.start()
+    logging.info("Scheduler started")
 
 
 # def shutdown_scheduler():

@@ -1861,6 +1861,15 @@
         "documentation": {}
     },
     {
+        "label": "multiprocessing",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
         "label": "upgrade",
         "kind": 2,
         "importPath": "alembic.versions.faa54a879958_created_db_models",
@@ -1964,7 +1973,7 @@
         "kind": 2,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "def generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",\n    #     \"Title: Connect with a friend\\nDescription: Socializing and spending time with friends improves emotional well-being.\",\n    #     \"Title: Journal\\nDescription: Writing about your feelings can help process emotions and clear your mind.\",",
+        "peekOfCode": "def generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    suggested_activities = [\n        {\"title\": \"Go for a walk\", \"description\": \"A 30-minute walk in nature can improve mood and reduce anxiety.\"},\n        {\"title\": \"Meditate\", \"description\": \"Spend 15 minutes focusing on your breath to relax your mind.\"},\n        {\"title\": \"Read a book\", \"description\": \"Reading can be a great escape and help reduce stress.\"},\n        {\"title\": \"Gym exercise\", \"description\": \"Physical activity boosts serotonin and can help alleviate depression.\"},\n        {\"title\": \"Connect with a friend\", \"description\": \"Socializing and spending time with friends improves emotional well-being.\"},\n        {\"title\": \"Journal\", \"description\": \"Writing about your feelings can help process emotions and clear your mind.\"},",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1973,7 +1982,7 @@
         "kind": 2,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "def start_scheduler():\n    scheduler = BackgroundScheduler(timezone=\"UTC\")\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=0, minute=0)\n    scheduler.start()\n# def shutdown_scheduler():\n#     scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"\n    # result = db_chain.invoke(query)",
+        "peekOfCode": "def start_scheduler():\n    scheduler = BackgroundScheduler(timezone=\"UTC\")\n    scheduler.add_job(generate_activities_custom_for_all_users, 'cron', hour=7, minute=45)\n    scheduler.start()\n    logging.info(\"Scheduler started\")\n# def shutdown_scheduler():\n#     scheduler.shutdown()\ndef get_db_connection_check():\n    # query = \"How many users have signed up show  their username and email and list of activities for every user\"\n    query= \"show all activities\"",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -1991,7 +2000,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "DATABASE_URL = os.getenv('DATABASE_URL')\n##### db = sql_database(DATABASE_URL)\ndb = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  ",
+        "peekOfCode": "DATABASE_URL = os.getenv('DATABASE_URL')\n##### db = sql_database(DATABASE_URL)\ndb = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\nlogging.basicConfig(level=logging.INFO)\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -2000,7 +2009,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "db = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [",
+        "peekOfCode": "db = SQLDatabase.from_uri(DATABASE_URL)\n###### db = SQLDatabase.from_uri(\"postgresql://admin:password@postgres:5432/mentoradb\")\nprint(f\"DB: {db}\")  # Print the database object (for debugging pub)\n#### Initialize the model\nmodel = ChatOpenAI(model=\"gpt-3.5-turbo\")\nlogging.basicConfig(level=logging.INFO)\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -2009,7 +2018,7 @@
         "kind": 5,
         "importPath": "app.activities.db_connection",
         "description": "app.activities.db_connection",
-        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    # suggested_activities = [\n    #     \"Title: Go for a walk\\nDescription: A 30-minute walk in nature can improve mood and reduce anxiety.\",\n    #     \"Title: Meditate\\nDescription: Spend 15 minutes focusing on your breath to relax your mind.\",\n    #     \"Title: Read a book\\nDescription: Reading can be a great escape and help reduce stress.\",\n    #     \"Title: Gym exercise\\nDescription: Physical activity boosts serotonin and can help alleviate depression.\",",
+        "peekOfCode": "model = ChatOpenAI(model=\"gpt-3.5-turbo\")\nlogging.basicConfig(level=logging.INFO)\n# db_chain = SQLDatabaseChain.from_llm(model,db,verbose=True)  \ndef generate_activities_custom_for_all_users():\n    db1 = next(get_db())  \n    # List of mental health-improving activities with shortened titles\n    suggested_activities = [\n        {\"title\": \"Go for a walk\", \"description\": \"A 30-minute walk in nature can improve mood and reduce anxiety.\"},\n        {\"title\": \"Meditate\", \"description\": \"Spend 15 minutes focusing on your breath to relax your mind.\"},\n        {\"title\": \"Read a book\", \"description\": \"Reading can be a great escape and help reduce stress.\"},",
         "detail": "app.activities.db_connection",
         "documentation": {}
     },
@@ -2900,7 +2909,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def check_database_connection():\n    # database connection check\n    #\n    return True\ndef check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    start_scheduler()\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "peekOfCode": "def check_database_connection():\n    # database connection check\n    #\n    return True\ndef check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    # start_scheduler()\n    scheduler_process = multiprocessing.Process(target=start_scheduler)",
         "detail": "main",
         "documentation": {}
     },
@@ -2909,7 +2918,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    start_scheduler()\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
+        "peekOfCode": "def check_dependencies():\n    # dependency check\n    return True\nif __name__ == \"__main__\":\n    # start_scheduler()\n    scheduler_process = multiprocessing.Process(target=start_scheduler)\n    scheduler_process.start()\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8400,reload=True)",
         "detail": "main",
         "documentation": {}
     },

@@ -16,4 +16,4 @@ langchain-openai
 langchain_community
 langchain_experimental
 python-dotenv
-APScheduler 
+apscheduler 
