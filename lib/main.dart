@@ -95,11 +95,31 @@ class _MyHomePageState extends State<MyHomePage> {
   // }
 
   Future<void> _refreshData() async {
+    // if (!_isRefreshing) {
+    //   _isRefreshing = true;
+    //   // Simulate a network call or data refresh.
+    //   await Future.delayed(const Duration(seconds: 2));
+    //   _isRefreshing = false;
+    // }
     if (!_isRefreshing) {
       _isRefreshing = true;
       // Simulate a network call or data refresh.
       await Future.delayed(const Duration(seconds: 2));
       _isRefreshing = false;
+      final prefs = await SharedPreferences.getInstance();
+      final bool onBoardingCompleted =
+          prefs.getBool('onBoardingCompleted') ?? false;
+      final bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
+
+      // Refresh the entire app
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MyApp(
+                  onBoardingCompleted: onBoardingCompleted,
+                  isAuthenticated: isAuthenticated,
+                )),
+      );
     }
   }
 
