@@ -10,8 +10,7 @@ settings = get_settings()
 DB_URL = f'postgresql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}/{settings.DB_NAME}'
 
 engine = create_engine(DB_URL,pool_size=20, 
-                          max_overflow=10, 
-                          connect_args={'timeout': 300})
+                          max_overflow=10)
 
 SessionLocal = sessionmaker(autoflush=False,autocommit = False ,bind=engine)
 
