@@ -142,14 +142,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.2"
-  checked_yaml:
-    dependency: transitive
-    description:
-      name: checked_yaml
-      sha256: feb6bed21949061731a7a75fc5d2aa727cf160b91af9a3e464c5e3a32e28b5ff
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   clock:
     dependency: transitive
     description:
@@ -477,22 +469,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.8.7"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.9.0"
-  launcher_name:
-    dependency: "direct main"
-    description:
-      name: launcher_name
-      sha256: "5fc9a8b8de9e255d5f21effc33632b5620771c9b2310d459a7710b725353b305"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   io:
     dependency: transitive
     description:
@@ -517,6 +493,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
+  launcher_name:
+    dependency: "direct main"
+    description:
+      name: launcher_name
+      sha256: "5fc9a8b8de9e255d5f21effc33632b5620771c9b2310d459a7710b725353b305"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   leak_tracker:
     dependency: transitive
     description:
