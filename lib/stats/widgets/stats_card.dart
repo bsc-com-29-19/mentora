@@ -17,9 +17,19 @@ class StatCardExpandable extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey), // Border color
-          borderRadius: BorderRadius.circular(8), // Rounded corners
-          color: Colors.grey.shade900, // Background color
+          // border: Border.all(
+          //     color: Colors.green.shade300, width: 1), // Border color
+          borderRadius: BorderRadius.circular(10), // Rounded corners
+          color: Colors.grey, // Background color
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              spreadRadius: 0.1, // Reduce color width (box shadow)
+              blurRadius: 1,
+              offset: Offset(0, 1),
+              
+            ),
+          ],
         ),
         margin:
             const EdgeInsets.symmetric(horizontal: 8.0), // Margin between cards
@@ -29,13 +39,13 @@ class StatCardExpandable extends StatelessWidget {
             title: Column(
               children: [
                 Text(
-                  value, 
+                  value,
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  label, 
+                  label,
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 14),
                 ),

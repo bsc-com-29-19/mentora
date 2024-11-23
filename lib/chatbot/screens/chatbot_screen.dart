@@ -25,7 +25,6 @@ class ChatbotScreen extends StatefulWidget {
 class _ChatbotScreenState extends State<ChatbotScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  
   String username = '';
   String email = '';
   String fullName = '';
@@ -45,7 +44,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     });
   }
 
-
   final ChatbotController _chatbotController = ChatbotController();
   final ScrollController _scrollcontroller = ScrollController();
   final TextEditingController _textController = TextEditingController();
@@ -60,20 +58,18 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     super.initState();
     // Call this whenever the messages list updates to scroll down
     _chatbotController.messages.listen((_) => _scrollDown());
-     _loadUserData();
+    _loadUserData();
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     key: _scaffoldKey,
+      key: _scaffoldKey,
       //  drawer: const CustomNavigationDrawer(),
 
       backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
         title: const Text(
           "Mentora Therapist",
           style: TextStyle(
@@ -82,7 +78,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
             fontSize: 24,
           ),
         ),
-        
         actions: [
           AccountIconButton(
             username: username,
@@ -92,7 +87,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           ),
         ],
       ),
-    
+
       body: Column(
         children: [
           Expanded(
@@ -131,11 +126,15 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                         _chatbotController.sendChatMessage(value),
                     controller: _textController,
                     decoration: InputDecoration(
-                      hintText: "Enter a Message",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                        hintText: "Enter a Message",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        fillColor: Colors.white,
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.green.shade300,
+                        ))),
                     maxLines: null,
                     keyboardType: TextInputType.multiline,
                   ),
