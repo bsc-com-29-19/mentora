@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mentora_frontend/activity/viewmodels/activities_view_model.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mockito/mockito.dart';
 
 // import 'package:get/get.dart';
 //
@@ -38,10 +38,10 @@ void main() {
 
   test('Token does not exist in SharedPreferences', () async {
     // Arrange
-    when(mockSharedPreferences.getString('token')).thenReturn(null);
-    when(mockSharedPreferences.getString('username')).thenReturn(null);
-    when(mockSharedPreferences.getString('email')).thenReturn(null);
-    when(mockSharedPreferences.getString('fullName')).thenReturn(null);
+    when(mockSharedPreferences.getString('token') as Function()).thenReturn(null);
+    when(mockSharedPreferences.getString('username') as Function()).thenReturn(null);
+    when(mockSharedPreferences.getString('email') as Function()).thenReturn(null);
+    when(mockSharedPreferences.getString('fullName') as Function()).thenReturn(null);
     SharedPreferences.setMockInitialValues({});
 
     // Act
@@ -58,10 +58,10 @@ void main() {
 
   test('Token is empty in SharedPreferences', () async {
     // Arrange
-    when(mockSharedPreferences.getString('token')).thenReturn('');
-    when(mockSharedPreferences.getString('username')).thenReturn('');
-    when(mockSharedPreferences.getString('email')).thenReturn('');
-    when(mockSharedPreferences.getString('fullName')).thenReturn('');
+    when(mockSharedPreferences.getString('token') as Function()).thenReturn('');
+    when(mockSharedPreferences.getString('username') as Function()).thenReturn('');
+    when(mockSharedPreferences.getString('email') as Function()).thenReturn('');
+    when(mockSharedPreferences.getString('fullName') as Function()).thenReturn('');
     SharedPreferences.setMockInitialValues({});
 
     // Act
